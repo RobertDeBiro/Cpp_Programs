@@ -26,8 +26,9 @@ public:
     }
 
     /*
-    Copy constructor implementing shallow copy (provided by the compiler)
+    Default copy constructor that implements shallow copy
      - it coppies pointer to other pointer
+     - deafult means that it is provided by the compiler
     MyString::MyString(const MyString& source)
         : m_length { source.m_length }
         , m_data { source.m_data }
