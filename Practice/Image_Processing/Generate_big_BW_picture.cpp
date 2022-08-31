@@ -115,7 +115,7 @@ bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 	// Obtain amount of region vertices
 	int vertices{ static_cast<int>(region.size()) };
 
-	// Object for counting intersections
+	// Counter for counting intersections
 	int count = 0;
 
 	// Indexes for region adjacent vertices
@@ -125,12 +125,12 @@ bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 	do
 	{
 		// Check if the line segment from 'p' to 'extreme' intersects
-		// with the line segment from 'region[i]' to 'region[next]'
+		// with the line segment from 'region[pos1]' to 'region[pos2]'
 		if (linesIntersect(region[pos1], region[pos2], p, extreme))
 		{
-			// If the point 'p' is collinear with line segment 'i-next',
-			// then check if it lies on segment.
-            // If it lies, return true, otherwise false
+			// If the point 'p' is collinear with line segment 'pos1-pos2',
+			// then check if it lies on segment -
+            // if it lies, return true, otherwise false
 			if (orientation(region[pos1], region[pos2], p) == 0)
 			    return posOnLine(region[pos1], region[pos2], p);
 
@@ -184,17 +184,16 @@ int main()
     int count{ 1 };
 	for (auto point : pixels_centers)
     {
-        //std::cout << "Point: (" << point.x << ", " << point.y << ") \n";
         if (isPixelCenterInside(region1, point)
 		   || isPixelCenterInside(region2, point)
 		   || isPixelCenterInside(region3, point))
         {
-            std::cout << "W";
+			// If pixel center is inside the region, generate white pixel
             img << 255 << " " << 255 << " " << 255 << std::endl;
         }
         else
         {
-            std::cout << "B";
+			// If pixel center is outside the region, generate black pixel
             img << 0 << " " << 0 << " " << 0 << std::endl;
         }
         if (count >= image_width)
