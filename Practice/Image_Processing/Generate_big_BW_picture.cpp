@@ -32,7 +32,7 @@ void generatePixelsCenters(std::vector<Position>& pixels_centers)
 }
 
 // Check if position lies on line segment
-bool posOnLine(Position pn, Position qn, Position pqm)
+bool posOnLine(const Position pn, const Position qn, const Position pqm)
 {
 	// For three collinear positions - pn, qn and pqm - function returns true
 	// if point pqm lies on line segment pn---qn, otherwise returns false
@@ -43,7 +43,7 @@ bool posOnLine(Position pn, Position qn, Position pqm)
 }
 
 // Return orientation of three ordered points
-int orientation(Position pn, Position qn, Position pqm)
+int orientation(const Position pn, const Position qn, const Position pqm)
 {
 	/* 
 	 * In order to find orientation of three ordered points use following algorithm:
@@ -67,7 +67,7 @@ int orientation(Position pn, Position qn, Position pqm)
 }
 
 // Check if lines intersect
-bool linesIntersect(Position p1, Position q1, Position p2, Position q2)
+bool linesIntersect(const Position p1, const Position q1, const Position p2, const Position q2)
 {
 	/*
 	 * Two lines - (p1, q1) and (p2, q2) - intersect if one of the following
@@ -106,17 +106,19 @@ bool linesIntersect(Position p1, Position q1, Position p2, Position q2)
 	return false;
 }
 
-// Returns true if the point p lies inside the region[] with n vertices
-bool isInside(Position region[], int vertices, Position p)
+// Returns true if the pixel center 'p' lies inside the region
+bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 {
-	// There must be at least 3 vertices in region[]
-	if (vertices < 3) return false;
-
 	// Create Position outside the image
 	Position extreme = {image_width + 1, p.y};
 
-	// Count intersections of the above line with sides of region
+	// Obtain amount of region vertices
+	int vertices{ static_cast<int>(region.size()) };
+
+	// Object for counting intersections
 	int count = 0;
+
+	// Indexes for region adjacent vertices
     int pos1 = 0;
 	int pos2 = 1;
 
@@ -160,30 +162,32 @@ int main()
     generatePixelsCenters(pixels_centers);
 
 	// Define regions
-    Position region1[] = { {24.0, 432.0}, {72.0, 432.0}, {96.0, 96.0},
-                           {120.0, 144.0}, {144.0, 96.0}, {168.0, 432.0},
-                           {216.0, 432.0}, {168.0, 48.0}, {72.0, 48.0} };
+    std::vector<Position> region1 = {
+										{24.0, 432.0}, {72.0, 432.0}, {96.0, 96.0},
+                                        {120.0, 144.0}, {144.0, 96.0}, {168.0, 432.0},
+                                        {216.0, 432.0}, {168.0, 48.0}, {72.0, 48.0}
+									};
 
-    Position region2[] = { {240.0, 432.0}, {288.0, 432.0},
-                           {288.0, 48.0}, {240.0, 48.0} };
+    std::vector<Position> region2 = {
+										{240.0, 432.0}, {288.0, 432.0},
+										{288.0, 48.0}, {240.0, 48.0}
+									};
 
-    Position region3[] = { {312.0, 432.0}, {360.0, 432.0}, {408.0, 144.0},
-                           {408.0, 432.0}, {456.0, 432.0}, {456.0, 48.0},
-                           {408.0, 48.0}, {360.0, 240.0}, {360.0, 48.0},
-                           {312.0, 48.0} };
-
-	int n1 = sizeof(region1)/sizeof(region1[0]);
-	int n2 = sizeof(region2)/sizeof(region2[0]);
-	int n3 = sizeof(region3)/sizeof(region3[0]);
+    std::vector<Position> region3 = {
+										{312.0, 432.0}, {360.0, 432.0}, {408.0, 144.0},
+                           				{408.0, 432.0}, {456.0, 432.0}, {456.0, 48.0},
+                           				{408.0, 48.0}, {360.0, 240.0}, {360.0, 48.0},
+                           				{312.0, 48.0}
+									};
 
 	// Generate black and white pixels for the image
     int count{ 1 };
 	for (auto point : pixels_centers)
     {
         //std::cout << "Point: (" << point.x << ", " << point.y << ") \n";
-        if (isInside(region1, n1, point)
-		   || isInside(region2, n2, point)
-		   || isInside(region3, n3, point))
+        if (isPixelCenterInside(region1, point)
+		   || isPixelCenterInside(region2, point)
+		   || isPixelCenterInside(region3, point))
         {
             std::cout << "W";
             img << 255 << " " << 255 << " " << 255 << std::endl;
