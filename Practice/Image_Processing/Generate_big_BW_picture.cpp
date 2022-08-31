@@ -107,49 +107,42 @@ bool linesIntersect(Position p1, Position q1, Position p2, Position q2)
 }
 
 // Returns true if the point p lies inside the region[] with n vertices
-bool isInside(Position region[], int n, Position p)
+bool isInside(Position region[], int vertices, Position p)
 {
 	// There must be at least 3 vertices in region[]
-	if (n < 3) return false;
+	if (vertices < 3) return false;
 
 	// Create Position outside the image
 	Position extreme = {image_width + 1, p.y};
 
-	// To count number of points in region whose y-coordinate is equal to
-	// y-coordinate of the point
-	int decrease = 0;
-
 	// Count intersections of the above line with sides of region
 	int count = 0;
-    int i = 0;
+    int pos1 = 0;
+	int pos2 = 1;
 
 	do
 	{
-		int next = (i+1)%n;
-	
-		if(region[i].y == p.y) decrease++;
-
 		// Check if the line segment from 'p' to 'extreme' intersects
 		// with the line segment from 'region[i]' to 'region[next]'
-		if (linesIntersect(region[i], region[next], p, extreme))
+		if (linesIntersect(region[pos1], region[pos2], p, extreme))
 		{
 			// If the point 'p' is collinear with line segment 'i-next',
 			// then check if it lies on segment.
             // If it lies, return true, otherwise false
-			if (orientation(region[i], region[next], p) == 0)
-			    return posOnLine(region[i], region[next], p);
+			if (orientation(region[pos1], region[pos2], p) == 0)
+			    return posOnLine(region[pos1], region[pos2], p);
 
 			count++;
 		}
-		i = next;
-	} while (i != 0);
-	
-    // Reduce the count by decrease amount
-    // as these points would have been added twice
-	count -= decrease;
+
+		++pos1;
+		if (++pos2 == vertices)
+			pos2 = 0;
+
+	} while (pos1 < vertices);
 
 	// Return true if count is odd, false otherwise
-	return count&1; // Same as (count%2 == 1)
+	return (count%2 == 1);
 }
 
 int main()
