@@ -1,29 +1,32 @@
 #include <iostream>
-#include <vector>
-#include <array>
 #include <fstream>
+#include <vector>
 
-const int image_width = 480;
-const int image_height = 480;
-const int pixel_size = 1;
-const long pixel_amount = (image_width / pixel_size) * (image_height / pixel_size);
+// Image specifications
+namespace image
+{
+	constexpr int width = 480;
+	constexpr int height = 480;
+	constexpr int pixel_size = 1;
+}
 
 struct Position
 {
-	double x;
-	double y;
+	double x{};
+	double y{};
 };
 
+// Save the position of every pixel center
 void generatePixelsCenters(std::vector<Position>& pixels_centers)
 {
-    double relPixCent{ pixel_size / 2.0 };
-	double absPixCent_x;
-	double absPixCent_y;
+    double relPixCent{ image::pixel_size / 2.0 }; // relative position of the center for every pixel
+	double absPixCent_x; // pixel center x coordinate
+	double absPixCent_y; // pixel center y coordinate
 
-    for (int y = image_height; y > 0; y--)
+    for (int y = image::height; y > 0; y--)
     {
 		absPixCent_y = y - relPixCent;
-        for (int x = 0; x < image_width; x++)
+        for (int x = 0; x < image::width; x++)
         {
 			absPixCent_x = x + relPixCent;
 			pixels_centers.push_back({absPixCent_x, absPixCent_y});
@@ -31,7 +34,7 @@ void generatePixelsCenters(std::vector<Position>& pixels_centers)
     }
 }
 
-// Check if position lies on line segment
+// Check if position collinear with the line lies on it
 bool posOnLine(const Position pn, const Position qn, const Position pqm)
 {
 	// For three collinear positions - pn, qn and pqm - function returns true
@@ -47,22 +50,22 @@ int orientation(const Position pn, const Position qn, const Position pqm)
 {
 	/* 
 	 * In order to find orientation of three ordered points use following algorithm:
-	 * val = (y2 - y1) * (x3 - x2) - (y3 - y2) * (x2 - x1),
+	 * orient = (y2 - y1) * (x3 - x2) - (y3 - y2) * (x2 - x1),
 	 *
 	 * where:	pn = [x1, y1]
 	 *	 		qn = [x2, y2]
 	 *	 		pqm = [x3, y3] 
 	 *
 	 * Orientation can be:
-	 *  1) Collinear: 			val = 0
-	 *  2) Clockwise: 			val > 0
-	 *  3) CounterClockwise:	val < 0
+	 *  1) Collinear: 			orient = 0
+	 *  2) Clockwise: 			orient > 0
+	 *  3) CounterClockwise:	orient < 0
 	 */
 
-	double val = (qn.y - pn.y) * (pqm.x - qn.x) - (pqm.y - qn.y) * (qn.x - pn.x);
+	double orient = (qn.y - pn.y) * (pqm.x - qn.x) - (pqm.y - qn.y) * (qn.x - pn.x);
 
-	if(val == 0.0)		return 0;
-	else if (val > 0.0)	return 1;
+	if(orient == 0.0)		return 0;
+	else if (orient > 0.0)	return 1;
 	else				return 2;
 }
 
@@ -109,10 +112,18 @@ bool linesIntersect(const Position p1, const Position q1, const Position p2, con
 // Returns true if the pixel center 'p' lies inside the region
 bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 {
-	// Create Position outside the image
-	Position extreme = {image_width + 1, p.y};
+	// In order to check if pixel center p lies inside region, implement following logic:
+	//  1) Create a horizontal line from the pixel center
+    //     to the arbitrary position placed outside the image
+	//  2) Count the number of times the created line intersects with region edges
+	//  3) Pixel center is inside the region if one of the following is satisfied:
+	//       a) count of intersections is odd
+	//       b) point lies on an edge of the region
+	
+	// Arbitrary position outside the image
+	Position extreme = {image::width + 1, p.y};
 
-	// Obtain amount of region vertices
+	// Amount of region vertices
 	int vertices{ static_cast<int>(region.size()) };
 
 	// Counter for counting intersections
@@ -128,9 +139,12 @@ bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 		// with the line segment from 'region[pos1]' to 'region[pos2]'
 		if (linesIntersect(region[pos1], region[pos2], p, extreme))
 		{
-			// If the point 'p' is collinear with line segment 'pos1-pos2',
-			// then check if it lies on segment -
-            // if it lies, return true, otherwise false
+			// If the point 'p' is collinear with line segment 'pos1-pos2', then
+			// check if it lies on segment
+			//  - if it lies on segment, pixel center
+			//    is inside the region -> return true
+			//  - if it doesn't lie on segment, then for sure pixel center
+			//    is not inside the region -> return false
 			if (orientation(region[pos1], region[pos2], p) == 0)
 			    return posOnLine(region[pos1], region[pos2], p);
 
@@ -138,7 +152,7 @@ bool isPixelCenterInside(const std::vector<Position>& region, const Position p)
 		}
 
 		++pos1;
-		if (++pos2 == vertices)
+		if (++pos2 == vertices) // last iteration pos2 must be equal to first vertice
 			pos2 = 0;
 
 	} while (pos1 < vertices);
@@ -154,7 +168,7 @@ int main()
 
 	// Insert .ppm tag at the beginning of the image
     img << "P3" << std::endl;
-    img << image_width << " " << image_height << std::endl;
+    img << image::width << " " << image::height << std::endl;
     img << "255" << std::endl;
 
 	// Generate and save center position of every pixel
@@ -181,7 +195,6 @@ int main()
 									};
 
 	// Generate black and white pixels for the image
-    int count{ 1 };
 	for (auto point : pixels_centers)
     {
         if (isPixelCenterInside(region1, point)
@@ -196,13 +209,6 @@ int main()
 			// If pixel center is outside the region, generate black pixel
             img << 0 << " " << 0 << " " << 0 << std::endl;
         }
-        if (count >= image_width)
-        {
-            std::cout << '\n';
-            count = 1;
-            continue;
-        }
-        count++;
     }
 
     system("explorer image.ppm");
