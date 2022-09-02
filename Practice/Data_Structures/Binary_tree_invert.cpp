@@ -125,6 +125,7 @@ int main()
           1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
     */
     print_dfs(root);
+    std::cout << '\n';
 
     invertBinary(root);
 
@@ -151,10 +152,10 @@ int main()
         /  \         / \         / \         / \ 
        /    \       /   \       /   \       /   \ 
       /      \     /     \     /     \     /     \ 
-     12      11   15     14   5       4   8       7
+     15      14   12     11   8       7   5       4
     
     Printout should look like this:
-          1 9 13 12 11 10 15 14 2 6 5 4 3 8 7
+          1 9 13 15 14 10 12 11 2 6 6 7 3 5 4
     */
     print_dfs(root);
 

@@ -47,7 +47,8 @@ void print_dfs(Binary* root)
 int main()
 {
     // Constructing nodes
-    //  - their are constructed in path that will be used for printing them
+    //  - here nodes are only constructed and not connected
+    //  - they are constructed in path that will be used for printing them
     Binary* root = new Binary(1);
     Binary* left = new Binary(2);
     Binary* left_l = new Binary(3);

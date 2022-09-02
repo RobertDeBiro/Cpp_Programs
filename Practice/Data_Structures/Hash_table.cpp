@@ -17,7 +17,7 @@
 
 using namespace std;
 
-// Hashtable to implement: 905, Jimmy
+// Example of hashtable element that will be implemented: 905, Jimmy
 //  - presents phonebook with key-value pair
 //  - for resolving collision we are using linked list
 class HashTable
@@ -36,32 +36,25 @@ public:
 
 bool HashTable::isEmpty() const
 {
-    int sum{};
     for (int i{}; i < hashGroups; i++)
-    {
-        sum += table[i].size();
-    }
-
-    if(!sum)
-        return true;
+        if (table[i].size() > 0) return false;
     
-    return false;
+    return true;
 }
 
-// Our hash function must return number in following scope [0,hashGroups)
+// Our hash function must return number in following scope [0,hashGroups>
 int HashTable::hashFunction(int key)
 {
-    return key % hashGroups; // Key: 905, in return, this function will spit out 5
+    return key % hashGroups; // If key is 905 function returns 5
 }
 
 void HashTable::insertItem(int key, string value)
 {
     int hashValue = hashFunction(key); // Retrieve hash value by hashing the key
     auto& cell = table[hashValue]; // return back the list in which we will put our value
-    auto beginIt = begin(cell); // take iterator of that list
     bool keyExists = false; // will use it as a flag to see if the key already exist or not
     
-    for (; beginIt != end(cell); beginIt++)
+    for (auto beginIt = begin(cell); beginIt != end(cell); beginIt++)
     {
         if(beginIt->first == key)
         {
@@ -82,10 +75,9 @@ void HashTable::removeItem(int key)
 {
     int hashValue = hashFunction(key); // Retrieve hash value by hashing the key
     auto& cell = table[hashValue]; // return back the list in which we will put our value
-    auto beginIt = begin(cell); // take iterator of that list
     bool keyExists = false; // will use it as a flag to see if the key already exist or not
     
-    for (; beginIt != end(cell); beginIt++)
+    for (auto beginIt = begin(cell); beginIt != end(cell); beginIt++)
     {
         if(beginIt->first == key)
         {
@@ -110,10 +102,9 @@ void HashTable::printTable()
     {
         if(table[i].size() == 0) continue;
 
-        auto beginIt = table[i].begin();
-        for (; beginIt != table[i].end(); beginIt++)
+        for (auto beginIt = table[i].begin(); beginIt != table[i].end(); beginIt++)
         {
-            cout << "[INFO] Key: " << beginIt->first << "Value: " << beginIt->second << endl;
+            cout << "[INFO] Key: " << beginIt->first << " Value: " << beginIt->second << endl;
         }
     }
 }
@@ -123,11 +114,9 @@ int main()
     HashTable HT;
 
     if (HT.isEmpty())
-    {
-        cout << "Correct answer. Good job.\n";
-    } else {
-        cout << "Oh no. We need to check out code!" << endl;
-    }
+        cout << ".....Hash table empty.....\n";
+    else
+        cout << ".....ERROR: Hash table not empty.....\n" << endl;
 
     HT.insertItem(905, "Jim");
     HT.insertItem(201, "Tom");
@@ -145,9 +134,9 @@ int main()
 
     if (HT.isEmpty())
     {
-        cout << "Oh no. We need to check out code!\n";
+        cout << ".....ERROR: Hash table empty.....\n";
     } else {
-        cout << "Correct answer. Good job." << endl;
+        cout << ".....Hash table not empty.....\n" << endl;
     }
 
     return 0;
