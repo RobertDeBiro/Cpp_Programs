@@ -18,16 +18,16 @@
 
 #include <iostream>
 
-using namespace std;
-
-// Linked list representation of binary tree
-struct Binary
+// struct Node implements "Binary tree" abstract data structure
+//  - implemented using linked list
+//  - node in binary tree contains:
+//      - data
+//      - pointer to left and right node
+struct Node
 {
     int m_data;
-    Binary *m_left, *m_right;
-    Binary(int data) : m_data{ data }, m_left{ nullptr }, m_right{ nullptr }
-    {
-    }
+    Node *m_left, *m_right;
+    Node(int data) : m_data{ data }, m_left{ nullptr }, m_right{ nullptr } {}
 };
 
 // Depth first search
@@ -35,11 +35,11 @@ struct Binary
 //     1) prints furthermost left path to the bottom of the tree
 //        and then goes to the top step by step and prints other nodes
 //     2) repeats the same thing for right side
-void print_dfs(Binary* root)
+void print_dfs(Node* root)
 {
     if(root == nullptr)
         return;
-    cout << root->m_data << " ";
+    std::cout << root->m_data << " ";
     print_dfs(root->m_left);
     print_dfs(root->m_right);
 }
@@ -49,21 +49,21 @@ int main()
     // Constructing nodes
     //  - here nodes are only constructed and not connected
     //  - they are constructed in path that will be used for printing them
-    Binary* root = new Binary(1);
-    Binary* left = new Binary(2);
-    Binary* left_l = new Binary(3);
-    Binary* left_ll = new Binary(4);
-    Binary* left_lr = new Binary(5);
-    Binary* left_r = new Binary(6);
-    Binary* left_rl = new Binary(7);
-    Binary* left_rr = new Binary(8);
-    Binary* right = new Binary(9);
-    Binary* right_l = new Binary(10);
-    Binary* right_ll = new Binary(11);
-    Binary* right_lr = new Binary(12);
-    Binary* right_r = new Binary(13);
-    Binary* right_rl = new Binary(14);
-    Binary* right_rr = new Binary(15);
+    Node* root = new Node(1);
+    Node* left = new Node(2);
+    Node* left_l = new Node(3);
+    Node* left_ll = new Node(4);
+    Node* left_lr = new Node(5);
+    Node* left_r = new Node(6);
+    Node* left_rl = new Node(7);
+    Node* left_rr = new Node(8);
+    Node* right = new Node(9);
+    Node* right_l = new Node(10);
+    Node* right_ll = new Node(11);
+    Node* right_lr = new Node(12);
+    Node* right_r = new Node(13);
+    Node* right_rl = new Node(14);
+    Node* right_rr = new Node(15);
 
     // Connect root node with its children
     root->m_left = left;

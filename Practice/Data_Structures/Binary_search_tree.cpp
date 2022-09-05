@@ -26,8 +26,7 @@
 struct Node
 {
     int m_data;
-    Node* m_right;
-    Node* m_left;
+    Node *m_left, *m_right;
     Node(int data) : m_data(data), m_right{ nullptr }, m_left{ nullptr } {}
 };
 
@@ -42,6 +41,7 @@ Node* insert(Node *head, int data)
     return head; // this is actually not needed, but it is set in order to satisfy return type Node*
 }
 
+// First printing the smallest value, so the most left child
 void printInOrder(Node *head)
 {
     if(head == nullptr)
@@ -58,7 +58,7 @@ int main()
     std::cin >> val; // insert value for the head node
     Node* head = insert(nullptr, val); // create head node
     nodeAmount--; // head node is created, decrease amount of nodes
-    while(nodeAmount--)
+    while(nodeAmount--) // First use nodeAmount value inside while loop and than decrease it by one
     {
         std::cin >> val;
         insert(head, val);
