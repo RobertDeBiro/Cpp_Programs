@@ -4,14 +4,16 @@
 void initialization_and_assignment();
 void fixed_width_int();
 void fast_and_least_int();
+void unsigned_integer();
 
 int main()
 {
 	std::cout << "*****************************************************\n";
 	
-	initialization_and_assignment();
-	fixed_width_int();
-	fast_and_least_int();
+	// initialization_and_assignment();
+	// fixed_width_int();
+	// fast_and_least_int();
+	unsigned_integer();
 
 	std::cout << "*****************************************************\n";
 	return 0;
@@ -59,6 +61,16 @@ void fast_and_least_int()
 	std::cout << "least 8\t\t: " <<     sizeof(std::int_least8_t) * 8   << " bits\n";
 	std::cout << "least 16\t: " <<      sizeof(std::int_least16_t) * 8  << " bits\n";
 	std::cout << "least 32\t: " <<      sizeof(std::int_least32_t) * 8  << " bits\n";
+
+	std::cout << "------------------------------\n";
+}
+
+void unsigned_integer()
+{
+	int i{ 1 };
+	unsigned j = unsigned(i);
+
+	std::cout << "i = " << i << "; j = " << j << '\n';
 
 	std::cout << "------------------------------\n";
 }

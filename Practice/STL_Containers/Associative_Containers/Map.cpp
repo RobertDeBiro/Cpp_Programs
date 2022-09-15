@@ -65,6 +65,7 @@ void at_and_operator();
 void size();
 // Modifiers
 void insert();
+void erase();
 
 int main()
 {
@@ -80,6 +81,7 @@ int main()
 
     // Modifiers
     insert();
+    erase();
 
     std::cout << "*****************************************************\n";
     return 0;
@@ -185,6 +187,19 @@ void insert()
     // Using std::make_pair(elem1, elem2)
     varMap.insert(std::make_pair("Valencia", 48));
     std::cout << "Map after inserting a pair using make_par: ";
+    printMap(varMap);
+
+    std::cout << "------------------------------\n";
+}
+
+void erase()
+{
+    std::map<std::string, int> varMap { {"Real", 80}, {"Barca", 65}, {"Atletico", 60}, };
+    std::cout << "Initial map: ";
+    printMap(varMap);
+
+    varMap.erase("Barca");
+    std::cout << "Map after erase: ";
     printMap(varMap);
 
     std::cout << "------------------------------\n";
