@@ -26,7 +26,7 @@ void Storage::someFunct()
     // - more info:
     //   https://stackoverflow.com/questions/16323032/why-cant-i-capture-this-by-reference-this-in-lambda
     auto lambdaVarInFunc =
-        [this]() { std::cout << "Lambda: m_c = " << this->m_c << '\n'; };
+        [this]() { std::cout << "Lambda: m_c = " << m_c << '\n'; };
     
     lambdaVarInFunc();
 }
