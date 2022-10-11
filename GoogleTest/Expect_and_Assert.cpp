@@ -1,7 +1,8 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-TEST(Assertions, CheckAssert) {
+TEST(Assertions, CheckAssert)
+{
 	// Success scenario
 	ASSERT_TRUE(1 == 1);
 	ASSERT_FALSE(1 == 2);
@@ -13,7 +14,8 @@ TEST(Assertions, CheckAssert) {
 	std::cout << "Assert finished!\n";
 }
 
-TEST(Assertions, CheckExcept) {
+TEST(Assertions, CheckExcept)
+{
 	// Success scenarios
 	EXPECT_TRUE(1 == 1);
 	EXPECT_FALSE(1 == 2);

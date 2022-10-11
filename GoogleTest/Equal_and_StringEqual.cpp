@@ -1,4 +1,3 @@
-#include <iostream>
 #include <gtest/gtest.h>
 
 class MyClass
@@ -10,7 +9,8 @@ public:
     std::string getId() { return m_id; }
 };
 
-TEST(AAA, Increment_by_5) {
+TEST(Equal, Increment_by_5)
+{
 	// Arrange
     int value = 100;
     int increment = 5;
@@ -22,7 +22,8 @@ TEST(AAA, Increment_by_5) {
     ASSERT_EQ(value, 105);
 }
 
-TEST(AAA, Increment_by_10) {
+TEST(Equal, Increment_by_10)
+{
 	// Arrange
     int value = 100;
     int increment = 10;
@@ -34,7 +35,8 @@ TEST(AAA, Increment_by_10) {
     ASSERT_EQ(value, 110);
 }
 
-TEST(AAA_Class, String) {
+TEST(StringEqual, root)
+{
     // Arrange
     MyClass mc("root");
 

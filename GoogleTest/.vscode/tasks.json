@@ -11,6 +11,7 @@
 				"${file}",
 				"-lgtest",
 				"-lgtest_main",
+				"-lgmock",
 				"-pthread",
 				"-o",
 				"${fileDirname}\\bin\\${fileBasenameNoExtension}.exe"

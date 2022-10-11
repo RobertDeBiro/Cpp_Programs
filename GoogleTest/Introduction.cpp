@@ -11,7 +11,8 @@
 	- assertions - statements that check whether condition is true
  */
 
-TEST(TestCaseName, TestName) {
+TEST(TestCaseName, TestName)
+{
   EXPECT_EQ(1, 1);
   EXPECT_TRUE(true);
 }
