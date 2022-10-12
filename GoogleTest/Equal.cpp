@@ -1,14 +1,5 @@
 #include <gtest/gtest.h>
 
-class MyClass
-{
-    std::string m_id;
-
-public:
-    MyClass(std::string id) : m_id{ id } {}
-    std::string getId() { return m_id; }
-};
-
 TEST(Equal, Increment_by_5)
 {
 	// Arrange
@@ -32,20 +23,7 @@ TEST(Equal, Increment_by_10)
     value += increment;
 
     // Assert
-    ASSERT_EQ(value, 110);
-}
-
-TEST(StringEqual, root)
-{
-    // Arrange
-    MyClass mc("root");
-
-    // Act
-    std::string value = mc.getId();
-
-    // Assert
-    ASSERT_STREQ(value.c_str(), "root");
-    // ASSERT_EQ(value.c_str(), "root"); // -> This fails!
+    EXPECT_EQ(value, 110);
 }
 
 int main(int argc, char** argv)

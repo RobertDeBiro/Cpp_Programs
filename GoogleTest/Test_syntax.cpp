@@ -17,6 +17,12 @@ TEST(TestCaseName, TestName)
   EXPECT_TRUE(true);
 }
 
+// Test placeholder example
+TEST(_, _)
+{
+
+}
+
 int main(int argc, char** argv)
 {
 	testing::InitGoogleTest(&argc, argv);

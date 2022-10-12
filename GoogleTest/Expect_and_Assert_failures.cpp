@@ -8,9 +8,10 @@ TEST(Assertions, CheckAssert)
 	ASSERT_FALSE(1 == 2);
 
 	// Failure scenario
+	//  - when ASSERT fails, test will fail and stop executing
+	//  - "Assert finished!" won't be printed
 	ASSERT_TRUE(1 == 2);
 
-	// When one of previous ASSERTs fails, following text won't be printed
 	std::cout << "Assert finished!\n";
 }
 
@@ -21,6 +22,8 @@ TEST(Assertions, CheckExcept)
 	EXPECT_FALSE(1 == 2);
 
 	// Failure scenario
+	//  - when EXPECT fails, test will fail, but it will continue with execution
+	//  - "Expect finished!" will be printed
 	EXPECT_FALSE(1 == 1);
 
 	std::cout << "Expect finished!\n";

@@ -12,6 +12,7 @@
 class MyClass
 {
     int m_baseValue;
+
 public:
     MyClass(int baseValue) : m_baseValue{ baseValue } {}
     
@@ -22,6 +23,7 @@ public:
 TEST(MyClass_TestCase, Increment_by_5)
 {
     // Arrange
+    //  - initialize MyClass object
     MyClass mc(100);
     // Act
     mc.increment(5);
@@ -32,6 +34,7 @@ TEST(MyClass_TestCase, Increment_by_5)
 TEST(MyClass_TestCase, Increment_by_10)
 {
     // Arrange
+    //  - initialize MyClass object
     MyClass mc(100);
     // Act
     mc.increment(10);
@@ -41,27 +44,27 @@ TEST(MyClass_TestCase, Increment_by_10)
 
 
 // TestFixture class and test
+//  - this class is used for setting up "Arrange" part from other tests
 struct MyClassTest : public testing::Test
 {
     MyClass *mc;
 
-    // SetUp() and TearDown() are overridding testing::test
-    // class functions
+    // SetUp() and TearDown() are overridding testing::Test class functions
     void SetUp()
     {
-        std::cout << "Calling setUp()!\n";
+        std::cout << "\n*****\t Calling setUp()! \t*****\n";
         mc = new MyClass(100);
     }
     void TearDown()
     {
-        std::cout << "Calling tearDown()!\n";
+        std::cout << "\n*****\t Calling tearDown()! \t*****\n";
         delete mc;
     }
 };
 
 /*
  * TEST_F(ClassName, TestName)
- *  - class (struct) name is the name of class that inherits testing::Test
+ *  - ClassName (or StructName) is the name of class that inherits testing::Test
  */
 TEST_F(MyClassTest, Increment_by_5)
 {

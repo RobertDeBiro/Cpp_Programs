@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <ctime>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -41,10 +40,13 @@ public:
 class MyDatabase
 {
     DataBaseConnect& m_dbc;
+
 public:
     MyDatabase(DataBaseConnect& dbc) : m_dbc(dbc) { }
 
-    int Init(std::string username, std::string password) {
+    // Calling login() function once
+    //  - used for WillOnceTest
+    int InitOnce(std::string username, std::string password) {
         if(m_dbc.login(username, password) != true) {
             std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
             return -1;
@@ -54,7 +56,9 @@ public:
         }
     }
 
-    int Update(std::string username, std::string password) {
+    // Calling login() function twice
+    //  - used for WillRepeatedlyTest
+    int InitRepeat(std::string username, std::string password) {
         if(m_dbc.login(username, password) != true) {
             if(m_dbc.login(username, password) != true) {
                 std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
@@ -68,25 +72,9 @@ public:
             return 1;
         }
     }
-
-    int Random(std::string username, std::string password) {
-        srand(time(0));
-        int randomVal = rand() % 2;
-        std::cout << "randomVal = " << randomVal << std::endl;
-        if (randomVal == 0) {
-            m_dbc.login(username, password);
-            std::cout << "\n*****\t LOGIN! \t*****\n" << std::endl;
-            return 1;
-        } else {
-            m_dbc.login2(username, password);
-            std::cout << "\n*****\t LOGIN2! \t*****\n" << std::endl;
-            return 2;
-        }
-    }
-
 };
 
-TEST(MyDBTest, LoginTest)
+TEST(MyDBTest, WillOnceTest)
 {
     // ***** Arrange *****
     MockDB mdb;
@@ -98,43 +86,28 @@ TEST(MyDBTest, LoginTest)
     .WillOnce(testing::Return(true)); // define that MOCK_METHOD2(login("Terminator", "I'm Back")) will return true
 
     // ***** Act *****
-    int retValue = db.Init("Terminator", "I'm Back"); // db.init ultimately calls MOCK_METHOD2(login...)
+    int retValue = db.InitOnce("Terminator", "I'm Back"); // db.init ultimately calls MOCK_METHOD2(login...)
 
     // ***** Assert *****
     EXPECT_EQ(retValue, 1);
 }
 
-TEST(MyDBTest, LoginFailure)
+TEST(MyDBTest, WillRepeatedlyTest)
 {
     // ***** Arrange *****
     MockDB mdb;
     MyDatabase db(mdb);
 
-    EXPECT_CALL(mdb, login(testing::_, testing::_))
+    EXPECT_CALL(mdb, login(testing::_, testing::_)) // Function parameters are not important for this test
     .Times(2)
     .WillRepeatedly(testing::Return(false));
 
     // ***** Act *****
-    int retValue = db.Update("...", "---");
+    //  - sending some random strings because function parameters are expected as testing::_
+    int retValue = db.InitRepeat("...", "---");
 
     // ***** Assert *****
     EXPECT_EQ(retValue, -1);
-}
-
-TEST(MyDBTest, LoginRandom)
-{
-    // ***** Arrange *****
-    MockDB mdb;
-    MyDatabase db(mdb);
-
-    ON_CALL(mdb, login(testing::_, testing::_)).WillByDefault(testing::Return(true));
-    ON_CALL(mdb, login2(testing::_, testing::_)).WillByDefault(testing::Return(true));
-
-    // ***** Act *****
-    int retValue = db.Random("Random1", "Random2");
-
-    // ***** Assert *****
-    EXPECT_EQ(retValue, 2);
 }
 
 int main(int argc, char** argv)
