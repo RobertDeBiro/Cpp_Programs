@@ -4,7 +4,6 @@ Every time ON_CALL is called we get GMOCK WARNING saying:
 */
 
 #include <iostream>
-#include <vector>
 #include <ctime>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
