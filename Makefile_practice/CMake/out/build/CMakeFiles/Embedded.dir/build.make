@@ -69,6 +69,7 @@ include CMakeFiles/Embedded.dir/progress.make
 include CMakeFiles/Embedded.dir/flags.make
 
 CMakeFiles/Embedded.dir/main.cpp.obj: CMakeFiles/Embedded.dir/flags.make
+CMakeFiles/Embedded.dir/main.cpp.obj: CMakeFiles/Embedded.dir/includes_CXX.rsp
 CMakeFiles/Embedded.dir/main.cpp.obj: C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/main.cpp
 CMakeFiles/Embedded.dir/main.cpp.obj: CMakeFiles/Embedded.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Embedded.dir/main.cpp.obj"

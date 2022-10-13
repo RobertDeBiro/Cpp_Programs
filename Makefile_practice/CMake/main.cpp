@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Adder/adder.h"
+#include "adder.h"
 
 int main()
 {
     std::cout << "Hello CMake!" << std::endl;
-    std::cout << "Adder result = " << add(17.3, 16.5) << std::endl;
+    std::cout << "Adder result = " << add(17.3f, 16.5f) << std::endl;
 
     return 0;
 }

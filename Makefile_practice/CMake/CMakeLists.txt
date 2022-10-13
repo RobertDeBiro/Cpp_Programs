@@ -23,6 +23,10 @@ add_executable(${PrjVar} main.cpp)
 # - hence, the result of this command is that it adds command for building library into makefile
 add_subdirectory(Adder)
 
+# When compiling, search for files inside included directory
+#  - with this, in main.cpp, we don't have to use #include "Adder/adder.h", adder.h is enough
+target_include_directories(${PrjVar} PUBLIC Adder)
+
 # Specify libraries or flags to use when linking a given target and/or its dependents
 # - in this project we will use library "adder" from folder "Adder"
-target_link_libraries(${PROJECT_NAME} adder)
+target_link_libraries(${PrjVar} adder)
