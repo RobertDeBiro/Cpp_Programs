@@ -1,2 +1,3 @@
+C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/out/build/CMakeFiles/Embedded.dir
 C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/out/build/CMakeFiles/edit_cache.dir
 C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/out/build/CMakeFiles/rebuild_cache.dir
