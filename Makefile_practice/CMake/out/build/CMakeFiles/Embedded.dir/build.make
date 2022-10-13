@@ -91,6 +91,7 @@ Embedded_EXTERNAL_OBJECTS =
 
 Embedded.exe: CMakeFiles/Embedded.dir/main.cpp.obj
 Embedded.exe: CMakeFiles/Embedded.dir/build.make
+Embedded.exe: Adder/libadder.a
 Embedded.exe: CMakeFiles/Embedded.dir/linklibs.rsp
 Embedded.exe: CMakeFiles/Embedded.dir/objects1.rsp
 Embedded.exe: CMakeFiles/Embedded.dir/link.txt

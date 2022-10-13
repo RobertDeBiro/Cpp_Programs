@@ -22,3 +22,7 @@ add_executable(${PrjVar} main.cpp)
 # - that CMakeLists.txt contains command for building library
 # - hence, the result of this command is that it adds command for building library into makefile
 add_subdirectory(Adder)
+
+# Specify libraries or flags to use when linking a given target and/or its dependents
+# - in this project we will use library "adder" from folder "Adder"
+target_link_libraries(${PROJECT_NAME} adder)

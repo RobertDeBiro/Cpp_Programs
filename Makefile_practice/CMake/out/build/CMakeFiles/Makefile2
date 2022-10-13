@@ -63,21 +63,38 @@ CMAKE_BINARY_DIR = C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_pract
 
 # The main recursive "all" target.
 all: CMakeFiles/Embedded.dir/all
+all: Adder/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: Adder/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/Embedded.dir/clean
+clean: Adder/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Adder
+
+# Recursive "all" directory target.
+Adder/all: Adder/CMakeFiles/adder.dir/all
+.PHONY : Adder/all
+
+# Recursive "preinstall" directory target.
+Adder/preinstall:
+.PHONY : Adder/preinstall
+
+# Recursive "clean" directory target.
+Adder/clean: Adder/CMakeFiles/adder.dir/clean
+.PHONY : Adder/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Embedded.dir
 
 # All Build rule for target.
-CMakeFiles/Embedded.dir/all:
+CMakeFiles/Embedded.dir/all: Adder/CMakeFiles/adder.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles --progress-num=1,2 "Built target Embedded"
@@ -85,7 +102,7 @@ CMakeFiles/Embedded.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Embedded.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Embedded.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 0
 .PHONY : CMakeFiles/Embedded.dir/rule
@@ -98,6 +115,32 @@ Embedded: CMakeFiles/Embedded.dir/rule
 CMakeFiles/Embedded.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/clean
 .PHONY : CMakeFiles/Embedded.dir/clean
+
+#=============================================================================
+# Target rules for target Adder/CMakeFiles/adder.dir
+
+# All Build rule for target.
+Adder/CMakeFiles/adder.dir/all:
+	$(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/depend
+	$(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles --progress-num=3,4 "Built target adder"
+.PHONY : Adder/CMakeFiles/adder.dir/all
+
+# Build rule for subdir invocation for target.
+Adder/CMakeFiles/adder.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/CMakeFiles/adder.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 0
+.PHONY : Adder/CMakeFiles/adder.dir/rule
+
+# Convenience name for target.
+adder: Adder/CMakeFiles/adder.dir/rule
+.PHONY : adder
+
+# clean rule for target.
+Adder/CMakeFiles/adder.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/clean
+.PHONY : Adder/CMakeFiles/adder.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -28,6 +28,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/cmake-3.24.1-windows-x86_64/share/cmake-3.24/Modules/Platform/Windows-windres.cmake"
   "C:/Program Files/cmake-3.24.1-windows-x86_64/share/cmake-3.24/Modules/Platform/Windows.cmake"
   "C:/Program Files/cmake-3.24.1-windows-x86_64/share/cmake-3.24/Modules/Platform/WindowsPaths.cmake"
+  "C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/Adder/CMakeLists.txt"
   "C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/CMakeLists.txt"
   "CMakeFiles/3.24.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.24.1/CMakeCXXCompiler.cmake"
@@ -44,9 +45,11 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "Adder/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Embedded.dir/DependInfo.cmake"
+  "Adder/CMakeFiles/adder.dir/DependInfo.cmake"
   )

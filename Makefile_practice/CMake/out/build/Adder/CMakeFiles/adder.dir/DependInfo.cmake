@@ -8,12 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/main.cpp" "CMakeFiles/Embedded.dir/main.cpp.obj" "gcc" "CMakeFiles/Embedded.dir/main.cpp.obj.d"
+  "C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/Adder/adder.cpp" "Adder/CMakeFiles/adder.dir/adder.cpp.obj" "gcc" "Adder/CMakeFiles/adder.dir/adder.cpp.obj.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "C:/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/out/build/Adder/CMakeFiles/adder.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

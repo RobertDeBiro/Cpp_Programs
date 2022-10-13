@@ -86,14 +86,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\Adder\\CMakeFiles\progress.marks
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 clean
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/clean
 .PHONY : clean
 
 # The main clean target
@@ -102,68 +102,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 preinstall
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 preinstall
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named Embedded
+# Convenience name for target.
+Adder/CMakeFiles/adder.dir/rule:
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Adder/CMakeFiles/adder.dir/rule
+.PHONY : Adder/CMakeFiles/adder.dir/rule
 
-# Build rule for target.
-Embedded: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Embedded
-.PHONY : Embedded
-
-# fast build rule for target.
-Embedded/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/build
-.PHONY : Embedded/fast
-
-#=============================================================================
-# Target rules for targets named adder
-
-# Build rule for target.
-adder: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 adder
+# Convenience name for target.
+adder: Adder/CMakeFiles/adder.dir/rule
 .PHONY : adder
 
 # fast build rule for target.
 adder/fast:
-	$(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/build
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/build
 .PHONY : adder/fast
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
+adder.obj: adder.cpp.obj
+.PHONY : adder.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+adder.cpp.obj:
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/adder.cpp.obj
+.PHONY : adder.cpp.obj
 
-main.i: main.cpp.i
-.PHONY : main.i
+adder.i: adder.cpp.i
+.PHONY : adder.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/main.cpp.i
-.PHONY : main.cpp.i
+adder.cpp.i:
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/adder.cpp.i
+.PHONY : adder.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+adder.s: adder.cpp.s
+.PHONY : adder.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Embedded.dir\build.make CMakeFiles/Embedded.dir/main.cpp.s
-.PHONY : main.cpp.s
+adder.cpp.s:
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(MAKE) $(MAKESILENT) -f Adder\CMakeFiles\adder.dir\build.make Adder/CMakeFiles/adder.dir/adder.cpp.s
+.PHONY : adder.cpp.s
 
 # Help Target
 help:
@@ -173,11 +161,10 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... Embedded
 	@echo ... adder
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... adder.obj
+	@echo ... adder.i
+	@echo ... adder.s
 .PHONY : help
 
 
@@ -189,6 +176,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\rar\Desktop\Posao\Programs\VSCode\Cpp\Makefile_practice\CMake\out\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
