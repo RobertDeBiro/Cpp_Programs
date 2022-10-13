@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\ar.exe qc libadder.a CMakeFiles/adder.dir/adder.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libadder.a
