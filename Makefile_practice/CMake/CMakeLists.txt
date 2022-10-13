@@ -16,3 +16,9 @@ project(${PrjVar})
 # Create the program itself, i.e. the executable
 #  - we are building main.cpp into Embedded.exe
 add_executable(${PrjVar} main.cpp)
+
+# Add a subdirectory to the build
+# - subdirectory must also contain CMakeLists.txt
+# - that CMakeLists.txt contains command for building library
+# - hence, the result of this command is that it adds command for building library into makefile
+add_subdirectory(Adder)
