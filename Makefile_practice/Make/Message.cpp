@@ -5,5 +5,5 @@ using namespace std;
 
 void Message::printMessage()
 {
-    cout << "Hello\n";
+    cout << "Hello World\n";
 }
