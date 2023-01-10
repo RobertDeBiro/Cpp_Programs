@@ -1,0 +1,42 @@
+' When we talk about design patterns, we want to increase abstraction
+'   - we want to have dependencies between absstract things, not between implementations,
+'     i.e. between "Interface" classes, not between "Concrete" classes
+
+@startuml
+
+interface IObservable
+{
+    'Keep track of who wants to know when something changes
+    add( IObserver* )
+    remove( IObserver* )
+    notify()
+}
+
+interface IObserver
+{
+    update()
+}
+
+IObservable -right-> "0..*" IObserver
+
+
+class ConcreteObservable extends IObservable
+{
+    .. Observable methods ..
+    add( IObserver* )
+    remove( IObserver* )
+    notify()
+    
+    .. Functionality methods ..
+    getState()
+    setState()
+}
+
+class ConcreteObserver extends IObserver
+{
+    update()
+}
+
+ConcreteObserver *-left- ConcreteObservable
+
+@enduml
