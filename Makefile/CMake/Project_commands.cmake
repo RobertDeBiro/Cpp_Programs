@@ -9,17 +9,6 @@ add_compile_definitions( # https://cmake.org/cmake/help/latest/command/add_compi
     add_compile_definitions(RANDOM_MACRO_VAL=1000 RANDOM_MACRO)
 )
 #----------------------------------------------------------------------------------------------------------#
-add_definitions( # https://cmake.org/cmake/help/latest/command/add_definitions.html"
-
-    # Add -D define flags to the compilation of source files    
-    #  - used to add any flags, but primarily intended to add preprocessor definitions
-    #  - hence, following example is almost the same at example with add_compile_definitions()
-    add_definitions(-DRANDOM_MACRO_VAL=1000 -DRANDOM_MACRO)
-
-    # more info:
-    # - https://stackoverflow.com/questions/45091722/cmake-add-definitions-does-not-seem-to-work
-)
-#----------------------------------------------------------------------------------------------------------#
 add_executable( # https://cmake.org/cmake/help/latest/command/add_executable.html
     
     # Build executable "Hello_World" from main.cpp
@@ -39,7 +28,7 @@ add_library( # https://cmake.org/cmake/help/latest/command/add_library.html
     add_library(Vector3d Vector3d.cpp)
 )
 #----------------------------------------------------------------------------------------------------------#
-add_test( # ttps://cmake.org/cmake/help/latest/command/add_test.html
+add_test( # https://cmake.org/cmake/help/latest/command/add_test.html
 
     # Add a test called "Example_Test"
     add_test(
@@ -76,6 +65,12 @@ include_directories( # https://cmake.org/cmake/help/latest/command/include_direc
     include_directories(Point3d Vector3d)
 )
 #----------------------------------------------------------------------------------------------------------#
+link_directories( # https://cmake.org/cmake/help/git-stage/command/link_directories.html?highlight=link_directories
+    
+    # Add directory "libs" in which the linker will look for libraries
+    link_directories(/my/libs)
+)
+#----------------------------------------------------------------------------------------------------------#
 project( # https://cmake.org/cmake/help/latest/command/project.html
     
     # Create project "Adding_two_integers_prj"
@@ -87,11 +82,13 @@ project( # https://cmake.org/cmake/help/latest/command/project.html
     #   - with version we can have several same projects, but different version
     project("CoreMQTT unit test" VERSION 1.0.0 LANGUAGES C)
 )
+#----------------------------------------------------------------------------------------------------------#
 set_target_properties( # https://cmake.org/cmake/help/latest/command/set_target_properties.html
     
     # Set property on target "Example" that its linker language will be CXX (C++)
     set_target_properties(Example PROPERTIES LINKER_LANGUAGE CXX)
 )
+#----------------------------------------------------------------------------------------------------------#
 target_compile_definitions( # https://cmake.org/cmake/help/latest/command/target_compile_definitions.html
 
     # Add MQTT_DO_NOT_USE_CUSTOM_CONFIG=1 preprocessor variable (MACRO) into "coverity_analysis" target
@@ -102,15 +99,6 @@ target_include_directories( # https://cmake.org/cmake/help/latest/command/target
     
     # Include files from IO directory into "Adding_two_integers.exe" target
     target_include_directories(Adding_two_integers PUBLIC IO)
-)
-#----------------------------------------------------------------------------------------------------------#
-target_link_directories( # https://cmake.org/cmake/help/latest/command/target_link_directories.html
-    
-    # Add directories in which target whould look when linking libraries
-    target_link_directories(Multiple_classes_and_friend
-        PUBLIC out/build/Point3d 
-        PUBLIC out/build/Vector3d
-    )
 )
 #----------------------------------------------------------------------------------------------------------#
 target_link_libraries( # https://cmake.org/cmake/help/latest/command/target_link_libraries.html
@@ -125,3 +113,33 @@ target_sources( # https://cmake.org/cmake/help/latest/command/target_sources.htm
     # Link source file "Point3d.cpp" into Multiple_classes_and_friend target
     target_sources(Multiple_classes_and_friend PUBLIC Point3d.cpp)
 )
+#----------------------------------------------------------------------------------------------------------#
+
+
+########## Obsolete / not_preffered commands ##########
+add_definitions( # https://cmake.org/cmake/help/latest/command/add_definitions.html"
+
+    # Add -D define flags to the compilation of source files    
+    #  - used to add any flags, but primarily intended to add preprocessor definitions
+    #  - hence, following example is almost the same at example with add_compile_definitions()
+    add_definitions(-DRANDOM_MACRO_VAL=1000 -DRANDOM_MACRO)
+
+    # - Alternatives (https://cmake.org/cmake/help/latest/command/add_compile_definitions.html):
+    #       - add_compile_definitions()
+    #       - include_directories()
+    #       - add_compile_options()
+    # - more info: https://stackoverflow.com/questions/45091722/cmake-add-definitions-does-not-seem-to-work
+)
+#----------------------------------------------------------------------------------------------------------#
+target_link_directories( # https://cmake.org/cmake/help/latest/command/target_link_directories.html
+    
+    # Add directories in which target whould look when linking libraries
+    target_link_directories(Multiple_classes_and_friend
+        PUBLIC out/build/Point3d 
+        PUBLIC out/build/Vector3d
+    )
+
+    # Alternative: target_link_libraries()
+    # - more info: https://stackoverflow.com/questions/31435251/cmake-is-not-adding-directories-correctly-with-target-link-directory
+)
+#----------------------------------------------------------------------------------------------------------#

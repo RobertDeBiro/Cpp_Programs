@@ -13,9 +13,12 @@ list(APPEND CMAKE_MODULE_PATH custom_modules)
 # CMAKE_BINARY_DIR and CMAKE_SOURCE_DIR
 #  - reference: https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html
 #  - reference: https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html
+#  - reference: https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html?highlight=current#variable:CMAKE_CURRENT_SOURCE_DIR
 #########################################################################################
 message(STATUS "CMAKE_BINARY_DIR = ${CMAKE_BINARY_DIR}")
 message(STATUS "CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
+message(STATUS "CMAKE_LIBRARY_OUTPUT_DIRECTORY = ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
 
 
 #########################################################################################

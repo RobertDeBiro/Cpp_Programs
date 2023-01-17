@@ -1,0 +1,46 @@
+@startuml
+
+interface IObservable
+{
+    +add( IObserver* )
+    +remove( IObserver* )
+    +notify()
+}
+
+class WeatherStation extends IObservable
+{
+    +add( IObserver* )
+    +remove( IObserver* )
+    +notify()
+
+    +getTemperature()
+}
+
+interface IObserver
+{
+    +update()
+}
+
+class PhoneDisplay extends IObserver
+{
+    +update()
+    +display()
+}
+
+class WindowDisplay extends IObserver
+{
+    +update()
+    +display()
+}
+
+IObservable -right-> "0..*" IObserver
+
+note as N1
+<u>Programming code</u>
+WeatherStation station = new WeatherStation()
+PhoneDisplay display = new PhoneDisplay(station)
+station.add(display)
+station.notify
+end note
+
+@enduml
