@@ -17,6 +17,11 @@ execute_process( # https://cmake.org/cmake/help/latest/command/execute_process.h
         COMMAND notepad++ readme.md
         RESULT_VARIABLE README_ID
     )
+
+    # Execute command bash -c <STRING>
+    execute_process(
+        COMMAND bash -c "ls ${TEST_SRC_DIR}/inc/mqtt_connection_manager"
+    )
 )
 #----------------------------------------------------------------------------------------------------------#
 foreach( # https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html

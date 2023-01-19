@@ -19,7 +19,7 @@
  *  + operator[]            + size              - swap
  *  + front                 - max_size
  *  + back
- *  - data
+ *  + data
  */
 
 #include <iostream>
@@ -37,6 +37,7 @@ void initialization_and_assignment();
 // Element access
 void at_and_operator();
 void front_and_back();
+void data();
 // Operations
 void fill();
 
@@ -50,6 +51,7 @@ int main()
     // Element access
     at_and_operator();
     front_and_back();
+    data();
 
     // Operations
     fill();
@@ -159,5 +161,18 @@ void front_and_back()
      */
     std::cout << "Last element of the array using back = " << varArr.back() << '\n';
 
+    std::cout << "------------------------------\n";
+}
+
+void data()
+{
+    std::array<int, 5> varArr { 1, 2, 3, 4, 5 };
+    int* arr{ varArr.data() };
+
+    // Print array
+    for(int i = 0; i < static_cast<int>(varArr.size()); i++)
+        std::cout << *(arr + i) << ' ';
+
+    std::cout << '\n';
     std::cout << "------------------------------\n";
 }
