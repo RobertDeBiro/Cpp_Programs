@@ -1,5 +1,5 @@
 // LearnCpp
-// 4. Fundamental Data Types
+// Fundamental Data Types
 // Summary and quiz
 
 #include <iostream>

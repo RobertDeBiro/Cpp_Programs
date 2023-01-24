@@ -1,5 +1,5 @@
 // LearnCpp
-// 3. Debugging C++ Programs
+// Debugging C++ Programs
 // Using an integrated debugger: Stepping
 
 #include <iostream>

@@ -1,5 +1,5 @@
 // LearncCpp
-// 7. Object_Scope_and_Conversions
+// Object_Scope_and_Conversions
 // Local variables
 
 #include <iostream>

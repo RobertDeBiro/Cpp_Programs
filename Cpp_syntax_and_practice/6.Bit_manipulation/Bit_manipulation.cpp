@@ -1,5 +1,5 @@
 // LearnCpp
-// 6. Bit Manipulation
+// Bit Manipulation
 // Bit manipulation with bitwise operators and bit masks
 
 #include <iostream>

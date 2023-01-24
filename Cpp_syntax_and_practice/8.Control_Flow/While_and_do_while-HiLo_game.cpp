@@ -1,5 +1,5 @@
 // LearncCpp
-// 7. Control Flow and Error Handling
+// Control Flow and Error Handling
 // Summary and quiz
 
 #include <iostream>

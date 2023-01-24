@@ -15,12 +15,16 @@ int* generateArray(/*int length*/)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int length{ 5 };
     int* arr{ generateArray() };
 
     std::cout << "Array in main(): ";
     for(int i = 0; i < length; i++)
         std::cout << *(arr + i) << ' ';
+    std::cout << '\n';
     
+    std::cout << "*****************************************************\n";
     return 0;
 }

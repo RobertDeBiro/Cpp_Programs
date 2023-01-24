@@ -1,3 +1,5 @@
+// LearnCpp
+// Arrays, Strings, and Dynamic Allocation
 // Dynamically allocating arrays
 
 #include <iostream>
@@ -23,6 +25,8 @@ void enterNames(std::string* names, const int length)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     const int length{ getAmountOfNames() };
     std::string* names{ new std::string[length] };
 
@@ -41,5 +45,6 @@ int main()
 
     delete[] names;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

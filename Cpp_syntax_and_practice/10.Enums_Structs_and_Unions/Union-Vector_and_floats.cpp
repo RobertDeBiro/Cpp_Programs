@@ -18,7 +18,7 @@ struct Vector4
            but rather only the memory size needed to cover bigger element, i.e. bigger struct
          - in this particular example both structs have the same size
          - so, union won't allocate memory for 8 floats (32 bytes), but rather for 4 floats (16 bytes)
-         - memory location is reserved in following way (but, only if union and structs are anonymous???!):
+         - memory location is reserved in following way (but, only if union and structs are anonymous?!):
            float x = a.x
            float y = a.y
            float z = b.x
@@ -52,6 +52,8 @@ int main()
 
     std::cout << "------------------------" << std::endl;
     
+    // When we change variable "z", vector.b (variable "x") will be also changed
+    // since they share memory location
     vector.z = 500.0f;
     printVector2(vector.a);
     printVector2(vector.b);

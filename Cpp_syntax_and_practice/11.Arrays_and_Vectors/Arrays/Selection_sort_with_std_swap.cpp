@@ -1,10 +1,14 @@
-// LearnCpp - Sorting an array using selection sort
+// LearnCpp
+// Arrays, Strings, and Dynamic Allocation
+// Sorting an array using selection sort
 
 #include <iostream>
 #include <utility> // std::swap
 
 int main()
 {
+	std::cout << "*****************************************************\n";
+	
 	constexpr int length{ 5 };
 	int array[length]{ 30, 50, 20, 10, 40 };
 
@@ -36,5 +40,6 @@ int main()
 
 	std::cout << '\n';
 
+	std::cout << "*****************************************************\n";
 	return 0;
 }

@@ -1,5 +1,5 @@
 // LearnCpp
-// 7. Control Flow and Error Handling
+// Control Flow and Error Handling
 // Switch fallthrough and scoping
 
 #include <iostream>

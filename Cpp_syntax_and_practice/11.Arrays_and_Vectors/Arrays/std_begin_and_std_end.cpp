@@ -1,8 +1,11 @@
-// LearnCpp - Pointer arithmetic and array indexing
+// LearnCpp
+// Arrays, Strings, and Dynamic Allocation
+// Pointer arithmetic and array indexing
 
 /*
- * In this task I implemented find function which finds element in an array, but there is find function
- * inside algorithm library which finds element and returns iterator to that element.
+ * This program implements "find" function which finds element in array,
+ * but there is "find" function inside algorithm library which finds element and 
+ * returns iterator to that element.
  */
 
 #include <iostream>
@@ -21,6 +24,8 @@ int* find(int *array, int *arrayEnd, int value)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int arr[]{ 2, 5, 4, 10, 8, 20, 16, 40 };
 
     // Search for the first element with value 20.
@@ -29,8 +34,9 @@ int main()
     // If an element with value 20 was found, print it.
     if (found != std::end(arr))
     {
-        std::cout << *found << '\n';
+        std::cout << "Element found: " << *found << '\n';
     }
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

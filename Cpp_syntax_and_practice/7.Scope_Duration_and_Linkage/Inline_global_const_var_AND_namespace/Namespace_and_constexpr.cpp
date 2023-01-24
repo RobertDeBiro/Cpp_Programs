@@ -1,5 +1,5 @@
 // LearnCpp
-// 7. Object Scope and Conversions
+// Object Scope and Conversions
 // Summary and quiz
 
 #include <iostream>

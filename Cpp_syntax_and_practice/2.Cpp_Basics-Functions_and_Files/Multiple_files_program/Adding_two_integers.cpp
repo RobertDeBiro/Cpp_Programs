@@ -1,5 +1,5 @@
 // LearnCpp
-// 2. C++ Basics - Functions and Files
+// C++ Basics - Functions and Files
 // Summary and quiz
 
 #include <iostream>

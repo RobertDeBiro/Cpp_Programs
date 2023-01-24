@@ -1,10 +1,14 @@
-// LearnCpp - Sorting an array using selection sort
+// LearnCpp
+// Arrays, Strings, and Dynamic Allocation
+// Sorting an array using selection sort
 
 #include <iostream>
 #include <utility> // std::swap
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int array[]{ 6, 3, 2, 9, 7, 1, 5, 4, 8 };
     int arrayLength{ static_cast<int>(std::size(array)) };
 
@@ -16,8 +20,9 @@ int main()
     }
     std::cout << '\n' << '\n';
 
-    // Sort array by using Bubble Sort
-    bool needSort{}; // using this boolean in order to reduce number of sorting loops i.e. to avoid unnecessary loops
+    // Object "needSort" will be used in order to reduce number of sorting loops i.e.
+    // to avoid unnecessary loops
+    bool needSort{};
     int numberOfIterations{};
     do
     {
@@ -43,7 +48,9 @@ int main()
             }
             std::cout << '\n';
         }
-        numberOfIterations++; // number of iteration indicates how many times we went through array until we realized there is no more need for sorting
+        // "numberOfIterations" indicates how many times we went through array
+        // until we realized there is no more need for sorting
+        numberOfIterations++;
     } while(needSort);
 
     std::cout << "Early termination on iteration " << numberOfIterations << '\n' << '\n';
@@ -56,5 +63,6 @@ int main()
     }
     std::cout << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

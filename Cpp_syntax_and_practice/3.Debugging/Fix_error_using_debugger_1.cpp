@@ -1,5 +1,5 @@
 // LearnCpp
-// 3. Debugging C++ Programs
+// Debugging C++ Programs
 // Summary and quiz
 
 #include <iostream>
