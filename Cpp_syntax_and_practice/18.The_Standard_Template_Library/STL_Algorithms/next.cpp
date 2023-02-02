@@ -1,4 +1,13 @@
-// Program finds first two months that starts with the same letter
+/*
+ * std::next(InputIt it, int n = 1) -> InputIt
+ *  - returns the iterator which is following the input_iterator after "n" elements
+ *  - default value of "n" is 1
+ * 
+ *  - included in <algorithm>
+ * 
+ * References:
+ *  - https://en.cppreference.com/w/cpp/iterator/next
+ */
 
 #include <iostream>
 #include <array>
@@ -14,32 +23,21 @@ int main()
         "September", "October", "November", "December"
     };
 
+    // Find first two months that starts with the same letter
     const auto itSameLetter{ std::adjacent_find(months.begin(), months.end(),
                                                 [](const auto& a, const auto& b) {
                                                    return (a[0] == b[0]);
                                                 }) };
 
-    /*
-     * std::next(InputIt it, int n = 1) -> InputIt
-     *  - returns the iterator which is following the input_iterator after "n" elements
-     *  - default value of "n" is 1
-     */
-
     if (itSameLetter != months.end())
     {
         std::cout << *itSameLetter << " and " << *std::next(itSameLetter)
                   << " start with the same letter.\n";
-    }
-
-    if (itSameLetter != months.end())
-    {
+        
         std::cout << *(itSameLetter - 1) << " and " << *std::next(itSameLetter)
                   << " doesn't start with the same letter.\n";
-    }
-
-    if (itSameLetter != months.end())
-    {
-        std::cout << *itSameLetter << " and " << *std::next(itSameLetter + 1)
+        
+        std::cout << *itSameLetter << " and " << *std::next(itSameLetter, 2)
                   << " maybe start with the same letter?!\n";
     }
 

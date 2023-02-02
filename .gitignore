@@ -1,4 +1,4 @@
 **/bin
 **/*.exe
 **/out/build
-**/STM_UT
+**/STM_tests

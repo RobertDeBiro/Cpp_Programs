@@ -1,0 +1,53 @@
+/*
+ * shrink_to_fit() -> void
+ *
+ * References:
+ *  - https://en.cppreference.com/w/cpp/container/vector/shrink_to_fit
+ */
+
+#include <iostream>
+#include <vector>
+
+void printVector(const std::vector<int>& varVect)
+{
+    for(int elem : varVect)
+        std::cout << elem << ' ';
+    std::cout << '\n';
+}
+
+void printVectorSizeAndCapacity(const std::vector<int>& varVect)
+{
+    std::cout << "Size: " << varVect.size() << "   Capacity: " << varVect.capacity() << '\n';
+}
+
+int main()
+{
+    std::cout << "*****************************************************\n";
+
+    std::vector<int> varVect { 1, 2, 3, 4, 5 };
+    std::cout << "0. varVect: ";
+    printVector(varVect);
+    std::cout << "0. varVect, size and capacity: ";
+    printVectorSizeAndCapacity(varVect);
+
+    auto it = varVect.insert(varVect.begin(), 200);
+    std::cout << "1. varVect: ";
+    printVector(varVect);
+    std::cout << "1. varVect, size and capacity: ";
+    printVectorSizeAndCapacity(varVect);
+    std::cout << "Inserted value (iterator value) = " << *it << '\n';
+
+    varVect.shrink_to_fit();
+    std::cout << "2. varVect: ";
+    printVector(varVect);
+    std::cout << "2. varVect, size and capacity: ";
+    printVectorSizeAndCapacity(varVect);
+
+    // When reallocation occurs, all iterators, including the past the end iterator,
+    // and all references to the elements are invalidated
+    //  - iterator value will be undefined
+    std::cout << "Iterator value = " << *it << '\n';
+
+    std::cout << "*****************************************************\n";
+    return 0;
+}

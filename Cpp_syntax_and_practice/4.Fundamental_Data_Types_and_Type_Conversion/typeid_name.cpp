@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Char = " << typeid(char).name() << '\n'; // c
     std::cout << "Short = " << typeid(short).name() << '\n'; // s
     std::cout << "Integer = " << typeid(int).name() << '\n'; // i
@@ -19,5 +21,6 @@ int main()
     int* j{ &i };
     std::cout << "j = " << typeid(j).name() << '\n'; // Pi
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

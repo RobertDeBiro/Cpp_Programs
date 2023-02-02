@@ -1,3 +1,14 @@
+/*
+ * 1) std::adjacent_find(ForwardIt first, ForwardIt last) -> OutputIt
+ * 
+ * 2) std::adjacent_find(ForwardIt first, ForwardIt last, callable object) -> OutputIt
+ * 
+ * - included in <algorithm>
+ * 
+ * References:
+ *  - https://en.cppreference.com/w/cpp/algorithm/adjacent_find
+ */
+
 #include <iostream>
 #include <array>
 #include <algorithm>
@@ -12,12 +23,6 @@ int main()
         "September", "October", "November", "December"
     };
 
-    /*
-     * std::adjacent_find(ForwardIt first, ForwardIt last, callable object) -> OutputIt
-     *  - returns iterator of the first element of the pair of adjacent elements for which callable object returned true
-     *  - example:
-     *     - find adjacent elements that have the same first letter
-     */
     const auto itSameLetter{ std::adjacent_find(months.begin(), months.end(),
                                                 [](const auto& a, const auto& b) {
                                                    return (a[0] == b[0]);

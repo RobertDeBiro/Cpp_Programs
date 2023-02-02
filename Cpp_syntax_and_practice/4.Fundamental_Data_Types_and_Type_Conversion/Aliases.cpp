@@ -15,6 +15,8 @@ radians_t convertToRadians(degrees_t degrees)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Enter a number of degrees: ";
     degrees_t degrees{};
     std::cin >> degrees;
@@ -22,5 +24,6 @@ int main()
     radians_t radians { convertToRadians(degrees) };
     std::cout << degrees << " degrees is " << radians << " radians.\n";
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -1,8 +1,16 @@
+/*
+ * std::for_each(InputIt first, InputIt last, callable object) -> callable object
+ *  - callable object that is returned is actually the same one that is sent to for_each() function
+ *  
+ * - included in <algorithm>
+ * 
+ * References:
+ *  - 
+ */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
-using namespace std;
 
 int main()
 {
@@ -10,12 +18,11 @@ int main()
 
     std::vector nums{ 1, 2, 3, 4 };
 
-    /*
-     * std::for_each(InputIt first, InputIt last, callable object) -> callable object
-     *  - executes callable object on every element of the container and returns the callable object
-     */
-    auto callObj = std::for_each(begin(nums), end(nums),
-                                 [](int element) { std::cout << "Number: " << element << '\n'; });
+    // For each "nums" element, print its value
+    //
+    auto callObj = std::for_each(std::begin(nums), std::end(nums),
+                                 [](int element) { 
+                                     std::cout << "Number: " << element << '\n'; });
     std::cout << "Callable object after returning: ";
     callObj(5);
 
