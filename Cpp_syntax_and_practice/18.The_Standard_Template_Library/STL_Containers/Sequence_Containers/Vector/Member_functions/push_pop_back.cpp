@@ -35,6 +35,7 @@ int main()
     std::cout << "Push back: \n";
     varVect.push_back(6);
     printVector(varVect);
+    std::cout << "Last value on the stack: " << varVect.back() << '\n';
 
     // We cannot extend vector just by assigning a value to element +1 from current last element
     printVectorSizeAndCapacity(varVect);

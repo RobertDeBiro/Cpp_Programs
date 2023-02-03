@@ -31,7 +31,7 @@ int main()
      *    std::string stringM{"Hello"};
      *    std::string mult = stringM * 3;
      *    
-     *    => printout: HelloHelloHello
+     *    => wanted printout: HelloHelloHello
      */
 
     return 0;

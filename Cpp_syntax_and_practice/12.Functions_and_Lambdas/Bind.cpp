@@ -1,3 +1,11 @@
+/*
+ * template< class F, class... Args >
+ * bind( F&& f, Args&&... args );
+ * 
+ * References:
+ *  - https://en.cppreference.com/w/cpp/utility/functional/bind
+ */
+
 #include <iostream>
 #include <functional>
 
@@ -8,8 +16,9 @@ int division(int x, int y)
 
 int main()
 {
-    int x, y;
+    std::cout << "*****************************************************\n";
 
+    int x, y;
     std::cout << "Enter x: ";
     std::cin >> x;
     std::cout << "Enter y: ";
@@ -29,7 +38,7 @@ int main()
     auto fcnPtrBind{ std::bind(&division, x, y) };
     std::cout << "The division from fcnPtrBind is: " << fcnPtrBind() << std::endl;
 
-    // Requires 2 input parameters (the same as first example, without std::bind)
+    // Requires 2 input parameters (the same as first example that doesn't contain std::bind)
     // - 1. fcnPtrBindPh12 input parameter = 1. division input parameter
     // - 2. fcnPtrBindPh12 input parameter = 2. division input parameter
     auto fcnPtrBindPh12{ std::bind(&division, std::placeholders::_1, std::placeholders::_2) };
@@ -48,5 +57,6 @@ int main()
     // Following won't work - std::placeholders::_2 can't be called without _1
     //auto fcnPtrBindPh2{ std::bind(&division, x, std::placeholders::_2) };
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

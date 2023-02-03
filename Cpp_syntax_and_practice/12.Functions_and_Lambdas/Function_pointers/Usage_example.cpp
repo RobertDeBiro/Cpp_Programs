@@ -1,7 +1,10 @@
 // LearnCpp
-// This program, in which we are using function pointers, is actually replacement for
-// 8. Control Flow and Error Handling :: Switch-case_math_operations.cpp
-// - this program is larger than the other one, but if the function would be much bigger, this is the proper way to implement the solution
+// Functions
+// Function Pointers
+//  - this program, in which we are using function pointers, is actually replacement for
+//    8. Control Flow :: Switch-case-Basic.cpp
+//  - this program is larger than the other one, but if the function would be much bigger,
+//    this is the proper way to implement the solution
 
 #include <iostream>
 #include <functional> // std::function
@@ -31,24 +34,20 @@ int add(int x, int y)
 {
   return x + y;
 }
-
 int subtract(int x, int y)
 {
   return x - y;
 }
-
 int multiply(int x, int y)
 {
   return x * y;
 }
-
 int divide(int x, int y)
 {
   return x / y;
 }
 
 using arithmeticFcn = std::function<int(int, int)>;
-
 arithmeticFcn getArithmeticFunction(char op)
 {
   switch(op)
@@ -63,6 +62,8 @@ arithmeticFcn getArithmeticFunction(char op)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int x{ getInteger() };
     int y{ getInteger() };
     char op{ getOperation() };
@@ -70,5 +71,6 @@ int main()
     arithmeticFcn fcnPtr{ getArithmeticFunction(op) };
     std::cout << x << ' ' << op << ' ' << y << " = " << fcnPtr(x, y) << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Continuously enter integer numbers to sum: ";
     int num, sum;
     
@@ -12,5 +14,6 @@ int main()
         sum += num;
     std::cout << "Final sum: " << sum << std::endl;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

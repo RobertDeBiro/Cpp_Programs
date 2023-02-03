@@ -1,3 +1,7 @@
+/*
+ * Pluralsight
+ */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,11 +9,14 @@
 void printv(const std::vector<int>& v)
 {
     for (const auto elem : v)
-        std::cout << elem << '\n';
+        std::cout << elem << ' ';
+    std::cout << '\n';
 }
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     //---------------------------------------------------------
     // Populating a vector
     //---------------------------------------------------------
@@ -29,7 +36,7 @@ int main()
     std::cout << "***** Populating vector 3 *****\n";
     printv(v);
 
-    std::cout << '\n';
+    std::cout << "-----------------------------------------\n";
 
     //---------------------------------------------------------
     // Counting the number of 3's
@@ -53,7 +60,7 @@ int main()
     int count3 = std::count(begin(v), end(v), 3);
     std::cout << "***** Amount of 3's 3 *****\n" << count3 << '\n';
 
-    std::cout << '\n';
+    std::cout << "-----------------------------------------\n";
 
     //---------------------------------------------------------
     // Removing the 3's
@@ -71,27 +78,31 @@ int main()
     // When we changed the content of the collection we invalidate the iterator of the collection,
     // hence this ends up with error
     //  - this error doesn't appear neither inside Code::Blocks, or VSCode
-    //auto v3 = v;
-    //for (auto it = begin(v3); it != end(v3); it++)
-    //{
-    //    if (*it == 3)
-    //        v3.erase(it);
-    //}
-
-    //std::cout << "***** Removing 3's from vector 2 *****\n";
-    //printv(v3);
+    auto v3 = v;
+    for (auto it = begin(v3); it != end(v3); it++)
+    {
+       if (*it == 3)
+           v3.erase(it);
+    }
+    std::cout << "***** Removing 3's from vector 2 *****\n";
+    printv(v3);
 
     auto v4 = v;
     auto endv4 = std::remove_if(begin(v4), end(v4), [](int elem) { return (elem == 3); });
-    std::cout << "***** Removing 3's from vector 3 - std::remove_if *****\n";
+    std::cout << "***** Removing 3's from vector 3 *****\n";
+    // std::remove won't actually remove elements but rather placed them on the back of the container
+    //  - even though this is not fully true since behavior can be undefined
+    //  - in this example we get 2, 3, 4 at the end, and not 3, 3, 3
+    printv(v4);
     std::cout << "Vector size after std::remove_if = " << v4.size() << '\n';
-    printv(v4); // This prints 2, 3, 4 at the end and not 3, 3, 3 - Why???
     std::cout << "Return from std::remove_if is: " << *endv4 << '\n';
 
-    v4.erase(endv4, end(v4)); // Deleting elements moved to the end (i.e. removed) by the std::remove_if
+    // Deleting elements moved to the end (i.e. removed) by the std::remove_if
+    v4.erase(endv4, end(v4));
     std::cout << "***** Removing 3's from vector 4 - vector.erase() *****\n";
-    std::cout << "Vector size after vector.erase() = " << v4.size() << '\n';
     printv(v4);
+    std::cout << "Vector size after vector.erase() = " << v4.size() << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

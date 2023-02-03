@@ -28,6 +28,7 @@ int main()
      *  - we can fill specified amount of vector elements with the same value
      *  - value_of_elements can be omitted, and then the value is 0
      *  - equivalent to this syntax is std::array<T,N>::fill
+     *  - this is the same syntax as "std::string var(n, 'c')"
      */
     std::vector<int> varVect3(5, 1);
     std::cout << "Count values initialization 1: ";

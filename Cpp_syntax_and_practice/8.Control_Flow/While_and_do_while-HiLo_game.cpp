@@ -82,6 +82,8 @@ char user_interface()
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     char play_next_game;
     do
     {
@@ -91,5 +93,6 @@ int main()
 
     std::cout << "Thank you for playing.";
 
+    std::cout << "*****************************************************\n";
     return 0;
 }
