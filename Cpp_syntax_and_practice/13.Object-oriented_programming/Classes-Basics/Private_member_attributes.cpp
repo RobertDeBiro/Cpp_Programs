@@ -1,4 +1,6 @@
-// LearnCpp - Public vs private access specifiers
+// LearnCpp
+// Basic Object-oriented Programming
+// Public vs private access specifiers
 
 #include <iostream>
 
@@ -21,8 +23,8 @@ public:
         std::cout << "<" << m_x << ", " << m_y << ", " << m_z << ">";
     }
 
-    // Even though point.m_x, point.m_y and point.m_z are private point2 attributes, we can access them because accessibility
-    // works on per-classes basis, not per-object
+    // Even though point.m_x, point.m_y and point.m_z are private point2 attributes,
+    // we can access them because accessibility works on per-classes basis, not per-object
     bool isEqual(const Point3d& point)
     {
         return ((m_x == point.m_x) && (m_y == point.m_y) && (m_z == point.m_z));
@@ -31,6 +33,8 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     Point3d point1;
     point1.setValues(1, 2, 3);
 
@@ -58,5 +62,6 @@ int main()
         std::cout << "point1 and point3 are not equal\n";
     }
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

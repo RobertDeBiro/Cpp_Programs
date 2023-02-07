@@ -4,6 +4,8 @@
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/utility/functional/bind
+ *  - https://stackoverflow.com/questions/6610046/stdfunction-and-stdbind-what-are-they-and-when-should-they-be-used
+ *  - https://stackoverflow.com/questions/47532424/usage-of-this-pointer-in-stdbind
  */
 
 #include <iostream>
@@ -51,11 +53,16 @@ int main()
     std::cout << "The division from fcnPtrBindPh21 is: " << fcnPtrBindPh21(x, y) << std::endl;
 
     // Requires only first input parameter, second is binded
-    auto fcnPtrBindPh1{ std::bind(&division, std::placeholders::_1, y) };
-    std::cout << "The division from fcnPtrBindPh1 is: " << fcnPtrBindPh1(x) << std::endl;
+    auto fcnPtrBindPh1a{ std::bind(&division, std::placeholders::_1, y) };
+    std::cout << "The division from fcnPtrBindPh1 is: " << fcnPtrBindPh1a(x) << std::endl;
 
-    // Following won't work - std::placeholders::_2 can't be called without _1
+    // ERROR:
+    // we cannot declare std::placeholders::_2 if we didn't declare std::placeholders::_1
     //auto fcnPtrBindPh2{ std::bind(&division, x, std::placeholders::_2) };
+    // Add division(x, std::placeholders::_1) to fcnPtrBindPh1b(var)
+    //  - First (and only) fcnPtrBindPh1b parameter will be added as second division parameter
+    auto fcnPtrBindPh1b{ std::bind(&division, x, std::placeholders::_1) };
+    std::cout << "The division from fcnPtrBindPh1 is: " << fcnPtrBindPh1b(x) << std::endl;
 
     std::cout << "*****************************************************\n";
     return 0;

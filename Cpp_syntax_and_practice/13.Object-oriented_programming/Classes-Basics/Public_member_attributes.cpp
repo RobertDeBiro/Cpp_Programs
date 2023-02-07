@@ -14,8 +14,11 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	IntPair p{ 2, 2 }; // We can set public member variables from main function
 	p.print();
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

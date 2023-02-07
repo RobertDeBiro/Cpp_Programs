@@ -1,3 +1,5 @@
+// LearnCpp
+// Basic Object-oriented Programming
 // Summary and quiz
 
 #include <iostream>
@@ -9,11 +11,7 @@ class Point2d
     double m_y;
 
 public:
-    // Default constructor is the one that takes no parameters,
-    // or takes parameters that have default values (shown in this example).
-    Point2d(double x = 0.0, double y = 0.0) : m_x{ x }, m_y{ y }
-    {
-    }
+    Point2d(double x = 0.0, double y = 0.0) : m_x{ x }, m_y{ y } {}
 
     void print()
     {
@@ -31,11 +29,16 @@ double distanceFrom(const Point2d &firstPoint, const Point2d &secondPoint)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     Point2d first{};
     Point2d second{ 3.0, 4.0 };
+
     first.print();
     second.print();
+
     std::cout << "Distance between two points: " << distanceFrom(first, second) << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -1,3 +1,5 @@
+// LearnCpp
+// Basic Object-oriented Programming
 // Public vs private access specifiers
 
 #include <iostream>
@@ -41,6 +43,8 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Stack stack;
 	stack.reset();
 
@@ -59,5 +63,6 @@ int main()
 
 	stack.print();
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

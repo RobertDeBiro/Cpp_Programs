@@ -308,6 +308,8 @@ bool playBlackjack(deck_type& deck)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Save every card (deck) inside deck variable
     deck_type deck{ createDeck() };
 
@@ -323,5 +325,6 @@ int main()
 
     std::cout << "PLAYER " << (player ? "won" : "lost") << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

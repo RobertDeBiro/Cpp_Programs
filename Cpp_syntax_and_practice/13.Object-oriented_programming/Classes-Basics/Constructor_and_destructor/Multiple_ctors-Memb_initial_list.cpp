@@ -1,3 +1,5 @@
+// LearnCpp
+// Basic Object-oriented Programming
 // Non-static member initialization
 
 #include <iostream>
@@ -25,12 +27,14 @@ public:
 
 	void print()
 	{
-		std::cout << "color: " << m_color << ", radius: " << m_radius << '\n';
+		std::cout << "color: " << m_color << "\tradius: " << m_radius << '\n';
 	}
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Ball def;
 	def.print();
 
@@ -43,5 +47,6 @@ int main()
 	Ball blueTwenty{ "blue", 20.0 };
 	blueTwenty.print();
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

@@ -1,5 +1,4 @@
-// In this example we can see the syntax when initializing classes
-// that contains other classes, using initialization list
+// Class can initialize class member variables using initialization list
 
 #include <iostream>
 
@@ -43,11 +42,14 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     C c
     {
         {1, 2},
         {3, 4}
     };
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

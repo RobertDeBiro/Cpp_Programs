@@ -1,3 +1,5 @@
+// LearnCpp
+// Basic Object-oriented Programming
 // Constructor member initializer list
 
 #include <iostream>
@@ -23,7 +25,7 @@ public:
     void print()
     {
         // std::uint_fast8_t needs to be casted to int because std::cout would otherwise print it as character
-        std::cout << " r=" << static_cast<int>(m_red)
+        std::cout << "r=" << static_cast<int>(m_red)
                   << " g=" << static_cast<int>(m_green)
                   << " b=" << static_cast<int>(m_blue)
                   << " a=" << static_cast<int>(m_alpha) << '\n';
@@ -32,8 +34,11 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	RGBA teal{ 0, 127, 127 };
 	teal.print();
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

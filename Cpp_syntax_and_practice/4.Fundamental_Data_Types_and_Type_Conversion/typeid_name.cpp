@@ -5,6 +5,9 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    /*
+     * Check base fundamental types
+     */
     std::cout << "Char = " << typeid(char).name() << '\n'; // c
     std::cout << "Short = " << typeid(short).name() << '\n'; // s
     std::cout << "Integer = " << typeid(int).name() << '\n'; // i
@@ -14,12 +17,36 @@ int main()
     std::cout << "Double = " << typeid(double).name() << '\n'; // d
     std::cout << "Pointer to int = " << typeid(int*).name() << '\n'; // Pi
 
-    int i{ 5 };
-    double d{ 2.5 };
-    std::cout << "\nCheck the type: integer + double = " << typeid(i + d).name() << "\n"; // d
+    std::cout << "----------------------------------------\n";
 
-    int* j{ &i };
-    std::cout << "j = " << typeid(j).name() << '\n'; // Pi
+    /*
+     * Check modified fundamental types
+     */
+    int i{ 1 };
+    int* pi{ &i };
+    int& ri{ i };
+
+    std::cout << "int* = " << typeid(pi).name() << '\n'; // Pi
+    std::cout << "int& = " << typeid(ri).name() << '\n'; // i
+
+    const int ci{ 3 };
+    const int* cpi{ &ci };
+    const int *const ccpi{ &ci };
+    const int& cri{ ci };
+
+    std::cout << "const int = " << typeid(ci).name() << '\n'; // i
+    std::cout << "const int* = " << typeid(cpi).name() << '\n'; // PKi
+    std::cout << "const int *const = " << typeid(ccpi).name() << '\n'; // PKi
+    std::cout << "const int& = " << typeid(cri).name() << '\n'; // i
+
+    std::cout << "----------------------------------------\n";
+
+    /*
+     * Check type when dealing with conversion
+     */
+    int a{ 1 };
+    double b{ 2.5 };
+    std::cout << "integer + double = " << typeid(a + b).name() << "\n"; // d   
 
     std::cout << "*****************************************************\n";
     return 0;

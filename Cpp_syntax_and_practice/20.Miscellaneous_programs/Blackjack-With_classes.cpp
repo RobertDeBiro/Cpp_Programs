@@ -1,4 +1,6 @@
-// LearnCpp - Summary and quiz
+// LearnCpp
+// Basic Object-oriented Programming
+// Summary and quiz
 
 #include <iostream>
 #include <cassert>
@@ -43,108 +45,105 @@ enum class CardRank
 
 class Card
 {
-private:
-  CardRank m_cRank{};
-  CardSuit m_cSuit{};
+    CardRank m_cRank{};
+    CardSuit m_cSuit{};
 
 public:
-  Card() = default;
+    Card() = default;
 
-  Card(CardRank cRank, CardSuit cSuit) : m_cRank{ cRank }, m_cSuit{ cSuit }
-  {
-  }
+    Card(CardRank cRank, CardSuit cSuit) : m_cRank{ cRank }, m_cSuit{ cSuit } {}
 
-  void print() const
-  {
-    switch(m_cRank)
+    void print() const
     {
-      case CardRank::rank_2:
-          std::cout << '2';
-          break;
-      case CardRank::rank_3:
-          std::cout << '3';
-          break;
-      case CardRank::rank_4:
-          std::cout << '4';
-          break;
-      case CardRank::rank_5:
-          std::cout << '5';
-          break;
-      case CardRank::rank_6:
-          std::cout << '6';
-          break;
-      case CardRank::rank_7:
-          std::cout << '7';
-          break;
-      case CardRank::rank_8:
-          std::cout << '8';
-          break;
-      case CardRank::rank_9:
-          std::cout << '9';
-          break;
-      case CardRank::rank_10:
-          std::cout << 'T';
-          break;
-      case CardRank::rank_jack:
-          std::cout << 'J';
-          break;
-      case CardRank::rank_queen:
-          std::cout << 'Q';
-          break;
-      case CardRank::rank_king:
-          std::cout << 'K';
-          break;
-      case CardRank::rank_ace:
-          std::cout << 'A';
-          break;
-      default:
-          std::cout << '?';
-          break;
+        switch(m_cRank)
+        {
+            case CardRank::rank_2:
+                std::cout << '2';
+                break;
+            case CardRank::rank_3:
+                std::cout << '3';
+                break;
+            case CardRank::rank_4:
+                std::cout << '4';
+                break;
+            case CardRank::rank_5:
+                std::cout << '5';
+                break;
+            case CardRank::rank_6:
+                std::cout << '6';
+                break;
+            case CardRank::rank_7:
+                std::cout << '7';
+                break;
+            case CardRank::rank_8:
+                std::cout << '8';
+                break;
+            case CardRank::rank_9:
+                std::cout << '9';
+                break;
+            case CardRank::rank_10:
+                std::cout << 'T';
+                break;
+            case CardRank::rank_jack:
+                std::cout << 'J';
+                break;
+            case CardRank::rank_queen:
+                std::cout << 'Q';
+                break;
+            case CardRank::rank_king:
+                std::cout << 'K';
+                break;
+            case CardRank::rank_ace:
+                std::cout << 'A';
+                break;
+            default:
+                std::cout << '?';
+                break;
+        }
+
+        switch(m_cSuit)
+        {
+            case CardSuit::suit_club:
+                std::cout << 'C';
+                break;
+            case CardSuit::suit_diamond:
+                std::cout << 'D';
+                break;
+            case CardSuit::suit_heart:
+                std::cout << 'H';
+                break;
+            case CardSuit::suit_spade:
+                std::cout << 'S';
+                break;
+            default:
+                std::cout << '?';
+                break;
+        }
     }
 
-    switch(m_cSuit)
+    int getValue() const
     {
-      case CardSuit::suit_club:
-          std::cout << 'C';
-          break;
-      case CardSuit::suit_diamond:
-          std::cout << 'D';
-          break;
-      case CardSuit::suit_heart:
-          std::cout << 'H';
-          break;
-      case CardSuit::suit_spade:
-          std::cout << 'S';
-          break;
-      default:
-          std::cout << '?';
-          break;
-    }
-  }
+        if (m_cRank <= CardRank::rank_10)
+        {
+            // RANK_2 is 0 (value 2)
+            // RANK_3 is 1 (value 3)
+            // etc.
+            return (static_cast<int>(m_cRank) + 2);
+        }
 
-  int getValue() const
-  {
-    if (m_cRank <= CardRank::rank_10)
-    {
-      // RANK_2 is 0 (value 2)
-      // RANK_3 is 1 (value 3)
-      // etc.
-      return (static_cast<int>(m_cRank) + 2);
+        switch (m_cRank)
+        {
+            case CardRank::rank_jack:
+            case CardRank::rank_queen:
+            case CardRank::rank_king:
+                return 10;
+            case CardRank::rank_ace:
+                return 11;
+            default:
+                assert(false && "should never happen");
+                return 0;
+        }
     }
-
-    switch (m_cRank)
-    {
-    case CardRank::rank_jack:
-    case CardRank::rank_queen:
-    case CardRank::rank_king:
-      return 10;
-    case CardRank::rank_ace:
-      return 11;
-    default:
-      assert(false && "should never happen");
-      return 0;
-    }
-  }
 };
 
 
@@ -156,50 +155,50 @@ public:
 class Deck
 {
 public:
-  using deck_type = std::array<Card, 52>;
-  using deck_index_type = deck_type::size_type;
+    using deck_type = std::array<Card, 52>;
+    using deck_index_type = deck_type::size_type;
 
-  deck_type m_deck{};
+    deck_type m_deck{};
 
-public:
-  Deck()
-  {
-    deck_index_type deckIndex{ 0 };
-
-    int maxSuit{ static_cast<int>(CardSuit::max_suits) };
-    int maxRank{ static_cast<int>(CardRank::max_ranks) };
-
-    for(int currentSuit = 0; currentSuit < maxSuit; ++currentSuit)
+    Deck()
     {
-      for(int currentRank = 0; currentRank < maxRank; ++currentRank)
-      {
-        m_deck[deckIndex] = { static_cast<CardRank>(currentRank), static_cast<CardSuit>(currentSuit) };
-        ++deckIndex;
-      }
-    }
-  }
+        deck_index_type deckIndex{ 0 };
 
-  void print()
-  {
-    int column{};
-    for(const auto& card : m_deck)
-    {
-      card.print();
-      std::cout << " ";
-      if(++column > 4)
+        int maxSuit{ static_cast<int>(CardSuit::max_suits) };
+        int maxRank{ static_cast<int>(CardRank::max_ranks) };
+
+        for(int currentSuit = 0; currentSuit < maxSuit; ++currentSuit)
         {
-            std::cout << '\n';
-            column = 0;
+            for(int currentRank = 0; currentRank < maxRank; ++currentRank)
+            {
+                m_deck[deckIndex] = { static_cast<CardRank>(currentRank),
+                                      static_cast<CardSuit>(currentSuit) };
+                ++deckIndex;
+            }
         }
     }
-    std::cout << '\n' << '\n';
-  }
 
-  void shuffle()
-  {
-    std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
-    std::shuffle(m_deck.begin(), m_deck.end(), mt);
-  }
+    void print()
+    {
+        int column{};
+        for(const auto& card : m_deck)
+        {
+            card.print();
+            std::cout << " ";
+            if(++column > 4)
+            {
+                std::cout << '\n';
+                column = 0;
+            }
+        }
+        std::cout << '\n' << '\n';
+    }
+
+    void shuffle()
+    {
+        std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+        std::shuffle(m_deck.begin(), m_deck.end(), mt);
+    }
 
 };
 
@@ -321,22 +320,20 @@ bool playBlackjack(Deck& deck)
 }
 
 
-/*
- * Following main() won't compile because m_deck, used in playBlackjack(), is private.
- * This would work if we create getDeck() function or add playBlackjack() as a friend
- * function to Deck class.
- */
 int main()
 {
-  Deck deck;
+    std::cout << "*****************************************************\n";
 
-  deck.print(); // Print cards from deck sequentially
-  deck.shuffle();
-  deck.print(); // Print shuffled deck
+    Deck deck;
 
-  bool player{ playBlackjack(deck) };
+    deck.print(); // Print cards from deck sequentially
+    deck.shuffle();
+    deck.print(); // Print shuffled deck
 
-  std::cout << "\nPLAYER " << (player ? "won" : "lost") << '\n';
+    bool player{ playBlackjack(deck) };
 
-  return 0;
+    std::cout << "\nPLAYER " << (player ? "won" : "lost") << '\n';
+
+    std::cout << "*****************************************************\n";
+    return 0;
 }
