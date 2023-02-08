@@ -8,13 +8,15 @@
 
 #include <iostream>
 #include <vector>
-#include "Resource.hpp"
+#include "../inc/Resource.hpp"
 
 using std::vector;
 using std::cout;
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     vector numbers{ 0, 1, 2 };
     numbers.push_back(-2);
     numbers[0] = 3;
@@ -36,6 +38,7 @@ int main()
         cout << "-------------------" << '\n';
     } // Destructing resources
 
+    std::cout << "*****************************************************\n";
     return 0;
 } // Destructing r
 

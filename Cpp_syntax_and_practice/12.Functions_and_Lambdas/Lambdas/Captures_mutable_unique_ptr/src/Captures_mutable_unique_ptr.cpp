@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <memory>
-#include "Resource.hpp"
+#include "../inc/Resource.hpp"
 
 using std::cout;
 using std::vector;

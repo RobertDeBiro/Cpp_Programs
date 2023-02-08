@@ -3,10 +3,12 @@
 // Summary and quiz
 
 #include <iostream>
-#include "constants.hpp"
+#include "../inc/constants.hpp"
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	std::cout << "How many students are in your class? ";
 	int students{};
 	std::cin >> students;
@@ -15,7 +17,8 @@ int main()
 	if (students > constants::max_class_size)
 		std::cout << "There are too many students in this class";
 	else
-		std::cout << "This class isn't too large";
+		std::cout << "This class isn't too large\n";
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

@@ -1,7 +1,7 @@
 {
     "version": "2.0.0",
     "tasks": [
-        {
+        {   // Build active file
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
@@ -25,7 +25,7 @@
             },
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
-        {
+        {   // Build multiple files; with .hpp
             "type": "cppbuild",
             "label": "C/C++: g++.exe build multiple files; with .hpp",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
@@ -34,9 +34,9 @@
                 "-g3",
                 "-Wall",
                 "${fileDirname}\\*.cpp",
-                "${fileDirname}\\*.hpp",
+                "${fileDirname}\\..\\inc\\*.hpp",
                 "-o",
-                "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\..\\bin\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -47,7 +47,7 @@
             "group": "build",
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
-        {
+        {   // Build multiple files; with .h
             "type": "cppbuild",
             "label": "C/C++: g++.exe build multiple files; with .h",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
@@ -69,7 +69,7 @@
             "group": "build",
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
-        {
+        {   // Build GoogleTest file
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build GoogleTest file",
 			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
@@ -92,6 +92,32 @@
 			],
 			"group": "build",
 			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
-		}
+		},
+        {   // Build timing file
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build timing files",
+            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "${file}",
+                "${fileDirname}\\..\\Timer\\*.cpp",
+                "${fileDirname}\\..\\Timer\\*.hpp",
+                "-o",
+                "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+        }
     ]
 }

@@ -1,5 +1,5 @@
-#include "Resource.hpp"
 #include <iostream>
+#include "../inc/Resource.hpp"
 
 using std::cout;
 using std::endl;
