@@ -11,11 +11,14 @@ void printValue(int value)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int x(5);
     printValue(5);
     printValue(6);
     printValue(7);
     std::cout << "x is " << x << "\n";
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

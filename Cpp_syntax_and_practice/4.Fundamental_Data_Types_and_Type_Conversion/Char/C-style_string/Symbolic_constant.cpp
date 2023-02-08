@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // C-style string symbolic constant
     //  - the compiler places the string "Hello, world!\0" into read-only memory somewhere, and then sets the pointer to point to it
     //  - since the string is inside read-only memory, best practice is to make sure the string is const
@@ -31,5 +33,6 @@ int main()
     }
     std::cout << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

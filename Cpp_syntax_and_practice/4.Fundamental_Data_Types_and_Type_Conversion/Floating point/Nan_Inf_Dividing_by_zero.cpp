@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     double zero {0.0};
     double posinf { 5.0 / zero };
     std::cout << "positive infinity = " << posinf << '\n';
@@ -20,9 +22,10 @@ int main()
 	std::cout << "12 / " << x << " = " << y << '\n';
     std::cout << "Posinf/neginf type is: " << typeid(y).name() << '\n'; // Pi
 
-    // When division by zero is saved inside int variable we will have arithmetic exception
-    int z{ 12 / x };
-	std::cout << "12 / " << x << " = " << z << '\n';
+    // ERROR: When division by zero is saved inside int variable we will have arithmetic exception
+    //int z{ 12 / x };
+	//std::cout << "12 / " << x << " = " << z << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -15,7 +15,6 @@ public:
 		m_length{ length },
 		m_data{ new int[length]{} }
 	{
- 
 	}
  
 	IntArray(std::initializer_list<int> list) : // allow IntArray to be initialized via list initialization
@@ -74,6 +73,8 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	IntArray array { 5, 4, 3, 2, 1 }; // initializer list
 	for (int count{ 0 }; count < array.getLength(); ++count)
 		std::cout << array[count] << ' ';
@@ -86,6 +87,7 @@ int main()
 		std::cout << array[count] << ' ';
  
 	std::cout << '\n';
- 
+
+    std::cout << "*****************************************************\n";
 	return 0;
 }

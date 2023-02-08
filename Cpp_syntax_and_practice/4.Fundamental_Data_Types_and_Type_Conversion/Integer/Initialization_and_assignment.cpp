@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	int x1{};
 
 	// Integer can be assigned with character, and conversion from char to int will happen
@@ -21,5 +23,6 @@ int main()
 	x1 = 3'000'000'000;
 	std::cout << "3 000 000 000 = " << x1 << '\n';
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

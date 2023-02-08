@@ -3,7 +3,7 @@
 // Summary and quiz
 
 #include <iostream>
-#include "Constants.hpp"
+#include "../inc/Constants.hpp"
 
 double getTowerHeight()
 {
@@ -27,6 +27,8 @@ double calculateBallHeight(const double h, int t)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     const double towerHeight{ getTowerHeight() };
 
     std::cout << "At 0 seconds, the ball is at height: " << calculateBallHeight(towerHeight, 0) << "\n";
@@ -36,5 +38,6 @@ int main()
     std::cout << "At 4 seconds, the ball is at height: " << calculateBallHeight(towerHeight, 4) << "\n";
     std::cout << "At 5 seconds, the ball is at height: " << calculateBallHeight(towerHeight, 5) << "\n";
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Initializing C-style string
     //  - C++ automatically adds a null terminator
     char hello[] { "Hello, world!"};
@@ -28,5 +30,6 @@ int main()
     std::strcpy(hello, "Sleep, world!");
     std::cout << hello << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

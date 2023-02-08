@@ -18,10 +18,13 @@ void writeAnswer(int x)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	int x {};
 	readNumber(x);
 	x = x + readNumber(x);
 	writeAnswer(x);
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }
