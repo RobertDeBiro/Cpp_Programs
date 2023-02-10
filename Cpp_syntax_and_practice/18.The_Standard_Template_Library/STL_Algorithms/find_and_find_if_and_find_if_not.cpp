@@ -42,6 +42,7 @@ int main()
     std::cout << '\n';
 
     // ******************************* std::find_if *******************************
+    //  - find month that contains "ber" in his name
     const auto itFindIf{ std::find_if(months.begin(), months.end(), containsBer) };
     if (itFindIf == months.end())
         std::cout << "No ber\n";

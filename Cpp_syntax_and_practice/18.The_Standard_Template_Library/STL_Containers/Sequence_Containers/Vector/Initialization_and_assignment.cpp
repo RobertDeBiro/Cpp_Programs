@@ -52,6 +52,14 @@ int main()
     varVect5[0] = 2;
     printVector(varVect5);
 
+    // We can assign vector elements just like we would do with arrays also
+    //  - but only existing elements
+    //  - if we want to dynamically increase vector we would need to use push-back()
+    for(int i = 0; i < static_cast<int>(varVect4.size()); i++)
+        varVect4[i] = i;
+    std::cout << "Vector assigned as array: ";
+    printVector(varVect4);
+
     std::cout << "*****************************************************\n";
     return 0;
 }

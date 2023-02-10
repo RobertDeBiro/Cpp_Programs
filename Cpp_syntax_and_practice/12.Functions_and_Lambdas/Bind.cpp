@@ -59,6 +59,7 @@ int main()
     // ERROR:
     // we cannot declare std::placeholders::_2 if we didn't declare std::placeholders::_1
     //auto fcnPtrBindPh2{ std::bind(&division, x, std::placeholders::_2) };
+    
     // Add division(x, std::placeholders::_1) to fcnPtrBindPh1b(var)
     //  - First (and only) fcnPtrBindPh1b parameter will be added as second division parameter
     auto fcnPtrBindPh1b{ std::bind(&division, x, std::placeholders::_1) };
