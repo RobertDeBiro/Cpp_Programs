@@ -1,3 +1,5 @@
+// LearnCpp
+// Inheritance
 // Summary and quiz
 
 #include <iostream>
@@ -15,7 +17,6 @@ public:
     }
 
     const std::string& getName() const { return m_name; }
-
     const std::string& getColor() const { return m_color; }
 };
 
@@ -54,6 +55,8 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Apple a{ "red" };
 	Banana b;
 	GrannySmith c;
@@ -62,5 +65,6 @@ int main()
 	std::cout << "My " << b.getName() << " is " << b.getColor() << ".\n";
 	std::cout << "My " << c.getName() << " is " << c.getColor() << ".\n";
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

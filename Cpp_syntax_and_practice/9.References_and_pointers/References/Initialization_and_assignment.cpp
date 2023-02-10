@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int i = 0, &r1 = i;
     double j = 5.5, &r2 = j;
 
@@ -11,5 +13,6 @@ int main()
     // We cannot bind "int" references to "double" object
     // int &r3 = j;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

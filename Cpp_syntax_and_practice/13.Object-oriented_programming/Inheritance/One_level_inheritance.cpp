@@ -1,3 +1,5 @@
+// LearnCpp
+// Inheritance
 // Constructors and initialization of derived classes
 
 #include <string>
@@ -54,11 +56,14 @@ std::ostream& operator<< (std::ostream& out, const Banana& b)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	const Apple a{ "Red delicious", "red", 4.2 };
 	std::cout << a << '\n';
 
 	const Banana b{ "Cavendish", "yellow" };
 	std::cout << b << '\n';
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }
