@@ -16,6 +16,8 @@
  *          - insert array at the beginning of the vector
  *          - insert array at the end of the vector
  * 
+ * - insert is basically the same as push_back, except it contains some additional features
+ * 
  * References:
  *  - https://en.cppreference.com/w/cpp/container/vector/insert
  */

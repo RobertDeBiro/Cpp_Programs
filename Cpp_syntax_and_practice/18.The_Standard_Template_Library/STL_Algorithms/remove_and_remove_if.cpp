@@ -1,5 +1,5 @@
 /*
- * std::remove_if(ForwardIt first, ForwardIt last, const T& value) -> ForwardIt
+ * std::remove(ForwardIt first, ForwardIt last, const T& value) -> ForwardIt
  *  - removes all elements that have values equal to the one specified
  *  - elements are not removed but rather placed at the end of the container
  *     - elements placed at the end have unspecified values!
