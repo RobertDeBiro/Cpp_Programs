@@ -33,8 +33,9 @@ int main()
     std::cout << "Populating vector - define scope of vector: \n";
     for (const auto elem : v)
         std::cout << elem << ' ';
-    
     std::cout << '\n';
+
+    std::cout << "-------------------------------------\n";
 
     // ******************************* std::generate_n *******************************
     // Generates "n" amount of value starting from specified container element
@@ -42,7 +43,6 @@ int main()
     std::cout << "Populating vector - define number of elements: \n";
     for (const auto elem : v)
         std::cout << elem << ' ';
-    
     std::cout << '\n';
 
     // Enter every element from terminal
@@ -54,7 +54,6 @@ int main()
     std::cout << "Populating vector - define number of elements: \n";
     for (const auto elem : v)
         std::cout << elem << ' ';
-    
     std::cout << '\n';
     
     // When using generate_n in following way, it is actually the same as function std::fill_n,
@@ -63,7 +62,6 @@ int main()
     std::cout << "Updating vector: \n";
     for (const auto elem : v)
         std::cout << elem << ' ';
-
     std::cout << '\n';
 
     std::cout << "*****************************************************\n";

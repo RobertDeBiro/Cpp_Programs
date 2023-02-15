@@ -39,7 +39,7 @@ int main()
     itFind = std::find(months.begin(), months.end(), "Kolovoz");
     std::cout << "When object is not found it will print: " << *itFind << '\n';
 
-    std::cout << '\n';
+    std::cout << "-------------------------------------\n";
 
     // ******************************* std::find_if *******************************
     //  - find month that contains "ber" in his name

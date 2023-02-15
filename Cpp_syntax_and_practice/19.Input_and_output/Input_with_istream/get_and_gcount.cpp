@@ -1,6 +1,7 @@
 /*
  * References:
  *  - https://en.cppreference.com/w/cpp/io/basic_istream/get
+ *  - https://en.cppreference.com/w/cpp/io/basic_istream/gcount
  */
 
 #include <iostream>

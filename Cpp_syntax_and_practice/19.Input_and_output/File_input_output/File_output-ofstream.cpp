@@ -1,23 +1,21 @@
-// File_output - Output to a file
-
 #include <fstream> // std::ofstream
 #include <iostream>
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Create a std::ofstream variable used for output data to a file
     //  - std::ofstream variable is initialized with the file
     //  - it can be existing file, or if file doesn't exist, program will create it
     //  - we are setting absolute path to the file
     //  - if we write only "Sample.txt" are file would be saved in directory where compiler is saved
     //    which is C:\msys64\mingw64\bin
-    std::ofstream outf{ "C:\\Users\\rar\\Desktop\\Posao\\Programming\\C++\\Programs\\VSCode\\Practice\\Input and output\\txt files\\Sample.txt" };
+    std::ofstream outf{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt" };
 
-    // If we couldn't open the output file stream for writing
-    if (!outf)
+    if(!outf)
     {
-        // Print an error and exit
-        std::cerr << "Uh oh, Sample.txt could not be opened for writing!\n";
+        std::cerr << "File could not be opened for writing!\n";
         return 1;
     }
 
@@ -34,13 +32,13 @@ int main()
     outf.close(); // explicitly close the file
 
     // Open Sample file and append data to it
-    outf.open("C:\\Users\\rar\\Desktop\\Posao\\Programming\\C++\\Programs\\VSCode\\Practice\\Input and output\\txt files\\Sample.txt", std::ios::app);
+    outf.open("C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt", std::ios::app);
 
     outf << "This is line 3\n";
     outf.close();
 
+    std::cout << "*****************************************************\n";
     return 0;
-
-    // When outf goes out of scope, the ofstream
-    // destructor will close the file
 }
+// When outf goes out of scope, the ofstream
+// destructor will close the file

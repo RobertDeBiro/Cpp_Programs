@@ -19,7 +19,6 @@ int main()
     std::vector nums{ 1, 2, 3, 4 };
 
     // For each "nums" element, print its value
-    //
     auto callObj = std::for_each(std::begin(nums), std::end(nums),
                                  [](int element) { 
                                      std::cout << "Number: " << element << '\n'; });

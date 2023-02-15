@@ -81,7 +81,9 @@
         "mutex": "cpp",
         "unordered_set": "cpp",
         "variant": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "ranges": "cpp",
+        "span": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

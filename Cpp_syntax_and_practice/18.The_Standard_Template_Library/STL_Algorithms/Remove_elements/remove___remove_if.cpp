@@ -44,6 +44,8 @@ int main()
     printv(v);
     std::cout << "Return from std::remove_if is: " << *endv0 << '\n';
 
+    std::cout << "-------------------------------------\n";
+
     // ******************************* std::remove_if *******************************
     auto endv = std::remove_if(begin(v), end(v), [](int elem) { return (elem == 1); });
     std::cout << "Vector size after removing = " << v.size() << '\n';

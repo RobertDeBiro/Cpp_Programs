@@ -27,6 +27,7 @@ int main()
     const auto amountIvan{ std::count(names.begin(), names.end(), "Ivan") };
     std::cout << "There are " << amountIvan << " of Ivan's\n";
 
+    std::cout << "-------------------------------------\n";
 
     // ******************************* std::count_if *******************************
     const auto fiveLetterNames{ std::count_if(names.begin(), names.end(),

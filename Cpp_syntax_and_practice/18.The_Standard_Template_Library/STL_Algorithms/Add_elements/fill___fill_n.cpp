@@ -43,6 +43,8 @@ int main()
     // ERROR: we cannot fill elements into non-existing part of the vector
     // std::fill(v.end(), v.end() + 2, -1);
 
+    std::cout << "-----------------------------------------------------------\n";
+
     // ******************************* std::fill_n *******************************
     // Starting from v.begin() + 4, fill "3" times, number "-2"
     std::fill_n(v.begin() + 4, 3, -2);

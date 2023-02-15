@@ -48,6 +48,8 @@ int main()
     // std::vector<int> destINV;
     // std::copy(src.begin(), src.end(), destINV.begin();
 
+    std::cout << "-------------------------------------\n";
+
     // ******************************* std::copy_if *******************************
     std::vector<int> dest3;
     std::copy_if(src.begin(), src.end(), std::back_inserter(dest3), [](int elem){ return elem > 3; });
