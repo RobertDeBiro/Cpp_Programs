@@ -31,6 +31,8 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     C c;
     A& rBase1{ c };
     std::cout << "rBase1 is a " << rBase1.getName() << '\n';
@@ -41,5 +43,6 @@ int main()
     B& rBase2{ d };
     std::cout << "rBase2 is a " << rBase2.getName() << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

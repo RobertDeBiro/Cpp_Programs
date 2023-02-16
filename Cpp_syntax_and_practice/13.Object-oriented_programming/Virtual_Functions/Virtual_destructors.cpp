@@ -3,7 +3,7 @@
 class A
 {
 public:
-    ~A() // note: virtual
+    ~A() // note: NOT virtual
     {
         std::cout << "Calling ~A()\n";
     }
@@ -47,20 +47,24 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     B* b1 { new B(1) };
     A* a { b1 };
 
-    // Showing that B destructor is also virtualized, even though
-    // it is not defined with "virtual" keyword
-    C* c { new C(2, 3) };
-    B* b2 { c };
-
     std::cout << "Delete a:\n";
     delete a;
+
+    std::cout << "--------------------------------\n";
+
+    C* c { new C(2, 3) };
+    B* b2 { c };
 
     std::cout << "Delete b2:\n";
     delete b2;
 
     std::cout << "Program finished!\n";
+
+    std::cout << "*****************************************************\n";
     return 0;
 }

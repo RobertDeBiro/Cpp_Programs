@@ -20,12 +20,16 @@ public:
     ~Derived()
     {
         std::cout << "Calling Derived destructor!\n";
+        // Following part is redundant since destructor of the derived object will always eventually call
+        // the destructor of the base object
         terminate();
     }
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     Base* b1{ new Base() };
     delete b1;
 
@@ -39,5 +43,6 @@ int main()
     Derived* d{ new Derived() };
     delete d;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }
