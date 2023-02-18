@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     /*
      * Initializations
      */
@@ -22,6 +24,8 @@ int main()
     std::string str4(10, 'I');
     std::cout << str4 << '\n';
 
+    std::cout << "-----------------------------\n";
+
     /*
      * Assignment
      */
@@ -32,5 +36,6 @@ int main()
     str2 = "I saw blue, red, green and yellow cars yesterday.";
     std::cout << str2 << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

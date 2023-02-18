@@ -40,7 +40,7 @@ int main()
     /*
      * Initializations
      *  1) Using "pointer syntax"
-     *  2) Using "std::functional"
+     *  2) Using "std::function"
      *  3) Using "auto"
      */
 
@@ -89,9 +89,10 @@ int main()
 
     std::cout << "-------------------------\n";
 
-    std::function<int(int, int)> fcnPtr4c;
-    fcnPtr4c = randFunct4;
-    fcnPtr4b(9, 10);
+    // using alias for function pointer
+    using fnctPtrAssig = int(*)(int, int);
+    fnctPtrAssig fcnPtr4c{ randFunct4 };
+    fcnPtr4c(9, 10);
 
     std::cout << "*****************************************************\n";
     return 0;

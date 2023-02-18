@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::string str{ "I saw a red car yesterday." };
     std::cout << str << '\n';
 
@@ -10,5 +12,6 @@ int main()
     str.replace(8, 3, "blue");
     std::cout << str << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

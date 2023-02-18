@@ -51,6 +51,8 @@ int main()
     std::cout << "Vector size after removing = " << v.size() << '\n';
     std::cout << "Vector after removing elements with value 3:\n";
     printv(v);
+    // remove_if() returns the iterator to the first removed element which is after removing positioned
+    // in the last+1 place of the container
     std::cout << "Return from std::remove_if is: " << *endv << '\n';
 
     std::cout << "*****************************************************\n";

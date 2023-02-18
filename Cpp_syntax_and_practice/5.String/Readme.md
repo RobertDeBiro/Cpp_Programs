@@ -1,5 +1,3 @@
-# std::string
-
 ## Syntax:  
     template<  
         class CharT,  
@@ -9,5 +7,5 @@
 
     std::string = std::basic_string<char>
 
-## More info:
- - cppreference - https://en.cppreference.com/w/cpp/string/basic_string
+- references:
+    - https://en.cppreference.com/w/cpp/string/basic_string

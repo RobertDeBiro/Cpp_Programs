@@ -4,6 +4,8 @@ int g_i;
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int local_i;
     
     // Local variable is uninitialized when declaring it
@@ -14,5 +16,6 @@ int main()
     // global variable is automatically initialized when declaring it
     std::cout << "g_i = " << g_i << std::endl;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

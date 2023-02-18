@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Strings concatenation only works with std::string type, or by using append() member function
     std::string string1{"Hello"};
     std::string string2{"World!"};
@@ -34,5 +36,6 @@ int main()
      *    => wanted printout: HelloHelloHello
      */
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

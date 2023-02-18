@@ -38,6 +38,12 @@ int main()
     os2 >> strValue2b;
     std::cout << strValue2b << '\n';
 
+    os2 >> strValue2b;
+    std::cout << strValue2b << '\n';
+
+    os2 >> strValue2b;
+    std::cout << strValue2b << '\n';
+
     std::cout << "*****************************************************\n";
     return 0;
 }

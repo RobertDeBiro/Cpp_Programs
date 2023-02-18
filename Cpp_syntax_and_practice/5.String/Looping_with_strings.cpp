@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Type string to loop through it and count syllables: ";
     std::string syllables{};
     std::getline(std::cin >> std::ws, syllables);
@@ -16,5 +18,6 @@ int main()
 
     std::cout << "Number of syllables in the string: " << numberOfSyll << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

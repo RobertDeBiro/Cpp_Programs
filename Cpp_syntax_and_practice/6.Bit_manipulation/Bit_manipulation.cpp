@@ -8,6 +8,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Bit masks
     constexpr std::uint8_t option_viewed{ 0x01 };      // 0000 0001
     constexpr std::uint8_t option_favorited{ 0x04 };   // 0000 0100
@@ -46,5 +48,6 @@ int main()
     std::bitset<8> myArticleFlags_bitset {option_favorited};
     std::cout << "myArticle favorited = " << myArticleFlags_bitset << "\n";
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

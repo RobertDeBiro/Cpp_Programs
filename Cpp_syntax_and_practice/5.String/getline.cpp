@@ -3,6 +3,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Enter your full name: ";
     std::string fullName;
     
@@ -12,5 +14,6 @@ int main()
 
     std::cout << "Fullname = " << fullName << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

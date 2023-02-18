@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdexcept> // for std::runtime_error
+#include <stdexcept> // std::runtime_error
 
 class Fraction
 {
@@ -12,7 +12,7 @@ public:
         : m_numerator{ numerator }, m_denominator{ denominator }
     {
         if(m_denominator == 0)
-            throw std::runtime_error("Invalid denominator");
+            throw std::runtime_error("ERROR: Invalid denominator");
     }
 
     friend std::ostream& operator<<(std::ostream &out, const Fraction &frac);
@@ -26,6 +26,8 @@ std::ostream& operator<<(std::ostream &out, const Fraction &frac)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Enter the numerator: ";
     int num{};
     std::cin >> num;
@@ -44,5 +46,6 @@ int main()
         std::cerr << e.what() << '\n';
     }
 
-
+    std::cout << "*****************************************************\n";
+    return 0;
 }

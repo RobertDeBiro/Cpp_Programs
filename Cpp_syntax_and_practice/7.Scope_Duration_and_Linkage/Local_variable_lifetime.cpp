@@ -6,6 +6,8 @@
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::cout << "Enter an integer: ";
     int smaller{}; // Variable smaller is created here - its lifetime begins
     std::cin >> smaller;
@@ -25,5 +27,6 @@ int main()
     std::cout << "The smaller value is " << smaller << "\n";
     std::cout << "The larger value is " << larger << "\n";
 
+    std::cout << "*****************************************************\n";
     return 0;
 } // Variables smaller and larger die here - their lifetime ends

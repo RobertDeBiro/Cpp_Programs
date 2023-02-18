@@ -25,6 +25,8 @@ unsigned int printBitReturnVal(unsigned int decNumber, unsigned int digitVal)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     unsigned int decNumber{ getNumber() };
 
     decNumber = printBitReturnVal(decNumber, 128);
@@ -36,6 +38,8 @@ int main()
     decNumber = printBitReturnVal(decNumber, 4);
     decNumber = printBitReturnVal(decNumber, 2);
     decNumber = printBitReturnVal(decNumber, 1);
+    std::cout << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }
