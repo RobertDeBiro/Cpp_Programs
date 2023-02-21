@@ -36,7 +36,7 @@ int main()
     auto fcnPtrNormal{ division };
     std::cout << "The division from fcnPtrNormal is: " << fcnPtrNormal(x, y) << std::endl;
 
-    // Parameters are already binded
+    // Bind x and y parameters
     auto fcnPtrBind{ std::bind(&division, x, y) };
     std::cout << "The division from fcnPtrBind is: " << fcnPtrBind() << std::endl;
 

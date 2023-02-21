@@ -20,6 +20,8 @@ void myswapMove(T& a, T& b)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     std::string x{ "abc" };
 	std::string y{ "de" };
 
@@ -32,5 +34,6 @@ int main()
 	std::cout << "x: " << x << '\n';
 	std::cout << "y: " << y << '\n';
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

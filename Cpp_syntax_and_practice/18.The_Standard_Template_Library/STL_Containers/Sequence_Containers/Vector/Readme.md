@@ -19,14 +19,14 @@
 --------------------------------------------------------------------------------
 
 ## Member functions
-| Other        | Element access        | Capacity       | Modifiers         |
-| :---         | :---                  | :---           | :---              |
-| +assign      | +at                   | -empty         | -clear            |
-|              | +operator[]           | +size          | +insert           |
-|              | -front                | -max_size      | +emplace          |
-|              | -back                 | +reserve       | +erase            |
-|              | -data                 | +capacity      | +push_back        |
-|              |                       | +shrink_to_fit | -emplace_back     |
-|              |                       |                | +pop_back         |
-|              |                       |                | +resize           |
-|              |                       |                | -swap             |
+| Other     | Element access   | Capacity       | Modifiers      |
+| :---      | :---             | :---           | :---           |
+| +assign   | +at              | -empty         | -clear         |
+|           | +operator[]      | +size          | +insert        |
+|           | -front           | -max_size      | +emplace       |
+|           | -back            | +reserve       | +erase         |
+|           | -data            | +capacity      | +push_back     |
+|           |                  | +shrink_to_fit | -emplace_back  |
+|           |                  |                | +pop_back      |
+|           |                  |                | +resize        |
+|           |                  |                | -swap          |

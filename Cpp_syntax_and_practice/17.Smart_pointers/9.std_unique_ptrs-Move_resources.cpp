@@ -7,10 +7,13 @@ class Resource
 public:
 	Resource() { std::cout << "Resource acquired\n"; }
 	~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	std::unique_ptr<Resource> res1{ new Resource() }; // Resource created here
 	std::unique_ptr<Resource> res2{}; // Start as nullptr
     //auto res2{ std::make_unique<Resource>() };
@@ -26,5 +29,6 @@ int main()
 	std::cout << "res1 is " << (res1 ? "not null\n" : "null\n");
 	std::cout << "res2 is " << (res2 ? "not null\n" : "null\n");
 
+    std::cout << "*****************************************************\n";
 	return 0;
 } // Resource destroyed here when res2 goes out of scope

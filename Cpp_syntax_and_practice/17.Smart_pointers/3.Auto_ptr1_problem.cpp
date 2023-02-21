@@ -11,8 +11,6 @@ public:
 
 /*
     Classes by default uses copy constructor that implements shallow copy (provided by the compiler)
-        - shallow copy means that pointer is coppied to other pointer
-    
     Auto_ptr1(const Auto_ptr1& source)
         : m_ptr { source.m_ptr }
     {
@@ -33,10 +31,13 @@ class Resource
 public:
     Resource() { std::cout << "Resource acquired\n"; }
     ~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     Auto_ptr1<Resource> res1{ new Resource() };
 
     // Since compiler will by default use shallow copy in copy ctor
@@ -44,5 +45,6 @@ int main()
     // will cause same memory deleted twice and ultimately SIGTRAP abort
     Auto_ptr1<Resource> res2(res1);
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

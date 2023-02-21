@@ -1,12 +1,21 @@
+/*
+ * Auto_ptr2 class is similar to Auto_ptr1, but it doesn't uses default copy constructor with shallow copy
+ *  - it uses custom copy constructor and assignment operator that implements MOVE SEMANTICS
+ * 
+ * This class represents implementation of the first smart pointer used in C++, called std::auto_ptr
+ *  - std::auto_ptr is removed in C++17 due to several flaws
+ *  - replacement for this smart pointer class is std::unique_ptr
+ * 
+ *  - good:
+ *      - no memory leak - pointer deleted
+ *      - memory cannot be deleted twice
+ *  - bad:
+ *      - code designer may not be aware that object is moved to another object
+ *      - pointer is deleted using non-array delete
+ */
+
 #include <iostream>
 
-// Implementing the class Auto_ptr2, similar to Auto_ptr1, but that doesn't uses default copy
-// constructor with shallow copy, but rather custom copy constructor and assignment operator that
-// implements MOVE SEMANTICS
-//
-// This class represents implementation of the first smart pointer used in C++, called std::auto_ptr
-//  - its usage removed in C++17 due to several flaws
-//  - replacement for this smart pointer class is std::unique_ptr
 template <typename T>
 class Auto_ptr2
 {
@@ -54,10 +63,13 @@ class Resource
 public:
     Resource() { std::cout << "Resource acquired\n"; }
     ~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Auto_ptr2<Resource> res1(new Resource());
 	Auto_ptr2<Resource> res2; // Start as nullptr
 
@@ -66,10 +78,12 @@ int main()
 
 	res2 = res1; // res2 assumes ownership, res1 is set to null
 
+    std::cout << "-----------------------------------\n";
 	std::cout << "Ownership transferred\n";
 
 	std::cout << "res1 is " << (res1.isNull() ? "null\n" : "not null\n");
 	std::cout << "res2 is " << (res2.isNull() ? "null\n" : "not null\n");
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

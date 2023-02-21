@@ -18,17 +18,17 @@
 --------------------------------------------------------------------------------
 
 ## Member functions
-| Other        | Element access   | Capacity       | Modifiers         | Operations         |
-| :---         | :---             | :---           | :---              | :---               |
-| -assign      | -front           | -empty         | -clear            | +merge             |
-|              | -back            | -size          | -insert           | +splice            |
-|              |                  | -max_size      | -emplace          | -remove, remove_if |
-|              |                  |                | -erase            | -reverse           |
-|              |                  |                | -push_back        | +unique            |
-|              |                  |                | -emplace_back     | +sort              |
-|              |                  |                | -pop_back         |                    |
-|              |                  |                | -push_front       |                    |
-|              |                  |                | -emplace_front    |                    |
-|              |                  |                | -pop_front        |                    |
-|              |                  |                | -resize           |                    |
-|              |                  |                | -swap             |                    |
+| Other     | Element access   | Capacity    | Modifiers       | Operations         |
+| :---      | :---             | :---        | :---            | :---               |
+| -assign   | -front           | -empty      | -clear          | +merge             |
+|           | -back            | -size       | -insert         | +splice            |
+|           |                  | -max_size   | -emplace        | -remove, remove_if |
+|           |                  |             | -erase          | -reverse           |
+|           |                  |             | -push_back      | +unique            |
+|           |                  |             | -emplace_back   | +sort              |
+|           |                  |             | -pop_back       |                    |
+|           |                  |             | -push_front     |                    |
+|           |                  |             | -emplace_front  |                    |
+|           |                  |             | -pop_front      |                    |
+|           |                  |             | -resize         |                    |
+|           |                  |             | -swap           |                    |

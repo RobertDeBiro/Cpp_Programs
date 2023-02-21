@@ -1,9 +1,11 @@
-// Auto_ptr4 class enhances Auto_ptr2 class (std::auto_ptr) by using move constructor and
-// move assignment operator, and not using move semantics workaround
-//
-// Comparison to previous example with deep copy:
-//  - instead of copying our Resource twice, i.e. our res variable (once for the copy constructor and once for the copy assignment), we transfer it twice
-//  - this is more efficient, as Resource is only constructed and destroyed once instead of three times
+/*
+ * Auto_ptr4 class enhances Auto_ptr2 class (std::auto_ptr) by using move constructor and move assignment
+ * operator rather than move semantics
+ * 
+ * Comparison to deep copy example:
+ *  - instead of copying our Resource twice (once for the copy constructor and once for the copy assignment),
+ *    we transfer it twice
+ */
 
 #include <iostream>
 
@@ -74,6 +76,7 @@ class Resource
 public:
     Resource() { std::cout << "Resource acquired\n"; }
     ~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 Auto_ptr4<Resource> generateResource()
@@ -87,8 +90,11 @@ Auto_ptr4<Resource> generateResource()
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Auto_ptr4<Resource> mainres; // 0. Calling Auto_ptr3 constructor
 	mainres = generateResource(); // 3. Temporary object is moved to mainres.ptr
 
+    std::cout << "*****************************************************\n";
 	return 0;
 } // 4. mainres is deleted, calling destructor

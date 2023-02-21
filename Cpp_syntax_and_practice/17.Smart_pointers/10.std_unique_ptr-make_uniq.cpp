@@ -23,14 +23,17 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	// Create a single dynamically allocated Fraction with numerator 3 and denominator 5
 	std::unique_ptr<Fraction> f1{ std::make_unique<Fraction>(3, 5) };
 	std::cout << *f1 << '\n';
 
 	// Create a dynamically allocated array of Fractions of length 4
-    // We can also use automatic type deduction to good effect here
+    //  - we can also use automatic type deduction to good effect here
 	auto f2{ std::make_unique<Fraction[]>(4) };
 	std::cout << f2[0] << '\n';
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

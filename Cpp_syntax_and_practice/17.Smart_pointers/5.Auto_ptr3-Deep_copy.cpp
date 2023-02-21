@@ -1,9 +1,15 @@
-// Auto_ptr3 class tries to enhance Auto_ptr2 class (std::auto_ptr) by avoiding move semantics
-// (because move semantic as implemented in std::auto_ptr can lead to erroneous behavior, because
-// it is not real move semantic, but rather some workaround, so it can be unclear to developer
-// that pointer is moved to other variable, as stated in LearnCpp page)
-//  - Auto_ptr3 tries to enhance that by avoiding move semantics and using deep copy
-//  - the problem with this kind of implementation is that more processor resources are used
+/*
+ * Auto_ptr3 class tries to enhance Auto_ptr2 class (std::auto_ptr) by avoiding move semantics
+ *  - it does that by using deep copy
+ * 
+ *  - good:
+ *      - no memory leak - pointer deleted
+ *      - memory cannot be deleted twice
+ *      - code designer aware of current object status
+ *  - bad:
+ *      - more allocating/deallocating memories happens (deep copy always allocate new memory)
+ *      - possibly a lot of content needs to be coppied
+ */
 
 #include <iostream>
 
@@ -54,6 +60,7 @@ class Resource
 public:
 	Resource() { std::cout << "Resource acquired\n"; }
 	~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 Auto_ptr3<Resource> generateResource()
@@ -65,10 +72,13 @@ Auto_ptr3<Resource> generateResource()
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Auto_ptr3<Resource> mainres; // 0. Calling Auto_ptr3 constructor
 	mainres = generateResource(); // 4a. Calling Auto_ptr3 assignment operator
 								  // 5a. Temporary Auto_ptr3 object is deleted, calling Auto_ptr3 destructor
 
+    std::cout << "*****************************************************\n";
 	return 0;
 } // 6a. mainres is deleted, calling Auto_ptr3 destructor
 

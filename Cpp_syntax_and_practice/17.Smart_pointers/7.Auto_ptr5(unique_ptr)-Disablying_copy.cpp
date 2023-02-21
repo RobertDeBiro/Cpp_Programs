@@ -1,9 +1,10 @@
-// Auto_ptr5 class is the same as Auto_ptr4, except it disables copy of object and enables only move
-//  - with this kind of class we cannot initialize one Auto_ptr5<Resource> object with some other
-//    (as shown in 3.Auto_ptr1_problem.cpp example), or we cannot assign one one Auto_ptr5<Resource> object
-//    to other (as shown in 4.Auto_ptr2(std_auto_ptr)-Move_semantics)
-//  - therefore, this class presents std::unique_ptr - only one object can have particular address allocated
-//  - if we want that several objects can have the same address we would use std::shared_ptr
+/*
+ * Auto_ptr5 class is the same as Auto_ptr4, except it disables copy of object and enables only move
+ *  - with this kind of class we cannot initialize one Auto_ptr5<Resource> object with some other,
+ *    or we cannot assign one one Auto_ptr5<Resource> objectto other
+ *  - this class presents std::unique_ptr - only one object can have particular address allocated
+ *  - if we want that several objects can have the same address we would use std::shared_ptr
+ */
 
 #include <iostream>
 
@@ -64,6 +65,7 @@ class Resource
 public:
     Resource() { std::cout << "Resource acquired\n"; }
     ~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 Auto_ptr5<Resource> generateResource()
@@ -74,8 +76,11 @@ Auto_ptr5<Resource> generateResource()
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Auto_ptr5<Resource> mainres;
 	mainres = generateResource();
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

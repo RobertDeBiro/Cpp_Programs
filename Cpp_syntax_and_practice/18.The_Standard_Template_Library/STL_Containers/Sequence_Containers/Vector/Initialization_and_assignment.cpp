@@ -60,9 +60,6 @@ int main()
     std::cout << "Vector assigned as array: ";
     printVector(varVect4);
 
-    std::vector<int> varVect6;
-    varVect6(5);
-
     std::cout << "*****************************************************\n";
     return 0;
 }

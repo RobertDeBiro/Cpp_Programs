@@ -1,3 +1,12 @@
+/*
+ * Smart pointer class
+ *
+ *  - good:
+ *      - no memory leak - pointer deleted
+ *  - bad:
+ *      - copy constructor can try to delete memory twice - SIGTRAP ABORT
+ */
+
 #include <iostream>
 
 // Smart pointer class (class holding a pointer)
@@ -54,7 +63,10 @@ void someFunction()
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     someFunction();
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -6,10 +6,13 @@ class Resource
 public:
 	Resource() { std::cout << "Resource acquired\n"; }
 	~Resource() { std::cout << "Resource destroyed\n"; }
+    void sayHi() { std::cout << "Hi!\n"; }
 };
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	// allocate a Resource object and have it owned by std::shared_ptr
 	auto ptr1 { std::make_shared<Resource>() };
 	{
@@ -20,5 +23,6 @@ int main()
 
 	std::cout << "Killing another shared pointer\n";
 
+    std::cout << "*****************************************************\n";
 	return 0;
 } // ptr1 goes out of scope here, and the allocated Resource is destroyed
