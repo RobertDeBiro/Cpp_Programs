@@ -36,7 +36,7 @@ int main()
     printList(varList4);
 
     /*
-     * Assignment 
+     * Assignment
      *  - it is possible to declare list without initialization and afterwards
      *    assign values to list using initializer list
      */

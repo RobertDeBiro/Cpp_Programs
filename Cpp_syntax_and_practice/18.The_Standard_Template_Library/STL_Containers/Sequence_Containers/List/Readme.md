@@ -8,6 +8,8 @@
    insertion and removal of elements from **anywhere in the container**
  - fast random access is not supported (element is accessed with O(n))
  - it is implemented as a doubly-linked list
+ - it is not possible to use some stl algorithms on list objects
+    - therefore list implements its own operations, such as reverse and sort
 
  - time complexity:
     - Random access - complex O(n)

@@ -74,7 +74,7 @@ void initialization_and_assignment()
 
     // If using std::vector as an internal container, rather then std::deque,
     // are printout will be the same, but internal managament of the stack is not the same
-    std::stack<int> varStk2;
+    std::stack<int, std::vector<int>> varStk2;
     varStk2.push(1);
     varStk2.push(2);
     varStk2.push(3);
