@@ -8,6 +8,8 @@
 
  - std::map is an associative container that contains a sorted list of key-value pairs with unique keys
  - sorting is done using the key comparison function Compare
+    - by default map sorts elements with increasing values
+    - we can change that, e.g. to sort it by decreasing values
  - std::map is generally used in Dictionary type problems
  - usually implemented as red-black trees
 
@@ -25,7 +27,7 @@
 | +operator[]           | +size          | +insert           | -find        | -value_comp |
 |                       | -max_size      | -insert_or_assign | -contains    |             |
 |                       |                | -emplace          | -equal_range |             |
-|                       |                | -erase            | -lower_bound |             |
+|                       |                | +erase            | -lower_bound |             |
 |                       |                | -swap             | -upper_bound |             |
 |                       |                | -extract          |              |             |
 |                       |                | -merge            |              |             |
