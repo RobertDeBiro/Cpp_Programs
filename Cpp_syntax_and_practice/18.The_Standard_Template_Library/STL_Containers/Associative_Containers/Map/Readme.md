@@ -6,11 +6,11 @@
         class Allocator = std::allocator<std::pair<const Key, T>
     > class map;
 
- - std::map is an associative container that contains a sorted list of key-value pairs with unique keys
+ - *std::map* is an associative container that contains a sorted list of key-value pairs with unique keys
  - sorting is done using the key comparison function Compare
     - by default map sorts elements with increasing values
     - we can change that, e.g. to sort it by decreasing values
- - std::map is generally used in Dictionary type problems
+ - *std::map* is generally used in Dictionary type problems
  - usually implemented as red-black trees
 
  - time complexity:
