@@ -23,9 +23,14 @@ int main()
     /*
      * Following code won't work since string literals, i.e const char variables, are trying to be added
      */
-    // std::string concat1{};
-    // concat1 = "Hello" + "World!";
-    // std::cout << "Concatenated string 1: " << concat1 << '\n';
+    // std::string concat4{};
+    // concat4 = "Hello" + "World!";
+    // std::cout << "Concatenated string 4: " << concat4 << '\n';
+
+    // We can add a literal, but in addition we need to also have string as other operand
+    std::string concat5{};
+    concat5 = string1 + " dear world!";
+    std::cout << "Concatenated string 5: " << concat5 << '\n';
 
     /*
      * Note

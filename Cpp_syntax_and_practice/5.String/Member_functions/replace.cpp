@@ -1,3 +1,10 @@
+/*
+ * replace( size_type pos, size_type count, const basic_string& str ) -> basic_string&
+ *
+ * References:
+ *  - https://en.cppreference.com/w/cpp/string/basic_string/replace
+ */
+
 #include <iostream>
 #include <string>
 
