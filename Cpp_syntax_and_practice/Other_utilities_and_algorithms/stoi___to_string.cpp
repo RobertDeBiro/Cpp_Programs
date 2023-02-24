@@ -1,5 +1,5 @@
 /*
- *  stoi( const std::string& str, std::size_t* pos = nullptr, int base = 10 ); -> int
+ *  stoi( const std::string& str, std::size_t* pos = nullptr, int base = 10 ) -> int
  *
  *  - included in <string>
  *

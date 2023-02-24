@@ -29,7 +29,7 @@ public:
      *  - default copy constructor, provided by the compiler, is implemented
      *    by using shallow copy - it coppies pointer to other pointer
      */
-    //MyString::MyString(const MyString& source)
+    //MyString(const MyString& source)
     //    : m_length { source.m_length }
     //    , m_data { source.m_data }
     //{

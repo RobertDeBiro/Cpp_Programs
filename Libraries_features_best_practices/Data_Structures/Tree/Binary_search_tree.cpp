@@ -27,7 +27,7 @@ struct Node
 {
     int m_data;
     Node *m_left, *m_right;
-    Node(int data) : m_data(data), m_right{ nullptr }, m_left{ nullptr } {}
+    Node(int data) : m_data(data), m_left{ nullptr }, m_right{ nullptr } {}
 };
 
 Node* insert(Node *head, int data)
@@ -53,6 +53,8 @@ void printInOrder(Node *head)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     int nodeAmount, val;
     std::cin >> nodeAmount;
     std::cin >> val; // insert value for the head node
@@ -63,7 +65,10 @@ int main()
         std::cin >> val;
         insert(head, val);
     }
+    std::cout << "Binary search tree: \n";
     printInOrder(head);
+    std::cout << '\n';
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

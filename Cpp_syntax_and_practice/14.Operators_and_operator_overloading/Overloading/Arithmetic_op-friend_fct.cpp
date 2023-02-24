@@ -1,7 +1,9 @@
+// LearnCpp
+// Operator overloading
 // Overloading the arithmetic operators using friend functions
 
 #include <iostream>
-#include <numeric> // for std::gcd
+#include <numeric> // std::gcd
 
 class Fraction
 {
@@ -54,6 +56,8 @@ Fraction operator*(int v, const Fraction& f)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     Fraction f1{2, 5};
     f1.print();
 
@@ -75,5 +79,6 @@ int main()
     Fraction f7{0, 6};
     f7.print();
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

@@ -1,21 +1,3 @@
-/*
- * Binary tree:
- *  - a tree whose nodes can have at most two children is called binary tree
- *  - as there can only be two children of a node we call them left and right child
- * 
- * Types of binary tree:
- *  1) FULL BINARY TREE / STRICTLY BINARY TREE
- *      - every node must have two children, except the leaf nodes
- *  2) INCOMPLETE BINARY TREE / ALMOST COMPLETE BINARY TREE
- *      - every node must have two children's in all levels except last and second last level and should be filled from left to right
- *  3) COMPLETE BINARY TREE / PERFECT BINARY TREE
- *      - every node must have two children's in all the levels (Each level there should be 2^L where L is level)
- *  4) LEFT SKEWED BINARY TREE
- *      - every node should have only left children.
- *  5) RIGHT SKEWED BINARY TREE
- *      - every node should have only right children.
- */
-
 #include <iostream>
 #include <algorithm>
 
@@ -56,6 +38,8 @@ void invertBinary(Node* root)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Constructing nodes
     //  - their are constructed in path that will be used for printing them
     Node* root = new Node(1);
@@ -124,6 +108,7 @@ int main()
     Printout should look like this:
           1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
     */
+    std::cout << "Binary tree: \n";
     print_dfs(root);
     std::cout << '\n';
 
@@ -157,7 +142,9 @@ int main()
     Printout should look like this:
           1 9 13 15 14 10 12 11 2 6 6 7 3 5 4
     */
+    std::cout << "Inverted binary tree: \n";
     print_dfs(root);
+    std::cout << '\n';
 
     // Deleting nodes
     delete root;
@@ -176,5 +163,6 @@ int main()
     delete right_rl;
     delete right_rr;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

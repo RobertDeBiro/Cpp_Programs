@@ -1,8 +1,10 @@
+// LearnCpp
+// Operator overloading
 // Overloading the I/O operators
 
 #include <iostream>
-#include <limits> // for std::numeric_limits
-#include <numeric> // for std::gcd
+#include <limits> // std::numeric_limits
+#include <numeric> // std::gcd
 
 class Fraction
 {
@@ -78,6 +80,8 @@ std::ostream& operator<<(std::ostream& out, const Fraction& f)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
 	Fraction f1;
 	std::cout << "Enter fraction 1: ";
 	std::cin >> f1;
@@ -86,7 +90,8 @@ int main()
 	std::cout << "Enter fraction 2: ";
 	std::cin >> f2;
 
-	std::cout << f1 << " * " << f2 << " is " << f1 * f2 << '\n'; // note: The result of f1 * f2 is an r-value
+	std::cout << f1 << " * " << f2 << " is " << f1 * f2 << '\n';
 
+    std::cout << "*****************************************************\n";
 	return 0;
 }

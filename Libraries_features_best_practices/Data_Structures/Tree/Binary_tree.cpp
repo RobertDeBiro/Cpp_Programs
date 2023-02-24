@@ -1,15 +1,18 @@
 /*
  * Binary tree:
  *  - a tree whose nodes can have at most two children is called binary tree
- *  - as there can only be two children of a node we call them left and right child
+ *  - since there can only be two children of a node we call them left and right child
  * 
  * Types of binary tree:
  *  1) FULL BINARY TREE / STRICTLY BINARY TREE
  *      - every node must have two children, except the leaf nodes
+ *      - so, it can happen for example that one leaf node is on level 2, one on level 3, and one on level 4
  *  2) INCOMPLETE BINARY TREE / ALMOST COMPLETE BINARY TREE
- *      - every node must have two children's in all levels except last and second last level and should be filled from left to right
+ *      - every node must have two children's in all levels except last and second last level and
+ *        should be filled from left to right
  *  3) COMPLETE BINARY TREE / PERFECT BINARY TREE
- *      - every node must have two children's in all the levels (Each level there should be 2^L where L is level)
+ *      - every node must have two children in all the levels (Each level there should be 2^L
+ *        where L is level)
  *  4) LEFT SKEWED BINARY TREE
  *      - every node should have only left children.
  *  5) RIGHT SKEWED BINARY TREE
@@ -46,6 +49,8 @@ void print_dfs(Node* root)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Constructing nodes
     //  - here nodes are only constructed and not connected
     //  - they are constructed in path that will be used for printing them
@@ -116,6 +121,7 @@ int main()
           1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
     */
     print_dfs(root);
+    std::cout << '\n';
 
     // Deleting nodes
     delete root;
@@ -134,5 +140,6 @@ int main()
     delete right_rl;
     delete right_rr;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

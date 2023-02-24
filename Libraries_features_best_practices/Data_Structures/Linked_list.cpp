@@ -13,10 +13,13 @@ void printLinkedList(LinkedList* root)
         std::cout << root->data << ' ';
         root = root->next;
     }
+    std::cout << '\n';
 }
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     LinkedList *root, *second, *third;
 
     root = new LinkedList;
@@ -34,5 +37,6 @@ int main()
 
     printLinkedList(root);
 
+    std::cout << "*****************************************************\n";
     return 0;
 }
