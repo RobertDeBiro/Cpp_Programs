@@ -1,7 +1,11 @@
 /*
- * std::thread
- *  - programs shows just basic usage of std::thread
- *  - more info: https://www.youtube.com/watch?v=wXBcwHwIt_I
+ * class thread
+ *
+ * - included in <thread>
+ * 
+ * References:
+ *  - https://en.cppreference.com/w/cpp/thread/thread
+ *  - https://www.youtube.com/watch?v=wXBcwHwIt_I
  */
 
 #include <iostream>
@@ -28,7 +32,10 @@ void DoWork()
 // Starting main thread
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     // Main thread id
+    //  - get_id is std::thread member function
     std::cout << "Started main thread: id = " << std::this_thread::get_id() << std::endl;
 
     // Starting DoWork thread
@@ -40,8 +47,10 @@ int main()
     
     s_Finished = true;
 
+    // join is std::thread member function
     worker.join();
     std::cout << "Finished." << std::endl;
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

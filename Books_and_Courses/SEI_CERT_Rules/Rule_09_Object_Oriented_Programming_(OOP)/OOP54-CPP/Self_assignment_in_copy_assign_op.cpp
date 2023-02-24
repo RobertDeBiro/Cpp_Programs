@@ -1,8 +1,3 @@
-/*
- * OOP54-CPP. Gracefully handle self-copy assignment
- *  - link: https://wiki.sei.cmu.edu/confluence/display/cplusplus/OOP54-CPP.+Gracefully+handle+self-copy+assignment
- */
-
 #include <iostream>
 #include <exception>
 
@@ -31,6 +26,9 @@ public:
         try
         {
             m_ptr = new Resource(*source.m_ptr);
+            // The same as:
+            // m_ptr = new Resource();
+            // *m_ptr = *source.m_ptr;
         }
         catch (std::bad_alloc&) // catch std::bad_alloc, but don't save it into any object
         {
@@ -82,9 +80,15 @@ public:
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     TestClass test(new Resource(2));
     // Self-copy assignment
     test = test;
-    // In compliant scenario 2 will be printed, whereas in non-compliant some garbage (e.g. -11630005939)
+    // In compliant scenario 2 will be printed, whereas in non-compliant
+    // some garbage (e.g. -11630005939)
     std::cout << test.m_ptr->m_x << '\n';
+
+    std::cout << "*****************************************************\n";
+    return 0;
 }
