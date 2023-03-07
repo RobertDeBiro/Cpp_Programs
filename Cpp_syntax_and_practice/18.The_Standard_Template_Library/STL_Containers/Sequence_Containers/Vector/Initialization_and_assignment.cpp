@@ -44,7 +44,7 @@ int main()
      *    assign values to vector using initializer list
      */
     std::vector<int> varVect5;
-    varVect5 = {1, 2, 3, 4, 5 };
+    varVect5 = { 1, 2, 3, 4, 5 };
     std::cout << "Assignment after declaration: ";
     printVector(varVect5);
 
@@ -54,7 +54,7 @@ int main()
 
     // We can assign vector elements just like we would do with arrays also
     //  - but only existing elements
-    //  - if we want to dynamically increase vector we would need to use push-back()
+    //  - if we want to dynamically increase vector we would need to use push_back()
     for(int i = 0; i < static_cast<int>(varVect4.size()); i++)
         varVect4[i] = i;
     std::cout << "Vector assigned as array: ";

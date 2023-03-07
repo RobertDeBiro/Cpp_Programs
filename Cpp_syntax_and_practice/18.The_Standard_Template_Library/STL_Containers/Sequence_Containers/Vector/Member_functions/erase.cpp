@@ -36,6 +36,7 @@ int main()
     printVector(varVect);
 
     // Vector after erasing scope of elements
+    //  - erase 2. and 3. element
     varVect.erase(varVect.begin() + 1, varVect.begin() + 3);
     std::cout << "2. varVect: ";
     printVector(varVect);

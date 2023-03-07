@@ -43,7 +43,7 @@ int main()
 
         // We cannot assign the values in following way since reserve() doesn't allocate resources,
         // only decreases numbers of vector coppies
-        //  - ERROR wouln't appear, but vector values would be empty
+        //  - ERROR wouldn't appear, but vector values would be empty
         // varVect[i] = i;
     }
 

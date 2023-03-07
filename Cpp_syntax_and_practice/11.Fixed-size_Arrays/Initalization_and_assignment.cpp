@@ -87,6 +87,15 @@ int main()
     std::cout << "Runtime constant length:\n";
     printArray(arr6, length3);
 
+    /*
+     * Array can be used as pointer, since it always decays to pointer
+     */
+    int arr7[3]{ 1, 2, 3 };
+    int arr7_size = static_cast<int>(std::size(arr7));
+    *(arr7) = 2;
+    *(arr7 + 2) = 2;
+    printArray(arr7, arr7_size);
+
     std::cout << "*****************************************************\n";
     return 0;
 }

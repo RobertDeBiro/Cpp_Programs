@@ -1,3 +1,9 @@
+/*
+ * C++ Primer
+ * Exercises section 2.5.2
+ *  - Exercise 2.35
+ */
+
 #include <iostream>
 
 int main()
@@ -25,7 +31,7 @@ int main()
     //j2 = 43;                     // ERROR: const int cannot be changed
 
     std::cout << "k2 = " << k2 << '\n';
-    //k2 = 43;                      // ERROR: const int& cannot be changed
+    //k2 = 43;                     // ERROR: const int& cannot be changed
 
     std::cout << "*****************************************************\n";
     return 0;

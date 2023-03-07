@@ -73,6 +73,8 @@ int main()
     Fraction f5{ 2 * f2 };
     f5.print();
 
+    // If we didn't use const reference to Fraction inside overloaded operator*
+    // we wouldn't be able to execute this, since all of those are anonymous
     Fraction f6{ Fraction{1, 2} * Fraction{2, 3} * Fraction{3, 4} };
     f6.print();
 

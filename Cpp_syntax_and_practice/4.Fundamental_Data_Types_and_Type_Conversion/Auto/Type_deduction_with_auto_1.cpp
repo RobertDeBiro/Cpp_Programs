@@ -7,14 +7,17 @@ int main()
     int i = 0, &r = i;
     
     /*
-     * Reference as initializer for "auto" variable
-     *  - when we use a reference as an initializer, the initializer is the corresponding object
+     * "auto" object initialized with reference
+     *  - when we use a reference as an initializer, the initializer is the referenced object
+     *    (in this example object "i")
      *  - hence auto will be deduced as int, and "a" variable will be int
      */
     auto a = r;     // a is an "int"
 
+    ////////////////////////////////////////////////////////////////////////////////////
+
     /*
-     * Auto and top-level and low-level consts
+     * "auto" object with top-level and low-level consts
      *  - "auto" ordinarily ignores top-level const (just like other objects, such as pointers)
      */
     const int ci = i, &cr = ci;
@@ -24,24 +27,26 @@ int main()
     auto e = &ci;   // e is an "const int*"
 
     // If we want the deduced type to have a top-level const, we must say so explicitly
-    //  - example with variable "b" ignores top-level const
-    const auto f = ci;
+    //  - in previous example, variable "b" ignores top-level const
+    const auto f = ci;  // f is a "const int"
 
     /*
-     * Reference to auto-deduced type
+     * "auto"-deduced reference with top-level and low-level consts
+     *  - when we ask for a reference to an auto-deduced type, top-level consts in the initializer are not
+     *    ignored
      */
-    // When we ask for a reference to an auto-deduced type, top-level consts in the initializer
-    // are not ignored
     auto &g = ci; // g is an "const int&"
     
+    ////////////////////////////////////////////////////////////////////////////////////
+
     /*
-     * Auto-deduced reference to a literal
+     * "auto"-deduced reference to a literal
      */
-    // auto &h = 42; // error: we cannot bind reference to a literal
+    // auto &h = 42; // ERROR: we cannot bind reference to a literal
     const auto &j = 42; // we can bind const reference to a literal
 
     /*
-     * One base auto-deduced type and multiple declarators
+     * Base "auto"-deduced type with multiple declarators
      *  - reference and pointer is part of a particular declarator and not part of the
      *    base type for the declaration
      */
@@ -50,10 +55,10 @@ int main()
     // auto &n = i, *p2 = &ci; // error: n is "int&", whereas p2 is "conts int*, which are two different base types" 
 
     /*
-     * ******************************************************************
-     * C++ Primer exercise
-     * ******************************************************************
-     */
+    * C++ Primer
+    * Exercises section 2.5.2
+    *  - Exercise 2.33
+    */
     a = 42;     // OK: a is an "int"
     std::cout << "a = " << a << '\n';
     

@@ -3,9 +3,10 @@
  * - object must be of type Json::Value
  * - data is saved inside json object using another object of type Json::Reader
  * 
- * - more info:
- *    - https://www.youtube.com/watch?v=GYauneigGTs&t=4s
- *    - https://www.youtube.com/watch?v=2P4wdz1li5c&t=161s
+ * References:
+ *  - https://www.youtube.com/watch?v=GYauneigGTs&t=4s
+ *  - https://www.youtube.com/watch?v=2P4wdz1li5c&t=161s
+ *  - https://github.com/open-source-parsers/jsoncpp
  */
 
 #include <iostream>
