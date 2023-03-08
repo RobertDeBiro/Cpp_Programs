@@ -15,7 +15,7 @@
 int main()
 {
     // Printing "Hello World" to the terminal
-    std::cout << "Hello World!\n";
+    std::cout << "Hello World!" << std::endl;
 
     // Return value 0 to call of the main funciton, which indicates that everything finished successfully
     return 0;
