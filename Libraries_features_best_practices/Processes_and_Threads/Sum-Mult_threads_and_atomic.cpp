@@ -61,6 +61,9 @@ int main()
     t2.join();
     t3.join();
 
+    // load()
+    //  - atomic member functions
+    //  - obtains the value of atomic variable
     std::cout << "Multithread sum = " << multiThreadedSum.load() << '\n';
 
     std::cout << "*****************************************************\n";

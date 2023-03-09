@@ -1,8 +1,8 @@
 #include <array>
-#include <chrono> // std::chrono
 #include <cstddef> // std::size_t
 #include <iostream>
 #include <numeric> // std::iota
+#include <chrono> // std::chrono
 #include "../Timer/Timer.hpp"
 
 const int g_arrayElements { 10000 };

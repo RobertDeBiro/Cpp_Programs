@@ -1,7 +1,7 @@
 /*
  * class thread
- *
- * - included in <thread>
+ *  
+ *  - included in <thread>
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/thread/thread
