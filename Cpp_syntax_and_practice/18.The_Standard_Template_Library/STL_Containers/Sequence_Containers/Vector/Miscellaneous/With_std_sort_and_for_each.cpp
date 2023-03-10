@@ -59,6 +59,8 @@ bool compareStudents(const Student& a, const Student& b)
 
 int main()
 {
+    std::cout << "*****************************************************\n";
+
     auto students{ getStudents() };
 
     // Sorting students in descending order
@@ -70,5 +72,6 @@ int main()
         std::cout << student.name << " got a grade of " << student.grade << '\n';
     }
 
+    std::cout << "*****************************************************\n";
     return 0;
 }

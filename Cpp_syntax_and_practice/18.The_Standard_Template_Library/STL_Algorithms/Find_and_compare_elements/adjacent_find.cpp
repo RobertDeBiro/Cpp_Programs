@@ -29,7 +29,8 @@ int main()
                                                 }) };
 
     if (itSameLetter != months.end())
-        std::cout << *itSameLetter << " and " << *std::next(itSameLetter) << " start with the same letter.\n";
+        std::cout << *itSameLetter << " and " << *std::next(itSameLetter)
+                  << " start with the same letter.\n";
 
     std::cout << "*****************************************************\n";
     return 0;
