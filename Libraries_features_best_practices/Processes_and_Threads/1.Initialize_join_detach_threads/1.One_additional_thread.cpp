@@ -1,13 +1,3 @@
-/*
- * class thread
- *  
- *  - included in <thread>
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/thread/thread
- *  - https://www.youtube.com/watch?v=wXBcwHwIt_I
- */
-
 #include <iostream>
 #include <thread>
 
@@ -25,6 +15,8 @@ void DoWork()
     while (!s_Finished)
     {
         std::cout << "Working...\n";
+        // Without "using namespace std::literals::chrono_literals" we would need to write
+        // std::this_thread::sleep_for(std::chrono::seconds(1))
         std::this_thread::sleep_for(1s);
     }
 }
