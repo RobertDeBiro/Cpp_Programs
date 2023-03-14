@@ -1,7 +1,7 @@
 /*
  * C++ Primer
  * Exercise Section 3.3.3
- *  - Exercise 3.16
+ *  - Exercise 3.17
  */
 
 #include <iostream>
