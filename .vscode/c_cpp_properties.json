@@ -4,8 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\Users\\rar\\Desktop\\Posao\\Softwares_and_tools\\GoogleTest\\googletest\\include",
-                "C:\\Users\\rar\\Desktop\\Posao\\Softwares_and_tools\\GoogleTest\\googlemock\\include"
+                "C:\\Users\\Robert\\Desktop\\IT\\Softwares_and_tools\\GoogleTest\\googletest\\include",
+                "C:\\Users\\Robert\\Desktop\\IT\\Softwares_and_tools\\GoogleTest\\googlemock\\include"
             ],
             "defines": [
                 "_DEBUG",

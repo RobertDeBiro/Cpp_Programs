@@ -6,8 +6,8 @@
 
 namespace Files
 {
-    const char* inputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\EuropeCapitals.txt" };
-    const char* outputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\EuropeCapitals-Sorted.txt" };
+    const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\EuropeCapitals.txt" };
+    const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\EuropeCapitals-Sorted.txt" };
 }
 
 int main()

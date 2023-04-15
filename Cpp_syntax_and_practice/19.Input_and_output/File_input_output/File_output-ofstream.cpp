@@ -11,7 +11,7 @@ int main()
     //  - we are setting absolute path to the file
     //  - if we write only "Sample.txt" are file would be saved in directory where compiler is saved
     //    which is C:\msys64\mingw64\bin
-    std::ofstream outf{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt" };
+    std::ofstream outf{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt" };
 
     if(!outf)
     {
@@ -32,7 +32,7 @@ int main()
     outf.close(); // explicitly close the file
 
     // Open Sample file and append data to it
-    outf.open("C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt", std::ios::app);
+    outf.open("C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt", std::ios::app);
 
     outf << "This is line 3\n";
     outf.close();

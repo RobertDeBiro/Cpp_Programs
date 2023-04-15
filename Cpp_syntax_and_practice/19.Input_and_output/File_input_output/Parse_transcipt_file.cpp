@@ -6,10 +6,10 @@
 
 namespace Files
 {
-    // const char* inputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Transcript-Msys2.txt" };
-    // const char* outputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Transcript_parsed-Msys2.txt" };
-    const char* inputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Transcript-VSCode.txt" };
-    const char* outputFile{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Transcript_parsed-VSCode.txt" };
+    // const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Transcript-Msys2.txt" };
+    // const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Transcript_parsed-Msys2.txt" };
+    const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Transcript-VSCode.txt" };
+    const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Transcript_parsed-VSCode.txt" };
 }
 
 int main()

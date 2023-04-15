@@ -9,7 +9,7 @@ int main()
     // Note we have to specify both in and out because we're using fstream
     std::fstream iofile
     {
-        "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt",
+        "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt",
         std::ios::in | std::ios::out
     };
 

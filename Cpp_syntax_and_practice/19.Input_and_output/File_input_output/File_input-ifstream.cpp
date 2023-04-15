@@ -7,7 +7,7 @@ int main()
     std::cout << "*****************************************************\n";
 
     // Create a std::ifstream variable used for input data from a file
-    std::ifstream inf{ "C:\\Users\\rar\\Desktop\\Posao\\Programs\\Random_files\\txt\\Sample1.txt" };
+    std::ifstream inf{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt" };
 
     if(!inf)
     {
