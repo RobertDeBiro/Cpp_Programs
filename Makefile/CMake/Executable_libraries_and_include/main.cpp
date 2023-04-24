@@ -1,5 +1,3 @@
-// Friend functions and classes
-
 #include <iostream>
 #include "Point3d.hpp"
 #include "Vector3d.hpp"

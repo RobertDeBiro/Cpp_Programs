@@ -1,8 +1,8 @@
+//* Arithmetic operators
 /**
- * * Arithmetic operators:
- *      1. Unary operators
- *      2. Binary operators
- *      3. Arithmetic assignment operators 
+ *  1. Unary operators
+ *  2. Binary operators
+ *  3. Arithmetic assignment operators 
  **/
 
 #include <iostream>
@@ -13,9 +13,7 @@ int main()
     int x = 5;
     std::cout << "x = " << x << '\n';
 
-    /*
-     * Unary operators
-     */
+    //* Unary operators
     x = -x;
     std::cout << "x = " << x << '\n';
 
@@ -23,9 +21,7 @@ int main()
 
     //////////////////////////////////////////////////////////
 
-    /*
-     * Binary operators
-     */
+    //* Binary operators
     int d1 = 9;
     int d2 = 3;
     int d3 = 4;
@@ -48,9 +44,7 @@ int main()
 
     //////////////////////////////////////////////////////////
 
-    /*
-     * Arithmetic assignment operators
-     */
+    //* Arithmetic assignment operators
     int a = 5;
     std::cout << "a = " << a << '\n';
 

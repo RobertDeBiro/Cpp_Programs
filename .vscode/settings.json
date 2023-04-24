@@ -83,7 +83,15 @@
         "variant": "cpp",
         "regex": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "*.tcc": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "memory_resource": "cpp",
+        "string_view": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

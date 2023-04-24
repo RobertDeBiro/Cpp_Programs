@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cmake -S ../ -B ../out/build -G "MinGW Makefiles"
+cmake -S ../ -B ../out/build -G "MSYS Makefiles"

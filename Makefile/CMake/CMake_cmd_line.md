@@ -12,11 +12,10 @@ CMake reference: https://cmake.org/cmake/help/latest/manual/cmake.1.html
 **Generate a Project Buildsystem on Windows**
 
     cmake -S <path-to-source> -B <path-to-build> -G <build-system-generator>
-    cmake -S . -B out/build -G "MinGW Makefiles
+    cmake -S . -B out/build -G "MSYS Makefiles"
 
- - when working in Windows and using MinGW for building the code (Linux tools such as gcc, gdb), 
-   we need to use "MinGW Makefiles" CMake build system generator:  
-   https://cmake.org/cmake/help/latest/generator/MinGW%20Makefiles.html
+ - when working in Windows and using MSYS2/MinGW64 for building the code (Linux tools such as gcc, gdb), 
+   we need to use "MSYS Makefiles" CMake build system generator
  - there are various CMake build system generators:  
    https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#manual:cmake-generators(7):
 

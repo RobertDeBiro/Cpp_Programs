@@ -1,15 +1,3 @@
-/**
- * * Implicit type conversion 
- *      -  C++ compiler can implicitly convert values of one fundamental type to another
- **/
-/**
- * * Explicit type conversion - static_cast
- *      - explicitly telling to the compiler to convert a value from one type to another type
- *      - syntax:
- *?       static_cast<new_type_name>(expression)
- *      - doesn't do any range checking - possible overflow (data loss)
- **/
-
 #include <iostream>
 
 void print_d(double y)
@@ -25,6 +13,10 @@ void print_i(int y)
 
 int main()
 {
+    //* Implicit type conversion
+    /**
+     *  -  C++ compiler can implicitly convert values of one fundamental type to another
+     **/
 	int x1{ 5 };
 	print_d(x1);
     std::cout << "x1 = " << x1 << '\n';
@@ -33,11 +25,14 @@ int main()
 	print_i(x2);
     std::cout << "x2 = " << x2 << '\n';
 
-    /*
-     * Convert char to int by using static_cast
-     */
+    //* Explicit type conversion
+    /**
+     *  - explicitly telling to the compiler to convert a value from one type to another type
+     *  - syntax:
+     *?     static_cast<new_type_name>(expression)
+     *  - doesn't do any range checking - possible overflow (data loss)
+     **/
     char c = 65;
-
     std::cout << "Character c = " << c << '\n';
     std::cout << "Integer c = " << static_cast<int>(c) << '\n';
 

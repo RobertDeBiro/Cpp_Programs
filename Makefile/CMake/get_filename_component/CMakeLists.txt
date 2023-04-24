@@ -3,7 +3,7 @@ message(STATUS "*****************************************************")
 cmake_minimum_required(VERSION 3.24.1)
 project(Misc)
 
-set(FILE_VAR /c/Users/rar/Desktop/Posao/Programs/VSCode/Cpp/Makefile_practice/CMake/Miscellaneous/filename.txt)
+set(FILE_VAR /c/Users/Robert/Desktop/IT/Programs/VSCode/Cpp/Makefile_practice/CMake/Miscellaneous/filename.txt)
 message(STATUS "Filename path: ${FILE_VAR}")
 
 get_filename_component(VAR ${FILE_VAR} DIRECTORY)
