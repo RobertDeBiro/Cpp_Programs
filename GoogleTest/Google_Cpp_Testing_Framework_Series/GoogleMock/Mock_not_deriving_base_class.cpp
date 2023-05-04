@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-// Interface base class
+//* Interface base class
 //  - we can also comment this base class when we want to mock it
 /*
 class DataBaseConnect
@@ -14,7 +14,7 @@ public:
 };
 */
 
-// Mock class
+//* Mock class
 //  - it has the same name as the commented interface base class
 //  - the idea in this example is that mock class fully replaces interface base class
 //  - this kind of implementation is used if the class that we want to mock contains also some
@@ -28,7 +28,7 @@ public:
     MOCK_METHOD2(login, bool(std::string username, std::string pasword));
 };
 
-// Component under test class
+//* Component under test class
 class MyDatabase
 {
     DataBaseConnect& m_dbc;

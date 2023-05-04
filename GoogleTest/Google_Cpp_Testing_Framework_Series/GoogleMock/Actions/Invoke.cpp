@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-// Interface base class
+//* Interface base class
 class DataBaseConnect
 {
 public:
@@ -14,7 +14,7 @@ public:
     virtual int fetchRecord() { return -1; }
 };
 
-// Mock class
+//* Mock class
 class MockDB : public DataBaseConnect
 {
 public:
@@ -23,7 +23,7 @@ public:
     MOCK_METHOD2(login, bool(std::string username, std::string pasword));
 };
 
-// Component under test class
+//* Component under test class
 class MyDatabase
 {
     DataBaseConnect& m_dbc;

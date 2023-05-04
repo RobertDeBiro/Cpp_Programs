@@ -20,7 +20,7 @@ public:
  * Mock class
    - mock class usually derives from interface class
    - needs to implement interface class methods
-*/
+ */
 class MockDB : public DataBaseConnect
 {
 public:
@@ -35,7 +35,7 @@ public:
    - this class interacts with interface class
    - in order to test it, it is needed to construct this class with mock class
      rather then with interface class
-*/
+ */
 class MyDatabase
 {
     DataBaseConnect& m_dbc;
@@ -89,6 +89,7 @@ TEST(MyDBTest, WillOnceTest)
 
     // ***** Assert *****
     EXPECT_EQ(retValue, 1);
+    // Part of Assert is also previously arranged EXPECT_CALL, but that happens behind the surface
 }
 
 TEST(MyDBTest, WillRepeatedlyTest)
