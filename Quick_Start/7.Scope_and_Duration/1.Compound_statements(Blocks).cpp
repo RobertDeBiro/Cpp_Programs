@@ -1,8 +1,8 @@
+//* Compound statements (blocks)
 /**
- * * Compound statements (blocks)
- *      - group of zero or more statements that is treated by the compiler as if it were a single statement
- *      - begins with a { symbol and ends with a } symbol
- *      - blocks can be nested
+ *  - group of zero or more statements that is treated by the compiler as if it were a single statement
+ *  - begins with a { symbol and ends with a } symbol
+ *  - blocks can be nested
  **/
 
 #include <iostream>
@@ -17,6 +17,7 @@ int main()
 
     // multiple statements
     int value {};
+    std::cout << value << std::endl;
 
     { // inner/nested block
         add(5, 6);

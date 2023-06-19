@@ -118,6 +118,8 @@ message( # https://cmake.org/cmake/help/latest/command/message.html
     # Print status message with a text
     message(STATUS "*** CMakeLists.txt executed! ***")
 )
+option( # https://cmake.org/cmake/help/latest/command/option.html
+)
 #----------------------------------------------------------------------------------------------------------#
 set( # https://cmake.org/cmake/help/latest/command/set.html
     

@@ -1,15 +1,15 @@
+//* Void
 /**
- * * Void
- *      - means "no type"
- *      - three different contexts in which is used:
- *          1. For functions that do not return a value
- *          2. For functions that do not take parameters
- *          3. Void pointers
+ *  - means "no type"
+ *  - three different contexts in which is used:
+ *      1. For functions that do not return a value
+ *      2. For functions that do not take parameters
+ *      3. Void pointers
  **/
 
 #include <iostream>
 
-void printHello(void)
+void printHello()
 {
     std::cout << "Hello" << std::endl;
 }
