@@ -1,9 +1,7 @@
 #include <iostream>
 
 int main()
-{
-    std::cout << "*****************************************************\n";
-    
+{   
     char letter{ 'a' };
 
     while(letter <= 'z')
@@ -13,6 +11,5 @@ int main()
                   // but when printing with std::cout, it is printed as character
     }
 
-    std::cout << "*****************************************************\n";
     return 0;
 }
