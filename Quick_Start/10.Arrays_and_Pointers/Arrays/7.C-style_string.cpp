@@ -22,17 +22,19 @@ int main()
     std::cout << name3 << '\n';
 
     //* Manipulating C-style strings
-    // strcpy
+    //  - C++ provides many functions to manipulate C-style strings as part of <cstring>librar, such as:
+    //      - strcpy
+    //      - strcat
+    //      - strcmp
     //! char name1[] = { "Joshua" };
     //! char name4[]{ name1 };
     char name4[std::size(name1)];   // size should be 5
     strcpy(name4, name1);
     std::cout << name4 << '\n';
 
-    // strcmp
-    char name5[] = { "Joshua" };
-    std::cout << name1 << " and " << name5 << " are the same: " << strcmp(name1, name5) << '\n';
-    std::cout << name1 << " and " << name3 << " are the same: " << strcmp(name1, name3) << '\n';
+    // strcat
+    char surname1[]{ " Rashford" };
+    std::cout << "Name and surname: " << strcat(name1, surname1) << '\n';
 
     return 0;
 }

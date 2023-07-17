@@ -9,6 +9,11 @@ void funct(int arr2[3], int length2)
 
     // Because copying large arrays can be very expensive, C++ does not copy an array when an
     // array is passed into a function, instead the actual array is passed
+    //  - in other words, address of the first array element is passed and in that way
+    //    we can actually approach any of existing elements, since we know address of the first
+    std::cout << "arr2[0] = " << arr2[0] << '\n';
+    std::cout << "arr2[1] = " << arr2[1] << '\n';
+    std::cout << "arr2[2] = " << arr2[2] << '\n';
     std::cout << "arr2 address = " << &arr2[0] << '\n';
 }
 
@@ -20,7 +25,6 @@ int main()
     std::cout << "length1 address = " << &length1 << '\n';
     std::cout << "arr1 address = " << &arr1[0] << '\n';
     
-    // When sending array to function, only array name is sent
     funct(arr1, length1);
 
     return 0;
