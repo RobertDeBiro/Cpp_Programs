@@ -115,12 +115,120 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
     //******************** Linux configurations ********************//
+        {   // Build active file
+            "type": "cppbuild",
+            "label": "Lin_C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "-std=c++20",
+                "${file}",
+                "-o",
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {   // Build multiple files; with .hpp headers
+            "type": "cppbuild",
+            "label": "Lin_C/C++: g++ build multiple files; with .hpp",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "${fileDirname}/*.cpp",
+                "${fileDirname}/../inc/*.hpp",
+                "-o",
+                "${fileDirname}/../bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {   // Build multiple files; with .h headers
+            "type": "cppbuild",
+            "label": "Lin_C/C++: g++ build multiple files; with .h",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "${fileDirname}/*.cpp",
+                "${fileDirname}/*.h",
+                "-o",
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {   // Build GoogleTest file
+			"type": "cppbuild",
+			"label": "Lin_C/C++: g++ build GoogleTest file",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-lgtest",
+				"-lgtest_main",
+				"-lgmock",
+				"-pthread",
+				"-o",
+				"${fileDirname}/bin/${fileBasenameNoExtension}"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+        {   // Build timing file
+            "type": "cppbuild",
+            "label": "Lin_C/C++: g++ build timing files",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "${file}",
+                "${fileDirname}/../Timer/*.cpp",
+                "${fileDirname}/../Timer/*.hpp",
+                "-o",
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
     ]
 }
