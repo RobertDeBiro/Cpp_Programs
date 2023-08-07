@@ -22,9 +22,9 @@ int main()
     std::cout << "p3 = " << p3 << '\n';
 
     //! ERROR - Segmentation fault!
-    //! -> We cannot dereference non-initialized pointer
+    //! -> We cannot dereference zero-initialized pointer
     // std::cout << "p4 = " << p4 << "; *p4 = " << *p4 << '\n';
-    std::cout << "p4 = " << p4 << '\n';
+    // std::cout << "p4 = " << p4 << '\n';
 
     std::cout << "p5 = " << p5 << "; *p5 = " << *p5 << '\n';
 
@@ -46,7 +46,7 @@ int main()
         int d = 100;
         p8 = &d;
         std::cout << "p8 = " << p8 << "; *p8 = " << *p8 << '\n';
-    }
+    } // d is destroyed here
     // Dangling pointer - pointer points to non-existing object (to free memory)
     std::cout << "p8 = " << p8 << "; *p8 = " << *p8 << '\n';
 

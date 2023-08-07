@@ -2,7 +2,7 @@
 /**
  *  - group of zero or more statements that is treated by the compiler as if it were a single statement
  *  - begins with a { symbol and ends with a } symbol
- *  - blocks can be nested
+ *  - no semicolon needed at the end
  **/
 
 #include <iostream>
@@ -19,6 +19,7 @@ int main()
     int value {};
     std::cout << value << std::endl;
 
+    // Functions cannot be nested, but blocks can
     { // inner/nested block
         add(5, 6);
     } // end inner/nested block

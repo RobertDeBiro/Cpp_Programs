@@ -7,13 +7,22 @@ int main()
     int x{};
     std::cin >> x;
 
-    if (x >= 0) // outer if statement
-        if (x <= 20) // inner if statement
-            std::cout << x << " is between 0 and 20\n";
-
     //* Dangling else problem
-    else // which if statement does this else belong to?
+    if (x >= 0) // outer if statement
+    {
+        if (x <= 20) // inner if statement
+        {
+            std::cout << x << " is between 0 and 20\n";
+        }
+        else
+        {
+            std::cout << x << " is bigger than 20\n";
+        }
+    }
+    else
+    {
         std::cout << x << " is negative\n";
+    }
 
     ///////////////////////////////////////////////////////////
     

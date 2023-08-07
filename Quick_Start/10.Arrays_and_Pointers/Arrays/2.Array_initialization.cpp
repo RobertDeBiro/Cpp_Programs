@@ -20,7 +20,8 @@ int main()
     //int arr2[3] = { 1, 2, 3, 4, 5 };
 
     // We cannot assign values by using initializer list
-    //arr[3] = {1, 2, 3};
+    int arr[3];
+    // arr[3] = {1, 2, 3};
 
     // When using initializer list length can be ommited
     int arr2[] { 1, 2, 3, 4 };

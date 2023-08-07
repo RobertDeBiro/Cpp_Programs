@@ -14,8 +14,11 @@ int main()
     std::cout << "x = " << x << '\n';
 
     //* Unary operators
+    x = +x;
+    std::cout << "+x = " << x << '\n';
+
     x = -x;
-    std::cout << "x = " << x << '\n';
+    std::cout << "-x = " << x << '\n';
 
     std::cout << "------------------------------------------\n";
 
@@ -30,7 +33,7 @@ int main()
     std::cout << "9 / 3 = " << d1 / d2 << '\n';
     std::cout << "9 / 4 = " << d1 / d3 << '\n';
 
-    // Modulus
+    // Modulus (Remainder)
     std::cout << "9 % 4 = " << d1 % d3 << '\n';
 
     // Floating and integer division

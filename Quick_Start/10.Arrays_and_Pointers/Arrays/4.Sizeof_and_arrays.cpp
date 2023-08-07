@@ -8,7 +8,7 @@ int main()
     //* Calculate array size (length) - prior to C++17
     // sizeof(arr) = number_of_elements x size_of_element"
     // sizeof(arr[0]) = size_of_element
-    int size = sizeof(arr) / sizeof (arr[0]);
+    int size = sizeof(arr) / sizeof(arr[0]);
     std::cout << "Size of array is: " << size << '\n';
 
     //* Calculate array size (length)

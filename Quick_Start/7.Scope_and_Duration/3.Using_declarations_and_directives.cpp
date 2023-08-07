@@ -6,8 +6,7 @@ int main()
     //* Using declarations
     using std::cout;
     cout << "Hello world!\n";
-
-    // string s1{ "Hello world!\n"};
+    std::string s1{ "Hello world!\n"};
 
     //* Using directives
     using namespace std;

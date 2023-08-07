@@ -1,8 +1,11 @@
 //* C-style strings
 /**
  *  - array of characters that uses a null terminator
- *      - a null terminator is a special character (‘\0’, ascii code 0) used to indicate the end of the string
+ *      - a null terminator is a special character (‘\0’, ASCII code 0) used to indicate the end of the string
  *  - hence, C-style string is also called a null-terminated string
+ *  - C++ automatically adds null terminator at the
+ *  - syntax:
+ *?     char myString[]{ "string" }
  **/
 
 #include <iostream>
@@ -15,19 +18,19 @@ int main()
     std::cout << name1 << '\n';
 
     // Initialize char array with initialization list
-    char name2[4]{ 'J', 'o', 'h', 'n' };            // Prints garbage
+    char name2[4]{ 'J', 'o', 'h', 'n' };            // Prints undefined string
     std::cout << name2 << '\n';
 
     char name3[5]{ 'J', 'o', 'h', 'n', '\0' };      // Adding null character at the end
     std::cout << name3 << '\n';
 
+
     //* Manipulating C-style strings
-    //  - C++ provides many functions to manipulate C-style strings as part of <cstring>librar, such as:
+    //  - C++ provides many functions to manipulate C-style strings as part of <cstring> library, such as:
     //      - strcpy
     //      - strcat
     //      - strcmp
-    //! char name1[] = { "Joshua" };
-    //! char name4[]{ name1 };
+    // char name4[std::size(name1)] = name1;
     char name4[std::size(name1)];   // size should be 5
     strcpy(name4, name1);
     std::cout << name4 << '\n';

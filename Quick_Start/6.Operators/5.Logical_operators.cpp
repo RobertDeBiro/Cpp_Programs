@@ -5,6 +5,7 @@ int main()
     int x = 5;
     bool y = true;
 
+    //* Logical NOT
     bool z = !x;
     bool k = !y;
 
@@ -13,12 +14,14 @@ int main()
     std::cout << "z = " << z << '\n';
     std::cout << "k = " << k << '\n';
 
+    //* Logical AND
     z = x && y;
     std::cout << "z = " << z << '\n';
 
     z = x && k;
     std::cout << "z = " << z << '\n';
 
+    //* Logical OR
     z = x || k;
     std::cout << "z = " << z << '\n';
 

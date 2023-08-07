@@ -8,7 +8,7 @@ int main()
     std::cout << "a address = " << &a << '\n';
     std::cout << "a value (after dereferencing address) = " << *&a << '\n';
     std::cout << "a type = " << typeid(a).name() << '\n';
-    std::cout << "a type = " << typeid(&a).name() << '\n';
+    std::cout << "&a type = " << typeid(&a).name() << '\n';
 
     std::cout << "-----------------------------------------\n";
 

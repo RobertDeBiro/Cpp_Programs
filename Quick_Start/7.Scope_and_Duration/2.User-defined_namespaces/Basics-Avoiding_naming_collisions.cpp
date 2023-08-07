@@ -51,6 +51,7 @@ int main()
     // When using the scope resolution operator without any preceding namespace, compiler will look
     // for identifier in the global namespace
     std::cout << "Remainder from int division " << ::x << " % " << y << " = " << divide(::x, y) << '\n';
+    std::cout << "Remainder from int division " << x << " % " << y << " = " << ::divide(x, y) << '\n';
 
     return 0;
 }

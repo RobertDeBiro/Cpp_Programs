@@ -1,3 +1,13 @@
+//* Switch-case fallthrough
+/**
+ *  - switch-case executions continues until one of the following termination conditions is true:
+ *		1. The end of the switch block is reached
+ *		2. A return statement occurs
+ *		3. A break statement occurs
+ *		4. A goto statement occurs
+ *		5. Something else interupt the normal flow
+ **/
+
 #include <iostream>
 
 int getOrdinalNumber(char letter)

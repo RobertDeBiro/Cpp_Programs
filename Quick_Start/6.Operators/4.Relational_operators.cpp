@@ -10,12 +10,15 @@ int main()
 
     std::cout << std::boolalpha;
 
+    //* Greater than
     bool z = x > y;
     std::cout << "x is bigger than y: " << z << '\n';
 
+    //* Equality
     z = (x == y);
     std::cout << "x is equal to y: " << z << '\n';
 
+    //* Inequality
     z = (x != y);
     std::cout << "x and y are not equal: " << z << '\n';
 

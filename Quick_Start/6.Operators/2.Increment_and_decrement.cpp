@@ -5,14 +5,16 @@ int main()
     //* Prefix increment operator
     int x = 1;
     int y = ++x;
-    std::cout << x << std::endl;
-    std::cout << y << std::endl;
+    std::cout << "x = " << x << std::endl;
+    std::cout << "y = " << y << std::endl;
+
+    std::cout << "-------------------------------\n";
 
     //* Postfix  increment operator
-    int z = 5;
+    int z = 1;
     int k = z++;
-    std::cout << z << std::endl;
-    std::cout << k << std::endl;
+    std::cout << "z = " << z << std::endl;
+    std::cout << "k = " << k << std::endl;
 
     return 0;
 }

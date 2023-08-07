@@ -4,16 +4,12 @@ int main()
 {
     int number;
 
-    // std::cout << "Enter a number (enter a zero to exit): ";
-    // std::cin >> number;
-    // std::cout << "You entered: " << number << '\n';
-
-    while (number != 0)
+    do
     {
         std::cout << "Enter a number (enter a zero to exit): ";
         std::cin >> number;
         std::cout << "You entered: " << number << '\n';
-    }
+    } while (number != 0);
 
     return 0;
 }

@@ -7,7 +7,7 @@ int main() {
     //* Multidimensional array - array of arrays
     //  - 2D array
     //  - leftmost length specification can be ommited
-    int grid[rows][cols] = {
+    int grid[][cols] = {
         {1, 2, 3, 4},
         {5, 6, 7, 8},
         {9, 10, 11, 12}
