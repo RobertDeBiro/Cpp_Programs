@@ -1,9 +1,10 @@
 {
     "version": "2.0.0",
     "tasks": [
+    //******************** Windows configurations ********************//
         {   // Build active file
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
+            "label": "Win_C/C++: g++.exe build active file",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
@@ -26,9 +27,9 @@
             },
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
-        {   // Build multiple files; with .hpp
+        {   // Build multiple files; with .hpp headers
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build multiple files; with .hpp",
+            "label": "Win_C/C++: g++.exe build multiple files; with .hpp",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
@@ -48,9 +49,9 @@
             "group": "build",
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
-        {   // Build multiple files; with .h
+        {   // Build multiple files; with .h headers
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build multiple files; with .h",
+            "label": "Win_C/C++: g++.exe build multiple files; with .h",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
@@ -72,7 +73,7 @@
         },
         {   // Build GoogleTest file
 			"type": "cppbuild",
-			"label": "C/C++: g++.exe build GoogleTest file",
+			"label": "Win_C/C++: g++.exe build GoogleTest file",
 			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
@@ -96,7 +97,7 @@
 		},
         {   // Build timing file
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build timing files",
+            "label": "Win_C/C++: g++.exe build timing files",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
@@ -119,6 +120,7 @@
                 "isDefault": true
             },
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
-        }
+        },
+    //******************** Linux configurations ********************//
     ]
 }
