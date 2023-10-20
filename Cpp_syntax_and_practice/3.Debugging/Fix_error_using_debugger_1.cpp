@@ -1,6 +1,8 @@
-// LearnCpp
-// Debugging C++ Programs
-// Summary and quiz
+/*
+ * LearnCpp
+ * Debugging C++ Programs
+ * Summary and quiz
+ */
 
 #include <iostream>
 

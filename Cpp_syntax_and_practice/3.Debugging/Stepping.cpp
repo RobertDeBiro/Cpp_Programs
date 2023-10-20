@@ -1,6 +1,8 @@
-// LearnCpp
-// Debugging C++ Programs
-// Using an integrated debugger: Stepping
+/*
+ * LearnCpp
+ * Debugging C++ Programs
+ * Using an integrated debugger: Stepping
+ */
 
 #include <iostream>
 

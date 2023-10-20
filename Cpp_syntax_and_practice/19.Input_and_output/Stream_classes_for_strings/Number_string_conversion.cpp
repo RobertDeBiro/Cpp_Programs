@@ -31,8 +31,6 @@ int main()
 
     // Insert a string of numbers into the stringstream
     os2 << "12345 67.89";
-    int nValue;
-    double dValue;
 
     // Extract stringstream into number objects
     os2 >> nValue >> dValue;

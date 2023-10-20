@@ -1,6 +1,8 @@
-// LearnCpp
-// Debugging C++ Programs
-// Using an integrated debugger: Watching variables
+/*
+ * LearnCpp
+ * Debugging C++ Programs
+ * Using an integrated debugger: Watching variables
+ */
 
 #include <iostream>
 

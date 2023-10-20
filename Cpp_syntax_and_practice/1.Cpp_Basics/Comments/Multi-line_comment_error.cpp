@@ -1,15 +1,17 @@
+//* Nesting multi-line comments
+/**
+ * - we cannot nest multi-line comments!
+ * - build error appears triggered by [Wcomment] compiler warning flag
+ */
+
 int main()
 {
-    /********** Nest multi-line comments: **********/
-
     /* 1. Multi-line comment
      * ...
         /* 2. Multi-line comment 
          * ...
         */
      */
-
-    // Build error appears triggered by [Wcomment] compiler warning flag
 
     return 0;
 }
