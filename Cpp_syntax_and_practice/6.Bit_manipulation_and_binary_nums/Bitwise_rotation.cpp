@@ -1,6 +1,8 @@
-// LearnCpp
-// Bit manipulation
-// Bitwise operators
+/*
+ * LearnCpp
+ * Bit manipulation
+ * Bitwise operators
+ */
 
 #include <iostream>
 #include <bitset>

@@ -1,12 +1,20 @@
-// Summary and quiz
+/*
+ * LearnCpp
+ * Object_Scope_and_Conversions
+ * Summary and quiz
+ */
 
 #include <iostream>
 
 bool passOrFail()
 {
-    static int counter{0};
+	//********** Static local variable initialization **********
+	// - initialization of static local variable is only done once
+	// - only in first passOrFail() call following line will be executed,
+	//   in every following will be skipped
+    static int s_counter{0};
 
-    return (++counter < 4);
+    return (++s_counter < 4);
 }
 
 int main()
