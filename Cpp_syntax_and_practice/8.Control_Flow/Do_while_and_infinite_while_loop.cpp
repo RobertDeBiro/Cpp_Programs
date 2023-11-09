@@ -1,6 +1,8 @@
-// LearncCpp
-// Control Flow and Error Handling
-// Summary and quiz
+/*
+ * LearnCpp
+ * Control Flow
+ * Summary and quiz
+ */
 
 #include <iostream>
 #include <random>
@@ -17,6 +19,9 @@ int obtain_random_number()
 int choose_the_number()
 {
     int choosed_number{};
+
+    //********** Running while loop infinitely **********
+    // - run until we finished inside "else" statement and return from the function
     while(1)
     {
         std::cin >> choosed_number;
@@ -43,6 +48,8 @@ void play_hi_lo()
     int counter{ 1 };
     int choosed_number{};
 
+    //********** Running while loop infinitely **********
+    // - running until encountering "break" statement
     while (true)
     {
         std::cout << "Guess #" << counter << ": ";
@@ -71,6 +78,9 @@ void play_hi_lo()
 char user_interface()
 {
     char play_again;
+
+    //********** Do-while loop **********
+    // - using do-while because we want to print message at least once
     do
     {
         std::cout << "Would you like to play again (y/n)? ";

@@ -1,6 +1,8 @@
-// LearnCpp
-// Control Flow and Error Handling
-// Switch fallthrough and scoping
+/*
+ * LearnCpp
+ * Control Flow
+ * Switch fallthrough and scoping
+ */
 
 #include <iostream>
 

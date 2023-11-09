@@ -1,6 +1,8 @@
-// LearnCpp
-// Control Flow and Error Handling
-// Intro to loops and while statements
+/*
+ * LearnCpp
+ * Control Flow
+ * Intro to loops and while statements
+ */
 
 #include <iostream>
 
