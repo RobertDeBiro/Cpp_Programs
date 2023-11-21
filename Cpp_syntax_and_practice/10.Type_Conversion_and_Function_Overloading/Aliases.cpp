@@ -5,6 +5,7 @@ namespace constants
     constexpr double pi { 3.14159 };
 }
 
+//********** Aliases **********
 using degrees_t = double;
 using radians_t = double;
 

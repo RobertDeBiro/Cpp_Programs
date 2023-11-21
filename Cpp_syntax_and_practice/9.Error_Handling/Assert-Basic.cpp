@@ -19,16 +19,24 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    int n;
+    std::cout << "Insert integer: ";
+    std::cin >> n;
+
     char flag;
     std::cout << "Print assert message(y/n)?\n";
     std::cin >> flag;
 
-    assert(isPrime(2) && "ERROR: Number is not prime!");
+    //********** Assert with description **********
+    // - if n is not a prime, program execution will be aborted and
+    //   exception will be called
+    assert(isPrime(n) && "ERROR: Number is not prime!");
 
+    // ********** Assert **********
     if(flag == 'n')
-        assert(isPrime(4));
+        assert(isPrime(n));
     else
-        assert(isPrime(6) && "ERROR: Number is not prime!");
+        assert(isPrime(n) && "ERROR: Number is not prime!");
 
     std::cout << "*****************************************************\n";
     return 0;
