@@ -1,7 +1,5 @@
-/*
- * Unions
- * - more info: https://www.youtube.com/watch?v=6uqU9Y578n4
- */
+//* Unions
+//  - https://www.youtube.com/watch?v=6uqU9Y578n4
 
 #include <iostream>
 
@@ -12,18 +10,17 @@ struct Vector2
 
 struct Vector4
 {
-    /* 
-        Union containing 2 structs
-         - union won't allocate the memory size needed to cover both structs,
-           but rather only the memory size needed to cover bigger element, i.e. bigger struct
-         - in this particular example both structs have the same size
-         - so, union won't allocate memory for 8 floats (32 bytes), but rather for 4 floats (16 bytes)
-         - memory location is reserved in following way (but, only if union and structs are anonymous?!):
-           float x = a.x
-           float y = a.y
-           float z = b.x
-           float w = b.y
-    */
+    //********** Union containing 2 structs **********
+    // - union won't allocate the memory size needed to cover both structs,
+    //   but rather only the memory size needed to cover bigger element, i.e. bigger struct
+    //      - in this particular example both structs have the same size
+    // - so, union won't allocate memory for 4 floats (16 bytes), but rather for 2 floats (8 bytes)
+    // - memory location is reserved in following way (but, only if union and structs are anonymous?!):
+    //?     float x = a.x
+    //?     float y = a.y
+    //?     float z = b.x
+    //?     float w = b.y
+
     union
     {
         struct
@@ -54,7 +51,7 @@ int main()
 
     std::cout << "------------------------" << std::endl;
     
-    // When we change variable "z", vector.b (variable "x") will be also changed
+    // When we change variable 'z', 'vector.b' (variable 'x') will be also changed
     // since they share memory location
     vector.z = 500.0f;
     printVector2(vector.a);

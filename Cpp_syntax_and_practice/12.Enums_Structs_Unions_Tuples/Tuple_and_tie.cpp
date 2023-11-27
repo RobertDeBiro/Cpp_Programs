@@ -1,3 +1,9 @@
+//* std::tuple
+//  - https://en.cppreference.com/w/cpp/utility/tuple
+
+//* std::tie
+//  - https://en.cppreference.com/w/cpp/utility/tuple/tie
+
 #include <iostream>
 #include <tuple> // std::tuple, std::tie
 
@@ -18,9 +24,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    /*
-    * Create tuple
-    */
+    //********** Create tuple (std::tuple) **********
     std::cout << "Enter first tuple element: ";
     int x;
     std::cin >> x;
@@ -33,9 +37,8 @@ int main()
     std::cout << "Entered touple: {" << std::get<0>(varTuple) << ", "
               << std::get<1>(varTuple) << "}\n";
 
-    /*
-    * Unpack tuple
-    */
+
+    //********** Unpack tuple (std::tie) **********
     int k, z;
     std::tie(k, z) = varTuple;
     std::cout << "Unpacked tuple: " << k << " " << z << '\n';

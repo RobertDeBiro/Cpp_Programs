@@ -12,6 +12,7 @@ enum class MonsterSpecies
 
 struct Monster
 {
+    // Struct member variables are zero-initialized
     MonsterSpecies monsterSpecies{};
     std::string name{};
     double health{};
@@ -37,6 +38,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //* Initializing structs using initializer list
     Monster ogre{ MonsterSpecies::ogre, "Torg", 145 };
     Monster slime{ MonsterSpecies::slime, "Blurp", 23 };
 
