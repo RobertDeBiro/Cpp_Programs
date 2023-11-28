@@ -1,6 +1,8 @@
-// LearnCpp
-// Arrays, Strings, and Dynamic Allocation
-// Dynamically allocating arrays
+/*
+ * LearnCpp
+ * Arrays, Strings, and Dynamic Allocation
+ * Dynamically allocating arrays
+ */
 
 #include <iostream>
 #include <algorithm>
@@ -27,16 +29,18 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //********** Dynamically allocate array of strings **********
     const int length{ getAmountOfNames() };
     std::string* names{ new std::string[length] };
 
-    // ERROR: We cannot obtain size of dynamic array since it is a pointer
-    //        (just like we cannot obtain for decayed array since it is a pointer)
-    // unsigned int dyn_arr_length = std::size(names);
+    // We cannot obtain size of dynamic array since it is a pointer
+    // (just like we cannot obtain for decayed array since it is a pointer)
+    //! unsigned int dyn_arr_length = std::size(names);
 
     enterNames(names, length);
 
-    // std::sort(first_elem, last_elem) - sorts elements in a defined range
+    // std::sort(first_elem, last_elem)
+    //  - sorts elements from 'first_elem' to 'last_elem'
     std::sort(names, names + length);
 
     std::cout << '\n' << "Here is sorted list:" << '\n';

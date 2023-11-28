@@ -1,12 +1,12 @@
-// LearnCpp
-// Arrays, Strings, and Dynamic Allocation
-// Pointer arithmetic and array indexing
-
 /*
- * This program implements "find" function which finds element in array,
- * but there is "find" function inside algorithm library which finds element and 
- * returns iterator to that element.
+ * LearnCpp
+ * Arrays, Strings, and Dynamic Allocation
+ * Pointer arithmetic and array indexing
  */
+
+// This program implements 'find' function which finds element in array,
+// but there is already implemented 'find' function inside algorithm library 
+// which finds element and returns iterator to that element.
 
 #include <iostream>
 #include <iterator> // std::begin, std::end

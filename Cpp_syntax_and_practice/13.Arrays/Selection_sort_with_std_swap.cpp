@@ -1,6 +1,8 @@
-// LearnCpp
-// Arrays, Strings, and Dynamic Allocation
-// Sorting an array using selection sort
+/*
+ * LearnCpp
+ * Arrays, Strings, and Dynamic Allocation
+ * Sorting an array using selection sort
+ */
 
 #include <iostream>
 #include <utility> // std::swap
@@ -16,7 +18,7 @@ int main()
 	// (except the last one, which will already be sorted by the time we get there)
 	for (int startIndex{ 0 }; startIndex < length - 1; ++startIndex)
 	{
-		// biggestIndex is the index of the biggest element we have encountered in this iteration
+		// 'biggestIndex' is the index of the biggest element we have encountered in this iteration
 		// Start by assuming the biggest element is the first element of this iteration
 		int biggestIndex{ startIndex };
 
@@ -29,7 +31,7 @@ int main()
 				biggestIndex = currentIndex;
 		}
 
-		// biggestIndex is now the biggest element in the remaining array
+		// 'biggestIndex' is now the biggest element in the remaining array
         // swap our start element with our biggest element (this sorts it into the correct place)
 		std::swap(array[startIndex], array[biggestIndex]);
 	}

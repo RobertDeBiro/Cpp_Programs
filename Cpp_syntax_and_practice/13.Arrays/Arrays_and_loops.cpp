@@ -1,9 +1,11 @@
-// LearnCpp
-// Arrays, Strings, and Dynamic Allocation
-// Arrays and loops
+/*
+ * LearnCpp
+ * Arrays, Strings, and Dynamic Allocation
+ * Arrays and loops
+ */
 
 #include <iostream>
-#include <iterator> // for std::size - however, it seems it is not mandatory
+#include <iterator> // std::size (but, can be used without <iterator>)
 
 int main()
 {
