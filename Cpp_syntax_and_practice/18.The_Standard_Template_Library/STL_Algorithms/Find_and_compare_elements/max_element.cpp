@@ -4,10 +4,10 @@
  * 2) std::max_element(ForwardIt first, ForwardIt last, callable object) -> ForwardIt
  *      - when we want maximum value of some user-defined type, we need to provide callable object
  *        in which we define attributes that will be compared
- *      - callable object must return true when second element is bigger then first
- *      - because callable object goes from the beginning of the container and transfers the maximum
+ *      - callable object must return 'true' when second element is bigger then first,
+ *        because callable object goes from the beginning of the container and transfers the maximum
  *        element to the end of container
- *      - if it returns true, means that it doesn't have to swap elements
+ *      - if it returns 'true', means that it doesn't have to swap elements
  *      - similar to sorting algorithm
  *
  *  - included in <algorithm>

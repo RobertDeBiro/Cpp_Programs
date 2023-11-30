@@ -34,6 +34,7 @@ int main()
         }
     };
 
+    //********** Custom lambda usage inside STL algorithm function **********
     std::array<Student, 8>::iterator bestStudent{ std::max_element(stArr.begin(), stArr.end(), lambdaMax) };
 
     std::cout << bestStudent->name << " is the best student.\n";
