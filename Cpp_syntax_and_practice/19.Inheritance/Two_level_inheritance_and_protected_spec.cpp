@@ -1,6 +1,8 @@
-// LearnCpp
-// Inheritance
-// Summary and quiz
+/*
+ * LearnCpp
+ * Inheritance
+ * Summary and quiz
+ */
 
 #include <iostream>
 #include <string>
@@ -23,8 +25,8 @@ public:
 class Apple: public Fruit
 {
 // The previous constructor we used for Apple had a fixed name ("apple").
-// We need a new constructor for GrannySmith to use to set the name of the fruit
-protected: // protected so only derived classes can access
+// We need a new constructor for "GrannySmith" to use to set the name of the fruit
+protected:
 	Apple(const std::string& name, const std::string& color)
 		: Fruit{ name, color }
 	{
@@ -40,6 +42,7 @@ public:
 class GrannySmith : public Apple
 {
 public:
+    // Accessing 'Apple' constructor inside 'protected' access specifier
     GrannySmith() : Apple{ "granny smith apple", "green" }
     {
     }

@@ -1,6 +1,8 @@
-// LearnCpp
-// Inheritance
-// Constructors and initialization of derived classes
+/*
+ * LearnCpp
+ * Inheritance
+ * Constructors and initialization of derived classes
+ */
 
 #include <string>
 #include <iostream>
