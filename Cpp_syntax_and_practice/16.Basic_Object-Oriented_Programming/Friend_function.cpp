@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Summary and quiz
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Summary and quiz
+ */
 
 #include <iostream>
 #include <cmath> // std::sqrt
@@ -21,6 +23,9 @@ public:
     friend double distanceFrom(const Point2d &firstPoint, const Point2d &secondPoint);
 };
 
+//* Friend function
+//  - friend function doesn't have approach to pointer '*this', hence
+//    we need to send to it 'Point2d' attributes
 double distanceFrom(const Point2d &firstPoint, const Point2d &secondPoint)
 {
     return std::sqrt((firstPoint.m_x - secondPoint.m_x)*(firstPoint.m_x - secondPoint.m_x)

@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Constructors
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Constructors
+ */
 
 #include <iostream>
 #include <string>
@@ -12,18 +14,28 @@ private:
 	double m_radius{};
 
 public:
-    // Following constructor replaces 1., 2. and 4. constructor from non-reduced example
-	Ball(const std::string &color = "black", double radius = 10.0)
+	// Default constructor
+	Ball()
+	{
+		m_color = "black";
+		m_radius = 10.0;
+	}
+
+	Ball(const std::string& color)
 	{
 		m_color = color;
+		m_radius = 10.0;
+	}
+
+	Ball(double radius)
+	{
+		m_color = "black";
 		m_radius = radius;
 	}
 
-    // Since, when instantianting object and calling constructor we cannot skip left elements
-    // and call right one, we need to create every constructor for right elements
-    Ball(double radius)
+	Ball(const std::string& color, double radius)
 	{
-		m_color = "black";
+		m_color = color;
 		m_radius = radius;
 	}
 

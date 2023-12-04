@@ -18,9 +18,10 @@ public:
 
 	void print() const;
 
+	//* Class member function as friend function
 	// If we want to use friend function from other class, that class needs to be defined first - 
-	// therefore, Point3d.h was included at the beginning of the file
-	//  - moveByVector needs to be friend function in order to access Vector3d private members
+	// therefore, 'Point3d.h' was included at the beginning of the file
+	//  - 'moveByVector()' needs to be friend function in order to access 'Vector3d' private members
 	friend void Point3d::moveByVector(const Vector3d& v);
 };
 

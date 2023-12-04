@@ -1,11 +1,11 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Non-static member initialization
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Non-static member initialization
+ */
 
 #include <iostream>
 
-// In this example we have more constructors then in Class_ball_using_default_constructor.cpp example,
-// but here are constructor body is empty, and in that sense class is cleaner
 class Ball
 {
 private:

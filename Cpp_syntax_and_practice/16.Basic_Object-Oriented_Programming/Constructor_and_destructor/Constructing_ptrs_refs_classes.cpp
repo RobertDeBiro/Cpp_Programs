@@ -1,4 +1,4 @@
-// In this example we can see that class object is constructed only if object is not a pointer
+//* Class object is constructed only if object is not a pointer or reference
 
 #include <iostream>
 

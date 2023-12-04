@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-// Generated defualt constructor
+//* Generated default constructor
 //  - no member initialization
 class Gdc_nmi
 {
@@ -15,7 +15,7 @@ public:
     void print() { std::cout << m_x << ' ' << m_y << '\n'; }
 };
 
-// Generated defualt constructor
+//* Generated default constructor
 //  - zero member initialization
 class Gdc_zmi
 {
@@ -25,7 +25,7 @@ public:
     void print() { std::cout << m_x << ' ' << m_y << '\n'; }
 };
 
-// Generated defualt constructor
+//* Generated default constructor
 //  - non-static member initialization
 class Gdc_mi
 {
@@ -35,7 +35,7 @@ public:
     void print() { std::cout << m_x << ' ' << m_y << '\n'; }
 };
 
-// Multiple constructors
+//* Multiple constructors
 //  - no member initialization
 class Mc_nmi
 {
@@ -43,6 +43,8 @@ class Mc_nmi
     int m_y;
 public:
     Mc_nmi() = default;
+
+    // When we have some constructor defined, default constructor won't be automatically generated
     Mc_nmi(int x, int y)
     {
         m_x = x;
@@ -51,7 +53,7 @@ public:
     void print() { std::cout << m_x << ' ' << m_y << '\n'; }
 };
 
-// Multiple constructors
+//* Multiple constructors
 //  - zero member initialization
 class Mc_zmi
 {
@@ -67,7 +69,7 @@ public:
     void print() { std::cout << m_x << ' ' << m_y << '\n'; }
 };
 
-// Multiple constructors
+//* Multiple constructors
 //  - non-static member initialization
 class Mc_mi
 {
@@ -87,9 +89,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    /*
-     * Object created via generated default constructor
-     */
+    //********** Objects created via generated default constructor **********
     // Variables not initalized (printing undefined values)
     Gdc_nmi gdc_nmi_1;
     std::cout << "Variables not initalized: ";
@@ -110,15 +110,19 @@ int main()
     std::cout << "Variables are initialized via member variables initializations: ";
     gdc_mi.print();
 
-    std::cout << "-----------------------------\n";
+    std::cout << "---------------------------------------------------------------\n";
+    //////////////////////////////////////////////////////////////////////////////////////
 
-    /*
-     * Object created via default constructor
-     */
+    //********** Objects created via default constructor **********
+    // Variables not initalized (printing undefined values)
+    Mc_nmi mc_nmi_1;
+    std::cout << "Variables not initalized: ";
+    mc_nmi_1.print();
+
     // Variables are zero initialized via object initialization
-    Mc_nmi mc_nmi{};
+    Mc_nmi mc_nmi_2{};
     std::cout << "Variables are zero initialized via object initialization: ";
-    mc_nmi.print();
+    mc_nmi_2.print();
 
     // Variables are zero initialized via member variables zero initializations
     Mc_zmi mc_zmi;

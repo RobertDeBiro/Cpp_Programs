@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Constructor member initializer list
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Constructor member initializer list
+ */
 
 #include <iostream>
 #include <cstdint>
@@ -17,6 +19,7 @@ private:
     colorType m_alpha{};
 
 public:
+    //* Initializer list with default values
     RGBA(colorType red = 0, colorType green = 0, colorType blue = 0, colorType alpha = 255)
         : m_red{ red }, m_green{ green }, m_blue{ blue }, m_alpha{ alpha }
     {
@@ -24,7 +27,8 @@ public:
 
     void print()
     {
-        // std::uint_fast8_t needs to be casted to int because std::cout would otherwise print it as character
+        // 'std::uint_fast8_t' needs to be casted to int because 'std::cout'
+        // would otherwise print it as character
         std::cout << "r=" << static_cast<int>(m_red)
                   << " g=" << static_cast<int>(m_green)
                   << " b=" << static_cast<int>(m_blue)

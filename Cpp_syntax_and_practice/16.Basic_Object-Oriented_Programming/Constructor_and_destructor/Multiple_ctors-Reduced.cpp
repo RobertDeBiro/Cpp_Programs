@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Constructors
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Constructors
+ */
 
 #include <iostream>
 #include <string>
@@ -8,34 +10,22 @@
 class Ball
 {
 private:
-	// Since C++11 it is possible to use non-static member initialization
-    // and it is the best practice to do that
 	std::string m_color{};
 	double m_radius{};
 
 public:
-	// Default constructor
-	Ball()
-	{
-		m_color = "black";
-		m_radius = 10.0;
-	}
-
-	Ball(const std::string& color)
+    // Following constructor replaces 1., 2. and 4. constructor from non-reduced example
+	Ball(const std::string &color = "black", double radius = 10.0)
 	{
 		m_color = color;
-		m_radius = 10.0;
-	}
-
-	Ball(double radius)
-	{
-		m_color = "black";
 		m_radius = radius;
 	}
 
-	Ball(const std::string& color, double radius)
+    // Since, when instantianting object and calling constructor we cannot skip left elements
+    // and call right one, we need to create every constructor for right elements
+    Ball(double radius)
 	{
-		m_color = color;
+		m_color = "black";
 		m_radius = radius;
 	}
 

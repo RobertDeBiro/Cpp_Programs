@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Summary and quiz
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Summary and quiz
+ */
 
 #include <iostream>
 

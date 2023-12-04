@@ -1,6 +1,8 @@
-// LearnCpp
-// Basic Object-oriented Programming
-// Public vs private access specifiers
+/*
+ * LearnCpp
+ * Basic Object-oriented Programming
+ * Public vs private access specifiers
+ */
 
 #include <iostream>
 #include <cassert>
@@ -26,6 +28,9 @@ public:
         return true; // We are returning booleans true or false, but we are not using that information
     }
 
+    // When talking about stack behavior, pop function does two things:
+    //  1. Removes element from the stack (not covered in following function)
+    //  2. Returns back popped element (covered in following function)
     int pop()
     {
         assert(m_size > 0  && "Can not pop empty stack");

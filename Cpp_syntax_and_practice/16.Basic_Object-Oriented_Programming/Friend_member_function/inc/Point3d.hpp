@@ -18,8 +18,8 @@ public:
 
 	void print() const;
 
-	// If we want to declare function that uses Vector3d class,
-	// we need to at least see Vector3d declaration
+	// If we want to declare function that uses 'Vector3d' class,
+	// we need to at least see 'Vector3d' declaration
 	void moveByVector(const Vector3d& v);
 };
 

@@ -1,8 +1,6 @@
-// Friend functions and classes
-
 #include <iostream>
-#include "Point3d.hpp"
-#include "Vector3d.hpp"
+#include "../inc/Point3d.hpp"
+#include "../inc/Vector3d.hpp"
 
 int main()
 {

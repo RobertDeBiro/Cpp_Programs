@@ -1,5 +1,3 @@
-// Class can initialize class member variables using initialization list
-
 #include <iostream>
 
 class A
@@ -44,6 +42,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //* Class can initialize class member variables using initialization list
     C c
     {
         {1, 2},

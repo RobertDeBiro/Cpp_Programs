@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Point3d.hpp"
-#include "Vector3d.hpp" // Vector3d class definition included
+#include "../inc/Point3d.hpp"
+#include "../inc/Vector3d.hpp" // Vector3d class definition included
 
 void Point3d::print() const
 {

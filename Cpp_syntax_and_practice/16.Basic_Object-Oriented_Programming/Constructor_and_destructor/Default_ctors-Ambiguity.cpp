@@ -18,9 +18,8 @@ public:
 
 int main()
 {
-    // ERROR:
-    //  - doesn't compile due to ambiguity
-    //DefCon a;
+    // Won't compile due to ambiguity
+    //! DefCon a;
 
     // Compiles, but it doesn't call constructor
     //  - the same would be if we would declare, for example, only integer variable (int a)
