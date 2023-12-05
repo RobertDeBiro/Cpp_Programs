@@ -1,6 +1,8 @@
-// LearnCpp
-// Virtual Functions
-// Summary and quiz
+/*
+ * LearnCpp
+ * Virtual Functions
+ * Summary and quiz
+ */
 
 #include <iostream>
 #include <vector>
@@ -29,8 +31,10 @@ class Shape
 public:
     virtual std::ostream& print(std::ostream& out) const = 0;
 
-    // operator<< cannot be virtualized, so we are using it not to print the result (which is usually done)
-    // but rather we are calling a function which will print the resul
+    // 'operator<<' cannot be virtualized, so we are using it not to print the result
+    // (which is usually done) but rather we are calling a function which will print the result
+    //  - only member functions can be virtualized, whereas overloading function of 'operator<<'
+    //    cannot be member function
     friend std::ostream& operator<<(std::ostream& out, const Shape& s)
     {
         return s.print(out);

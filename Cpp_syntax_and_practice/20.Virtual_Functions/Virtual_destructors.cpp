@@ -49,6 +49,8 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //********** Base ('A') destructor not virtual **********
+    //  - derived ('B') destructor won't be called
     B* b1 { new B(1) };
     A* a { b1 };
 
@@ -56,7 +58,12 @@ int main()
     delete a;
 
     std::cout << "--------------------------------\n";
+    ///////////////////////////////////////////////////////////////////////
 
+    //********** Base ('B') destructor virtual **********
+    //  - derived ('C') destructor will be called
+    //  - regardless of destructor virtualization, when derived object is being destroyed
+    //    it always call at the end parent destructor (hence 'A' is destroyed also)
     C* c { new C(2, 3) };
     B* b2 { c };
 
