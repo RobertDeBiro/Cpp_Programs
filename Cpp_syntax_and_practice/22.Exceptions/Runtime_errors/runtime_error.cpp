@@ -8,6 +8,7 @@ private:
     int m_denominator{};
 
 public:
+    //* Throwing exception from user-defined constructor
     Fraction(int numerator, int denominator)
         : m_numerator{ numerator }, m_denominator{ denominator }
     {
