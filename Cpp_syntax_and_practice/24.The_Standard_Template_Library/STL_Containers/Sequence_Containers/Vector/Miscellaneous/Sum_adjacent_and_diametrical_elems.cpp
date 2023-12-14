@@ -3,13 +3,15 @@
  * Exercise Section 3.3.3
  *  - Exercise 3.20
  * 
- * In this example I left on purpase some error prone implementation
- *  - counters "i" and "j" in our for loops are unsigned integers, means that they cannot be negative
- *  - the problem is in variable "j" that is decreasing each interation, hence there is a possibility
- *    that the code will try to decrease it below 0
- *  - that really happens when the vector contains only 1 element - for loop goes to infinity and
+ * In this example I left on purpose some error prone implementation
+ *  - counters 'i' and 'j' in our 'for' loops are 'unsigned integers', means that they cannot be negative
+ *    - 'decltype(v.size())' returns type of 'v.size()' which is 'size_type' which is
+ *      'long long unsigned int'
+ *  - the problem is in variable 'j' that is decreasing each interation, hence there is a possibility
+ *    that the code will try to decrease it below '0'
+ *  - that really happens when the vector contains only '1' element - 'for' loop goes to infinity and
  *    we get SIGSEGV signal (segmentation fault)
- *  - therefore it is the best that our counters are signed integers, especially if they are decreasing
+ *  - therefore it is the best that our counters are 'signed integers', especially if they are decreasing
  *    each iteration
  */
 
@@ -19,7 +21,7 @@
 int main()
 {
     std::cout << "*****************************************************\n";
-    
+
     std::cout << "Type number of integers you want to read: ";
     int n;
     std::cin >> n;
@@ -32,6 +34,8 @@ int main()
         std::cin >> elem;
         v.push_back(elem);
     }
+
+    std::cout << "--------------------------------------------\n";
 
     std::cout << "Sum and print adjacent elements:\n";
     int sum1 = 0;

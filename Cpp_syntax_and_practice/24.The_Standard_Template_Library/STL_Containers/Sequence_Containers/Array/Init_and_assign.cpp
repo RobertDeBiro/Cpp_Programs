@@ -12,28 +12,28 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    /*
-     * Initialization
-     */
-    std::array<int, 5> varArr1 { 1, 2, 3, 4, 5 }; // 1) Uniform initialization
+    //********** Initialization **********
+    // Uniform initialization
+    std::array<int, 5> varArr1 { 1, 2, 3, 4, 5 };
     std::cout << "Uniform initialization: ";
     printArray(varArr1);
 
-    std::array<int, 5> varArr2 = { 1, 2, 3, 4, 5 }; // 2) Initializer list
+    // Initializer list
+    std::array<int, 5> varArr2 = { 1, 2, 3, 4, 5 };
     std::cout << "Initializer list: ";
     printArray(varArr2);
 
-    // As of C++17 we are able to initialize std::array without defining type and lenght
+    // Omit type and lenght
     std::array varArr4 = { 1, 2, 3, 4, 5 };
-    std::cout << "Initialization ithout data type and length: ";
+    std::cout << "Initialization without data type and length: ";
     printArray(varArr4);
-    
-    /*
-     * Assignment
-     *  - it is possible to assign values to array using initializer list
-     *    (which is not the case in fixed-width array!)
-     *  - after empty declaration array contains garbage
-     */
+
+    std::cout << "--------------------------------------\n";
+
+    //********** Assignment **********
+    //  - it is possible to assign values to array using initializer list
+    //    (which is not the case in fixed-width array!)
+    //  - after empty declaration array contains garbage
     std::array<int, 5> varArr3;
     std::cout << "Array after empty declaration: ";
     printArray(varArr3);

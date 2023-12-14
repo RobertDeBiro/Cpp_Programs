@@ -1,13 +1,3 @@
-/*
- * front() -> reference
- * 
- * back() -> reference
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/array/front
- *  - https://en.cppreference.com/w/cpp/container/array/back
- */
-
 #include <iostream>
 #include <array>
 

@@ -1,11 +1,3 @@
-/*
- * template< class... Args >
- * emplace(Args&&... args) -> std::pair<iterator, bool>
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/set/emplace
- */
-
 #include <iostream>
 #include <set>
 
@@ -15,8 +7,9 @@ class A
 public:
     int m_x;
     A(int x = 0) : m_x{x} { std::cout << "Construct A object\n"; }
-    // This copy constructor is not mandatory, insert() function use the default one
-    //  - we created it to print the information, but since we created it, insert() won't
+
+    // This "copy constructor" is not mandatory, 'insert()' function use the default one
+    //  - we created it to print the information, but since we created it, 'insert()' won't
     //    use default one anymore, so in addition we need to also copy a value
     A(const A& rhs)
     {
@@ -31,7 +24,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // set.insert()
+    //* set.insert()
     //  - insert() needs to receive already constructed object
     std::cout << "Using set.insert(): \n";
     std::set<A> setInsert;
@@ -42,7 +35,7 @@ int main()
 
     std::cout << "---------------------------------------\n";
 
-    // set.emplace()
+    //* set.emplace()
     //  - emplace can receive value for variable needed for constructing an object
     //  - emplace constructs an object in place, i.e. it constructs it inside the set object
     std::cout << "Using set.emplace(): \n";

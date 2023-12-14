@@ -4,6 +4,7 @@
  * Everytime vector is increased every its element is coppied to a new memory location
  *  - in the printout we will see that, every time new element is added, copy constructor is called
  *    for every of those elements, because everything is coppied to a new location
+ *  - in addition, every element from previos location (the location from which elements are coppied) is destructed
  */
 
 #include <iostream>
@@ -23,11 +24,12 @@ int main()
 
     for (int i : numbers)
         cout << i << '\n';
+    cout << "-------------------" << '\n';
 
     Resource r("local"); // Constructing r
 
     {
-        //braces only for scope
+        // braces only for scope
         cout << "-------------------" << '\n';
         vector<Resource> resources;
         resources.push_back(r);

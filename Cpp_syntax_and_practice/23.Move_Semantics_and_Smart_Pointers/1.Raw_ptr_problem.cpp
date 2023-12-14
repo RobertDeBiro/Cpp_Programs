@@ -24,9 +24,9 @@ void someFunction()
     std::cin >> x;
 
     if (x == 0)
-        return; // the function returns early, and ptr won’t be deleted - memory leak happens!
+        return; // the function returns early, and 'ptr' won’t be deleted - memory leak happens!
 
-    // do stuff with ptr here
+    // do stuff with 'ptr' here
     ptr->sayHi();
 
     delete ptr;

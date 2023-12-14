@@ -1,10 +1,3 @@
-/*
- * find( const Key& key ) -> iterator
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/multimap/find
- */
-
 #include <iostream>
 #include <string>
 #include <map>
@@ -25,9 +18,10 @@ int main()
     std::cout << "Initial multimap: ";
     printMultimap(varMultimap);
 
-    // Find pair that contains required key
-    //  - I have found information on the internet that it is not defined which pair will .find() return,
-    //    but in this example it always return first pair that contains 'a'
+    //* Find pair that contains required key
+    //  - I have found information on the internet that it is not defined which pair will '.find()'
+    //    return, but in this example it always return first pair that contains 'a'
+    //  - find pair 10 times in order to test which pair will be returned
     for(int i = 1; i<= 10; ++i)
     {
         auto pair{ varMultimap.find('a') };

@@ -1,10 +1,3 @@
-/*
- * fill(const T& value) -> void
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/array/fill
- */
-
 #include <iostream>
 #include <array>
 
@@ -23,10 +16,12 @@ int main()
     std::cout << "Initial array: ";
     printArray(varArr);
 
+    //* Fill already filled array
     varArr.fill(5);
     std::cout << "Fill already filled array: ";
     printArray(varArr);
 
+    //* Fill empty array
     std::array<int, 5> varArr2;
     varArr2.fill(3);
     std::cout << "Fill empty array(): ";

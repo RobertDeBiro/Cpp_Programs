@@ -1,10 +1,3 @@
-/*
- * count( const Key& key ) const -> size_type
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/multimap/count
- */
-
 #include <iostream>
 #include <string>
 #include <map>
@@ -25,7 +18,7 @@ int main()
     std::cout << "Initial multimap: ";
     printMultimap(varMultimap);
 
-    // Count number of paris that contain key 'a'
+    // Count number of pairs that contain key 'a'
     std::cout << "Number of elements with key 'a': " << varMultimap.count('a') << '\n';
 
     std::cout << "*****************************************************\n";

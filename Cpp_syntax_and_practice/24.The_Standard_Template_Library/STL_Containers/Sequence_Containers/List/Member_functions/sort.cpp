@@ -1,10 +1,3 @@
-/*
- * sort() -> void
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/list/sort
- */
-
 #include <iostream>
 #include <list>
 

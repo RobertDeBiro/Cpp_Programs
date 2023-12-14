@@ -8,10 +8,10 @@ public:
     int age{};
     std::string name{};
 
-    // operator for std::less implementation (default one)
+    //* operator for 'std::less' implementation (default)
     bool operator< (const Person& rhs) const { return age < rhs.age; }
 
-    // operator for std::greater implementation
+    //* operator for 'std::greater' implementation
     bool operator> (const Person& rhs) const { return age > rhs.age; }
 };
 
@@ -42,31 +42,27 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    /*
-     * std::set saves unique elements in sorted order
-     *  - by default elements are sorted in ascending order - means that std::less<> is used
-     *  - if we want to sort in descending order, we can use std::greater<>
-     */
+    //* Initialize 'set' in default ascending order
     std::set<int> varSet1{ 1, 8, 2, 8, 1, 9, 9};
     std::cout << "Initial set container: \n";
     printSet(varSet1);
 
+    //* Initialize 'set' in default ascending order, explicitly using 'std::less<>'
     std::set<int, std::less<>> varSet2{ 1, 8, 2, 8, 1, 9, 9};
     std::cout << "std::less set container: \n";
     printSet(varSet1);
 
+    //* Initialize 'set' in descending order
     std::set<int, std::greater<>> varSet3{ 1, 8, 2, 8, 1, 9, 9};
     std::cout << "std::greater set container: \n";
     printSet(varSet3);
 
     std::cout << "---------------------------\n";
 
-    /*
-     * User defined data in std::set container:
-     *  - in order to declare user-defined std::set container, we need to tell to the
-     *    std::set how to compare the elements and sort them
-     *  - we do that by using overload operator inside user-defined data type
-     */
+    //* User defined data in 'std::set' container:
+    //  - in order to declare user-defined 'std::set' container, we need to tell to the
+    //    'std::set' how to compare the elements and sort them
+    //  - we do that by using overload operator inside user-defined data type
     std::set<Person> varSet4{ {4, "Luka"}, {29, "Martina"}, {2, "Toma"} };
     std::cout << "user-defined data set container: \n";
     printSet(varSet4);

@@ -13,7 +13,7 @@ int main()
         int j = v.at(99);
         std::cout << "j = " << j << std::endl;
     }
-    catch(std::out_of_range& e)
+    catch(std::out_of_range& e) // 'std::out_of_range' is derived from 'std::exception'
     {
         std::cout << "out of range exception " << e.what() << '\n';
     }

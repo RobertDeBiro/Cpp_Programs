@@ -1,10 +1,3 @@
-/*
- * erase( iterator pos ) -> iterator
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/set/erase
- */
-
 #include <iostream>
 #include <set>
 
@@ -24,6 +17,7 @@ int main()
     std::cout << "Initial set container: \n";
     printSet(varSet);
 
+    //* Erase element with index 2
     varSet.erase(std::next(varSet.begin(), 2));
     std::cout << "Container after erasing an element: \n";
     printSet(varSet);

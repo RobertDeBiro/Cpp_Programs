@@ -13,7 +13,7 @@ template <typename T>
 void printVectorElemSize(const T& varVect)
 {
     std::cout << "Vector elements: ";
-    for(auto elem : varVect)
+    for(const auto& elem : varVect)
         std::cout << elem << ' ';
     std::cout << '\n';
 

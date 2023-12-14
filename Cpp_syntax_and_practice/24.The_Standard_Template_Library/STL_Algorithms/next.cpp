@@ -3,15 +3,13 @@
  *  - returns the iterator which is following the input_iterator after "n" elements
  *  - default value of "n" is 1
  * 
- *  - included in <algorithm>
- * 
  * References:
  *  - https://en.cppreference.com/w/cpp/iterator/next
  */
 
 #include <iostream>
 #include <array>
-#include <algorithm>
+#include <algorithm> // std::next
 
 int main()
 {

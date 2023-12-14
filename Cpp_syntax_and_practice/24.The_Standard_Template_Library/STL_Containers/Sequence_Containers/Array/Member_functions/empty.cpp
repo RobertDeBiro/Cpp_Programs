@@ -1,10 +1,3 @@
-/*
- * empty() -> bool
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/array/empty
- */
-
 #include <iostream>
 #include <array>
 
@@ -20,13 +13,16 @@ int main()
     std::cout << "*****************************************************\n";
     std::cout << std::boolalpha;
 
+    //* Non-initialized array of length 5
     std::array<int, 5> varArr1;
     std::cout << "Non-initialized array: ";
     printArray(varArr1);
     std::cout << "Non-initialized array is empty: " << varArr1.empty() << '\n';
 
+    //* Non-initialized array of length 0
     std::array<int, 0> varArr2;
-    // printArray(varArr2); // ERROR: cannot print array with length 0
+    // It is not possible to print print array with length 0
+    //! printArray(varArr2);
     std::cout << "Array with length 0 is empty: " << varArr2.empty() << '\n';
 
     std::cout << std::noboolalpha;

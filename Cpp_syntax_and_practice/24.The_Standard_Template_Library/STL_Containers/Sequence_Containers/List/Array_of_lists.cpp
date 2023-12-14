@@ -1,8 +1,8 @@
 /*
- * Array of list syntax:
+ * Array of 'std::list<int>' syntax:
  *  - std::list<int> varList[3]
  * 
- * List of list syntax:
+ * List of 'std::list<int>' syntax:
  *  - std::list<std::list<int>> varList
  */
 
@@ -27,7 +27,7 @@ int main()
     }
     for (int i = 0; i < 3; i++)
     {
-        std::cout << i + 1 << ". list of the list: ";
+        std::cout << i + 1 << ". list in array: ";
         printList(varList[i]);
     }
 

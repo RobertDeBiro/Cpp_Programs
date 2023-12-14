@@ -1,10 +1,3 @@
-/*
- * find( const Key& key ) -> iterator
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/set/find
- */
-
 #include <iostream>
 #include <set>
 

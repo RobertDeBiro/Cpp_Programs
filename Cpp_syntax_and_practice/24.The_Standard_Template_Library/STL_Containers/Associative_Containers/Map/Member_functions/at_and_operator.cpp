@@ -1,10 +1,3 @@
-/*
- * at(const Key& key) -> T&
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/map/at
- */
-
 #include <iostream>
 #include <string>
 #include <map>
@@ -25,23 +18,24 @@ int main()
     std::cout << "Initial map: ";
     printMap(varMap);
 
-    // Adding new values using operator[]
+    //* Adding new values using 'operator[]'
     varMap["Sevilla"] = 50;
     varMap["Levante"] = 30;
     std::cout << "Map after adding element with operator[]: ";
     printMap(varMap);
 
-    // Changing existing value using operator[]
-    // - note that only value can be changed inside a map, key cannot be changed!
+    //* Changing existing value using 'operator[]'
+    // - note that only 'value' can be changed inside a map, 'key' cannot be changed!
     varMap["Real"] = 90;
     std::cout << "Changing the value of Real using operator[]: ";
     printMap(varMap);
 
-    // Fetching elements using operator[] and .at()
+    //* Fetching elements using 'operator[]' and '.at()'
     std::cout << "Fetching elements with operator[] and with .at(): ";
     std::cout << "Sevilla score: " << varMap["Sevilla"]
               << "; Levante score: " << varMap.at("Levante") << '\n';
 
+    //* Test if specific key exists before fetching the value
     try
     {
         varMap.at("Getafe") = 10;

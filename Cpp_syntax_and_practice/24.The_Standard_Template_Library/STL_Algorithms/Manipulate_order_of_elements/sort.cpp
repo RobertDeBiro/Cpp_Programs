@@ -4,14 +4,12 @@
  * 
  * std::sort(RandomIt first, RandomIt last, callable object) -> void
  *  - callable object must implement following behavior:
- *  - if two elements are already sorted, return true
- *  - if two elements are not sorted, return false
- *  - if we want to sort in ascending order we need to implement:
- *      return (first element < second element)
- *  - if we want to sort in descending order we need to implement:
- *      return (first element > second element)
- * 
- *  - included in <algorithm>
+ *    - if two elements are already sorted, return 'true'
+ *    - if two elements are not sorted, return 'false'
+ *    - if we want to sort in ascending order we need to implement:
+ *        'return (first element < second element)'
+ *    - if we want to sort in descending order we need to implement:
+ *        'return (first element > second element)'
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/algorithm/sort

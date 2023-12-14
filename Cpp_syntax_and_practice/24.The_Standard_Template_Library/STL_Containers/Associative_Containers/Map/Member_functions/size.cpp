@@ -1,10 +1,3 @@
-/*
- * size() const -> size_type
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/map/size
- */
-
 #include <iostream>
 #include <string>
 #include <map>

@@ -1,12 +1,8 @@
 /*
- * assign(size_type count, const T& value) -> void
- *  - if vector is already initialized and we want to change some of its values
- *    to one specific value, we can use assign() function
- *  - it is very similar to syntax "std::vector<int> varVect3(5, 1)"
+ *  - if vector is already initialized and we want to change its values
+ *    to one specific value, we can use 'assign()' function
+ *  - it is very similar to syntax 'std::vector<int> varVect3(5, 1)'
  *    except this is used when vector is already initialized
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/vector/assign
  */
 
 #include <iostream>
@@ -29,6 +25,10 @@ int main()
 
     varVect.assign(5, 2);
     std::cout << "Assignment using assign: ";
+    printVector(varVect);
+
+    varVect.assign(3, 3);
+    std::cout << "Assign only some elements: ";
     printVector(varVect);
 
     std::cout << "*****************************************************\n";

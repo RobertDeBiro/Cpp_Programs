@@ -1,10 +1,3 @@
-/*
- * merge(list& other) -> void
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/list/merge
- */
-
 #include <iostream>
 #include <list>
 

@@ -1,10 +1,3 @@
-/*
- * unique() -> void
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/list/unique
- */
-
 #include <iostream>
 #include <list>
 
@@ -23,8 +16,7 @@ int main()
     std::cout << "Initial list: ";
     printList(varList);
 
-    // unique() only removes adjacent duplicates
-    //  - removing 4 and 5
+    // Remove '4' and '5'
     varList.unique();
     std::cout << "List after removing adjacent duplicates: ";
     printList(varList);

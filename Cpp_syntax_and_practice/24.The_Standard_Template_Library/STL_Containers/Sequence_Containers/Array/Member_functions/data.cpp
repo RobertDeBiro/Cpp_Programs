@@ -1,10 +1,3 @@
-/*
- * data() -> pointer
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/array/data
- */
-
 #include <iostream>
 #include <array>
 
@@ -20,6 +13,8 @@ int main()
     std::cout << "*****************************************************\n";
 
     std::array<int, 5> varArr { 1, 2, 3, 4, 5 };
+
+    //* Take fixed array from 'std::array' container
     int* arr{ varArr.data() };
 
     // Print array

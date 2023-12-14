@@ -25,15 +25,21 @@ int main()
     std::vector<std::string> v;
     std::string word;
 
+    // Insert words into vector
+    std::cout << "Continuously insert words until you press: \n";
     while(std::cin >> word)
     {
         v.push_back(word);
+        if(word == "exit")
+            break;
     }
     printVector(v);
 
     int counter = 0;
+    // Loop through words saved inside vector 'v'
     for(auto& w : v)
     {
+        // Loop through letters of particular word saved inside string 'w'
         for(auto& c : w)
         {
             c = std::toupper(c);

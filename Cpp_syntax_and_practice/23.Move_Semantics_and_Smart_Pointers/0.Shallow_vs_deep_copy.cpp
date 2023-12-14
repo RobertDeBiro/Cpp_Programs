@@ -24,31 +24,47 @@ public:
             m_data[i] = source[i];
     }
 
-    /*
-     * Shallow copy
-     *  - default copy constructor, provided by the compiler, is implemented
-     *    by using shallow copy - it coppies pointer to other pointer
-     */
-    //MyString(const MyString& source)
-    //    : m_length { source.m_length }
-    //    , m_data { source.m_data }
-    //{
-    //}
+    //********** Shallow copy **********
+    // - default copy constructor and default assignment operator are provided by the compiler,
+    //   we don't need to create themn
+    // - they are implemented by using shallow copy - attribute is directly coppied to corresponding
+    //   attribute
 
-    /*
-     * Deep copy
-     *  - must be implemented by user
-     *  - it assigns new memory address and coppies content of pointer to other pointer
-     */
+    //* Default copy constructor
+/*
+    MyString(const MyString& source)
+        : m_length { source.m_length }
+        , m_data { source.m_data }
+    {
+    }
+*/
+
+    //* Default assignment operator
+/*
+    MyString& operator= (const MyString& source)
+    {
+        if (this == &source)
+            return *this;
+        
+        m_length = source.m_length;
+        m_data = source.m_data;
+
+        return *this;
+    }
+*/
+
+    //********** Deep copy **********
+    // - copy constructor and assignment operator must be implemented by user when implementing deep copy
+    // - should be created when one of member variables is pointer
+    //   - with deep copy we assign new memory address and copy content of pointer to other pointer
+
+    //* User-defined copy constructor
     MyString(const MyString& source)
     {
-        // First we need to deallocate any value that this string is holding!
-        delete[] m_data;
-
-        // Because m_length is not a pointer, we can shallow copy it
+        // Because 'm_length' is not a pointer, we can shallow copy it
         m_length = source.m_length;
 
-        // m_data is a pointer, so we need to deep copy it if it is non-null
+        // 'm_data' is a pointer, so we need to deep copy it if it is non-null
         if (source.m_data)
         {
             // allocate memory for our copy
@@ -62,9 +78,39 @@ public:
             m_data = nullptr;
     }
 
+    //* User defined assignment operator
+    MyString operator=(const MyString& source)
+    {
+        if (this == &source)
+            return *this;
+
+        // First we need to deallocate any value that this string is holding!
+        // - this was not needed with copy constructor because than 'm_data' is for sure empty
+        delete[] m_data;
+
+        // Because 'm_length' is not a pointer, we can shallow copy it
+        m_length = source.m_length;
+
+        // 'm_data' is a pointer, so we need to deep copy it if it is non-null
+        if (source.m_data)
+        {
+            // allocate memory for our copy
+            m_data = new char[m_length];
+
+            // do the copy
+            for (int i{ 0 }; i < m_length; ++i)
+                m_data[i] = source.m_data[i];
+        }
+        else
+            m_data = nullptr;
+        
+        return *this; // returning in order to support chaining
+    }
+
     ~MyString() // destructor
     {
         // We need to deallocate our string
+        // - when using shallow copy in following line we will have an exception
         delete[] m_data;
     }
 
@@ -82,13 +128,14 @@ int main()
     //  2) const char* hello{ "Hello, world!" }
     //  3) std::string hello{ "Hello, world!" }
     //      - the best idea because it is a class that dynamically manages memory,
-    //        just like MyString that we created
+    //        just like 'MyString' that we created
     
     MyString hello{ "Hello, world!" };
     {
         MyString copy{ hello }; // use copy constructor
-    } // copy is a local variable, so it gets destroyed here.
-      // When using default copy constructor with shallow copy, the destructor deletes copy's string, which leaves hello with a dangling pointer
+    } // copy is a local variable, so it gets destroyed here
+      // When using default copy constructor with shallow copy, the destructor deletes copy's string,
+      // which leaves hello with a dangling pointer
 
     std::cout << hello.getString() << '\n'; // When using shallow copy, this will have undefined behavior
 

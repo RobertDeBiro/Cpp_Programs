@@ -4,23 +4,22 @@
  *  - good:
  *      - no memory leak - pointer deleted
  *  - bad:
- *      - copy constructor can try to delete memory twice - SIGTRAP ABORT
+ *      - copy constructor can try to delete memory twice - 'SIGTRAP abort' exception
  */
 
 #include <iostream>
 
-// Smart pointer class (class holding a pointer)
-//  - a composition class that is designed to manage dynamically allocated memory
-//    and to ensure that memory gets deleted when the smart pointer object
-//    goes out of scope
+//********** Smart pointer class (class holding a pointer) **********
+//  - a composition class that is designed to manage dynamically allocated memory and to
+//    ensure that memory gets deleted when the smart pointer object goes out of scope
 template <typename T>
 class Auto_ptr1
 {
 	T* m_ptr;
+
 public:
 	// Pass in a pointer to "own" via the constructor
-	Auto_ptr1(T* ptr=nullptr)
-		:m_ptr(ptr)
+	Auto_ptr1(T* ptr = nullptr) : m_ptr(ptr)
 	{
 	}
 
@@ -45,7 +44,7 @@ public:
 
 void someFunction()
 {
-	// The Resource in angled braces doesn't need a * symbol, since that's supplied by the template
+	// The 'Resource' in angled braces doesn't need a '*' symbol, since that's supplied by the template
     Auto_ptr1<Resource> ptr(new Resource()); // Note the allocation of memory here ...
 
     int x;

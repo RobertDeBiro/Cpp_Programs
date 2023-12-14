@@ -1,25 +1,10 @@
-/*
- * push( const value_type& value ) -> void
- *
- * pop() -> void
- * 
- * front() -> reference
- * 
- * empty() const -> bool
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/queue/push
- *  - https://en.cppreference.com/w/cpp/container/queue/pop
- *  - https://en.cppreference.com/w/cpp/container/queue/front
- *  - https://en.cppreference.com/w/cpp/container/queue/empty
- */
-
 #include <iostream>
 #include <queue>
 
-// Printing queue is specific since we can access only the first element
-//  - therefore, after printing that first we can access, we need to pop it out
-//  - elements are popped out in the opposite direction from std::stack
+//* Printing queue
+//  - printing queue is specific since we can access only the 'first' element
+//  - therefore, after printing that first we can access, we need to 'pop' it out
+//  - elements are popped out in the opposite direction from 'std::stack'
 void printQueue(std::queue<int> varQue)
 {
     int i = 1;

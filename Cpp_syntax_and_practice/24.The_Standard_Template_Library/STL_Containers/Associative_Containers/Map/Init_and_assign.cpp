@@ -32,6 +32,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //********** Initialization **********
     // Uniform initialization
     std::map<std::string, int> varMap1 { {"CPU", 10}, {"GPU", 15}, {"RAM", 20} };
     std::cout << "Map with uniform initialization: ";
@@ -42,19 +43,19 @@ int main()
     std::cout << "Map with initialization list: ";
     printMap(varMap2);
 
-    // Assignment
+    //********** Assignment **********
     std::map<std::string, int> varMap3;
     varMap3 = { {"Real", 80}, {"Barca", 65}, {"Atletico", 60} };
     std::cout << "Map with assignment: ";
     printMap(varMap3);
 
-    // If having several same keys only one will be assigned
+    // If having several equal keys only one will be assigned
     std::map<std::string, int> varMap4;
     varMap4 = { {"Real", 80}, {"Barca", 65}, {"Real", 60} };
     std::cout << "Map with duplicated keys: ";
     printMap(varMap4);
 
-    // Sort elements by decreasing valies, i.e. from the greater value to the less
+    //********** Sort elements by decreasing values **********
     std::map<std::string, int, std::greater<std::string>> varMap5 { {"CPU", 10}, {"GPU", 15}, {"RAM", 20} };
     std::cout << "Map initialized with std::greater: ";
     printMap(varMap5);

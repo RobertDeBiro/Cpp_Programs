@@ -15,6 +15,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //********** Initialization **********
     // Uniform initialization
     //  - multiple equal keys allowed
     //  - multiple equal key-value pairs allowed

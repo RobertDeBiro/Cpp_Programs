@@ -1,8 +1,10 @@
 /*
- * equal_range( const Key& key ) -> std::pair<iterator,iterator>
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/multimap/equal_range
+ * - returns 2 iterators as a pair:
+ *   - 1. iterator points to the first element found in the range
+ *   - 2. iterator points to the last element found in the range
+ * - because multimap is always sorted, this function actually returns every appearance of required
+ *   key
+ *   - on the other side, function 'find()' returns only first appearance of required key
  */
 
 #include <iostream>
@@ -25,11 +27,6 @@ int main()
     std::cout << "Initial multimap: ";
     printMultimap(varMultimap);
 
-    /*
-     * equal_range() returns 2 iterators as a pair:
-     *   - 1. iterator points to the first element found in the range
-     *   - 2. iterator points to the last element found in the range
-     */
     using mapIt = std::multimap<char, int>::iterator;
     std::pair<mapIt, mapIt> range = varMultimap.equal_range('a');
     std::cout << "Multimap with equal_range('a'): ";

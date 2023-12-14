@@ -1,6 +1,8 @@
-// LearnCpp
-// Arrays, Strings, and Dynamic Allocation
-// Summary and quiz
+/*
+ * LearnCpp
+ * Arrays, Strings, and Dynamic Allocation
+ * Summary and quiz
+ */
 
 #include <iostream>
 #include <string>
@@ -32,7 +34,9 @@ std::vector<Student> getStudents()
 
     int numberOfStudents{ getNumberOfStudents() };
 
-    // Create a vector with numberOfStudents elements
+    // Create a vector with 'numberOfStudents' elements
+    // - when constructing vector of multiple same elements, number of elements put into
+    //   vector constructor is of type 'size_type'
     vector_type students(static_cast<vector_type::size_type>(numberOfStudents));
 
     int studentNumber{ 1 };
@@ -51,7 +55,7 @@ std::vector<Student> getStudents()
     return students;
 }
 
-// When compareStudents returns true, means that elements are already sorted
+// When 'compareStudents' returns 'true', means that elements are already sorted
 bool compareStudents(const Student& a, const Student& b)
 {
     return (a.grade > b.grade);

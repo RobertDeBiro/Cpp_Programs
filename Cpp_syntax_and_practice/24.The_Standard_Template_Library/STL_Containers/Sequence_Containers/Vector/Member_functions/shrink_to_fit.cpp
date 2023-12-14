@@ -1,10 +1,3 @@
-/*
- * shrink_to_fit() -> void
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/vector/shrink_to_fit
- */
-
 #include <iostream>
 #include <vector>
 
@@ -30,6 +23,9 @@ int main()
     std::cout << "0. varVect, size and capacity: ";
     printVectorSizeAndCapacity(varVect);
 
+    std::cout << "-------------------------------------\n";
+
+    //* Insert element, which doubles capacity
     auto it = varVect.insert(varVect.begin(), 200);
     std::cout << "1. varVect: ";
     printVector(varVect);
@@ -37,14 +33,20 @@ int main()
     printVectorSizeAndCapacity(varVect);
     std::cout << "Inserted value (iterator value) = " << *it << '\n';
 
+    std::cout << "-------------------------------------\n";
+
+    //* Shrink capacity to the size of the vector
     varVect.shrink_to_fit();
     std::cout << "2. varVect: ";
     printVector(varVect);
     std::cout << "2. varVect, size and capacity: ";
     printVectorSizeAndCapacity(varVect);
 
-    // When reallocation occurs, all iterators, including the past the end iterator,
-    // and all references to the elements are invalidated
+    std::cout << "-------------------------------------\n";
+
+    //* Print value pointed by previously collected vector iterator
+    //  - when reallocation occurs, all iterators, including the past the end iterator,
+    //    and all references to the elements are invalidated
     //  - iterator value will be undefined
     std::cout << "Iterator value = " << *it << '\n';
 

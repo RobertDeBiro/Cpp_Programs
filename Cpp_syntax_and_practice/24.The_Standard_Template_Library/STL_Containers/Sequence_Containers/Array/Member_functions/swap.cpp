@@ -1,10 +1,3 @@
-/*
- * swap( array& other ) -> void
- * 
- * References:
- *  - https://en.cppreference.com/w/cpp/container/array/swap
- */
-
 #include <iostream>
 #include <array>
 

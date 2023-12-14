@@ -1,14 +1,17 @@
 /*
- * Auto_ptr2 class is similar to Auto_ptr1, but it doesn't uses default copy constructor with shallow copy
- *  - it uses custom copy constructor and assignment operator that implements MOVE SEMANTICS
+ * 'Auto_ptr2' class is similar to 'Auto_ptr1', but it doesn't uses default copy constructor with
+ * shallow copy
+ *   - it uses custom copy constructor and assignment operator that implements MOVE SEMANTICS
+ *   - move semantics is actually shallow copy but with additional step in which we assign
+ *     pointer object to 'nullptr'
  * 
- * This class represents implementation of the first smart pointer used in C++, called std::auto_ptr
- *  - std::auto_ptr is removed in C++17 due to several flaws
- *  - replacement for this smart pointer class is std::unique_ptr
+ * This class represents implementation of the first smart pointer used in C++, called 'std::auto_ptr'
+ *  - 'std::auto_ptr' is removed in C++17 due to several flaws
+ *  - replacement for this smart pointer class is 'std::unique_ptr'
  * 
  *  - good:
  *      - no memory leak - pointer deleted
- *      - memory cannot be deleted twice
+ *      - program won't try to delete the same memory twice
  *  - bad:
  *      - code designer may not be aware that object is moved to another object
  *      - pointer is deleted using non-array delete
@@ -20,6 +23,7 @@ template <typename T>
 class Auto_ptr2
 {
     T* m_ptr;
+
 public:
     Auto_ptr2(T* ptr = nullptr) : m_ptr(ptr)
     {
@@ -30,18 +34,23 @@ public:
         delete m_ptr;
     }
 
-    // A copy constructor that implements move semantics
+    //********** Move semantics **********
     // - in this example we again copy pointer to another pointer, hence doing shallow copy,
-    //   but ultimately source pointer is deleted, so memory won't be deleted twice and
+    //   but ultimately source pointer is deleted, so program won't try to delete memory twice and
     //   SIGTRAP abort error won't appear
-    Auto_ptr2(Auto_ptr2& source) // note: not const
+    // - there are two changes comparing to class 'Auto_ptr1'
+    //    1. Input parameter 'source' is not 'const' (because it needs to be changed to 'nullptr')
+    //    2. 'source.m_ptr' is set to 'nullptr'
+
+    //* Copy constructor that implements move semantics
+    Auto_ptr2(Auto_ptr2& source)
     {
         m_ptr = source.m_ptr; // transfer our dumb pointer from the source to our local object
         source.m_ptr = nullptr; // make sure the source no longer owns the pointer
     }
 
-    // An assignment operator that implements move semantics
-    Auto_ptr2& operator=(Auto_ptr2& source) // note: not const
+    //* An assignment operator that implements move semantics
+    Auto_ptr2& operator=(Auto_ptr2& source)
     {
         // self-assignment guard
         if(&source == this) 

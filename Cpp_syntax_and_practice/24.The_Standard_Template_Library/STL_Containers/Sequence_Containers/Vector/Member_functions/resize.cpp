@@ -1,11 +1,3 @@
-/*
- * resize(size_type count) -> void
- *  - only size is changed, not the capacity
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/vector/resize
- */
-
 #include <iostream>
 #include <vector>
 
@@ -28,10 +20,24 @@ int main()
     std::vector<int> varVect { 1, 2, 3, 4, 5 };
     std::cout << "Initial vector: ";
     printVector(varVect);
+    printVectorSizeAndCapacity(varVect);
 
-    // By resizing vector only existing elements within new size are left, other are trimmed
+    std::cout << "-------------------------------------\n";
+
+    //* Resize vector to a smaller size
+    //  - by resizing vector to smaller size only existing elements within new size are left,
+    //    other are trimmed
     varVect.resize(2);
     std::cout << "Vector resized to a smaller value: ";
+    printVector(varVect);
+    printVectorSizeAndCapacity(varVect);
+
+    std::cout << "-------------------------------------\n";
+
+    //* Resize vector to a bigger size
+    //  - when resize to a bigger value, 'zeros' are added to fulfill the vector
+    varVect.resize(10);
+    std::cout << "Vector resized to a bigger value: ";
     printVector(varVect);
     printVectorSizeAndCapacity(varVect);
 

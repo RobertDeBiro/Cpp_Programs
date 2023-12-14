@@ -1,10 +1,3 @@
-/*
- * erase( iterator pos ) -> iterator
- *
- * References:
- *  - https://en.cppreference.com/w/cpp/container/map/erase
- */
-
 #include <iostream>
 #include <string>
 #include <map>
