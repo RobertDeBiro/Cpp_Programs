@@ -11,6 +11,10 @@
  *    - if we want to sort in descending order we need to implement:
  *        'return (first element > second element)'
  * 
+ * - have in mind that 'std:.sort()' doesn't work on list container classes
+ *   - the list class provides its own 'sort()' member function, which is much more efficient
+ *     than the generic version would be
+ * 
  * References:
  *  - https://en.cppreference.com/w/cpp/algorithm/sort
  */

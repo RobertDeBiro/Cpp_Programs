@@ -2,7 +2,7 @@
  * C++ Primer
  * Exercise Section 3.4.1
  *  - Exercise 3.22
- * 
+
  * Input example:
 Let me tell you a little story.
 Once upon a time there was a man, and there was a woman.
