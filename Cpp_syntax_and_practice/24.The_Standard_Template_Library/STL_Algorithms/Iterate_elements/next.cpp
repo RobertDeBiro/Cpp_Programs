@@ -1,7 +1,7 @@
 /*
  * std::next(InputIt it, int n = 1) -> InputIt
- *  - returns the iterator which is following the input_iterator after "n" elements
- *  - default value of "n" is 1
+ *  - returns the iterator which is following the input iterator after 'n' elements
+ *  - default value of 'n' is '1'
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/iterator/next

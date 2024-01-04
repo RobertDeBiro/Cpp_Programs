@@ -32,11 +32,13 @@ int main()
 
     std::array arr{ 3, 5, 8, 1 };
 
-    // 1)
+    //* 1) 'std::max_element'
     const auto itMaxVal{ std::max_element(arr.begin(), arr.end()) };
     std::cout << "Maximum value of the array arr is: " << *itMaxVal << '\n';
 
-    // 2)
+    std::cout << "--------------------------------------\n";
+
+    //* 2) 'std::max_element' with callable object
     std::array<Student, 4> stArr{
         { { "Albert", 3 },
           { "Ben", 5 },

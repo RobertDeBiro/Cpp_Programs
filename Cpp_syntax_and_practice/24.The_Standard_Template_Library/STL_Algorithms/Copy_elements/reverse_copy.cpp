@@ -26,10 +26,10 @@ int main()
     std::vector<int> destination(3);
     std::reverse_copy(v.begin(), v.end(), destination.begin());
 
-    // We couldn't do following since reverse_copy() requires that the size of destination vector
-    // is the same as initial vector, whereas here the capacity would be the same
-    //  - the same is also required by copy() function
-    // destination.reserve(3);
+    // We couldn't do following since 'reverse_copy()' requires that the size of destination vector
+    // is the same as initial vector, whereas here the size is not the same but rather the capacity
+    //  - that is also required by 'copy()' function
+    //! destination.reserve(3);
 
     std::cout << "destination: ";
     for (auto e : destination)

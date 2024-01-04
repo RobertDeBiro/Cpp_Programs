@@ -2,8 +2,9 @@
  * 1) min( const T& a, const T& b ) -> const T&
  *
  * 2) min( const T& a, const T& b, Compare comp ) -> const T&
- *  - std::min will return b element as min when comp returns true
- *  - std::min will return a element as min when comp returns false
+ *  - std::min will return 'b' element as min when 'comp' returns 'true'
+ *  - std::min will return 'a' element as min when 'comp' returns 'false'
+ *  - std::min always pushes min element to the end of container
  * 
  *  - included in <algorithm>
  * 
@@ -23,13 +24,13 @@ int main()
 
     std::cout << "The smaller number: " << std::min(i, j)  << '\n';
 
-    std::cout << "---------------------------\n";
+    std::cout << "----------------------------------\n";
 
     // Define our own representation of something that is smaller
     bool t = true;
     bool f = false;
 
-    // Let boolean "true" be smaller
+    // Let boolean 'true' be smaller
     auto true_smaller{
         [](bool a, bool b)
         {
@@ -38,7 +39,7 @@ int main()
     };
     std::cout << std::boolalpha << "The smaller boolean is: " << std::min(t, f, true_smaller) << '\n';
 
-    // Let boolean "false" be smaller
+    // Let boolean 'false' be smaller
     auto false_smaller{
         [](bool a, bool b)
         {

@@ -1,7 +1,7 @@
 /*
  * std::copy(InputIt first, InputIt last, OutputIt d_first) -> OutputIt
- *  - it is necessary that std::copy knows the size of destination container
- *      - std::copy() does nothing to expand the destination container
+ *  - it is necessary that 'std::copy' knows the size of destination container
+ *      - 'std::copy()' does nothing to expand the destination container
  * 
  * std::copy_if(InputIt first, InputIt last, OutputIt d_first, callable_object) -> OutputIt
  * 
@@ -33,8 +33,8 @@ int main()
         std::cout << elem << " ";
     std::cout << '\n';
 
-    // In following example, std::copy doesn't know the size of the vector,
-    // but since std::back_inserter is used it can handle the copy
+    // In following example, 'std::copy' doesn't know the size of the vector,
+    // but since 'std::back_inserter' is used it can handle the copy
     std::vector<int> dest2;
     std::copy(src.begin(), src.end(), std::back_inserter(dest2));
     std::cout << "Dest2 vector, using std::back_inserter: ";
@@ -43,10 +43,10 @@ int main()
     std::cout << '\n';
 
     // Invalid solution:
-    //  - even though vector can dynamically change its size, when using std::copy
+    //  - even though vector can dynamically change its size, when using 'std::copy'
     //    vector needs to have known size
-    // std::vector<int> destINV;
-    // std::copy(src.begin(), src.end(), destINV.begin();
+    //! std::vector<int> destINV;
+    //! std::copy(src.begin(), src.end(), destINV.begin());
 
     std::cout << "-------------------------------------\n";
 

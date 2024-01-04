@@ -1,11 +1,11 @@
 /*
  * std::iota(InputIt first, InputIt last, T value) -> void
- *  - comparison with std::fill and std::generate:
+ *  - comparison with 'std::fill' and 'std::generate':
  *     - std::fill - puts elements with the same specified value into container
  *     - std::generate - puts elements with generated values into container
  *     - std::iota - puts elements with contiguous values - starting from specified value - into container
  * 
- * - inlcuded in <numeric>
+ * - included in <numeric>
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/algorithm/iota

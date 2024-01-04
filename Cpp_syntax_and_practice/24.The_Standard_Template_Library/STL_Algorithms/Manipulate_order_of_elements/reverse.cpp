@@ -27,6 +27,8 @@ int main()
     for (auto e : v)
         std::cout << e << ' ';
     std::cout << '\n';
+
+    std::cout << "------------------------------------------------------------\n";
  
     int a[] = {4, 5, 6, 7};
     std::cout << "Initial a: "; 

@@ -32,6 +32,7 @@ int main()
         }
     };
 
+    // Using 'std::setw', 'std::left' and 'std::right' for prettier printout
     bool allEven1{ std::all_of(varVect1.begin(), varVect1.end(), is_even)};
     std::cout << std::setw(50) << std::left << "varVect1 contains all even elements: "
                                << std::right << allEven1 << '\n';

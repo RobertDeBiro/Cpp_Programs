@@ -16,7 +16,7 @@
 
 bool containsBer(const std::string& str)
 {
-    // When str.find() doesn't find the substring, it returns npos
+    // When 'str.find()' doesn't find the substring, it returns 'npos'
     return (str.find("ber") != std::string::npos);
 }
 
@@ -31,7 +31,7 @@ int main()
     };
 
     // ******************************* std::find *******************************
-    // using const_iterator rather that const auto
+    // using 'const_iterator' rather that 'const auto'
     using arrConstIt = std::array<std::string, 12>::const_iterator;
     arrConstIt itFind { std::find(months.begin(), months.end(), "August") }; 
     std::cout << "When object is found it will print: " << *itFind << '\n';
@@ -42,7 +42,7 @@ int main()
     std::cout << "-------------------------------------\n";
 
     // ******************************* std::find_if *******************************
-    //  - find month that contains "ber" in his name
+    //  - find month that contains 'ber' in his name
     const auto itFindIf{ std::find_if(months.begin(), months.end(), containsBer) };
     if (itFindIf == months.end())
         std::cout << "No ber\n";

@@ -27,8 +27,8 @@ int main()
 
     std::cout << "Vectors are equal: " << eq1 << '\n';
     std::cout << "Vectors are equal: " << eq2 << '\n';
-    std::cout << "Vectors are equal: " << eq3a << '\n';
-    std::cout << "Vectors are equal: " << eq3b << '\n';
+    std::cout << "Partial vectors are equal: " << eq3a << '\n';
+    std::cout << "Partial vectors are equal: " << eq3b << '\n';
     
     std::cout << std::noboolalpha;
     std::cout << "*****************************************************\n";

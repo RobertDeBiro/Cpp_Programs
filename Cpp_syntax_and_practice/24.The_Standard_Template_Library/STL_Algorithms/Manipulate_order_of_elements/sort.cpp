@@ -33,7 +33,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // 1)
+    //* Sort in ascending order
     std::array arr{ 285.0, 296.0, 288.0, 263.0 };
     std::sort(arr.begin(), arr.end());
     std::cout << "Ascending order: ";
@@ -41,7 +41,7 @@ int main()
         std::cout << elem << ' ';
     std::cout << '\n';
 
-    // 2)
+    //* Sort in custom (descending) order
     auto descendingObj{
         [](const auto& a, const auto& b)
         {
@@ -52,10 +52,7 @@ int main()
     std::sort(arr.begin(), arr.end(), descendingObj);
     std::cout << "Descending order: ";
     for (const auto& elem : arr)
-    {
         std::cout << elem << ' ';
-    }
-
     std::cout << '\n';
 
     std::cout << "*****************************************************\n";

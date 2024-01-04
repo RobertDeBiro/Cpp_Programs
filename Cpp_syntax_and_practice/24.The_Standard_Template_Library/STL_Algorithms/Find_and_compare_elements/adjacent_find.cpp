@@ -23,6 +23,7 @@ int main()
         "September", "October", "November", "December"
     };
 
+    // Save result from 'std::adjacent_find' into variable
     const auto itSameLetter{ std::adjacent_find(months.begin(), months.end(),
                                                 [](const auto& a, const auto& b) {
                                                    return (a[0] == b[0]);

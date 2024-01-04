@@ -1,6 +1,4 @@
-/*
- * Pluralsight
- */
+//* Pluralsight
 
 #include <iostream>
 #include <vector>

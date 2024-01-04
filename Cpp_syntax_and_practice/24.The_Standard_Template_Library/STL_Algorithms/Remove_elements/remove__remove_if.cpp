@@ -32,28 +32,31 @@ int main()
         for (int i = 0; i < 5; i++)
             v.push_back(i);
     }
-    std::cout << "Initial vector:\n";
+    std::cout << "Initial vector: ";
     printv(v);
+    std::cout << "Vector size = " << v.size() << '\n';
+
+    std::cout << "-------------------------------------\n";
 
     // ******************************* std::remove *******************************
-    // Remove every element with value 2 from the vector
+    // Remove every element with value '2' from the vector
     //  - removed elements are 2, 2, 2, whereas elements placed at the end are 2, 3, 4
     auto endv0 = std::remove(v.begin(), v.end(), 2);
-    std::cout << "Vector size after removing = " << v.size() << '\n';
-    std::cout << "Vector after removing elements with value 2:\n";
+    std::cout << "Vector after removing values '2': ";
     printv(v);
-    std::cout << "Return from std::remove_if is: " << *endv0 << '\n';
+    std::cout << "Vector size after removing = " << v.size() << '\n';
+    std::cout << "Return from 'std::remove' is: " << *endv0 << '\n';
 
     std::cout << "-------------------------------------\n";
 
     // ******************************* std::remove_if *******************************
     auto endv = std::remove_if(begin(v), end(v), [](int elem) { return (elem == 1); });
-    std::cout << "Vector size after removing = " << v.size() << '\n';
-    std::cout << "Vector after removing elements with value 3:\n";
+    std::cout << "Vector after removing values '1': ";
     printv(v);
-    // remove_if() returns the iterator to the first removed element which is after removing positioned
+    std::cout << "Vector size after removing = " << v.size() << '\n';
+    // 'remove_if()' returns the iterator to the first removed element which is after removing positioned
     // in the last+1 place of the container
-    std::cout << "Return from std::remove_if is: " << *endv << '\n';
+    std::cout << "Return from 'std::remove_if' is: " << *endv << '\n';
 
     std::cout << "*****************************************************\n";
     return 0;
