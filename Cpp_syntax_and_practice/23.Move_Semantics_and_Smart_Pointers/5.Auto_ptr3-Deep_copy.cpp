@@ -9,6 +9,7 @@
  *  - bad:
  *      - more allocating/deallocating memories happens
  *         - deep copy always allocate new memory i.e. always allocates new resource
+ *         - compiler can elide some coppies, but still multiple allocation/deallocation happens 
  *      - possibly a lot of content needs to be coppied
  */
 
@@ -26,7 +27,7 @@ public:
 
 	~Auto_ptr3()
 	{
-		delete m_ptr; // 3b./5b./6b. Calling Resource destructor
+		delete m_ptr; // 3b./5b./6b. Calling 'Resource' destructor
 	}
 
 	//********** Deep copy **********
@@ -35,7 +36,7 @@ public:
 	// - const to l-value references prolong the lifetime of r-value, but value cannot be changed
 	Auto_ptr3(const Auto_ptr3& source)
 	{
-		m_ptr = new T; // 2b. 'Resource' (T) is created, calling constructor!
+		m_ptr = new T; // 2b. 'Resource (T)' is created, calling constructor!
 		*m_ptr = *source.m_ptr;
 	}
 
@@ -49,7 +50,7 @@ public:
 		// Inside copy constructor we don't need to delete 'm_ptr' because 'm_ptr' is already empty
 		delete m_ptr;
 
-		m_ptr = new T; // 4b. Resource (T) is created, calling constructor!
+		m_ptr = new T; // 4b. 'Resource (T)' is created, calling constructor!
 		*m_ptr = *source.m_ptr;
 		return *this; // returned because of chaining
 	}
@@ -72,7 +73,7 @@ Auto_ptr3<Resource> generateResource()
 	Auto_ptr3<Resource> res{new Resource}; // 1a. 'Resource' is created, calling 'Resource' constructor
 	                                       // 1b. 'res' is initialized, calling 'Auto_ptr3' constructor
 	return res; // 2a. Temporary 'Auto_ptr3' object is initialized when returning 'res', calling 'Auto_ptr3' copy constructor
-} // 3a. res is deleted, calling Auto_ptr3 destructor
+} // 3a. 'res' is deleted, calling 'Auto_ptr3' destructor
 
 int main()
 {
@@ -80,12 +81,13 @@ int main()
 
 	Auto_ptr3<Resource> mainres;  // 0. Calling 'Auto_ptr3' constructor
 	mainres = generateResource(); // 4a. Calling 'Auto_ptr3' assignment operator
-								  // 5a. Temporary Auto_ptr3 object is deleted, calling Auto_ptr3 destructor
+								  // 5a. Temporary 'Auto_ptr3' object is deleted, calling 'Auto_ptr3' destructor
 
     std::cout << "*****************************************************\n";
 	return 0;
-} // 6a. mainres is deleted, calling Auto_ptr3 destructor
+} // 6a. 'mainres' is deleted, calling 'Auto_ptr3' destructor
 
 // My compiler elides steps 2. and 3.
-// - compiler figures that res is ultimately added to mainres, so it doesn't uses temporary object but
-//   rather initializes mainres directly with res and then after main() deletes both mainres and res
+// - compiler figures that 'res' is ultimately added to 'mainres', so it doesn't uses temporary object
+//   but rather initializes 'mainres' directly with 'res' and then after 'main()' deletes both
+//   'mainres' and 'res'

@@ -1,9 +1,9 @@
 /*
- * Passing std::unique_ptr to a function
- *  - in this example we are passing only pointer saved inside std::unique_ptr object
+ * Passing 'std::unique_ptr' to a function
+ *  - in this example we are passing only pointer saved inside 'std::unique_ptr' object
  *    and not whole object
- *  - we could also pass whole object by using std::move, but in that case we wouldn't have
- *    the object anymore inside main function, since it would be moved
+ *  - we could also pass whole object by using 'std::move', but in that case we wouldn't have
+ *    the object anymore inside 'main' function, since it would be moved
  */ 
 
 #include <iostream>
@@ -23,8 +23,8 @@ public:
 	}
 };
 
-// The function only uses the resource, so we'll accept a pointer to the resource,
-// not a reference to the whole std::unique_ptr<Resource>
+// The function only uses the 'Resource', so we'll accept a pointer to the 'Resource',
+// not a reference to the whole 'std::unique_ptr<Resource>'
 void useResource(Resource* res)
 {
 	if (res)
@@ -46,4 +46,4 @@ int main()
 
     std::cout << "*****************************************************\n";
 	return 0;
-} // The Resource is destroyed here
+} // The 'Resource' is destroyed here

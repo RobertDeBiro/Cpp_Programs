@@ -14,15 +14,16 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-	std::unique_ptr<Resource> res1{ new Resource() }; // Resource created here
-	std::unique_ptr<Resource> res2{}; // Start as nullptr
+	std::unique_ptr<Resource> res1{ new Resource() }; // 'Resource' created here
+	std::unique_ptr<Resource> res2{}; // Start as 'nullptr'
     //auto res2{ std::make_unique<Resource>() };
 
 	std::cout << "res1 is " << (res1 ? "not null\n" : "null\n");
 	std::cout << "res2 is " << (res2 ? "not null\n" : "null\n");
 
-	// res2 = res1; // Won't compile: copy assignment is disabled
-	res2 = std::move(res1); // res2 assumes ownership, res1 is set to null
+	// Won't compile: copy assignment is disabled for 'std::unique_ptr'
+	//! res2 = res1;
+	res2 = std::move(res1); // 'res2' assumes ownership, 'res1' is set to 'null'
 
 	std::cout << "Ownership transferred\n";
 

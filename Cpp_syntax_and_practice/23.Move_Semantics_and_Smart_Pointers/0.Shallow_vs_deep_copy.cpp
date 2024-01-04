@@ -110,7 +110,8 @@ public:
     ~MyString() // destructor
     {
         // We need to deallocate our string
-        // - when using shallow copy in following line we will have an exception
+        // - when using shallow copy in following line we will have an exception because our address
+        //   will try to be deleted twice
         delete[] m_data;
     }
 

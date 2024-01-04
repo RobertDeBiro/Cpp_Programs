@@ -1,10 +1,12 @@
 /*
- * Auto_ptr4 class enhances Auto_ptr2 class (std::auto_ptr) by using move constructor and move assignment
- * operator rather than move semantics
+ * 'Auto_ptr4' class enhances:
+ *  - 'Auto_ptr2' class ('std::auto_ptr') by using move constructor and move assignment operator
+ *     rather than move semantics 
+ *  - 'Auto_ptr3' class by moving content and not copying it
  * 
  * Comparison to deep copy example:
- *  - instead of copying our Resource twice (once for the copy constructor and once for the copy assignment),
- *    we transfer it twice
+ *  - instead of copying our 'Resource' twice (once for the copy constructor and once for
+ *    the copy assignment), we transfer it twice
  */
 
 #include <iostream>
@@ -54,7 +56,7 @@ public:
     }
 
     // Move assignment
-    // - res is moved to temporary object (to the source variable)
+    // - 'res' is moved to temporary object (to the source variable)
     Auto_ptr4& operator=(Auto_ptr4&& source) noexcept
     {
         if(&source == this)
@@ -81,20 +83,20 @@ public:
 
 Auto_ptr4<Resource> generateResource()
 {
-	Auto_ptr4<Resource> res(new Resource); // 1.a Resource is created, calling Resource constructor
-                                           // 1.b res is initialized, calling Auto_ptr4 constructor
-	return res; // 2. Temporary object is initialized when returning res, calling move constructor
-                //     - the C++ specification has a special rule that says:
-                //       automatic objects returned from a function by value can be moved even if they are l-values
+	Auto_ptr4<Resource> res(new Resource); // 1.a 'Resource' is created, calling 'Resource' constructor
+                                           // 1.b 'res' is initialized, calling 'Auto_ptr4' constructor
+	return res; // 2. Temporary object is initialized when returning 'res', calling move constructor
+                //     - the C++ specification has a special rule that says: Automatic objects returned
+                //       from a function by value can be moved even if they are l-values
 } 
 
 int main()
 {
     std::cout << "*****************************************************\n";
 
-	Auto_ptr4<Resource> mainres; // 0. Calling Auto_ptr3 constructor
-	mainres = generateResource(); // 3. Temporary object is moved to mainres.ptr
+	Auto_ptr4<Resource> mainres; // 0. Calling 'Auto_ptr3' constructor
+	mainres = generateResource(); // 3. Temporary object is moved to 'mainres', calling move assignment
 
     std::cout << "*****************************************************\n";
 	return 0;
-} // 4. mainres is deleted, calling destructor
+} // 4. 'mainres' is deleted, calling destructor

@@ -80,12 +80,12 @@ int main()
     std::cout << "*****************************************************\n";
 
 	Auto_ptr2<Resource> res1(new Resource());
-	Auto_ptr2<Resource> res2; // Start as nullptr
+	Auto_ptr2<Resource> res2; // Start as 'nullptr'
 
 	std::cout << "res1 is " << (res1.isNull() ? "null\n" : "not null\n");
 	std::cout << "res2 is " << (res2.isNull() ? "null\n" : "not null\n");
 
-	res2 = res1; // res2 assumes ownership, res1 is set to null
+	res2 = res1; // 'res2' assumes ownership, 'res1' is set to 'null'
 
     std::cout << "-----------------------------------\n";
 	std::cout << "Ownership transferred\n";

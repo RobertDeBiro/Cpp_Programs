@@ -13,16 +13,16 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-	// allocate a Resource object and have it owned by std::shared_ptr
+	// allocate a 'Resource' object and have it owned by 'std::shared_ptr'
 	auto ptr1 { std::make_shared<Resource>() };
 	{
-		auto ptr2 { ptr1 }; // create ptr2 using copy of ptr1
+		auto ptr2 { ptr1 }; // create 'ptr2' using copy of 'ptr1'
 
 		std::cout << "Killing one shared pointer\n";
-	} // ptr2 goes out of scope here, but nothing happens
+	} // 'ptr2' goes out of scope here, but nothing happens
 
 	std::cout << "Killing another shared pointer\n";
 
     std::cout << "*****************************************************\n";
 	return 0;
-} // ptr1 goes out of scope here, and the allocated Resource is destroyed
+} // 'ptr1' goes out of scope here, and the allocated 'Resource' is destroyed

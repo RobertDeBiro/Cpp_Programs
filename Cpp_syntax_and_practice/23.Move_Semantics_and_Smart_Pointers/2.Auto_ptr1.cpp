@@ -5,6 +5,8 @@
  *      - no memory leak - pointer deleted
  *  - bad:
  *      - copy constructor can try to delete memory twice - 'SIGTRAP abort' exception
+ *      - that is because there is no custom copy constructor but rather default one is used
+ *        (shallow copy constructor)
  */
 
 #include <iostream>
@@ -29,7 +31,7 @@ public:
 		delete m_ptr;
 	}
 
-	// Overload dereference and operator-> so we can use Auto_ptr1 like m_ptr.
+	// Overload dereference and 'operator->' so we can use 'Auto_ptr1' like 'm_ptr'
 	T& operator*() const { return *m_ptr; }
 	T* operator->() const { return m_ptr; }
 };
