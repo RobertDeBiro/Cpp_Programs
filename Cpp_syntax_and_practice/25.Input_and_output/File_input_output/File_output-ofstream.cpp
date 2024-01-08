@@ -5,13 +5,13 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // Create a std::ofstream variable used for output data to a file
-    //  - std::ofstream variable is initialized with the file
+    // Create a 'std::ofstream' variable used for output data to a file
+    //  - 'std::ofstream' variable is initialized with the file
     //  - it can be existing file, or if file doesn't exist, program will create it
     //  - we are setting absolute path to the file
-    //  - if we write only "Sample.txt" are file would be saved in directory where compiler is saved
-    //    which is C:\msys64\mingw64\bin
-    std::ofstream outf{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt" };
+    //  - if we write only "Sample2.txt" our file would be saved in directory where compiler is saved
+    //    which is "C:\msys64\mingw64\bin"
+    std::ofstream outf{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample2.txt" };
 
     if(!outf)
     {
@@ -31,8 +31,8 @@ int main()
 
     outf.close(); // explicitly close the file
 
-    // Open Sample file and append data to it
-    outf.open("C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt", std::ios::app);
+    // Open "Sample2.txt" file and append data to it by using 'std::ios::app' ios file mode
+    outf.open("C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample2.txt", std::ios::app);
 
     outf << "This is line 3\n";
     outf.close();
@@ -40,5 +40,4 @@ int main()
     std::cout << "*****************************************************\n";
     return 0;
 }
-// When outf goes out of scope, the ofstream
-// destructor will close the file
+// When 'outf' goes out of scope, the 'ofstream' destructor will close the file

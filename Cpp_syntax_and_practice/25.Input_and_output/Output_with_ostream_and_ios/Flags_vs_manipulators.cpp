@@ -4,7 +4,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // showpos
+    //* 'showpos'
     std::cout.setf(std::ios::showpos);
     std::cout << 27 << '\n';
     std::cout.unsetf(std::ios::showpos);
@@ -17,11 +17,13 @@ int main()
 
     std::cout << "-------------------------\n";
 
-    // uppercase
+    //* 'uppercase'
     std::cout.setf(std::ios::uppercase);
     std::cout << 1234567.89f << '\n';
+    std::cout << "hello" << '\n';
     std::cout.unsetf(std::ios::uppercase);
     std::cout << 1234567.89f << '\n';
+    std::cout << "hello" << '\n';
 
     std::cout << std::uppercase;
     std::cout << 1234567.89f << '\n';
@@ -30,10 +32,10 @@ int main()
 
     std::cout << "-------------------------\n";
 
-    // hex
+    //* 'hex'
     std::cout.setf(std::ios::hex, std::ios::basefield);
     std::cout << 27 << '\n';
-    std::cout.unsetf(std::ios::hex); // when using unset it is not needed to add format group
+    std::cout.unsetf(std::ios::hex); // when using 'unsetf' it is not needed to add format group
     std::cout << 27 << '\n';
 
     std::cout << std::hex;

@@ -4,8 +4,8 @@
  *  class Traits = std::char_traits<CharT>
  * > class basic_istream : virtual public std::basic_ios<CharT, Traits>
  *
- *  - std::cin is object of a "basic_istream" class
- *  - basic_istream class is included in <iostrem> library
+ *  - 'std::cin' is object of a 'basic_istream' class
+ *  - 'basic_istream' class is included in 'iostream' library
  * 
  * References:
  *  - https://en.cppreference.com/w/cpp/io/basic_istream
@@ -24,15 +24,17 @@ int main()
         std::cout << "Enter a number between 1 and 9: ";
         std::cin >> number;
 
-        // If the user entered something invalid, e.g. letter, std::cin.fail() returns true
+        // If the user entered something invalid, e.g. letter, 'std::cin.fail()' returns 'true'
         if (std::cin.fail())
         {
+            std::cout << "You entered invalid data! Clearing the data and starting again.\n";
             std::cin.clear(); // reset any error flags
+
+            // Ignore every character in the buffer until encountering newline ('\n')
+            //  - for example, if we enter "4k kk", extraction operator won't fail,
+            //    and "k kk" will be ignored when encountering next 'std::cout' and insertion operator (<<)
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-        // Ignore every character in the buffer until encountering newline (\n)
-        //  - for example, if we enter "4k kk", extraction operator won't fail,
-        //    and "k kk" will be ignored when encountering next std::cout and insertion operator (<<)
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } while(number < 1 || number > 9);
 
     std::cout << "Number " << number << " is in proper scope!\n";

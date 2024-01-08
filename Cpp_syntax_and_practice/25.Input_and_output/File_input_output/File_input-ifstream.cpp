@@ -6,8 +6,8 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // Create a std::ifstream variable used for input data from a file
-    std::ifstream inf{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample1.txt" };
+    // Create a 'std::ifstream' variable used for input data from a file
+    std::ifstream inf{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
 
     if(!inf)
     {
@@ -15,9 +15,10 @@ int main()
         return 1;
     }
 
-    // Read from the file until there's still stuff left to read - whitespace splitting
-    //  - when whitespace is encountered, extraction operator stops retrieving from file
-    //    and goes to the next line for next iteration of retrieving
+    //********** Whitespace splitting **********
+    // - when whitespace is encountered, extraction operator stops retrieving from file
+    //   and goes to the next line for next iteration of retrieving
+    // - with 'while' loop we are reading from the file until there's still stuff left to read
     while(inf)
     {
         // read stuff from the file into a string and print it
@@ -29,13 +30,15 @@ int main()
     std::cout << "-------------------------------------------\n";
 
     // We came to the end of the file, so inf has the value of EOF
-    //  - run inf.clear() to reset it
-    //  - run inf.seekg(0) to go to the beginning
-    //     - seekg stands for seek and get
+    //  - run 'inf.clear()' to reset it
+    //  - run 'inf.seekg(0)' to go to the beginning i.e. to change the read position
+    //     - 'seekg' stands for seek and get
     inf.clear();
     inf.seekg(0);
 
-    // Read from the file until there's still stuff left to read - newline splitting
+    //********** Newline splitting **********
+    // - 'std::getline' reads everything from the line
+    // - with 'while' loop we are reading from the file until there's still stuff left to read
     while(inf)
     {
         // read stuff from the file into a string and print it
@@ -47,5 +50,4 @@ int main()
     std::cout << "*****************************************************\n";
     return 0;
 }
-// When inf goes out of scope, the ifstream
-// destructor will close the file
+// When 'inf' goes out of scope, the 'ifstream' destructor will close the file

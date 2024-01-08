@@ -11,7 +11,7 @@ int main()
     std::cout << c * (a + b) << std::endl; // 18
     std::cout << (0==0) << std::endl; // 1
     std::cout << ("0==0") << std::endl; // Parenthesis only serve for precedence in evaluation -
-                                        // std::cout prints as a string only between quotes
+                                        // 'std::cout' prints as a string only between quotes
     std::cout << "(0==0)" << std::endl;
 
     std::cout << "*****************************************************\n";

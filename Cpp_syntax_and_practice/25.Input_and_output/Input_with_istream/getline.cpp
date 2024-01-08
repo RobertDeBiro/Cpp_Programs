@@ -8,7 +8,7 @@ int main()
     // Read up to 10 more characters
     //  - when typing e.g. "Hello!", everything will be saved inside input buffer,
     //    together with whitespace characters and newline
-    //  - in this way we are avoiding the issue appeared in cin_get() function 
+    //  - in this way we are avoiding the issue appeared in 'std::cin.get()' function 
     char strBuf[11];
     std::cout << "Please, type Hello!:\n";
     std::cin.getline(strBuf, 11);

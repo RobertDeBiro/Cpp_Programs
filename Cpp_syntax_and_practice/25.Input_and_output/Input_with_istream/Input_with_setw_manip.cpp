@@ -2,8 +2,6 @@
  * setw(int n)
  *  - setw = set width
  * 
- *  - included in <iomanip>
- * 
  * References:
  *  - https://en.cppreference.com/w/cpp/io/manip/setw
  */
@@ -18,16 +16,17 @@ int main()
 
     // When typing "MoreThenTenChars", everything is fine,
     // even though it shouldn't be since 16 characters are generated
-    //  - but I noticed that if 18 or more chars are generated, than program starts behave strangly,
-    //    or segmentation fault exception occurs ?!?!
+    //  - maybe this works in my compiler, but in some others maybe it won't work
     char buf1[10];
     std::cout << "Type in more then 10 characters (without space): \n";
     std::cin >> buf1;
     std::cout << buf1;
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << '\n';
     std::cout << "\n---------------------------------\n";
 
-    // Retrieve 10 characters placed inside std::cin buffer, and put them into a variable
+    // Retrieve 10 characters placed inside 'std::cin' buffer, and put them into a variable
     char buf2[10];
     std::cout << "Type in more then 10 characters (without space): \n";
     std::cin >> std::setw(10) >> buf2;

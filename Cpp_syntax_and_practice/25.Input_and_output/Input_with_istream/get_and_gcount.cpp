@@ -16,7 +16,7 @@ int main()
     // except whitespace characters, since the extraction operator (>>) skips whitespace
     // (blanks, tabs, and newlines) 
     //  - hence, "Hello,mynameisRobertdeBiro" will be printed to the screen
-    //  - "ch != '!" is used so we don't have to manually break the while loop 
+    //  - "ch != '!'" is used so we don't have to manually break the while loop 
     char ch;
     std::cout << "Please, type some sentence (whitespaces won't be saved):\n";
     while (std::cin >> ch && ch != '!')
@@ -26,7 +26,8 @@ int main()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "\n--------------------------------\n";
 
-    // Save whitespaces, but don't save newline
+    // With 'std::cin.get()' function we are saving character by character, so we will eventually
+    // have saved whitespaces also, and we will have output: "Hello, my name is Robert de Biro!"
     std::cout << "Please, type some sentence (whitespaces will be saved):\n";
     while (std::cin.get(ch) && ch != '!')
         std::cout << ch;
@@ -36,14 +37,14 @@ int main()
     std::cout << "\n--------------------------------\n";
 
     // Restrict number of characters saved in input buffer
-    //  - the same feature as std::setw, except std::cin.get() includes also whitespaces
+    //  - the same feature as 'std::setw', except 'std::cin.get()' includes also whitespaces
     //  - input: Hello, my name is Robert
-    //  - output: "Hello, my " + null terminator at the end 
+    //  - output: "Hello, my " + null terminator at the end
     char strBuf1[11];
     std::cout << "Please, type sentence more than 11 characters (output will be restricted to 10 chars)!:\n";
     std::cin.get(strBuf1, 11);
     std::cout << strBuf1 << '\n';
-    // Retrieve how many characters were extracted by the last usage of std::cin
+    // Retrieve how many characters were extracted by the last usage of 'std::cin'
     std::cout << std::cin.gcount() << " characters were read" << '\n';
 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -63,9 +64,14 @@ int main()
 
     std::cout << "--------------------------------\n";
 
-    // Since std::cin.get collected in strBuf only newline, error appeared (but not showed)
+    // Since 'std::cin.get' collected in 'strBuf' only newline, error appeared (but not showed)
     // and needs to be cleared
     std::cin.clear();
+
+    //* Read string with 'std::cin.get()'
+    //  - doesn't work
+    //! std::string strBuf3;
+    //! std::cin.get(strBuf3, 11);
 
     std::cout << "*****************************************************\n";
     return 0;

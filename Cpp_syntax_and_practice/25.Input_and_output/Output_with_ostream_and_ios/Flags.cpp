@@ -19,11 +19,9 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    /*
-     * std::ios::showpos
-     *  - print a '+' sign in front of positive numbers
-     */
-    std::cout.setf(std::ios::showpos); // turn on the std::ios::showpos flag
+    //* 'std::ios::showpos'
+    //  - print a '+' sign in front of positive numbers
+    std::cout.setf(std::ios::showpos); // turn on the 'std::ios::showpos' flag
     std::cout << 27 << '\n';
 
     std::cout.unsetf(std::ios::showpos); // turn off the std::ios::showpos flag
@@ -31,21 +29,17 @@ int main()
 
     std::cout << "------------------------------------\n";
 
-    /*
-     * std::ios::uppercase
-     *  - print scientific notation symbol 'e' in upper case
-     */
+    //* 'std::ios::uppercase'
+    //  - print scientific notation symbol 'e' in upper case
     std::cout << 1234567.89f << '\n';
     std::cout.setf(std::ios::uppercase);
     std::cout << 1234567.89f << '\n';
 
     std::cout << "------------------------------------\n";
 
-    /*
-     * std::ios::hex
-     *  - print number in hexadecimal format
-     *  - belongs to "std::ios::basefield" format group
-     */
+    //* 'std::ios::hex'
+    //  - print number in hexadecimal format
+    //  - belongs to 'std::ios::basefield' format group
     std::cout.setf(std::ios::hex, std::ios::basefield);
     std::cout << 27 << '\n';
 

@@ -6,20 +6,21 @@
 
 namespace Files
 {
-    const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\EuropeCapitals.txt" };
-    const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\EuropeCapitals-Sorted.txt" };
+    const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals.txt" };
+    const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals-Sorted.txt" };
 }
 
 int main()
 {
     std::cout << "*****************************************************\n";
 
-    // inputFile object will represent file from which we will input the text
+    //********** Input from a file **********
+    // 'inputFile' object will represent file from which we will input the text
     std::ifstream inputFileObj;
 
     // Open an input file in order to use it inside the program
-    //  - if we don't initialize the ifstream object with the file when creating the object,
-    //    then we can assign a file to it by using open() member function
+    //  - if we don't initialize the 'ifstream' object with the file when creating the object,
+    //    then we can assign a file to it by using 'open()' member function
     inputFileObj.open(Files::inputFile);
 
     // Protection if something goes wrong while opening the file
@@ -33,17 +34,18 @@ int main()
     std::set<std::string> filterAndSort;
     std::string bufferWord;
     inputFileObj >> bufferWord;
-    while(inputFileObj.good()) // The same as while(inputFileObj)
+    while(inputFileObj.good()) // The same as 'while(inputFileObj)'
     {
         filterAndSort.insert(bufferWord);
         inputFileObj >> bufferWord;
     }
 
-    // outputFile object will represent file in which we will output the text
+    //********** Output to a file **********
+    // 'outputFile' object will represent file in which we will output the text
     std::ofstream outputFileObj;
     outputFileObj.open(Files::outputFile);
 
-    // Write filtered and sort events into new file
+    // Write filtered and sorted events into new file
     for(std::set<std::string>::iterator it = filterAndSort.begin(); it != filterAndSort.end(); it++)
     {
         outputFileObj << *it << std::endl;
