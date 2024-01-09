@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <cmath>
 
@@ -14,7 +15,7 @@ int main() {
     
     scanf("%d %d", &a, &b);
     update(pa, pb);
-    printf("%d\n%d", a, b);
+    printf("%d\n%d\n", a, b);
 
     std::cout << "*****************************************************\n";
     return 0;

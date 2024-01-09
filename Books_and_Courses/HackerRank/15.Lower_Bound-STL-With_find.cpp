@@ -35,7 +35,11 @@ int main() {
         else
         {
             lower = lower_bound(v.begin(), v.end(), elem);
-            std::cout << "No " << std::distance(v.begin(), lower) + 1 << '\n';
+            if (lower == v.end())
+                std::cout << "No " << std::distance(v.begin(), lower) << '\n';
+            else
+                std::cout << "No " << std::distance(v.begin(), lower) + 1 << '\n';
+
         }
     }
 

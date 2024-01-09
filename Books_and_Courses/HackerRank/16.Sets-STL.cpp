@@ -1,3 +1,21 @@
+/*
+ * Sample input:
+ * 8
+ * 1 9
+ * 1 6
+ * 1 10
+ * 1 4
+ * 3 6
+ * 3 14
+ * 2 6
+ * 3 6
+ * 
+ * Sample output:
+ * Yes
+ * No
+ * No
+ */
+
 #include <vector>
 #include <iostream>
 #include <set>

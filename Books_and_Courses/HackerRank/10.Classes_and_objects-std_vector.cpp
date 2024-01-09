@@ -10,6 +10,7 @@ public:
     void input()
     {
         int temp;
+        // Input 5 scores
         for(int i = 0; i < 5; i++)
         {
              cin >> temp;

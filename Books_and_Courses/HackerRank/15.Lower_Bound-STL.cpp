@@ -48,7 +48,10 @@ int main() {
         }
         else
         {
-            std::cout << "No " << std::distance(v.begin(), lower) + 1 << '\n';
+            if (lower == v.end())
+                std::cout << "No " << std::distance(v.begin(), lower) << '\n';
+            else
+                std::cout << "No " << std::distance(v.begin(), lower) + 1 << '\n';
         }
     }
 

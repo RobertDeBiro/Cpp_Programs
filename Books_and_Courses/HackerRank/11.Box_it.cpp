@@ -5,13 +5,13 @@
  *      - type == 1:
  *          - test default constructor and operator<<
  *      - type == 2:
- *          - test parameterized constructor (instantiate new Box)
+ *          - test parameterized constructor (instantiate new 'Box')
  *          - test copy assignment
  *          - test operator<<
  *      - ...
  */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -37,7 +37,7 @@ public:
     {
     }
 
-    // Copy assignment
+    // Copy assignment operator
     Box& operator==(const Box& box)
     {
         m_l = box.m_l;
@@ -46,7 +46,7 @@ public:
         return *this;
     }
 
-    // Functions must be 'const' in order to call them via const object Box from operator overloading
+    // Functions must be 'const' in order to call them via 'const' object 'Box' from operator overloading
     // functions
     int getLength() const { return m_l; }
     int getBreadth() const { return m_b; }
@@ -76,46 +76,46 @@ ostream& operator<< (ostream& out, const Box& box)
 void check2()
 {
 	int n;
-	cin>>n;
-	Box temp;
-	for(int i=0;i<n;i++)
+	cin >> n;
+	Box temp; // Test default constructor
+	for(int i = 0; i < n; i++)
 	{
 		int type;
-		cin>>type;
-		if(type ==1)
+		cin >> type;
+		if(type == 1)
 		{
-			cout<<temp<<endl;
+			cout << temp << endl; // test overload 'operator<<'
 		}
 		if(type == 2)
 		{
-			int l,b,h;
-			cin>>l>>b>>h;
-			Box NewBox(l,b,h);
-			temp=NewBox;
-			cout<<temp<<endl;
+			int l, b, h;
+			cin >> l >> b >> h;
+			Box NewBox(l, b, h); // Test parameterized constructor
+			temp = NewBox; // Test copy assignment operator
+			cout << temp << endl;
 		}
-		if(type==3)
+		if(type == 3)
 		{
-			int l,b,h;
-			cin>>l>>b>>h;
-			Box NewBox(l,b,h);
-			if(NewBox<temp)
+			int l, b, h;
+			cin >> l >> b >> h;
+			Box NewBox(l, b, h);
+			if (NewBox < temp) // Test overload 'operator<'
 			{
-				cout<<"Lesser\n";
+				cout << "Lesser\n";
 			}
 			else
 			{
-				cout<<"Greater\n";
+				cout << "Greater\n";
 			}
 		}
-		if(type==4)
+		if(type == 4)
 		{
-			cout<<temp.CalculateVolume()<<endl;
+			cout << temp.CalculateVolume() << endl;
 		}
-		if(type==5)
+		if(type == 5)
 		{
-			Box NewBox(temp);
-			cout<<NewBox<<endl;
+			Box NewBox(temp); // Test copy constructor
+			cout << NewBox << endl;
 		}
 
 	}
@@ -125,6 +125,7 @@ int main()
 {
     cout << "*****************************************************\n";
 
+	// Function used to test 'Box' class
 	check2();
 
     cout << "*****************************************************\n";

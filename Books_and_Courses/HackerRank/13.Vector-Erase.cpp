@@ -22,16 +22,22 @@ int main() {
 
     // Inserts elements in vector
     //  - since we used direct initialization, we can assign vector just like we would do with array,
-    //    we don't have to use push_back()
+    //    we don't have to use 'push_back()'
     vector<int> v(n);
     for(int i = 0; i < n; i++)
         cin >> v[i];
 
-    int er_index;
-    cin >> er_index;
+    int er_position;
+    cin >> er_position;
+    int er_index = er_position - 1;
 
-    v.erase(v.begin() + (er_index - 1));
+    //* Erase only one element
+    //  - we must erase 
+    //  - 'erase' receives iterator as input
+    v.erase(v.begin() + er_index);
 
+    //* Erase multiple elements
+    //  - elements are removed in range '[first, last)' -> 'last' not included
     int range1, range2;
     cin >> range1 >> range2;
     v.erase(v.begin() + (range1 - 1), v.begin() + (range2 - 1));
