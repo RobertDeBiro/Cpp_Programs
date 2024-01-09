@@ -15,6 +15,8 @@ void f1(T& param)
     std::cout << "------------------------------\n";
 }
 
+// If we send 'const int' argument to 'T', since we already have 'const' that makes 'param' unchangeable
+// only 'int' data type would substitute 'T' and not 'const int', since 'const' would be redundant
 template<typename T>
 void f2(const T& param)
 {
@@ -32,7 +34,7 @@ int main()
     const int cx = x;
     const int& rx = x;
 
-    // param is reference
+    //* Function parameter is reference
     std::cout << "f1(x): \n";
     f1(x);
 
@@ -42,7 +44,9 @@ int main()
     std::cout << "f1(rx): \n";
     f1(rx);
 
-    // param is reference to const
+    /////////////////////////////////////////////////////////////////////
+
+    //* Function parameter is reference to const
     std::cout << "f2(x): \n";
     f2(x);
 

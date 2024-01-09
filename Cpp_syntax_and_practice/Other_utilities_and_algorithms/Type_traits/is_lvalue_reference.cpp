@@ -35,10 +35,10 @@ int main()
     int& rx = x;
     A a;
 
-    // ERROR: we cannot check the reference of an object
-    //std::cout << "x reference = " << std::is_lvalue_reference<x>::value << '\n';
-    //std::cout << "rx reference = " << std::is_lvalue_reference<rx>::value << '\n';
-    //std::cout << "a reference = " << std::is_lvalue_reference<a>::value << '\n';
+    // We cannot check the reference of an object, we can check only reference of a type
+    //! std::cout << "x reference = " << std::is_lvalue_reference<x>::value << '\n';
+    //! std::cout << "rx reference = " << std::is_lvalue_reference<rx>::value << '\n';
+    //! std::cout << "a reference = " << std::is_lvalue_reference<a>::value << '\n';
 
     std::cout << "A reference = " << std::is_lvalue_reference<A>::value << '\n';
     

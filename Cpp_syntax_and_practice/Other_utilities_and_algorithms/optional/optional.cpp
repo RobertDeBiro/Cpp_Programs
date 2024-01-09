@@ -1,8 +1,4 @@
 /*
- * class optional
- * 
- *  - included in <optional>
- * 
  * References:
  *  - https://en.cppreference.com/w/cpp/utility/optional
  */
@@ -23,7 +19,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // If checkText function doesn't return anything, we will printout default text "Invalid"
+    // If 'checkText' function doesn't return anything, we will printout default text "Invalid"
     std::cout << "Function checkText is " << checkText(true).value_or("Invalid") << '\n';
     std::cout << "Function checkText is " << checkText(false).value_or("Invalid") << '\n';
 

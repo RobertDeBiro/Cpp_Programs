@@ -13,7 +13,7 @@ int main() {
 
     Timer t;
 
-    int n = 8;
+    int n = 14;
     int elem;
     vector<int> v;
     for(int i = 0; i < n; i++)
@@ -21,7 +21,7 @@ int main() {
         v.push_back(i);
     }
 
-    int q = 4;
+    int q = 5;
 
     vector<int>::iterator it_elem, lower;
     for(int i = 0; i < q; i++)
@@ -30,16 +30,19 @@ int main() {
         lower = lower_bound(v.begin(), v.end(), elem);
         if(elem == *lower)
         {
-            std::cout << "Yes " << std::distance(v.begin(), lower) + 1 << '\n';
+            std::cout << "Element is found in index: " << std::distance(v.begin(), lower) << '\n';
         }
         else
         {
-            std::cout << "No " << std::distance(v.begin(), lower) + 1 << '\n';
+            std::cout << "Element is not found! lower = " << *lower << "; lower bound index = "
+                      << std::distance(v.begin(), lower) << '\n';
         }
     }
 
     std::cout << "Time taken: " << t.elapsed() << " seconds\n";
-    // Time elapsed in average: 0.00177 s
+    // Time elapsed in average: 0.002481 s
+    // - this program is little bit faster than the same one, but with 'find()' function because here we use
+    //   one STL function less
 
     cout << "*****************************************************\n";
     return 0;

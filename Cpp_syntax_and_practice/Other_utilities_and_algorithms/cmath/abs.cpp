@@ -1,8 +1,4 @@
 /*
- * abs( int n ) -> int
- *
- *  - included in <cmath>
- * 
  * References:
  *  - https://en.cppreference.com/w/cpp/numeric/math/abs
  */

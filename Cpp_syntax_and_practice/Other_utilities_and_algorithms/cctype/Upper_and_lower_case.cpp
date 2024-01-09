@@ -1,3 +1,9 @@
+/*
+ * References:
+ *  - https://en.cppreference.com/w/cpp/string/byte/toupper
+ *  - https://en.cppreference.com/w/cpp/string/byte/tolower
+ */
+
 #include <iostream>
 #include <cctype>
 
@@ -5,7 +11,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    std::string word{ "hello world!" };
+    std::string word{ "Hello World!" };
 
     for(auto& c : word)
     {

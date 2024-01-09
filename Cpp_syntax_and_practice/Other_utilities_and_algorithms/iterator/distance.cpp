@@ -1,11 +1,4 @@
 /*
- * template< class InputIt >
- * distance( InputIt first, InputIt last ) -> typename std::iterator_traits<InputIt>::difference_type
- * 
- *  - with this function we can get index of container for the particular iterator position
- * 
- *  - included in <iterator>
- * 
  * References:
  *  - https://en.cppreference.com/w/cpp/iterator/distance
  */
@@ -19,9 +12,11 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
+    //* Obtain container size
     std::vector<int> v{ 1, 2, 3, 4, 5 };
     std::cout << "distance(first, last) = " << std::distance(v.begin(), v.end()) << '\n';
     
+    //* Obtain container index for the particular iterator position
     int elem{ 4 };
     auto it_find{ std::find(v.begin(), v.end(), elem) };
     auto index{ std::distance(v.begin(), it_find) };

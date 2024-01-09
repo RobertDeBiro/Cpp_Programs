@@ -26,10 +26,10 @@ int main()
      *  3) 0.0005865 s
      *  - average = 0.0005089 s
      * 
-     * Selection sort: manually vs. std::sort algorithm
+     * Selection sort: manually vs. 'std::sort' algorithm
      *  - 0.219653 / 0.0005089 = 431.6231
      *
-     *  -> std::sort is 431 times faster!!
+     *  -> 'std::sort' is 431 times faster!!
      */
     std::cout << "Time taken: " << t.elapsed() << " seconds\n";
 
