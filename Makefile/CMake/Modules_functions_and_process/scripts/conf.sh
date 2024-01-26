@@ -1,3 +1,7 @@
 #!/bin/bash
 
-cmake -S ../ -B ../out/build -G "MinGW Makefiles"
+##### Windows version #####
+# cmake -S ../ -B ../out/build -G "MSYS Makefiles"
+
+##### Linux version #####
+cmake -S ../ -B ../out/build

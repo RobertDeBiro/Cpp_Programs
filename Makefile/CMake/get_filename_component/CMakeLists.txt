@@ -1,9 +1,12 @@
 message(STATUS "*****************************************************")
 
-cmake_minimum_required(VERSION 3.24.1)
+# Setting cmake depending on the installed version
+# cmake_minimum_required(VERSION 3.26.3)
+cmake_minimum_required(VERSION 3.22.1)
+
 project(Misc)
 
-set(FILE_VAR /c/Users/Robert/Desktop/IT/Programs/VSCode/Cpp/Makefile_practice/CMake/Miscellaneous/filename.txt)
+set(FILE_VAR /home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/get_filename_component/filename.txt)
 message(STATUS "Filename path: ${FILE_VAR}")
 
 get_filename_component(VAR ${FILE_VAR} DIRECTORY)

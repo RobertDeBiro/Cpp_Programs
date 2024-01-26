@@ -1,19 +1,22 @@
-# make command executes only first target
-#  - if first target needs some dependencies, than make looks for other targets
+# 'make' command executes only first target
+#  - if first target needs some dependencies, than 'make' looks for other targets
 #    and executes them
-#  - hence, when running "make" command, target "clean" is not executed
+#  - hence, when running 'make' command, target 'clean' is not executed
 
-make.exe: main.o Message.o
-	g++ obj/main.o obj/Message.o -o main.exe
-	mv main.exe bin
+make.exe: obj/main.o obj/Message.o | bin
+	g++ obj/main.o obj/Message.o -o bin/main.exe
 
-main.o: main.cpp
-	g++ -c main.cpp
-	mv main.o obj
+obj/main.o: main.cpp | obj
+	g++ -c main.cpp -o obj/main.o
 
-Message.o: Message.cpp Message.hpp
-	g++ -c Message.cpp
-	mv Message.o obj
+obj/Message.o: Message.cpp Message.hpp | obj
+	g++ -c Message.cpp -o obj/Message.o
+
+obj:
+	mkdir -p obj
+
+bin:
+	mkdir -p bin
 
 clean:
-	rm -r obj/Message.o obj/main.o bin/main.exe
+	rm -rf obj bin

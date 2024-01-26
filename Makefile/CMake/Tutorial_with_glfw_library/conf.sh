@@ -1,3 +1,7 @@
 #!/bin/bash
 
-cmake -DGLFW_BUILD_DOCS=OFF -S . -B out/build -G "MinGW Makefiles"
+##### Windows version #####
+# cmake -DGLFW_BUILD_DOCS=OFF -S . -B ../out/build -G "MSYS Makefiles"
+
+##### Linux version #####
+cmake -DGLFW_BUILD_DOCS=OFF -S . -B ../out/build

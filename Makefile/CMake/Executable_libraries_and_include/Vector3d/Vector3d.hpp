@@ -1,7 +1,7 @@
 #ifndef VECTOR3D_HPP
 #define VECTOR3D_HPP
 
-#include "Point3d.hpp" // Point3d class definition included
+#include "Point3d.hpp" // 'Point3d' class definition included
 
 class Vector3d
 {
@@ -20,8 +20,8 @@ public:
 	void print() const;
 
 	// If we want to use function from other class, that class needs to be defined first - 
-	// therefore, Point3d.h was included at the beginning of the file
-	//  - moveByVector needs to be friend function in order to access Vector3d private members
+	// therefore, 'Point3d.h' was included at the beginning of the file
+	//  - 'moveByVector' needs to be friend function in order to access 'Vector3d' private members
 	friend void Point3d::moveByVector(const Vector3d& v);
 };
 

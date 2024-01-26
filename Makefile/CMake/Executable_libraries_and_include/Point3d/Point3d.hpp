@@ -1,7 +1,7 @@
 #ifndef POINT3D_HPP
 #define POINT3D_HPP
 
-class Vector3d; // Vector3d class declaration
+class Vector3d; // 'Vector3d' class declaration
 
 class Point3d
 {
@@ -19,8 +19,8 @@ public:
 
 	void print() const;
 
-	// If we want to declare function that uses Vector3d class,
-	// we need to at least see Vector3d declaration
+	// If we want to declare function that uses 'Vector3d' class,
+	// we need to at least see 'Vector3d' declaration
 	void moveByVector(const Vector3d& v);
 
 	void moveByMacro(int macro);
