@@ -24,6 +24,20 @@ execute_process( # https://cmake.org/cmake/help/latest/command/execute_process.h
     )
 )
 #----------------------------------------------------------------------------------------------------------#
+file( # https://cmake.org/cmake/help/latest/command/file.html
+
+    # Generate a list of files that match globbing expression 'assets/*' (save every file from assets dir)
+    # and store those files inside 'RESOURCE_SOURCES'
+    #  - 'GLOB_RECURSE' is mode
+    file(GLOB_RECURSE RESOURCE_SOURCES assets/*)
+)
+#----------------------------------------------------------------------------------------------------------#
+find_program( # https://cmake.org/cmake/help/latest/command/find_program.html
+    
+    # Find a program called 'glib-compile-resources' and save it to 'GLIB_COMPILE_RESOURCES' variable
+    find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
+)
+#----------------------------------------------------------------------------------------------------------#
 foreach( # https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
 
     set(A 0;1)
