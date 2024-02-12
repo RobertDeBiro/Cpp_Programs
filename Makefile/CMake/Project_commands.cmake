@@ -147,9 +147,9 @@ target_sources( # https://cmake.org/cmake/help/latest/command/target_sources.htm
 ########## Obsolete / not_preffered commands ##########
 add_definitions( # https://cmake.org/cmake/help/latest/command/add_definitions.html"
 
-    # Add -D define flags to the compilation of source files    
+    # Add '-D' define flags to the compilation of source files    
     #  - used to add any flags, but primarily intended to add preprocessor definitions
-    #  - hence, following example is almost the same at example with add_compile_definitions()
+    #  - hence, following example is almost the same as example with 'add_compile_definitions()'
     add_definitions(-DRANDOM_MACRO_VAL=1000 -DRANDOM_MACRO)
 
     # - Alternatives (https://cmake.org/cmake/help/latest/command/add_compile_definitions.html):

@@ -1,0 +1,144 @@
+@startuml Sequence_diagram_template
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Hiding participant boxes at the bottom of sequence
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+hide footbox
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Setting space between participants
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+skinparam ParticipantPadding 50
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Title
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+title This is one brilliant sequence!
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Participants: creation, multiple string name, multiple line name, alias, colors, fonts
+'	- alias
+'		- created by using keyword 'as'
+'	- color:
+'		- default color is grey
+'		- #E3DFDE is nuanse of grey color usually used for external nodes
+'		- can be marked as:
+'			- string
+'			- HTML code
+'	- fonts:
+'		- **bold**
+'		- //italics//
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+participant Participant1 <<Stereotip>>
+participant Participant2 #white
+participant "//Long name// participant" #E3DFDE
+participant "I have a really\n **long name** participant" as Long #99FF99
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Box
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+box "Some_other_world" #LightBlue
+participant NewParticipant #orange
+end box
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Sending signal with data, signal color
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Participant1 -[#blue]> Participant2 : first_signal ( some_data )
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Optional box, multiple lines note, note color
+'	- every multiple line note must contain: end note
+'	- every opt must contain: end
+'	- F08080 is color usually used to indicate impacts
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+opt some_condition
+	note over Participant2 #F08080 
+		Multiple lines
+		note.
+	end note
+end
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Setting space between objects
+'	- between opt and alt we put 20 pixels
+'	- between alt and ref we put 50 pixels
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+||20||
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Alternative box, sending signal without data, font color
+'	- every alternative box must contain: alt, else, end
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+alt some_condition
+	note over Participant2 : One line note
+
+else other_condition
+	Participant2 -> "//Long name// participant" : <font color=red>second_signal
+
+end
+
+||50||
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Reference
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+ref over "//Long name// participant", Long
+<font color=brown>Some_reference
+end ref
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Divider
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+== <font color=purple>Something new will come below this divider ==
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Sending internal signal
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Long -> Long : some_internal_signal
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Participant creation during sequence flow
+'	- participant is first declared at the top of this file
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+create NewParticipant #white
+
+Long -> NewParticipant : new
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Delay
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+...//**<font color=blue>After some delay time**//...
+' Delay without any text can be implemented just by setting ...
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Dashed signal
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+NewParticipant --> Participant1 : Create_new_page
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' New page
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+newpage Some page title
+
+Participant1 -> NewParticipant : Thanks_for_the_new_page
+
+
+
+@enduml

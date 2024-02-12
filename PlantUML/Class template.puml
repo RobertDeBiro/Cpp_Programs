@@ -1,0 +1,100 @@
+@startuml
+' !include ElibInsX2apRetrieveUEContextFailureMsgD_UML.txt
+
+package "Overall" #AED6F1 {
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+package "Composition" #FDFEFE {
+
+abstract Class1 {
+	+ int public_member	
+	- double private_member
+	# std::string protected_member
+	- Class2 class_member
+	
+	+ void public_function()
+	- virtual float private_function()
+	# bool protected_function()
+}
+
+abstract Class2 {
+}
+
+}
+note "Class1 is <b>composed</b> from Class2" as Note1
+Composition .. Note1
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+package "Dependency" #FCF3CF {
+
+class Class3 <<Empty>> {
+}
+
+class Class4 {
+	friend class Class3
+	
+	-- Private data --
+	- const int member
+	.. Public data ..
+	+ const int function1()
+	+ const int function2() const
+}
+
+}
+note "Class4 has <b>dependency</b> towards Class3" as Note2
+Dependency .. Note2
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+package "Inheritance" #52BE80 {
+
+interface Class5 {
+	+ virtual int funct1() = 0
+	+ virtual double funct2() = 0
+}
+
+class Class6 {
+	+ virtual int funct1()
+	+ virtual double funct2()
+}
+
+}
+note "Class6 <b>inherits</b> from Class5" as Note3
+Inheritance .. Note3
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+package "Aggregation" #2471A3 {
+
+class Class7 {
+	- Class8* class_member
+	- Enum_examp enum_member
+}
+
+class Class8 {
+	-<color:blue>int blue_member</color>
+	-<color:red>int red_member</color>
+}
+
+enum Enum_examp {
+}
+
+}
+note "Class7 is <b>aggregated</b> from Class8" as Note4
+Aggregation .. Note4
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Class1 *-- Class2
+Class3 <-- Class4
+Class5 <|-- Class6
+Class7 o-- Class8
+Class7 *-- Enum_examp
+
+}
+
+'hide attributes
+'hide methods
+hide members
+
+@enduml
