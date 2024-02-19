@@ -26,7 +26,7 @@
 
 | Element access   | Capacity     | Modifiers          | Lookup        | Observers    |
 | :---             | :---         | :---               | :---          | :---         |
-| `at`             | 'empty'      | 'clear             | 'count'       | 'key_comp'   |
+| `at`             | 'empty'      | 'clear'            | 'count'       | 'key_comp'   |
 | `operator[]`     | `size`       | `insert`           | 'find'        | 'value_comp' |
 |                  | 'max_size'   | 'insert_or_assign' | 'contains'    |              |
 |                  |              | 'emplace'          | 'equal_range' |              |

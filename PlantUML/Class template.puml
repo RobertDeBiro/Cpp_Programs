@@ -1,4 +1,5 @@
-@startuml
+@startuml Class_template
+
 ' !include ElibInsX2apRetrieveUEContextFailureMsgD_UML.txt
 
 package "Overall" #AED6F1 {
