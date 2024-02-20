@@ -20,9 +20,11 @@ int main()
 
     t.detach();
 
-    // Just like with join(), thread cannot be detached twice
     if(t.joinable())
-        t.detach();
+    {
+        std::cout << "Detach thread\n";
+        t.join();
+    }
 
     cout << "main() after" << endl;
 

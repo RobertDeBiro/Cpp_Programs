@@ -19,25 +19,21 @@ int main()
 
     cout << "---------------------------------------" << endl;
 
-    /*
-     * Join the same thread, twice
-     */
+    //* Join the same thread, twice
     try
     {
         t.join();
     }
     catch(const std::system_error& e)
     {
-        // The same thread cannot be joined twice - std::system_error exception is thrown
+        // The same thread cannot be joined twice - 'std::system_error' exception is thrown
         cout << "EXCEPTION: " << e.what() << endl;
         cout << "The same thread cannot be joined twice" << endl;
     }
 
     cout << "---------------------------------------" << endl;
 
-    /*
-     * Check thread with joinable()
-     */
+    //* Check thread with 'joinable()'
     if(t.joinable())
     {
         t.join();

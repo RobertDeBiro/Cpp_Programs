@@ -1,5 +1,5 @@
 /*
- * Showing that, immediately after thread is started, main function doesn't wait for the return value,
+ * Showing that, immediately after thread is started, 'main()' function doesn't wait for the return value,
  * as it would usually do when using normal functions, but rather it continues with the execution.
  */
 
@@ -10,14 +10,14 @@ using namespace std;
 
 void run(int count)
 {
-    // Sleep for one second to wait parts from main() to be finished
+    // Sleep for 1 second to wait parts from 'main()' to be finished
     this_thread::sleep_for(chrono::seconds(1));
     
     while(count-- > 0)
         cout << "CppNuts" << endl;
 
-    // Sleep for two seconds to show that main() function - when encounters t.join() - will wait for
-    // thread to be finished
+    // Sleep for 2 seconds to show that 'main()' function - when encounters 't.join()' -
+    // will wait for thread to be finished
     this_thread::sleep_for(chrono::seconds(2));
 }
 

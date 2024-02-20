@@ -36,6 +36,10 @@ int main()
 
     ull start = 0, end = 1'900'000'000;
 
+    // 'std::thread' constructor called:
+    // template< class Function, class... Args >
+    // explicit thread( Function&& f, Args&&... args );
+    //  - 'start' and 'end' are arguments for thread functions
     std::thread t1(findEven, start, end);
     std::thread t2(findOdd, start, end);
 
