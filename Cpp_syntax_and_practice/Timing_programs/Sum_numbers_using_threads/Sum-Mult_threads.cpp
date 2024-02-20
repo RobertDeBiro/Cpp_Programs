@@ -21,9 +21,9 @@ int main()
 
     Timer t;
 
-    std::thread t1( SumNumbers, 0, 3000000 );
-    std::thread t2( SumNumbers, 3000001, 6000000 );
-    std::thread t3( SumNumbers, 6000001, 9000000);
+    std::thread t1( SumNumbers, 0, 3'000'000 );
+    std::thread t2( SumNumbers, 3'000'001, 6'000'000 );
+    std::thread t3( SumNumbers, 6'000'001, 9'000'000);
     t1.join();
     t2.join();
     t3.join();

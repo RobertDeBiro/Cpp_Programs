@@ -21,9 +21,9 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // When using non-static member function, we need to send function, but by address, since the funciton
+    // When using "non-static member function", we need to send function by address, since the funciton
     // is part of the class
-    //  - in addition we need also to send and object for which the function is called
+    //  - in addition we need also to send an object for which the function is called
     Base b;
     thread t(&Base::run, &b, 10);
     t.join();

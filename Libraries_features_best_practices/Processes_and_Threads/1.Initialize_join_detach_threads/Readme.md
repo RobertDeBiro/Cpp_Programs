@@ -1,8 +1,4 @@
-# Threads
-
----
-
-## `thread`
+# `thread`
 
 ```cpp
 #include <thread>
@@ -17,9 +13,11 @@ class thread
 - threads either needs to be joined or detached, because main thread must not be terminated if there
   is joinable thread present
 
-### Member functions
+---
 
-#### `detach()`
+## Member functions
+
+### `detach()`
 
 - used to detach the thread object from the associated thread of execution
 - when a thread is detached, it means that the thread of execution is no longer tied to the `std::thread` object

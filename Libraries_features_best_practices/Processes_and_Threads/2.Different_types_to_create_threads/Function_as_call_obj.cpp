@@ -5,7 +5,7 @@ using namespace std;
 
 void fun_call_obj(int x)
 {
-    // First x is evaluated, i.e. checked if it is bigger than 0, and then is decremented
+    // First 'x' is evaluated, i.e. checked if it is bigger than 0, and then is decremented
     while (x-- > 0)
     {
         cout << x << ' ';

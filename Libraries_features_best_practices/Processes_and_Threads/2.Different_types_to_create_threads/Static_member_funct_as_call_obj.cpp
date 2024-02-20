@@ -21,8 +21,8 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // When using static member function we don't need to instantiate an object and send it to
-    // thread() function
+    // When using "static member function" we don't need to instantiate an object and send it to
+    // 'thread()' function
     thread t(&Base::run, 10);
     t.join();
 

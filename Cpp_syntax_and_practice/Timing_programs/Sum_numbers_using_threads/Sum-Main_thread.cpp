@@ -12,7 +12,7 @@ int main()
     Timer t;
 
     unsigned int sum = 0;
-    for (unsigned int i = 0; i <= 9000000; ++i)
+    for (unsigned int i = 0; i <= 9'000'000; ++i)
     {
         sum += i;
     }
