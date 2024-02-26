@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
     //******************** Windows configurations ********************//
-        {   // Build active file
+        {   // Launch active file
             "name": "Win: (gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -31,7 +31,7 @@
             ],
             "preLaunchTask": "Win_C/C++: g++.exe build active file"
         },
-        {   // Build multiple files; with .hpp headers
+        {   // Launch multiple files; with .hpp headers
             "name": "Win: (gdb) Launch mult file prog, .hpp",
             "type": "cppdbg",
             "request": "launch",
@@ -57,7 +57,7 @@
             ],
             "preLaunchTask": "Win_C/C++: g++.exe build multiple files; with .hpp"
         },
-        {   // Build multiple files; with .h headers
+        {   // Launch multiple files; with .h headers
             "name": "Win: (gdb) Launch mult file prog, .h",
             "type": "cppdbg",
             "request": "launch",
@@ -83,7 +83,7 @@
             ],
             "preLaunchTask": "Win_C/C++: g++.exe build multiple files; with .h"
         },
-        {   // Build GoogleTest file
+        {   // Launch GoogleTest file
             "name": "Win: (gdb) Launch GoogleTest",
             "type": "cppdbg",
             "request": "launch",
@@ -109,7 +109,7 @@
             ],
             "preLaunchTask": "Win_C/C++: g++.exe build GoogleTest file"
         },
-        {   // Build timing file
+        {   // Launch timing file
             "name": "Win: (gdb) Launch timing prog",
             "type": "cppdbg",
             "request": "launch",
@@ -214,7 +214,7 @@
             "preLaunchTask": "Win_C/C++: g++.exe build multiple files; with .h"
         },
     //******************** Linux configurations ********************//
-        {   // Build active file
+        {   // Launch active file
             "name": "Lin: (gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -239,7 +239,7 @@
             ],
             "preLaunchTask": "Lin_C/C++: g++ build active file"
         },
-        {   // Build multiple files; with .hpp headers
+        {   // Launch multiple files; with .hpp headers
             "name": "Lin: (gdb) Launch mult file prog, .hpp",
             "type": "cppdbg",
             "request": "launch",
@@ -264,7 +264,7 @@
             ],
             "preLaunchTask": "Lin_C/C++: g++ build multiple files; with .hpp"
         },
-        {   // Build multiple files; with .h headers
+        {   // Launch multiple files; with .h headers
             "name": "Lin: (gdb) Launch mult file prog, .h",
             "type": "cppdbg",
             "request": "launch",
@@ -289,7 +289,7 @@
             ],
             "preLaunchTask": "Lin_C/C++: g++ build multiple files; with .h"
         },
-        {   // Build GoogleTest file
+        {   // Launch GoogleTest file
             "name": "Lin: (gdb) Launch GoogleTest",
             "type": "cppdbg",
             "request": "launch",
@@ -314,7 +314,7 @@
             ],
             "preLaunchTask": "Lin_C/C++: g++ build GoogleTest file"
         },
-        {   // Build timing file
+        {   // Launch timing file
             "name": "Lin: (gdb) Launch timing prog",
             "type": "cppdbg",
             "request": "launch",
@@ -338,6 +338,31 @@
                 }
             ],
             "preLaunchTask": "Lin_C/C++: g++ build timing files"
+        },
+        {   // Launch sqlite3 file
+            "name": "Lin: (gdb) Launch with sqlite3",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/bin/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":  "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Lin_C/C++: compile with sqlite3"
         },
         {   // Debug active file
             "name": "Lin: (gdb) Debug",

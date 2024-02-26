@@ -229,6 +229,31 @@
                 "$gcc"
             ],
             "group": "build"
+        },
+        {   // Build sqlite3 file
+            "type": "cppbuild",
+            "label": "Lin_C/C++: compile with sqlite3",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-Wall",
+                "-std=c++20",
+                "${file}",
+                "-lsqlite3",
+                "-o",
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
