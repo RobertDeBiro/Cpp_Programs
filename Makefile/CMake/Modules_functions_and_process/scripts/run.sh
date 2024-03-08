@@ -3,5 +3,5 @@
 ##### Windows version #####
 #cd ../out/build ; ./Adding_two_integers.exe
 
-##### Linus version #####
+##### Linux version #####
 cd ../out/build ; ./Adding_two_integers

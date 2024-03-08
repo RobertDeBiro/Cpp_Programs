@@ -17,3 +17,5 @@ add_subdirectory(Point3d)
 add_subdirectory(Vector3d)
 
 target_link_libraries(Multiple_classes_and_friend Point3d Vector3d)
+
+set(CMAKE_MODULE_PATH custom_modules)

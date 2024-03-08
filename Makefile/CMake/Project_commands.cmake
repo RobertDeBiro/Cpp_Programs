@@ -92,7 +92,7 @@ include_directories( # https://cmake.org/cmake/help/latest/command/include_direc
 #----------------------------------------------------------------------------------------------------------#
 link_directories( # https://cmake.org/cmake/help/git-stage/command/link_directories.html?highlight=link_directories
     
-    # Add directory "libs" in which the linker will look for libraries
+    # Add directory "libs" in which the linker will look for libraries to link
     link_directories(/my/libs)
 )
 #----------------------------------------------------------------------------------------------------------#
@@ -120,7 +120,6 @@ target_compile_definitions( # https://cmake.org/cmake/help/latest/command/target
     target_compile_definitions(coverity_analysis PUBLIC MQTT_DO_NOT_USE_CUSTOM_CONFIG=1 )
 )
 target_compile_features( # https://cmake.org/cmake/help/latest/command/target_compile_features.html
-
 )
 #----------------------------------------------------------------------------------------------------------#
 target_include_directories( # https://cmake.org/cmake/help/latest/command/target_include_directories.html

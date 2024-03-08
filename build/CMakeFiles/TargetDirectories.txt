@@ -1,0 +1,6 @@
+/home/robert/IT/Programs/Cpp_Programs/build/CMakeFiles/Usb_test.dir
+/home/robert/IT/Programs/Cpp_Programs/build/CMakeFiles/edit_cache.dir
+/home/robert/IT/Programs/Cpp_Programs/build/CMakeFiles/rebuild_cache.dir
+/home/robert/IT/Programs/Cpp_Programs/build/src/CMakeFiles/MediaManager.dir
+/home/robert/IT/Programs/Cpp_Programs/build/src/CMakeFiles/edit_cache.dir
+/home/robert/IT/Programs/Cpp_Programs/build/src/CMakeFiles/rebuild_cache.dir

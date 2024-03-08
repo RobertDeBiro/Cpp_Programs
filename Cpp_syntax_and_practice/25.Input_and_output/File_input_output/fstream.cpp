@@ -14,11 +14,8 @@ int main()
     // - sending two ios file modes:
     //    1. std::ios::in - opens the file in read mode
     //    2. std::ios::out - opens the file in write mode
-    std::fstream iofile
-    {
-        "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt",
-        std::ios::in | std::ios::out
-    };
+    const std::string filename{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
+    std::fstream iofile{filename, std::ios::in | std::ios::out};
 
     // If 'iofile' cannot be open, print an error
     if (!iofile)
@@ -30,7 +27,7 @@ int main()
 
     std::cout << "Current 'get pointer' position = " << iofile.tellg() << '\n';
 
-    char chChar{}; // we're going to do this character by character
+    char chChar{};
 
     // Get character by character from the file, while there's still data to process
     //! For some reason following part doesn't work as expected

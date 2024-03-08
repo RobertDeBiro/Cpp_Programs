@@ -24,7 +24,7 @@
 
 | Other     | Element access   | Capacity        | Modifiers       |
 | :---      | :---             | :---            | :---            |
-| `assign`  | `at`             | 'empty'         | 'clear'          |
+| `assign`  | `at`             | 'empty'         | 'clear'         |
 |           | `operator[]`     | `size`          | `insert`        |
 |           | 'front'          | 'max_size'      | `emplace`       |
 |           | 'back'           | `reserve`       | `erase`         |

@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/robert/IT/Programs/Cpp_Programs/build",
+  "command": "/usr/bin/c++ -I/home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/include -isystem /usr/local/include/libusb-1.0 -g -std=gnu++20 -o CMakeFiles/Usb_test.dir/main.cpp.o -c /home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/main.cpp",
+  "file": "/home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/main.cpp"
+},
+{
+  "directory": "/home/robert/IT/Programs/Cpp_Programs/build",
+  "command": "/usr/bin/c++ -I/home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/include -I/usr/local/include/libusb-1.0 -g -std=gnu++20 -o src/CMakeFiles/MediaManager.dir/MediaManager.cpp.o -c /home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/src/MediaManager.cpp",
+  "file": "/home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input/src/MediaManager.cpp"
+}
+]

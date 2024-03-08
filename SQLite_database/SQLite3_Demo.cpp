@@ -56,7 +56,8 @@ int main()
     //* Select data from the table
     const char* selectSQL = "SELECT * FROM COMPANY";
 
-    sqlite3_stmt* stmt; // prepared statement
+    // 'sqlite3_stmt' - data type that should contain prepared statement, i.e. statement ready for execution
+    sqlite3_stmt* stmt; // object that will be used to save prepared statement
     rc = sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
         std::cerr << "Failed to prepare statement: " << sqlite3_errmsg(db) << std::endl;
@@ -65,7 +66,13 @@ int main()
 
     //* Iterate over the result set
     std::cout << "Selected data from the table:" << std::endl;
-    while (sqlite3_step(stmt) == SQLITE_ROW) { // if equal, there is another row to iterate
+    // 'sqlite3_step'
+    //  - executes prepared statement
+    //  - together with macro 'SQLITE_ROW' and 'SQLITE_DONE' it can be used
+    //    to iterate until it reaches a stopping point
+    //    - equal to 'SQLITE_ROW' = another row to iterate
+    //    - equal to 'SQLITE_DONE' = no rows to iterate
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
         int id = sqlite3_column_int(stmt, 0);
         const unsigned char* name = sqlite3_column_text(stmt, 1);
         int age = sqlite3_column_int(stmt, 2);
@@ -76,7 +83,22 @@ int main()
                   << ", Address = " << address << ", Salary = " << salary << std::endl;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    rc = sqlite3_prepare_v2(db, "SELECT NAME FROM COMPANY", -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Failed to prepare statement: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    }
+
+    std::cout << "Selected data from the table:" << std::endl;
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        const unsigned char* name = sqlite3_column_text(stmt, 0);
+        std::cout << "Name = " << name << std::endl;
+    }
+
     //* Finalize the statement
+    //  - release all resources associated with a prepared statement
     sqlite3_finalize(stmt);
 
     //* Close database
