@@ -19,10 +19,9 @@ class MediaManager
     static std::map<std::string, std::vector<fs::path>> usbMap;
     static const fs::path mediaPath;
     static std::thread workerStoreDicoms;
-    static int countDir;
 
     /**
-     * @brief Callback called when a USB device is attached to the PC.
+     * @brief Callback called when an USB device is attached to the PC.
      *
      * This callback waits for the USB device to be mounted and then iterates through each and every
      * file present in the USB storage and saves DICOM files.
@@ -32,13 +31,11 @@ class MediaManager
     static int LIBUSB_CALL mediaAttached(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data);
     
     /**
-     * @brief Callback called when a USB device is detached from the PC.
-     *
-     * When USB is detached cleanup() is executed.
+     * @brief Callback called when an USB device is detached from the PC.
      */
     static int LIBUSB_CALL mediaDetached(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data);
 
-    static void checkMediaExisting();
+    // static void checkMediaExisting();
 
     /**
      * @brief Wait for the USB device to be mounted, with timeout of 20s defined.
@@ -93,4 +90,3 @@ inline libusb_device_handle* MediaManager::handle{ NULL };
 inline std::map<std::string, std::vector<fs::path>> MediaManager::usbMap;
 inline std::thread MediaManager::workerStoreDicoms;
 inline std::mutex MediaManager::mtx;
-inline int MediaManager::countDir{ 0 };

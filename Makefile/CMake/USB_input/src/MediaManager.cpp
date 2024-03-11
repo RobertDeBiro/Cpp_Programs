@@ -9,11 +9,7 @@
 
 MediaManager::~MediaManager()
 {
-	if (handle) {
-		libusb_close(handle);
-	}
-
-	// listenFlag = false;
+	MediaManager::cleanup();
 	libusb_exit(NULL);
 }
 
@@ -71,10 +67,19 @@ bool MediaManager::init()
 
 void MediaManager::startListening()
 {
+	// Enumerate existing USB devices
+	for(auto it = fs::directory_iterator(mediaPath); it != fs::directory_iterator(); it++)
+	{
+		auto usbDirPath = it->path().string();
+		std::cout << usbDirPath << std::endl;
+		std::cout << "Insert " << it->path().string() << " to usbMap!\n";
+		std::cout << "Start thread to read dicom files frob USB device!\n";
+		usbMap.insert({usbDirPath, {}});
+		workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
+		workerStoreDicoms.detach();
+	}
+
 	int rc;
-
-	checkMediaExisting();
-
 	while(true)
 	{
 		rc = libusb_handle_events_completed (NULL, NULL);
@@ -88,6 +93,7 @@ void MediaManager::startListening()
 
 void MediaManager::cleanup()
 {
+	std::cout << "****************** Cleanup ***************\n";
 	if (handle)
 	{
 		libusb_close(handle);
@@ -105,7 +111,7 @@ bool MediaManager::checkDeviceMount()
 	// 10 seconds will be maximum wait time for media device to mount
     std::chrono::seconds maxMountTime(10);
 
-	while(countDir >= countDirs())
+	while(usbMap.size() >= countDirs())
 	{
 		// Check if 10 seconds have passed
         auto currentTime = std::chrono::steady_clock::now();
@@ -115,24 +121,7 @@ bool MediaManager::checkDeviceMount()
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	}
 
-	countDir++;
 	return true;
-}
-
-// Function to enumerate existing USB devices
-void MediaManager::checkMediaExisting()
-{
-	for(auto it = fs::directory_iterator(mediaPath); it != fs::directory_iterator(); it++)
-	{
-		auto usbDirPath = it->path().string();
-		std::cout << usbDirPath << std::endl;
-		std::cout << "Insert " << it->path().string() << " to usbMap!\n";
-		std::cout << "Start thread to read dicom files frob USB device!\n";
-		usbMap.insert({usbDirPath, {}});
-		workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
-		workerStoreDicoms.detach();
-		countDir++;
-	}
 }
 
 int LIBUSB_CALL MediaManager::mediaAttached(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data)
@@ -165,13 +154,12 @@ int LIBUSB_CALL MediaManager::mediaAttached(libusb_context *ctx, libusb_device *
 			}
 		}
 	} else {
-		std::cout << "Device attached\n";
+		std::cout << "Error: Problems during device attachment!\n";
 		std::cerr << "Error getting device descriptor: "
 		          << libusb_strerror((enum libusb_error)rc) << '\n';
 	}
 
-	std::cout << "****************** Cleanup ***************\n";
-	MediaManager::cleanup();
+	// MediaManager::cleanup();
 	//! Send condition signal
 
 	return 0;
@@ -190,20 +178,24 @@ int LIBUSB_CALL MediaManager::mediaDetached(libusb_context *ctx, libusb_device *
 	}
 	else
 	{
-		std::cout << "Device detached\n";
+		std::cout << "Error: Problems during device detachment\n";
 		std::cerr << "Error getting device descriptor: "
 				  << libusb_strerror((enum libusb_error)rc) << '\n';
 	}
 
-	MediaManager::cleanup();
-	countDir--;
-
-	for(auto it = fs::directory_iterator(mediaPath); it != fs::directory_iterator(); it++)
+	for(auto& [device, files] : usbMap)
 	{
-		auto usbDirPath = it->path().string();
-		std::cout << usbDirPath << std::endl;
-		if(!usbMap.contains(usbDirPath))
+		bool found = false;
+		for(auto it = fs::directory_iterator(mediaPath); it != fs::directory_iterator(); it++)
 		{
+			if (it->path().string() == device)
+				found = true;
+		}
+		if (!found)
+		{
+			usbMap.erase(device);
+			break;
+		}
 	}
 	//! Send condition signal
 
@@ -221,10 +213,12 @@ void MediaManager::storeDicomFiles(std::string usbPath)
 			if (fs::is_regular_file(it->path()))
 			{
 				usbFilesTemp.push_back(it->path());
-				std::this_thread::sleep_for(std::chrono::milliseconds(500));
+				// std::this_thread::sleep_for(std::chrono::milliseconds(500));
 				std::cout << "File: " << it->path().string() << '\n';
 			}
 		}
+		std::lock_guard<std::mutex> lock(mtx);
+		usbMap[usbPath] = usbFilesTemp;
 	} catch (const fs::filesystem_error& ex) {
 		std::cerr << "Caught filesystem_error: " << ex.what() << std::endl;
 		MediaManager::cleanup();
@@ -232,18 +226,15 @@ void MediaManager::storeDicomFiles(std::string usbPath)
 		std::cerr << "Caught exception: " << ex.what() << std::endl;
 		MediaManager::cleanup();
 	}
-	mtx.lock();
-	usbMap[usbPath] = usbFilesTemp;
-	mtx.unlock();
 }
 
 int MediaManager::countDirs()
 {
     int count = 0;
-    for (const auto& entry : fs::directory_iterator(MediaManager::mediaPath)) {
-        if (entry.is_directory()) {
+    for (const auto& entry : fs::directory_iterator(MediaManager::mediaPath))
+	{
+        if (entry.is_directory())
             ++count;
-        }
     }
     return count;
 }
