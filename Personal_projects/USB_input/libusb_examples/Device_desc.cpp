@@ -12,11 +12,21 @@ void determineDeviceType(libusb_device* dev) {
     }
 
     // Examine descriptor fields to determine device type
-    std::cout << "Vendor ID: 0x" << std::hex << desc.idVendor << std::endl;
-    std::cout << "Product ID: 0x" << std::hex << desc.idProduct << std::endl;
-    std::cout << "Device Class: " << std::dec << (int)desc.bDeviceClass << std::endl;
-    std::cout << "Device Subclass: " << std::dec << (int)desc.bDeviceSubClass << std::endl;
-    std::cout << "Device Protocol: " << std::dec << (int)desc.bDeviceProtocol << std::endl;
+    std::cout << "Device idVendor: 0x" << std::hex << desc.idVendor << std::endl;
+    std::cout << "Device idProduct: 0x" << std::hex << desc.idProduct << std::endl;
+    std::cout << "Device bLength: " << std::dec << (int)desc.bLength << std::endl;
+    std::cout << "Device bDescriptorType: " << std::dec << (int)desc.bDescriptorType << std::endl;
+    std::cout << "Device bcdUSB: " << std::hex << (int)desc.bcdUSB << std::endl;
+    std::cout << "Device bDeviceClass: " << std::dec << (int)desc.bDeviceClass << std::endl;
+    std::cout << "Device bDeviceSubClass: " << std::dec << (int)desc.bDeviceSubClass << std::endl;
+    std::cout << "Device bDeviceProtocol: " << std::dec << (int)desc.bDeviceProtocol << std::endl;
+    std::cout << "Device bMaxPacketSize0: " << std::dec << (int)desc.bMaxPacketSize0 << std::endl;
+    std::cout << "Device iManufacturer: " << std::dec << (int)desc.iManufacturer << std::endl;
+    std::cout << "Device iProduct: " << std::dec << (int)desc.iProduct << std::endl;
+    std::cout << "Device iSerialNumber: " << std::dec << (int)desc.iSerialNumber << std::endl;
+    std::cout << "Device bNumConfigurations: " << std::dec << (int)desc.bNumConfigurations << std::endl;
+
+    std::cout << "---------------------------------------------------------" << std::endl;
 
     // Add your logic to determine device type based on descriptor fields
     // For example, you could check the device class, subclass, and protocol
@@ -54,7 +64,7 @@ void monitorUSB() {
         libusb_free_device_list(list, 1);
         
         // Wait for some time before checking again
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::this_thread::sleep_for(std::chrono::seconds(10));
         std::cout << "**************************************\n";
     }
 

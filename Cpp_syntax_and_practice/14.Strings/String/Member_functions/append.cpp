@@ -11,7 +11,7 @@ int main()
 {
     std::cout << "*****************************************************\n";
 
-    // Concatenate using append function
+    // Concatenate using 'append()' function
     std::string concat{"Hello "};
     concat.append("Zagreb!");
     std::cout << "Concatenated string: " << concat << '\n';

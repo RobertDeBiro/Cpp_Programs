@@ -15,7 +15,7 @@ int main()
     std::string str;
     std::getline(std::cin >> std::ws, str);
 
-    // Return number of characters using both size and length functions
+    // Return number of characters using both 'size' and 'length' functions
     std::cout << "String " << str << " has size of " << str.size() << " characters!\n";
     std::cout << "String " << str << " has length of " << str.length() << " characters!\n";
 

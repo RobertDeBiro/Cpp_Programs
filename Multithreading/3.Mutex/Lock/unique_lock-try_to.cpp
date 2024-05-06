@@ -9,19 +9,17 @@ int buffer{ 0 };
 
 void task(const char* threadNumber, int loopFor)
 {
-    m1.lock();
-    unique_lock<mutex> lock(m1, adopt_lock);
-
-    for(int i = 0; i < loopFor; ++i)
+    // 'try_to_lock' always continues with execution, it doesn't wait for the mutex to be unlocked
+    unique_lock<mutex> lock(m1, try_to_lock);
+    if(lock.owns_lock())
     {
-        buffer++;
-        cout << threadNumber << buffer << endl;
-        this_thread::sleep_for(chrono::milliseconds(500));
+        for(int i = 0; i < loopFor; ++i)
+        {
+            buffer++;
+            cout << threadNumber << buffer << endl;
+            this_thread::sleep_for(chrono::milliseconds(500));
+        }
     }
-
-    // When using 'adopt_lock' we don't need to explicitly unlock the mutex, even though it is locked with 'mutex.lock()'
-    //  - that will be done by 'unique_lock' destructor
-    // m1.unlock();
 }
 
 int main()

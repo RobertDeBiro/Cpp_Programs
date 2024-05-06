@@ -1,0 +1,158 @@
+[2024-05-03 09:36:14.410] [myLogger] [debug] DEBUG
+[2024-05-03 09:36:14.410] [myLogger] [info] INFO
+[2024-05-03 09:36:14.410] [myLogger] [warning] WARN
+[2024-05-03 09:36:14.410] [myLogger] [error] ERROR
+[2024-05-03 09:36:14.410] [myLogger] [critical] CRITICAL
+[2024-05-03 09:36:14.410] [myLogger] [warning] WARN
+[2024-05-03 09:36:14.410] [myLogger] [error] ERROR
+[2024-05-03 09:36:14.410] [myLogger] [critical] CRITICAL
+[2024-05-03 09:42:06.079] [myLogger] [debug] DEBUG
+[2024-05-03 09:42:06.079] [myLogger] [info] INFO
+[2024-05-03 09:42:06.079] [myLogger] [warning] WARN
+[2024-05-03 09:42:06.079] [myLogger] [error] ERROR
+[2024-05-03 09:42:06.079] [myLogger] [critical] CRITICAL
+[2024-05-03 09:42:06.079] [myLogger] [warning] WARN
+[2024-05-03 09:42:06.079] [myLogger] [error] ERROR
+[2024-05-03 09:42:06.079] [myLogger] [critical] CRITICAL
+WARN
+ERROR
+CRITICAL
+[2024-05-03 09:43:54.663] [myLogger] [debug] DEBUG
+[2024-05-03 09:43:54.663] [myLogger] [info] INFO
+[2024-05-03 09:43:54.663] [myLogger] [warning] WARN
+[2024-05-03 09:43:54.663] [myLogger] [error] ERROR
+[2024-05-03 09:43:54.663] [myLogger] [critical] CRITICAL
+[2024-05-03 09:43:54.663] [myLogger] [warning] WARN
+[2024-05-03 09:43:54.663] [myLogger] [error] ERROR
+[2024-05-03 09:43:54.663] [myLogger] [critical] CRITICAL
+[03052024] WARN
+[03052024] ERROR
+[03052024] CRITICAL
+[2024-05-03 09:44:56.534] [myLogger] [debug] DEBUG
+[2024-05-03 09:44:56.534] [myLogger] [info] INFO
+[2024-05-03 09:44:56.534] [myLogger] [warning] WARN
+[2024-05-03 09:44:56.534] [myLogger] [error] ERROR
+[2024-05-03 09:44:56.534] [myLogger] [critical] CRITICAL
+[2024-05-03 09:44:56.534] [myLogger] [warning] WARN
+[2024-05-03 09:44:56.534] [myLogger] [error] ERROR
+[2024-05-03 09:44:56.534] [myLogger] [critical] CRITICAL
+[03.05.2024 : 09:44:56] WARN
+[03.05.2024 : 09:44:56] ERROR
+[03.05.2024 : 09:44:56] CRITICAL
+[2024-05-03 09:46:02.801] [myLogger] [debug] DEBUG
+[2024-05-03 09:46:02.801] [myLogger] [info] INFO
+[2024-05-03 09:46:02.801] [myLogger] [warning] WARN
+[2024-05-03 09:46:02.801] [myLogger] [error] ERROR
+[2024-05-03 09:46:02.801] [myLogger] [critical] CRITICAL
+[2024-05-03 09:46:02.801] [myLogger] [warning] WARN
+[2024-05-03 09:46:02.801] [myLogger] [error] ERROR
+[2024-05-03 09:46:02.801] [myLogger] [critical] CRITICAL
+03.05.2024 : 09:46:02: [W] WARN
+03.05.2024 : 09:46:02: [E] ERROR
+03.05.2024 : 09:46:02: [C] CRITICAL
+[2024-05-03 09:46:27.331] [myLogger] [debug] DEBUG
+[2024-05-03 09:46:27.331] [myLogger] [info] INFO
+[2024-05-03 09:46:27.331] [myLogger] [warning] WARN
+[2024-05-03 09:46:27.331] [myLogger] [error] ERROR
+[2024-05-03 09:46:27.331] [myLogger] [critical] CRITICAL
+[2024-05-03 09:46:27.331] [myLogger] [warning] WARN
+[2024-05-03 09:46:27.331] [myLogger] [error] ERROR
+[2024-05-03 09:46:27.331] [myLogger] [critical] CRITICAL
+03.05.2024 : 09:46:27: [D] DEBUG
+03.05.2024 : 09:46:27: [I] INFO
+03.05.2024 : 09:46:27: [W] WARN
+03.05.2024 : 09:46:27: [E] ERROR
+03.05.2024 : 09:46:27: [C] CRITICAL
+[2024-05-03 09:46:42.585] [myLogger] [debug] DEBUG
+[2024-05-03 09:46:42.585] [myLogger] [info] INFO
+[2024-05-03 09:46:42.585] [myLogger] [warning] WARN
+[2024-05-03 09:46:42.585] [myLogger] [error] ERROR
+[2024-05-03 09:46:42.585] [myLogger] [critical] CRITICAL
+[2024-05-03 09:46:42.585] [myLogger] [warning] WARN
+[2024-05-03 09:46:42.585] [myLogger] [error] ERROR
+[2024-05-03 09:46:42.585] [myLogger] [critical] CRITICAL
+03.05.2024 09:46:42: [D] DEBUG
+03.05.2024 09:46:42: [I] INFO
+03.05.2024 09:46:42: [W] WARN
+03.05.2024 09:46:42: [E] ERROR
+03.05.2024 09:46:42: [C] CRITICAL
+[2024-05-03 09:47:10.506] [myLogger] [debug] DEBUG
+[2024-05-03 09:47:10.506] [myLogger] [info] INFO
+[2024-05-03 09:47:10.506] [myLogger] [warning] WARN
+[2024-05-03 09:47:10.506] [myLogger] [error] ERROR
+[2024-05-03 09:47:10.506] [myLogger] [critical] CRITICAL
+[2024-05-03 09:47:10.506] [myLogger] [warning] WARN
+[2024-05-03 09:47:10.506] [myLogger] [error] ERROR
+[2024-05-03 09:47:10.506] [myLogger] [critical] CRITICAL
+03.05.2024 09:47:10: [D] DEBUG
+03.05.2024 09:47:10: [I] INFO
+03.05.2024 09:47:10: [W] WARN
+03.05.2024 09:47:10: [E] ERROR
+03.05.2024 09:47:10: [C] CRITICAL
+[2024-05-03 09:47:42.656] [myLogger] [debug] DEBUG
+[2024-05-03 09:47:42.656] [myLogger] [info] INFO
+[2024-05-03 09:47:42.656] [myLogger] [warning] WARN
+[2024-05-03 09:47:42.656] [myLogger] [error] ERROR
+[2024-05-03 09:47:42.656] [myLogger] [critical] CRITICAL
+[2024-05-03 09:47:42.656] [myLogger] [warning] WARN
+[2024-05-03 09:47:42.656] [myLogger] [error] ERROR
+[2024-05-03 09:47:42.656] [myLogger] [critical] CRITICAL
+03.05.2024 09:47:42: [D] [myLogger] DEBUG
+03.05.2024 09:47:42: [I] [myLogger] INFO
+03.05.2024 09:47:42: [W] [myLogger] WARN
+03.05.2024 09:47:42: [E] [myLogger] ERROR
+03.05.2024 09:47:42: [C] [myLogger] CRITICAL
+[2024-05-03 09:54:49.002] [myLogger] [debug] DEBUG
+[2024-05-03 09:54:49.002] [myLogger] [info] INFO
+[2024-05-03 09:54:49.002] [myLogger] [warning] WARN
+[2024-05-03 09:54:49.002] [myLogger] [error] ERROR
+[2024-05-03 09:54:49.002] [myLogger] [critical] CRITICAL
+[2024-05-03 09:54:49.002] [myLogger] [warning] WARN
+[2024-05-03 09:54:49.002] [myLogger] [error] ERROR
+[2024-05-03 09:54:49.002] [myLogger] [critical] CRITICAL
+03.05.2024 09:54:49: [D] [myLogger] DEBUG
+03.05.2024 09:54:49: [I] [myLogger] INFO
+03.05.2024 09:54:49: [W] [myLogger] WARN
+03.05.2024 09:54:49: [E] [myLogger] ERROR
+03.05.2024 09:54:49: [C] [myLogger] CRITICAL
+03.05.2024 09:54:49: [D] [myLogger] DEBUG
+03.05.2024 09:54:49: [I] [myLogger] INFO
+03.05.2024 09:54:49: [W] [myLogger] WARN
+03.05.2024 09:54:49: [E] [myLogger] ERROR
+03.05.2024 09:54:49: [C] [myLogger] CRITICAL
+[2024-05-03 09:59:22.576] [mainLogger] [debug] DEBUG
+[2024-05-03 09:59:22.576] [mainLogger] [info] INFO
+[2024-05-03 09:59:22.576] [mainLogger] [warning] WARN
+[2024-05-03 09:59:22.576] [mainLogger] [error] ERROR
+[2024-05-03 09:59:22.576] [mainLogger] [critical] CRITICAL
+[2024-05-03 09:59:22.576] [mainLogger] [warning] WARN
+[2024-05-03 09:59:22.576] [mainLogger] [error] ERROR
+[2024-05-03 09:59:22.576] [mainLogger] [critical] CRITICAL
+03.05.2024 09:59:22: [D] [mainLogger] DEBUG
+03.05.2024 09:59:22: [I] [mainLogger] INFO
+03.05.2024 09:59:22: [W] [mainLogger] WARN
+03.05.2024 09:59:22: [E] [mainLogger] ERROR
+03.05.2024 09:59:22: [C] [mainLogger] CRITICAL
+03.05.2024 09:59:22: [D] [mainLogger] DEBUG
+03.05.2024 09:59:22: [I] [mainLogger] INFO
+03.05.2024 09:59:22: [W] [mainLogger] WARN
+03.05.2024 09:59:22: [E] [mainLogger] ERROR
+03.05.2024 09:59:22: [C] [mainLogger] CRITICAL
+[2024-05-03 10:05:09.979] [mainLogger] [debug] DEBUG
+[2024-05-03 10:05:09.979] [mainLogger] [info] INFO
+[2024-05-03 10:05:09.979] [mainLogger] [warning] WARN
+[2024-05-03 10:05:09.979] [mainLogger] [error] ERROR
+[2024-05-03 10:05:09.979] [mainLogger] [critical] CRITICAL
+[2024-05-03 10:05:09.979] [mainLogger] [warning] WARN
+[2024-05-03 10:05:09.979] [mainLogger] [error] ERROR
+[2024-05-03 10:05:09.979] [mainLogger] [critical] CRITICAL
+03.05.2024 10:05:09: [D] [mainLogger] DEBUG
+03.05.2024 10:05:09: [I] [mainLogger] INFO
+03.05.2024 10:05:09: [W] [mainLogger] WARN
+03.05.2024 10:05:09: [E] [mainLogger] ERROR
+03.05.2024 10:05:09: [C] [mainLogger] CRITICAL
+03.05.2024 10:05:09: [D] [mainLogger] DEBUG
+03.05.2024 10:05:09: [I] [mainLogger] INFO
+03.05.2024 10:05:09: [W] [mainLogger] WARN
+03.05.2024 10:05:09: [E] [mainLogger] ERROR
+03.05.2024 10:05:09: [C] [mainLogger] CRITICAL

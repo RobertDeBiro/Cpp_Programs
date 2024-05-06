@@ -55,6 +55,11 @@ int main()
     std::cout << "Map with duplicated keys: ";
     printMap(varMap4);
 
+    // Asigning new value to existing key
+    varMap4["Barca"] = 70;
+    std::cout << "Map with updated value for one key: ";
+    printMap(varMap4);
+
     //********** Sort elements by decreasing values **********
     std::map<std::string, int, std::greater<std::string>> varMap5 { {"CPU", 10}, {"GPU", 15}, {"RAM", 20} };
     std::cout << "Map initialized with std::greater: ";

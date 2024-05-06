@@ -28,6 +28,11 @@ int main()
     std::cout << "Map after inserting a pair using make_par: ";
     printMap(varMap);
 
+    // If we insert already existing key, nothing will happen
+    varMap.insert(std::make_pair("Barca", 65));
+    std::cout << "Map after inserting a pair using make_par: ";
+    printMap(varMap);
+
     std::cout << "*****************************************************\n";
     return 0;
 }

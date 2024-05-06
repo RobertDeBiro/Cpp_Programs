@@ -37,8 +37,8 @@ int main()
 
     std::cout << "----------------------------------------\n";
 
-    // Using "For" loop to change the string and length() as termination indicator
-    //  - s.length() doesn't contain '\0'
+    // Using "For" loop to change the string and 'length()' as termination indicator
+    //  - 's.length()' doesn't contain '\0'
     for(int i = 0; i <= static_cast<int>(s.length()); i++)
         s[i] = 'Z';
     std::cout << "For:\t\t" << s << '\n';

@@ -1,0 +1,3 @@
+/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog/build/CMakeFiles/spdlog_logging.dir
+/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog/build/CMakeFiles/edit_cache.dir
+/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog/build/CMakeFiles/rebuild_cache.dir

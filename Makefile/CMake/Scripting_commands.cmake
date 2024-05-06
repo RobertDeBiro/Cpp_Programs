@@ -26,10 +26,18 @@ execute_process( # https://cmake.org/cmake/help/latest/command/execute_process.h
 #----------------------------------------------------------------------------------------------------------#
 file( # https://cmake.org/cmake/help/latest/command/file.html
 
-    # Generate a list of files that match globbing expression 'assets/*' (save every file from assets dir)
+    # Generate a list of files that match globbing expression 'assets/*'
     # and store those files inside 'RESOURCE_SOURCES'
+    #  -> in other words, save every file from assets dir into 'RESOURCE_SOURCES' variable
     #  - 'GLOB_RECURSE' is mode
     file(GLOB_RECURSE RESOURCE_SOURCES assets/*)
+)
+#----------------------------------------------------------------------------------------------------------#
+find_package( # https://cmake.org/cmake/help/latest/command/find_package.html#find-package
+    
+    # Finds a SQLite3 package (package provided by something external to the project),
+    # and loads its package-specific details
+    find_package(SQLite3 3.37.2 REQUIRED)
 )
 #----------------------------------------------------------------------------------------------------------#
 find_program( # https://cmake.org/cmake/help/latest/command/find_program.html
@@ -99,10 +107,10 @@ get_filename_component( # https://cmake.org/cmake/help/latest/command/get_filena
 #----------------------------------------------------------------------------------------------------------#
 include( # https://cmake.org/cmake/help/latest/command/include.html
     
-    # Include cmake-module "CMakePrintHelpers"
+    # Load and run CMake code from cmake-module "CMakePrintHelpers"
     include(CMakePrintHelpers)
 
-    # Include custom-module "Custom_funct_module"
+    # Load and run CMake code from custom-module "Custom_funct_module"
     include(Custom_funct_module)
 )
 #----------------------------------------------------------------------------------------------------------#

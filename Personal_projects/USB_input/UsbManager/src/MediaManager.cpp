@@ -9,7 +9,7 @@
 
 MediaManager::~MediaManager()
 {
-	MediaManager::cleanup();
+	MediaManager::closeDeviceHandle();
 	libusb_exit(NULL);
 }
 
@@ -23,7 +23,7 @@ bool MediaManager::init()
 {
 	int rc;
 
-	rc = libusb_init_context(NULL, NULL, 0);
+	rc = libusb_init(0);
 	if (LIBUSB_SUCCESS != rc)
 	{
 		std::cerr << "Failed to initialise libusb: "
@@ -74,9 +74,9 @@ void MediaManager::startListening()
 		std::cout << usbDirPath << std::endl;
 		std::cout << "Insert " << it->path().string() << " to usbMap!\n";
 		std::cout << "Start thread to read dicom files frob USB device!\n";
-		usbMap.insert({usbDirPath, {}});
-		workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
-		workerStoreDicoms.detach();
+		_usbMap.insert({usbDirPath, {}});
+		_workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
+		_workerStoreDicoms.detach();
 	}
 
 	int rc;
@@ -89,39 +89,6 @@ void MediaManager::startListening()
 			          << libusb_strerror((enum libusb_error)rc) << '\n';
 		}
 	}
-}
-
-void MediaManager::cleanup()
-{
-	std::cout << "****************** Cleanup ***************\n";
-	if (handle)
-	{
-		libusb_close(handle);
-		handle = NULL;
-	}
-}
-
-bool MediaManager::checkDeviceMount()
-{
-	std::cout << "Waiting for the media device to be mounted...\n";
-
-	// Get the current time
-    auto startTime = std::chrono::steady_clock::now();
-
-	// 10 seconds will be maximum wait time for media device to mount
-    std::chrono::seconds maxMountTime(10);
-
-	while(usbMap.size() >= countDirs())
-	{
-		// Check if 10 seconds have passed
-        auto currentTime = std::chrono::steady_clock::now();
-        auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime);
-        if (elapsedTime > maxMountTime)
-			return false;
-		std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	}
-
-	return true;
 }
 
 int LIBUSB_CALL MediaManager::mediaAttached(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data)
@@ -143,13 +110,13 @@ int LIBUSB_CALL MediaManager::mediaAttached(libusb_context *ctx, libusb_device *
 			{
 				auto usbDirPath = it->path().string();
 				std::cout << usbDirPath << std::endl;
-				if(!usbMap.contains(usbDirPath))
+				if(!_usbMap.contains(usbDirPath))
 				{
 					std::cout << "Insert " << it->path().string() << " to usbMap!\n";
 					std::cout << "Start thread to read dicom files frob USB device!\n";
-					usbMap.insert({usbDirPath, {}});
-					workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
-					workerStoreDicoms.detach();
+					_usbMap.insert({usbDirPath, {}});
+					_workerStoreDicoms = std::thread(&MediaManager::storeDicomFiles, usbDirPath);
+					_workerStoreDicoms.detach();
 				}
 			}
 		}
@@ -158,8 +125,6 @@ int LIBUSB_CALL MediaManager::mediaAttached(libusb_context *ctx, libusb_device *
 		std::cerr << "Error getting device descriptor: "
 		          << libusb_strerror((enum libusb_error)rc) << '\n';
 	}
-
-	// MediaManager::cleanup();
 	//! Send condition signal
 
 	return 0;
@@ -183,7 +148,7 @@ int LIBUSB_CALL MediaManager::mediaDetached(libusb_context *ctx, libusb_device *
 				  << libusb_strerror((enum libusb_error)rc) << '\n';
 	}
 
-	for(auto& [device, files] : usbMap)
+	for(auto& [device, files] : _usbMap)
 	{
 		bool found = false;
 		for(auto it = fs::directory_iterator(mediaPath); it != fs::directory_iterator(); it++)
@@ -193,7 +158,7 @@ int LIBUSB_CALL MediaManager::mediaDetached(libusb_context *ctx, libusb_device *
 		}
 		if (!found)
 		{
-			usbMap.erase(device);
+			_usbMap.erase(device);
 			break;
 		}
 	}
@@ -218,23 +183,56 @@ void MediaManager::storeDicomFiles(std::string usbPath)
 			}
 		}
 		std::lock_guard<std::mutex> lock(mtx);
-		usbMap[usbPath] = usbFilesTemp;
+		_usbMap[usbPath] = usbFilesTemp;
 	} catch (const fs::filesystem_error& ex) {
 		std::cerr << "Caught filesystem_error: " << ex.what() << std::endl;
-		MediaManager::cleanup();
+		MediaManager::closeDeviceHandle();
 	} catch (const std::exception& ex) {
 		std::cerr << "Caught exception: " << ex.what() << std::endl;
-		MediaManager::cleanup();
+		MediaManager::closeDeviceHandle();
 	}
 }
 
-int MediaManager::countDirs()
+bool MediaManager::checkDeviceMount()
+{
+	std::cout << "Waiting for the media device to be mounted...\n";
+
+	// Get the current time
+    auto startTime = std::chrono::steady_clock::now();
+
+	// 10 seconds will be maximum wait time for media device to mount
+    std::chrono::seconds maxMountTime(10);
+
+	while(_usbMap.size() >= countMediaDirs())
+	{
+		// Check if 10 seconds have passed
+        auto currentTime = std::chrono::steady_clock::now();
+        auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime);
+        if (elapsedTime > maxMountTime)
+			return false;
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	}
+
+	return true;
+}
+
+int MediaManager::countMediaDirs()
 {
     int count = 0;
-    for (const auto& entry : fs::directory_iterator(MediaManager::mediaPath))
+    for (const auto& entry : fs::directory_iterator(mediaPath))
 	{
         if (entry.is_directory())
             ++count;
     }
     return count;
+}
+
+void MediaManager::closeDeviceHandle()
+{
+	std::cout << "****************** CLose device handle ***************\n";
+	if (_handle)
+	{
+		libusb_close(_handle);
+		_handle = NULL;
+	}
 }
