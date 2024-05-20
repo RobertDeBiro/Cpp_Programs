@@ -2,6 +2,16 @@
 #include <iostream>
 #include <string>
 
+namespace Files
+{
+    //* Windows paths
+    // const std::string filename{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
+
+    //* Linux paths
+    const std::string filename{ "/home/robert/IT/Files_for_testing/Vowel" };
+}
+
+
 int main()
 {
     std::cout << "*****************************************************\n";
@@ -14,14 +24,14 @@ int main()
     // - sending two ios file modes:
     //    1. std::ios::in - opens the file in read mode
     //    2. std::ios::out - opens the file in write mode
-    const std::string filename{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
-    std::fstream iofile{filename, std::ios::in | std::ios::out};
+    const std::string input_file{ Files::filename };
+    std::fstream iofile{input_file, std::ios::in | std::ios::out};
 
     // If 'iofile' cannot be open, print an error
     if (!iofile)
     {
         // Print an error using 'std::cerr'
-        std::cerr << "Uh oh, Sample1.txt could not be opened!\n";
+        std::cerr << input_file << " could not be opened!\n";
         return 1;
     }
 
@@ -30,7 +40,7 @@ int main()
     char chChar{};
 
     // Get character by character from the file, while there's still data to process
-    //! For some reason following part doesn't work as expected
+    //! For some reason following part doesn't work as expected in Windows
     //! - file pointer is not in expected position
     while (iofile.get(chChar))
     {

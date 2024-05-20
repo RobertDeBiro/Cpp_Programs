@@ -1,4 +1,4 @@
-# Install script for directory: /home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input
+# Install script for directory: /home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,11 +40,6 @@ endif()
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/robert/IT/Programs/Cpp_Programs/build/src/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

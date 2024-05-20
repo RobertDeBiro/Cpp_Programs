@@ -4,16 +4,16 @@
 
 void printMap(const std::map<std::string, int>& varMap)
 {
-    // Iterate using C++17 facilities
+    //* Iterate using C++17 facilities
     for (const auto& [key, value] : varMap) {
         std::cout << '[' << key << "] = " << value << "; ";
     }
 
-    // C++11 alternative:
+    //* C++11 alternative:
     // for (const auto& n : varMap) {
     //     std::cout << '[' << n.first << "] = " << n.second << "; ";
     // }
-    // C++98 alternative
+    //* C++98 alternative
     //  for (std::map<std::string, int>::const_iterator it = varMap.begin(); it != varMap.end(); it++) {
     //      std::cout << it->first << " = " << it->second << "; ";
     //  }

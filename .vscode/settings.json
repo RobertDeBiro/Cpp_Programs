@@ -112,7 +112,8 @@
         "typeindex": "cpp",
         "valarray": "cpp",
         "strstream": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "*.txx": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "editor.tokenColorCustomizations": {
@@ -140,5 +141,5 @@
     "gtest-adapter.debugConfig": [
         "(gdb) Launch GoogleTest"
     ],
-    "cmake.sourceDirectory": "/home/robert/IT/Programs/Cpp_Programs/Makefile/CMake/USB_input"
+    "cmake.sourceDirectory": "/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog"
 }

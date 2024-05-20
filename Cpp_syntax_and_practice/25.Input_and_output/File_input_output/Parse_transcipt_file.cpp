@@ -6,6 +6,7 @@
 
 namespace Files
 {
+    //* Windows paths
     // const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Transcript-Msys2.txt" };
     // const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Transcript_parsed-Msys2.txt" };
     const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Transcript-VSCode.txt" };

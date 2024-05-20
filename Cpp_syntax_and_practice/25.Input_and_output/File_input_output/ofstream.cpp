@@ -1,5 +1,14 @@
-#include <fstream> // std::ofstream
+#include <fstream>
 #include <iostream>
+
+namespace Files
+{
+    //* Windows paths
+    // const std::string filename{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
+
+    //* Linux paths
+    const std::string filename{ "/home/robert/IT/Files_for_testing/Sample" };
+}
 
 int main()
 {
@@ -9,13 +18,13 @@ int main()
     //  - 'std::ofstream' variable is initialized with the file
     //  - it can be existing file, or if file doesn't exist, program will create it
     //  - we are setting absolute path to the file
-    //  - if we write only "Sample2.txt" our file would be saved in directory where compiler is saved
-    //    which is "C:\msys64\mingw64\bin"
-    std::ofstream outf{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample2.txt" };
+    //  - if we write only <file_name> (not full path) our file would be saved in directory
+    //    where compiler is saved, which is "C:\msys64\mingw64\bin"
+    std::ofstream outf{ Files::filename };
 
-    if(!outf)
+    if (!outf)
     {
-        std::cerr << "File could not be opened for writing!\n";
+        std::cerr << "There is no file called " << Files::filename << std::endl;
         return 1;
     }
 
@@ -31,8 +40,8 @@ int main()
 
     outf.close(); // explicitly close the file
 
-    // Open "Sample2.txt" file and append data to it by using 'std::ios::app' ios file mode
-    outf.open("C:\\Users\\Robert\\Desktop\\IT\\Programs\\Random_files\\txt\\Sample2.txt", std::ios::app);
+    // Open file and append data to it by using 'std::ios::app' ios file mode
+    outf.open(Files::filename, std::ios::app);
 
     outf << "This is line 3\n";
     outf.close();

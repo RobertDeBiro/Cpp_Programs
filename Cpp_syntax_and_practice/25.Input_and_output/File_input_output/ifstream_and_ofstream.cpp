@@ -6,8 +6,13 @@
 
 namespace Files
 {
-    const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals.txt" };
-    const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals-Sorted.txt" };
+    //* Windows paths
+    // const char* inputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals.txt" };
+    // const char* outputFile{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\EuropeCapitals-Sorted.txt" };
+
+    //* Linux paths
+    const char* inputFile{ "/home/robert/IT/Files_for_testing/EuropeCapitals" };
+    const char* outputFile{ "/home/robert/IT/Files_for_testing/EuropeCapitals_Sorted" };
 }
 
 int main()

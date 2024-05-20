@@ -1,17 +1,26 @@
-#include <fstream> // std::ifstream
+#include <fstream>
 #include <iostream>
 #include <string>
+
+namespace Files
+{
+    //* Windows paths
+    // const std::string filename{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
+
+    //* Linux paths
+    const std::string filename{ "/home/robert/IT/Files_for_testing/Vowel" };
+}
 
 int main()
 {
     std::cout << "*****************************************************\n";
 
     // Create a 'std::ifstream' variable used for input data from a file
-    std::ifstream inf{ "C:\\Users\\Robert\\Desktop\\IT\\Programming_languages\\Data_files\\txt\\Sample1.txt" };
+    std::ifstream inf{ Files::filename };
 
-    if(!inf)
+    if (!inf)
     {
-        std::cerr << "File could not be opened for reading!\n";
+        std::cerr << "There is no file called " << Files::filename << std::endl;
         return 1;
     }
 
@@ -29,7 +38,7 @@ int main()
 
     std::cout << "-------------------------------------------\n";
 
-    // We came to the end of the file, so inf has the value of EOF
+    // We came to the end of the file, so 'inf' has the value of 'EOF'
     //  - run 'inf.clear()' to reset it
     //  - run 'inf.seekg(0)' to go to the beginning i.e. to change the read position
     //     - 'seekg' stands for seek and get
