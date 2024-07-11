@@ -23,8 +23,8 @@ int main()
     std::cout << "*****************************************************\n";
 
     // Using 'fstream' to get the file pointer in "file"
-    std::ifstream input_file{ Files::filename };
-    if(!input_file)
+    std::ifstream input_json_file{ Files::filename };
+    if(!input_json_file)
     {
         std::cerr << Files::filename << " file could not be opened for reading!" << std::endl;
         return 1;
@@ -34,8 +34,8 @@ int main()
     Json::Reader jsonReader;
     
     // Parsing json by using 'jsonReader'
-    // - 'parse()' transfers data from the 'std::ifstream input_file' into 'Json::Value jsonData'
-    jsonReader.parse(input_file, jsonData);
+    // - 'parse()' parses "JSON string" from the input file into "'Json::Value' object"
+    jsonReader.parse(input_json_file, jsonData);
     std::cout << "Total json data:\n" << jsonData << "\n";
 
     // Print 'jsonData' parameters individually

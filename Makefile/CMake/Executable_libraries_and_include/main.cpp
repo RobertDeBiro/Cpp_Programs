@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Point3d.hpp"
+#include "Point3d.hpp" // Can be included because it is included in Point target as a PUBLIC
 #include "Vector3d.hpp"
 
 int main()

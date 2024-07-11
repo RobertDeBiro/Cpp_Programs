@@ -1,38 +1,5 @@
 # cmake-commands: https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
 
-add_compile_definitions( # https://cmake.org/cmake/help/latest/command/add_compile_definitions.html
-    
-    # Add preprocessor definition to the compilation of source files
-    #  - in this example we define a preprocessor variables (i.e. we define MACROs) that will be used inside every target
-    #    in the current directory
-    #  - MACROs: RANDOM_MACRO_VAL=1000, RANDOM_MACRO
-    add_compile_definitions(RANDOM_MACRO_VAL=1000 RANDOM_MACRO)
-)
-add_custom_command( # https://cmake.org/cmake/help/latest/command/add_custom_command.html
-
-    # Add a custom build rule to the generated build system
-    add_custom_command(
-        OUTPUT ${GRESOURCE_C} # Define that the command should produce output files written inside 'GRESOURCE_C' var
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/assets # Command will be run inside 'assets' directory
-        COMMAND ${GLIB_COMPILE_RESOURCES} # Commands that will be executed at build time are present inside 'GLIB_COMPILE_RESOURCES' var
-        ARGS # 'ARGS' argument is for backward compatibility and will be ignored
-        --generate-source # flag that instructs the 'glib-compile-resources' to generate C source code along with the binary resource file
-        --target=${CMAKE_CURRENT_BINARY_DIR}/${GRESOURCE_C} # the name of the output C source file
-        ../../${GRESOURCE_XML} # XML file that defines the resources
-        VERBATIM # prohibit CMake to interpret escape sequences or to replace variables in the command arguments
-        MAIN_DEPENDENCY ${GRESOURCE_XML} # Define that custom command will be re-run in following builds if file written in 'GRESOURCE_XML' was changed
-        DEPENDS ${RESOURCE_SOURCES} # Define that custom command will be re-run in following builds if files written in 'RESOURCE_SOURCES' were changed
-    )
-)
-add_custom_target( # https://cmake.org/cmake/help/latest/command/add_custom_target.html
-
-    ## 1) Create meta-target called 'project_resources'
-    ##    - since it doesn't have COMMAND argument set, it means that it is meta-target i.e. that target won't produce any output files
-    ##      or execute any specific actions during the build process
-    ##    - this is useful for organizing our build system, especially when we have multiple targets and want to define their relationships
-    ##    - by setting DEPENDS, we define that if we run 'make project_resources', 'GRESOURCE_C' needs to be built first
-    add_custom_target(project_resources DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${GRESOURCE_C})
-)
 #----------------------------------------------------------------------------------------------------------#
 add_executable( # https://cmake.org/cmake/help/latest/command/add_executable.html
     

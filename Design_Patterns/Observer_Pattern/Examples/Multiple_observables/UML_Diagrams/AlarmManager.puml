@@ -1,0 +1,55 @@
+@startuml AlarmManager
+
+interface IObservable
+{
+    +add( IObserver* )
+    +remove( IObserver* )
+    +notify()
+}
+
+class PLControler extends IObservable
+{
+    +add( IObserver* )
+    +remove( IObserver* )
+    +notify()
+
+    +setState(State)
+    +State getState()
+}
+
+class RobotController extends IObservable
+{
+    +add( IObserver* )
+    +remove( IObserver* )
+    +notify()
+
+    +setState(State)
+    +State getState()
+}
+
+interface IObserver
+{
+    +update( IObservable* observable )
+}
+
+class AlarmManager extends IObserver
+{
+    +update( IObservable* observable )
+}
+
+IObservable -right-> "0..*" IObserver
+
+note as N1
+<u>Programming code</u>
+PLController plController;
+RobotController robotController;
+AlarmManager alarmManager;
+
+plController.add(&alarmManager);
+robotController.add(&alarmManager);
+
+plController.setState();
+robotController.setState();
+end note
+
+@enduml
