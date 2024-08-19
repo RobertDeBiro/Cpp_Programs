@@ -31,3 +31,46 @@ SPDLOG_LOGGER_CRITICAL(some_logger, "critical message");
     rot_file_sink_snapshot->set_level(spdlog::level::debug);
     rot_file_sink_snapshot->set_pattern("[%Y-%m-%d %T] [%n] [%s:%# %!] [%^%l%$] %v");
     logger_snapshot_temp->sinks().push_back(rot_file_sink_snapshot);
+
+
+for (auto dcmdir_it = r_dir_it(dicomdir_file.parent_path()); dcmdir_it != r_dir_it(); dcmdir_it.increment(ec))
+        {
+            if (std::filesystem::is_regular_file(*dcmdir_it) && CanReadDicomFile(gdcm_image_IO, (*dcmdir_it).path().string()))
+            {
+                dict_type dictionary = gdcm_image_IO->GetMetaDataDictionary();
+
+                //* Store patient and study to database
+                if (!pat_stud_stored_db)
+                {
+                    if (!dcm_files_overwrite)
+                        StorePatientStudyInDb(dictionary);
+
+                    pat_stud_stored_db = true;
+                }
+
+                //* Store series to database
+                series_inst_UID = rtkcommon::DCMReader::getTagValue(dictionary, rtkcommon::DCMReader::tagSeriesInstanceUID);
+                if (series_inst_UID.has_value())
+                {
+                    if (!dcm_files_overwrite)
+                        StoreSeriesInDb(dictionary, series_inst_UID);
+
+                    std::vector<std::string> dicom_file_paths;
+                    using dir_it = std::filesystem::directory_iterator;
+                    for (auto series_dir_it = dir_it((*dcmdir_it).path().parent_path()); series_dir_it != dir_it(); ++series_dir_it)
+                    {
+                        if (std::filesystem::is_regular_file(*series_dir_it) && CanReadDicomFile(gdcm_image_IO, (*series_dir_it).path().string()))
+                        {
+                            // Sum sizes of all DICOM files present in all series
+                            dcm_files_size_sum += static_cast<float>(std::filesystem::file_size(*series_dir_it));
+                            dicom_file_paths.push_back((*series_dir_it).path().string());
+                        }
+                    }
+
+                    dcm_series_files_map.insert({series_inst_UID, dicom_file_paths}); // Map each series with containing files
+                    dcmdir_it.pop(); // When map is fulfilled for particular series, stop iterating that directory and go to other
+                }
+            }
+        }
+
+    

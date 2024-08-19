@@ -1,0 +1,44 @@
+<!-- Start Button with "Start" text overlay -->
+<child>
+    <object class="GtkBox" id="start_button_container">
+    <property name="orientation">horizontal</property>
+    <property name="margin-top">100</property>
+    <property name="margin-bottom">25</property>
+
+    <child>
+        <object class="GtkButton" id="popup_start_button">
+        <style>
+            <class name="square_button"/>
+        </style>
+        <!-- <property name="hexpand">true</property>
+        <property name="halign">GTK_ALIGN_FILL</property> -->
+        <property name="width-request">150</property>
+        <property name="height-request">75</property>
+        <property name="halign">start</property>
+        <property name="valign">end</property>
+        <property name="margin-start">25</property>
+        <property name="margin-top">100</property>
+        <property name="margin-bottom">25</property>
+        <property name="sensitive">false</property>
+        <child>
+            <object class="GtkLabel" id="popup_start_label">
+            <property name="label">Start</property>
+            </object>
+        </child>
+        </object>
+    </child>
+
+    <child>
+        <object class="GtkLabel" id="popup_label_MR_disabled">
+        <property name="label">Not!</property>
+        <property name="valign">end</property>
+        <property name="margin-top">100</property>
+        <property name="margin-bottom">25</property>
+        <property name="visible">True</property>
+    </child>
+    
+    </object>
+</child>
+
+</object>
+</child>
