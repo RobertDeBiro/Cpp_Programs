@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/robert/IT/Programs/Cpp_Programs/build",
-  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -g -std=gnu++20 -o CMakeFiles/spdlog_logging.dir/main.cpp.o -c /home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog/main.cpp",
-  "file": "/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog/main.cpp"
-}
-]

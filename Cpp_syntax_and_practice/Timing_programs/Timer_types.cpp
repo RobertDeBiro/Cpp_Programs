@@ -1,3 +1,15 @@
+/**
+ * 1) now                               ==   time_point
+ *    to_time_t (time_point)            ---> std::time_t
+ *    std::localtime (std::time_t)      ---> std::tm
+ *    std::put_time (std::tm)           ---> std::stringstream
+ * 
+ * 2) std::get_time (std::stringstream) ---> std::tm
+ *    mktime (std::tm)                  ---> std::time_t
+ *    from_time_t (std::time_t)         ---> time_point
+ *    time_point                        ==   now
+ */
+
 #include <iostream>
 #include <sstream>
 #include <chrono>
@@ -9,9 +21,10 @@ int main()
 
     using Clock = std::chrono::system_clock;
 
+    // Retrieve current time
     std::chrono::time_point<Clock> time_clock = Clock::now();
 
-    // Convert the 'time_point' object a 'time_t' object,
+    // Convert the 'time_point' object to a 'time_t' object,
     // which is a type suitable for representing the system time as a simple integer
     std::time_t time_t = Clock::to_time_t(time_clock);
     std::cout << "Time = " << time_t << std::endl;
