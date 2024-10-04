@@ -39,7 +39,7 @@ int main()
     std::cout << "List4: ";
     printList(varList4);
     
-    // 'std::set' iterator cannot traverse by using '+' operator, due to how it is internally implemented
+    // 'std::list' iterator cannot traverse by using '+' operator, due to how it is internally implemented
     //! varList3.splice(varList3.begin() + 2, varList4);
     varList3.splice(std::next(varList3.begin(), 2), varList4);
     std::cout << "List4 spliced to the middle of the List3: ";

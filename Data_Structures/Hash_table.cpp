@@ -1,14 +1,11 @@
 /*
  * Hash table:
  *  - a data structure that allows for a very fast retrieval of data, no matter how much data there is
- *  - it is implemented as a key=>value table
+ *  - it is implemented as a "key=>value" table
  *     - key and value can be any type of data structure
  *  - when constructing hash table collision can occur, and we can solve that in 2 ways:
  *     1) Open addressing - linear probing
  *     2) Closed addressing - chaining method using linked list
- *
- *  - more info:
- *     - https://www.youtube.com/watch?v=2_3fR-k-LzI&t=519s
  */
 
 #include <iostream>
@@ -17,20 +14,45 @@
 
 using namespace std;
 
-// Example of hash table element that will be implemented: 905, Jimmy
-//  - presents phonebook with key-value pair
-//  - for resolving collision we are using linked list
+/**
+ * @brief Phonebook with "number-name" key-value pairs.
+ * @details Example of hash table element that will be implemented: 905, Jimmy.
+ *          For resolving collision we are using linked list.
+ */
 class HashTable
 {
-    static const int hashGroups{ 10 }; // number of list that will be used
-    list<pair<int, string>> table[hashGroups]; // array of list
+    /// @brief Number of lists that will be used within array
+    static const int hashGroups{ 10 };
+
+    /// @brief Array of lists
+    list<pair<int, string>> table[hashGroups];
     
 public:
+    /// @brief Checks if HashTable is empty i.e. there are no lists.
+    /// @return true if there is at least one list fulfilled inside HashTable.
+    /// @return false if all lists are empty.
     bool isEmpty() const;
+
+    /// @brief 
+    /// @param key 
+    /// @return 
     int hashFunction(int key);
+    
+    /// @brief 
+    /// @param key 
+    /// @param value 
     void insertItem(int key, string value);
+
+    /// @brief 
+    /// @param key 
     void removeItem(int key);
+
+    /// @brief 
+    /// @param key 
+    /// @return 
     string searchTable(int key);
+
+    /// @brief 
     void printTable();
 };
 

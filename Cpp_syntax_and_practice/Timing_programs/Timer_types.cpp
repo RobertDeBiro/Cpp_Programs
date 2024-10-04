@@ -47,3 +47,10 @@ int main()
     std::cout << "*****************************************************\n";
     return 0;
 }
+
+auto from = now - std::chrono::days(1);
+        auto from_time_t = std::chrono::system_clock::to_time_t(from);
+        localtime_r(&from_time_t, &local_time);
+        ss  << std::put_time(&local_time, "%Y%m%d") << "-" << std::put_time(&local_time, "%Y%m%d");
+
+        req.putAndInsertString(DCM_StudyDate, ss.str().c_str());  
