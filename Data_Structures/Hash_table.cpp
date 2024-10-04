@@ -17,11 +17,11 @@ using namespace std;
 /**
  * @brief Phonebook with "number-name" key-value pairs.
  * @details Example of hash table element that will be implemented: 905, Jimmy.
- *          For resolving collision we are using linked list.
+ *          For resolving collision we are using "linked list" approach.
  */
 class HashTable
 {
-    /// @brief Number of lists that will be used within array
+    /// @brief Number of lists that will be used within array (number of elements of array of lists)
     static const int hashGroups{ 10 };
 
     /// @brief Array of lists
@@ -33,9 +33,9 @@ public:
     /// @return false if all lists are empty.
     bool isEmpty() const;
 
-    /// @brief 
-    /// @param key 
-    /// @return 
+    /// @brief Randomly returns index of array of lists
+    /// @param key 'number'
+    /// @return Index of array of lists
     int hashFunction(int key);
     
     /// @brief 
