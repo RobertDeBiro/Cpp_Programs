@@ -11,7 +11,7 @@ include_directories(include)
 
 # Source files
 add_executable(OrderCacheTest
-    tests/test_order_cache.cpp
+    tests/OrderCacheTest.cpp
     source/OrderCache.cpp
 )
 
