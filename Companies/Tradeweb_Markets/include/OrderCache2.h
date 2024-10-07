@@ -65,30 +65,18 @@ public:
     std::vector<Order> getAllOrders() const override;
 
 private:
-    // List of aded orders
-    std::list<Order> m_orders;
-
-    // Map with following key-value pair:
-    // - key: orderID
-    // - value: pointer to an order present inside list m_orders and defined with orderID from key
-    // Used for fast deletion of order when canceling order by its ID.
-    std::unordered_map<std::string, std::list<Order>::iterator> m_orderMap;
+    std::list<Order> m_orders;  // Main list of orders
+    std::unordered_map<std::string, std::list<Order>::iterator> m_orderMap;  // Map by orderId
+    std::unordered_map<std::string, std::list<std::list<Order>::iterator>> m_ordersByUser;  // Map by user
+    std::unordered_map<std::string, std::list<std::list<Order>::iterator>> m_ordersBySecurity;  // Map by security
 
     // mutex for making functions thread safety
     mutable std::mutex m_mutex;
 
-    // Function that collects Buy and Sell orders for particular securityId
     void collectBuyAndSellOrders(const std::string& securityId, std::list<Order*>& buyOrders, std::list<Order*>& sellOrders);
-
-    // Function that matches Buy and Sell orders for particular securityId and returns total matched quantity
     unsigned int matchOrders(std::list<Order*>& buyOrders, std::list<Order*>& sellOrders);
-
-    // Function that matches a Buy order with Sell orders
     unsigned int matchWithSellOrders(Order* buyOrder, std::list<Order*>& sellOrders);
-
-    // Function that reduces Buy and Sell order quantities
     void reduceOrderQty(Order* buyOrder, Order* sellOrder, unsigned int matchQty);
-
-    // Erase order both from m_orders list and m_orders map
-    std::list<Order>::iterator eraseOrderFromContainers(const std::string& orderId, std::list<Order>::iterator it);
+    void eraseOrderFromContainers(const std::string& orderId, std::list<Order>::iterator it);
+    void removeOrderFromUserAndSecurityMaps(std::list<Order>::iterator it);
 };
