@@ -42,10 +42,8 @@ int main()
         varVect.push_back(i);
         printVectorSizeAndCapacity(varVect);
 
-        // We cannot assign the values in following way since 'reserve()' doesn't allocate resources,
-        // only decreases numbers of vector coppies
-        //  - ERROR wouldn't appear, but vector values would be empty
-        //! varVect[i] = i;
+        varVect[i] = i+10;
+        printVector(varVect);
     }
 
     // The moment size becomes bigger than capacity, capacity doubles

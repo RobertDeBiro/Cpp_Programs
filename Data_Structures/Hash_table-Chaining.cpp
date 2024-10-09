@@ -22,39 +22,39 @@ using namespace std;
  */
 class HashTable
 {
-    /// @brief Number of lists that will be used within array (number of elements of array of lists)
+    /// @brief Number of lists that will be used within array (number of elements of array of lists).
     /// @details Using 'static' in order to use it for array length (array length must be compile-time constant)
     static const int hashGroups{ 10 };
 
-    /// @brief Array of lists containing key-value pairs
+    /// @brief Array of lists containing key-value pairs.
     list<pair<int, string>> table[hashGroups];
     
 public:
     /// @brief Checks if 'HashTable' is empty i.e. there are no lists.
-    /// @return true if there is at least one list fulfilled inside HashTable.
-    /// @return false if all lists are empty.
+    /// @return true if all lists are empty.
+    /// @return false if there is at least one list fulfilled inside HashTable.
     bool isEmpty() const;
 
-    /// @brief Randomly returns index of array of lists
+    /// @brief Randomly returns index of array of lists.
     /// @param key 'number'
     /// @return Index of array of lists
     int hashFunction(int key);
     
-    /// @brief Inserts item (key-value pair) into the HashTable
+    /// @brief Inserts item (key-value pair) into the HashTable.
     /// @param key Key of the item
     /// @param value Value of the item
     void insertItem(int key, string value);
 
-    /// @brief Removes item from the HashTable
+    /// @brief Removes item from the HashTable.
     /// @param key key of item required to remove
     void removeItem(int key);
 
-    /// @brief Search item with corresponding key
+    /// @brief Search item with corresponding key.
     /// @param key Key of the searched item
     /// @return Value of the item with corresponding key
     string searchTable(int key);
 
-    /// @brief Prints HashTable
+    /// @brief Prints HashTable.
     void printTable();
 };
 

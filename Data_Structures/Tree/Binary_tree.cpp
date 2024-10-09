@@ -6,11 +6,12 @@
  * Types of binary tree:
  *  1) FULL BINARY TREE / STRICTLY BINARY TREE
  *      - every node must have two children, except the leaf nodes
- *      - so, it can happen for example that one leaf node is on level 2, one on level 3,
- *        and one on level 4
+ *      - so, it can happen for example that some leaf nodes are on level 2, some on level 3,
+ *        and some on level 4
  *  2) INCOMPLETE BINARY TREE / ALMOST COMPLETE BINARY TREE
  *      - every node must have two children's in all levels except last and second last level and
  *        should be filled from left to right
+ *      - last level is the last level on far left
  *  3) COMPLETE BINARY TREE / PERFECT BINARY TREE
  *      - every node must have two children in all the levels (Each level there should be 2^L
  *        where L is level)

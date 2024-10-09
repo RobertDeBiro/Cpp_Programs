@@ -1,10 +1,10 @@
 #include "OrderCache.h"
-#include <utility>
 
 void Order::reduceQty(unsigned int amount)
 {
     // If amount of qty to reduce from particular order is bigger than existing order qty value,
-    // existing qty is fully mathed and becomes 0, otherwise subtract existing qty value with received amount
+    // existing qty is fully mathed and becomes 0, otherwise existing qty value is substracted
+    // with received amount
     m_qty = (amount > m_qty) ? 0 : (m_qty - amount);
 }
 
@@ -163,7 +163,7 @@ void OrderCache::reduceOrderQty(Order* buyOrder, Order* sellOrder, unsigned int 
 std::list<Order>::iterator OrderCache::eraseOrderFromContainers(const std::string& orderId, std::list<Order>::iterator it)
 {
     m_orderMap.erase(orderId);
-    return m_orders.erase(it);
+    return m_orders.erase(it); // return iterator following the last removed element
 }
 
 std::vector<Order> OrderCache::getAllOrders() const

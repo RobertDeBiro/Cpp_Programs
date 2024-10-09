@@ -65,7 +65,7 @@ public:
     std::vector<Order> getAllOrders() const override;
 
 private:
-    // List of aded orders
+    // List of added orders
     std::list<Order> m_orders;
 
     // Map with following key-value pair:

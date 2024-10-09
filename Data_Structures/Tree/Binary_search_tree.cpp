@@ -38,7 +38,7 @@ Node* insert(Node *head, int data)
         head->m_left = insert(head->m_left, data);
     else
         head->m_right = insert(head->m_right, data);
-    return head; // this is actually not needed, but it is set in order to satisfy return type Node*
+    return head; // this is actually not needed, but it is set in order to satisfy return type 'Node*'
 }
 
 // First printing the smallest value, so the most left child
@@ -58,9 +58,9 @@ int main()
     int nodeAmount, val;
     std::cin >> nodeAmount;
     std::cin >> val; // insert value for the head node
-    Node* head = insert(nullptr, val); // create head node
-    nodeAmount--; // head node is created, decrease amount of nodes
-    while(nodeAmount--) // First use nodeAmount value inside while loop and than decrease it by one
+    Node* head = insert(nullptr, val); // create 'head' node
+    nodeAmount--; // 'head' node is created, decrease amount of nodes
+    while(nodeAmount--) // First use 'nodeAmount' value inside while loop and than decrease it by one
     {
         std::cin >> val;
         insert(head, val);
