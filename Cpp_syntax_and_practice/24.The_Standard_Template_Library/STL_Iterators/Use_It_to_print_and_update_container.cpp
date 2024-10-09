@@ -10,7 +10,6 @@ And they had kids.
 
 And now here we are today.
 The end!
-
  */
 
 #include <iostream>
