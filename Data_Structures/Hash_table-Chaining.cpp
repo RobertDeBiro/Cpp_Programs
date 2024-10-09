@@ -26,7 +26,7 @@ class HashTable
     /// @details Using 'static' in order to use it for array length (array length must be compile-time constant)
     static const int hashGroups{ 10 };
 
-    /// @brief Array of lists
+    /// @brief Array of lists containing key-value pairs
     list<pair<int, string>> table[hashGroups];
     
 public:
