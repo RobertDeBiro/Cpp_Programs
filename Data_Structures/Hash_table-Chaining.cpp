@@ -24,7 +24,7 @@ class HashTable
 {
     /// @brief Number of lists that will be used within array (number of elements of array of lists).
     /// @details Using 'static' in order to use it for array length (array length must be compile-time constant)
-    static const int hashGroups{ 10 };
+    static constexpr int hashGroups{ 10 };
 
     /// @brief Array of lists containing key-value pairs.
     list<pair<int, string>> table[hashGroups];

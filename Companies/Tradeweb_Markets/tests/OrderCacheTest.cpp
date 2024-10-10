@@ -7,7 +7,8 @@ protected:
     OrderCache cache;
 
     // Helper function to add orders to cache
-    void addOrderToCache(const std::string &orderId, const std::string &securityId, const std::string &side, unsigned int qty, const std::string &user, const std::string &company)
+    void addOrderToCache(const std::string &orderId, const std::string &securityId, const std::string &side, 
+                         unsigned int qty, const std::string &user, const std::string &company)
     {
         Order order(orderId, securityId, side, qty, user, company);
         cache.addOrder(order);

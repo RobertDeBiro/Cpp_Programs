@@ -141,5 +141,6 @@
     "gtest-adapter.debugConfig": [
         "(gdb) Launch GoogleTest"
     ],
-    "cmake.sourceDirectory": "/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog"
+    "cmake.sourceDirectory": "/home/robert/IT/Programs/Cpp_Programs/Personal_projects/Logging/spdlog",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/Miscellaneous/Logging/spdlog/build/compile_commands.json"
 }

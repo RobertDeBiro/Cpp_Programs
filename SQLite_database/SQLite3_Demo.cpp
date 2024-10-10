@@ -6,15 +6,18 @@ int main()
     std::cout << "*****************************************************\n";
 
     sqlite3* db;
-    char* errMsg = 0;
 
     //* Open database (create if not exists)
     int rc = sqlite3_open("Database/Sqlite3_Demo_data.sqlite", &db);
 
-    if (rc) {
+    if (rc)
+    {
+        sqlite3_close(db);
         std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
         return 1;
-    } else {
+    }
+    else
+    {
         std::cout << "Opened database successfully" << std::endl;
     }
 
@@ -27,29 +30,37 @@ int main()
                                  "SALARY         REAL );";
 
     //* Execute SQL statement
-    rc = sqlite3_exec(db, createTableSQL, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
+    //  - 'sqlite3_exec' is used if we already have fully prepared query
+    char* errMsg = 0;
+    rc = sqlite3_exec(db, createTableSQL, nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK)
+    {
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
-    } else {
+    }
+    else
+    {
         std::cout << "Table created successfully" << std::endl;
     }
 
     //* Insert data into the table
     const char* insertSQL = "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
-                             "VALUES (1, 'Paul', 32, 'California', 20000); "
-                             "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
-                             "VALUES (2, 'Allen', 25, 'Texas', 15000); "
-                             "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
-                             "VALUES (3, 'Teddy', 23, 'Norway', 20000.00); "
-                             "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
-                             "VALUES (4, 'Mark', 25, 'Richmond', 65000.00);";
+                                "VALUES (1, 'Paul', 32, 'California', 20000); "
+                            "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
+                                "VALUES (2, 'Allen', 25, 'Texas', 15000); "
+                            "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
+                                "VALUES (3, 'Teddy', 23, 'Norway', 20000.00); "
+                            "INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
+                                "VALUES (4, 'Mark', 25, 'Richmond', 65000.00);";
 
-    rc = sqlite3_exec(db, insertSQL, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
+    rc = sqlite3_exec(db, insertSQL, nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK)
+    {
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
-    } else {
+    }
+    else
+    {
         std::cout << "Records inserted successfully" << std::endl;
     }
 
@@ -57,9 +68,11 @@ int main()
     const char* selectSQL = "SELECT * FROM COMPANY";
 
     // 'sqlite3_stmt' - data type that should contain prepared statement, i.e. statement ready for execution
-    sqlite3_stmt* stmt; // object that will be used to save prepared statement
+    sqlite3_stmt* stmt;
+
     rc = sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nullptr);
-    if (rc != SQLITE_OK) {
+    if (rc != SQLITE_OK)
+    {
         std::cerr << "Failed to prepare statement: " << sqlite3_errmsg(db) << std::endl;
         return 1;
     }
@@ -68,11 +81,11 @@ int main()
     std::cout << "Selected data from the table:" << std::endl;
     // 'sqlite3_step'
     //  - executes prepared statement
-    //  - together with macro 'SQLITE_ROW' and 'SQLITE_DONE' it can be used
-    //    to iterate until it reaches a stopping point
+    //  - together with macro 'SQLITE_ROW' and 'SQLITE_DONE' it can be used to iterate until it reaches a stopping point
     //    - equal to 'SQLITE_ROW' = another row to iterate
     //    - equal to 'SQLITE_DONE' = no rows to iterate
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
+    while (sqlite3_step(stmt) == SQLITE_ROW)
+    {
         int id = sqlite3_column_int(stmt, 0);
         const unsigned char* name = sqlite3_column_text(stmt, 1);
         int age = sqlite3_column_int(stmt, 2);
@@ -86,13 +99,15 @@ int main()
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     rc = sqlite3_prepare_v2(db, "SELECT NAME FROM COMPANY", -1, &stmt, nullptr);
-    if (rc != SQLITE_OK) {
+    if (rc != SQLITE_OK)
+    {
         std::cerr << "Failed to prepare statement: " << sqlite3_errmsg(db) << std::endl;
         return 1;
     }
 
     std::cout << "Selected data from the table:" << std::endl;
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
+    while (sqlite3_step(stmt) == SQLITE_ROW)
+    {
         const unsigned char* name = sqlite3_column_text(stmt, 0);
         std::cout << "Name = " << name << std::endl;
     }
