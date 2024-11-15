@@ -12,6 +12,7 @@ void determineDeviceType(libusb_device* dev) {
     }
 
     // Examine descriptor fields to determine device type
+    std::cout << "Device idVendor: " << desc.idVendor << std::endl;
     std::cout << "Device idVendor: 0x" << std::hex << desc.idVendor << std::endl;
     std::cout << "Device idProduct: 0x" << std::hex << desc.idProduct << std::endl;
     std::cout << "Device bLength: " << std::dec << (int)desc.bLength << std::endl;
@@ -64,7 +65,7 @@ void monitorUSB() {
         libusb_free_device_list(list, 1);
         
         // Wait for some time before checking again
-        std::this_thread::sleep_for(std::chrono::seconds(10));
+        std::this_thread::sleep_for(std::chrono::seconds(30));
         std::cout << "**************************************\n";
     }
 
