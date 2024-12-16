@@ -5,3 +5,5 @@
 **/build
 temp.cpp
 temp.cmake
+temp.ui
+temp.puml
