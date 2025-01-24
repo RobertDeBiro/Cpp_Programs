@@ -1,0 +1,24 @@
+@startuml IPlatformViewEvents
+
+package ViewEvents
+{
+
+class IPlatformViewEvents
+{
+    +OnAutoPositioning()
+    +OnAutoPositionStartOk()
+    +OnAutoPositionStartCancel()
+    +OnAutoPositionDone()
+    +OnAutoPositionFailed()
+    ---
+    +OnConfirmPositioning()
+    +OnConfirmPositionOk()
+    +OnConfirmPositionCancel()
+    +OnConfirmPositionDone()
+    ---
+    +OnCancel()
+}
+
+}
+
+@enduml

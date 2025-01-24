@@ -1,0 +1,27 @@
+@startuml rtkcommon_library
+
+skinparam linetype polyline
+skinparam linetype ortho
+
+component rtkcommon <<Library>>
+
+package "GUI" {
+    [GTK4] <<Shared library>>
+    [Adwaita] <<Shared library>>
+    component [com.ronna-medical.rtkcommon.resource.c] <<Binary resource file>> {
+        component [resource] <<GResource XML>>
+    }
+}
+package "Medical Image Processing" {
+    [VTK] <<Shared library>>
+    [ITK] <<Shared library>>
+}
+package "Logging" {
+    [spdlog] <<Shared library>>
+}
+
+[GUI] --> [rtkcommon]
+[Medical Image Processing] --> [rtkcommon]
+[Logging] --> [rtkcommon]
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml Start_application
+
+start
+
+group Start application
+    : Initialize Logger;
+    : Run application;
+    group Construct OpContext
+        : **Construct**: Viewer, PolarisInterface, MovementManager;
+        group Enter StartupState
+            fork
+                while (PLC connected?) is (no)
+                    : Wait 500 ms;
+                endwhile (yes)
+                : **Open TCP connections** for
+                    PlannerSession, RobotControllerSession, MicroControllerSession
+                    VisionSession, RobotStatusSession, ImageVisionSession;
+                : Define handler for //receiving Operation Plan//;
+                : Prepare for //writing data to EPROM//;
+            end
+            fork again
+                : **Construct**: MovementGuide;
+            end merge
+        end group
+        : **Connect to**: PolarisInterface;
+        : **Construct**: MobileClient, MobileStatusClient, PlcController;
+        repeat
+            : **Connect to**: MobileClient, MobileStatusClient, PlcController;
+        repeat while (Successfully connected?) is (no)
+        -> yes;
+    : Display GUI;
+    end group
+end group
+
+end
+
+@enduml

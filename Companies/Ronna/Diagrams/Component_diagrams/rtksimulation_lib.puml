@@ -1,0 +1,20 @@
+@startuml rtksimulation_application
+
+skinparam linetype polyline
+skinparam linetype ortho
+
+component rtksimulation <<Library>>
+
+package "GUI" {
+    [GTK4] <<Shared library>>
+}
+package "Ronna toolkit" {
+    [rtkcommon] <<Shared library>>
+    [rtkcommunication] <<Static library>>
+    [rtkalgorithm] <<Static library>>
+}
+
+[GUI] ---> [rtksimulation]
+[Ronna toolkit] ---> [rtksimulation]
+
+@enduml

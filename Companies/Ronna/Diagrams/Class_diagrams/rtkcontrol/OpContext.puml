@@ -1,0 +1,28 @@
+@startuml OpContext
+
+class OpContext
+{
+    +MobileController* mobile_controller
+	+PlcController* plc_controller
+	+RobotController* robot_controller
+	+PlanningStationController* planning_station_controller
+
+	-ISystemState* _system_state
+    ---
+    +ContextViewController* context_vc
+	+StateControlViewController* state_control_vc
+    
+    +StartupViewController* startup_vc
+	+StabilizationViewController* patient_stabilization_vc
+	+RegistrationViewController* ots_registration_vc
+	+OptimalPositioningViewController* optimal_positioning_vc
+	+PlatformPositioningViewController* platform_positioning_vc
+	+InitialSimulationViewController* initial_simulation_vc
+	+RonnaVisionViewController* ronna_vision_vc
+	+FinalSimulationViewController* final_simulation_vc
+	+TrajectoryTestViewController* trajectory_test_vc
+	+DressingViewController* dressing_vc
+	+OperationViewController* operation_vc
+}
+
+@enduml

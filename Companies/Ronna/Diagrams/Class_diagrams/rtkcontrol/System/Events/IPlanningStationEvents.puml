@@ -1,0 +1,18 @@
+@startuml
+
+class IPlanningStationEvents
+{
+    +OnStationConnected()
+    +OnStationDisconnected()
+    +OnSendPlanRequested()
+    +OnPlanSent()
+    +OnReplanRequested()
+    +OnPlanAccepted()
+    +OnPlanRejected()
+    ---
+    +OnConfirmRequest()
+    +OnReceiveUpdate()
+    +OnReceiveComplete()
+}
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml gui_states
+
+[*] --> Startup
+Startup -right-> PatientStabilization
+PatientStabilization -right-> OTSRegistration
+OTSRegistration -right-> OptimalPositioning
+OptimalPositioning -down-> PlatformPositioning
+PlatformPositioning -left-> InitialSimulation
+InitialSimulation -left-> RonnaVision
+RonnaVision -left-> FinalSimulation
+FinalSimulation -down-> TrajectoryTest
+TrajectoryTest -right-> Dressing
+Dressing -right-> Operation
+
+@enduml

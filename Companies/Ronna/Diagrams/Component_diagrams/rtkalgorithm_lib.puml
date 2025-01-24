@@ -1,0 +1,18 @@
+@startuml rtkalgorithm_library
+
+skinparam linetype polyline
+skinparam linetype ortho
+
+component rtkalgorithm <<Library>>
+
+package "Medical Image Processing" {
+    [OpenCV] <<Shared library>>
+}
+package "Math Operations" {
+    [Eigen3] <<Shared library>>
+}
+
+[Medical Image Processing] --> [rtkalgorithm]
+[Math Operations] --> [rtkalgorithm]
+
+@enduml

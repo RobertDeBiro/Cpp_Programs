@@ -1,0 +1,21 @@
+@startuml PlansState
+
+class Application
+class Controller
+class PlanContext
+interface BaseState
+class PlansState << (S,#FF7700) Singleton >>
+class itk << (L, orchid) external library>>
+class eigen << (L, orchid) external library>>
+class "Boost::json" << (L, orchid) external library>>
+
+Application o-- AdwApplication : uses >
+Application o-- PlanContext : uses >
+PlanContext -up-|> Controller : is >
+PlanContext o-- BaseState : uses >
+PlansState -up-|> BaseState : is >
+PlansState ..> itk : uses >
+PlansState ..> eigen : uses >
+PlansState ..> "Boost::json" : uses >
+
+@enduml

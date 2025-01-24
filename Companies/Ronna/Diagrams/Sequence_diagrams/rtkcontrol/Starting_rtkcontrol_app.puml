@@ -1,0 +1,40 @@
+@startuml Starting_rtkcontrol_app
+
+hide footbox
+skinparam ParticipantPadding 50
+
+title Starting rtkcontrol application
+
+participant main <<rtkcontrol>>
+participant Application <<rtkcontrol>>
+participant Adwaita <<GTK App>>
+participant OpContext <<rtkcontrol>>
+participant StartupState <<rtkcontrol>>
+
+create Application
+main -> Application : new( //com.ronna-medical.rtkcontrol// )
+
+create Adwaita
+Application -> Adwaita : adw_application_new( //com.ronna-medical.rtkcontrol// )
+note over Application : Subscribe to Adwaita //activate// signal
+Application -[#red]> Adwaita : g_signal_connect( ..<color green>activate</color>, G_CALLBACK(onActivate).. )
+
+main -> Application : run( .. )
+note over Application : Run Adwaita
+Application -[#red]> Adwaita : g_application_run( .. )
+
+Adwaita -[#green]> Application : onActivate()
+
+create OpContext
+Application -> OpContext : new( <color #FF5233>opview.ui,..</color> )
+
+ref over OpContext
+    <color brown>Construct OpContext
+end ref
+
+OpContext -> StartupState : onEnter(PlanContext*)
+
+ref over OpContext, StartupState
+<color brown>StartupState
+end ref
+

@@ -1,0 +1,14 @@
+@startuml IPolarisEvents
+
+package SystemEvents {
+
+class IPolarisEvents
+{
+    +OnPolarisConnected()
+    +OnPolarisConnectionFailed()
+    +OnPolarisDataUpdated()
+}
+
+}
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+
+class IToolEvents
+{
+    +OnToolMounted()
+    +OnToolUnmounted()
+    +OnToolAdapterConnected()
+    +OnToolAdapterDisconnected()
+    +OnToolDataRead()
+}
+
+@enduml

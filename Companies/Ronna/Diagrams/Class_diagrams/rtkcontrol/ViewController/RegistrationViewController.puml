@@ -1,0 +1,10 @@
+@startuml RegistrationViewController
+
+package ViewControllers
+{
+
+class RegistrationViewController {}
+
+}
+
+@enduml

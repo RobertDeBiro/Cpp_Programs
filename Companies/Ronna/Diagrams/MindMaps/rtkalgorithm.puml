@@ -1,0 +1,23 @@
+@startmindmap rtkalgorithm
+
++ rtkalgorithm
+
+++ src
++++ Control
+++++_ Interpolation
+++++_ Kinematics
+++++_ Movements
+++++_ PyInterface
+++++_ Registration
++++ Vision
+++++_ ImageProcessing
+++++_ MarkerEnhancing
+++++_ MarkerProcessing
+++ scripts
++++_ combination_functions
++++_ constants_class
++++_ kinematics_functions
++++_ registration_functions
++++_ ransformation_functions
+
+@endmindmap

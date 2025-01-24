@@ -1,0 +1,31 @@
+@startuml IStateControlViewEvents
+
+package ViewEvents
+{
+
+class IStateControlViewEvents
+{
+    +OnMarkerListSetup()
+    +OnMarkerListBind()
+    +OnSelectMarkerDropdownItem()
+    ---
+    +OnTrajectoryListSetup()
+    +OnTrajectoryListBind()
+    +OnSelectTrajectoryDropdownItem()
+    ---
+    +OnMarkersTabClicked()
+    +OnTrajectoriesTabClicked()
+    +OnStepTabClicked()
+    ---
+    +OnNextButtonClicked()
+    +OnBackButtonClicked()
+    ---
+    +OnNextStepButtonClicked()
+    ---
+    +OnDropDownActivate()
+    +OnDropDownTouch()
+}
+
+}
+
+@enduml

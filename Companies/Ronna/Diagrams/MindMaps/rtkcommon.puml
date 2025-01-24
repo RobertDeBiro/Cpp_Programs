@@ -1,0 +1,35 @@
+@startmindmap rtkcommon
+
++ rtkcommon
+++_ Viewer
+++_ ImageViewer
+++_ AdvancedImageViewer
+++_ ImageInteractorStyle
+++_ VolumeViewer
+++_ VolumeInteractorStyle
+++_ Widget
+++ controllers
++++_ Controller
++++_ MarkerRowController
++++_ MarkersController
++++_ SplashController
++++_ TrajectoriesController
++++_ TrajectoryRowController
+++ glsl
+++ utils
++++_ DCMReader2
++++_ RtkDropdownObject
+++ visualization
++++ filters
+++++_ rtkGaussianBlurPass
+++++_ rtkRenderPass
+++++_ rtkSharpenPass
++++ overlays
+++++_ Crosshair
+++++_ Scale
+++++_ TextOverlay
+++++ items
++++++_ Marker
++++++_ Trajectory
+
+@endmindmap

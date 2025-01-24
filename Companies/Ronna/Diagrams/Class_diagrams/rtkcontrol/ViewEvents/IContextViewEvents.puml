@@ -1,0 +1,27 @@
+@startuml IContextViewEvents
+
+package ViewEvents
+{
+
+class IContextViewEvents
+{
+    +OnQuitClicked()
+    +OnQuitOk()
+    +OnQuitCancel()
+    ---
+    +OnShowViewerClicked()
+    +OnShowInfoClicked()
+    ---
+    +OnReplanClicked()
+    --
+    +OnPowerMenuClicked()
+    +OnAbortRobotClicked()
+    ---
+    +OnShutdownConfirmed();
+    +OnRestartConfirmed();
+    +OnShutdownCanceled();
+}
+
+}
+
+@enduml

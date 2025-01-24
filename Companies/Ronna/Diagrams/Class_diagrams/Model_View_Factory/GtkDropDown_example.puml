@@ -1,0 +1,61 @@
+@startuml GtkDropDown_example
+
+package "Model" {
+    interface GListModel
+
+    class GtkStringList extends GListModel
+    {
+        <color:brown>2. Create Model object GtkStringList</color>
+
+        +gtk_string_list_new()
+    }
+
+    class GtkStringObject <<Item>>
+    {
+        +gtk_string_object_get_string(GtkStringObject*)
+    }
+
+    GtkStringList o-- "many" GtkStringObject
+}
+
+package "View" {
+    class GtkDropDown extends GtkWIdget
+    {
+        <color:brown>1. Create View object GtkDropDown</color>
+
+        +gtk_drop_down_set_model(GtkDropDown*, GListModel*)
+        +gtk_drop_down_set_factory(GtkDropDown*, GtkListItemFactory*)
+        +gtk_drop_down_get_selected_item(GtkDropDown*)
+    }
+
+    class GtkLabel <<Item>>
+    {
+        +gtk_label_new()
+        +gtk_label_set_text()
+    }
+
+    GtkDropDown o-- "many" GtkLabel
+}
+
+package "Factory" {
+    class GtkSignalListItemFactory extends GtkListItemFactory
+    {
+        <color:brown>4. Create Factory object GtkSignalListItemFactory</color>
+
+        +gtk_signal_list_item_factory_new()
+    }
+
+    class GtkListItem <<Item>>
+    {
+        +gtk_list_item_set_child(GtkListItem*, GtkLabel*)
+        +GtkLabel* get_gtk_list_item_get_childchild(GtkListItem*)
+        +GObject* gtk_list_item_get_item(GtkListItem*)
+    }
+
+    GtkSignalListItemFactory o-down- "many" GtkListItem
+}
+
+GtkDropDown -left-> GtkStringList : <color:brown>3.</color>
+GtkDropDown -right-> GtkSignalListItemFactory : <color:brown>5.</color>
+
+@enduml

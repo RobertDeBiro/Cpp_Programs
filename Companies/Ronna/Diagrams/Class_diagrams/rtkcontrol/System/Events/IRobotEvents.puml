@@ -1,0 +1,15 @@
+@startuml
+
+class IRobotEvents
+{
+    +OnRobotConnected()
+    +OnRobotDisconnected()
+    +OnStandStillViolation()
+    +OnRobotReject()
+    +OnRobotDemastered()
+    ---
+    +OnRobotStatusEvent()
+    +OnTransportPoseReached()
+}
+
+@enduml

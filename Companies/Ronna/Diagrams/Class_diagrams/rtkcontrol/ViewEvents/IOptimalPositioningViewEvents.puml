@@ -1,0 +1,29 @@
+@startuml IOptimalPositioningViewEvents
+
+package ViewEvents
+{
+
+class IOptimalPositioningViewEvents
+{
+    +OnOptimalSearchUpdate()
+    +OnOptimalSearchFinish()
+
+    +OnMovementPlansUpdate()
+    +OnMovementPlansFinish()
+
+    +OnLeftConfiguration()
+    +OnCenterLeftConfiguration()
+    +OnCenterConfiguration()
+    +OnCenterRightConfiguration()
+    +OnRightConfiguration()
+
+    +OnOptimalPositionDone()
+    +OnOptimalPositionFailed()
+
+    +OnValidConfigurationsDone()
+    +OnValidConfigurationsFailed()
+}
+
+}
+
+@enduml

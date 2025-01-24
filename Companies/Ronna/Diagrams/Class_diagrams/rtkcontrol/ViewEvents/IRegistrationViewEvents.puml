@@ -1,0 +1,24 @@
+@startuml IRegistrationViewEvents
+
+package ViewEvents
+{
+
+class IRegistrationViewEvents
+{
+    +OnAutoRegistration()
+    +OnManualRegistration()
+    ---
+    +OnAcceptManualConfirm()
+    +OnResetManualConfirm()
+    +OnCancelManualConfirm()
+    ---
+    +OnAutoRegisterDone()
+    +OnAutoRegisterFailed()
+    ---
+    +OnManualRegisterDone()
+    +OnManualRegisterFailed()
+}
+
+}
+
+@enduml

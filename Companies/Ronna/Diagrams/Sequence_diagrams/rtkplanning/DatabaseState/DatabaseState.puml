@@ -1,0 +1,49 @@
+@startuml DatabaseState
+
+hide footbox
+skinparam ParticipantPadding 50
+
+title DatabaseState
+
+participant DatabaseState <<rtkplanning>>
+participant DatabaseModel <<rtkplanning>>
+participant Adwaita <<GTK App>>
+participant "Study::Static" as S_Study <<rtkplanning>>
+participant "Patient::Static" as S_Patient <<rtkplanning>>
+
+note over DatabaseState
+    ""builder = <color #FF5233>DatabaseState.ui</color>""
+    ""db_builder = <color #FF5233>Database.ui</color>""
+end note
+
+create DatabaseModel
+DatabaseState -> DatabaseModel : model = new( )
+
+group DatabaseModel Constructor
+    note over DatabaseModel
+        Purpose of constructor is to **create GTK tree store**
+        for DatabaseState view in rtkplanning
+    end note
+    DatabaseModel -[#red]> Adwaita : ""treeStore"" = gtk_tree_store_new( .. )
+    DatabaseModel -> DatabaseModel : updateModel()
+    DatabaseModel -[#red]> Adwaita : gtk_tree_store_clear( treeStore )
+
+    DatabaseModel -> S_Study : getAll()
+    ref over S_Study
+        <color brown>Get studies
+    end ref
+    S_Study -> DatabaseModel : studies
+
+    loop Studies count
+        DatabaseModel -> S_Patient : get()
+        ref over S_Patient
+            <color brown>Get patient
+        end ref
+        S_Patient -> DatabaseModel : patient
+        DatabaseModel -[#red]> Adwaita : gtk_tree_store_set( treeStore, study, patient,.. )
+        DatabaseModel -> S_Patient !! : delete Patient instance
+    end
+    DatabaseModel -> S_Study !! : delete Studies instances
+end
+
+@enduml

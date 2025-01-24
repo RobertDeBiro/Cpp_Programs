@@ -1,0 +1,17 @@
+@startuml Controller
+
+class Controller <<rtkcommon>>
+
+class Controller
+{
+    #GtkBuilder* m_builder
+	#GtkWidget* m_gobj
+
+    +GtkBuilder* getBuilder()
+    +GtkWidget* getGobj()
+    +void show()
+    +void show(GtkWindow* parent)
+    +void hide()
+}
+
+@enduml

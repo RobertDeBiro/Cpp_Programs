@@ -1,0 +1,15 @@
+@startuml PolarisController
+
+package SystemControllers
+{
+
+class PolarisController
+{
+    #OnPolarisConnected()
+    #OnPolarisConnectionFailed()
+    #OnPolarisDataUpdated()
+}
+
+}
+
+@enduml

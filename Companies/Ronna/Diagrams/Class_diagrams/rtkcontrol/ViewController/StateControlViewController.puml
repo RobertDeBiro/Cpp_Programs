@@ -1,0 +1,10 @@
+@startuml StateControlViewController
+
+package ViewControllers
+{
+
+class StateControlViewController {}
+
+}
+
+@enduml

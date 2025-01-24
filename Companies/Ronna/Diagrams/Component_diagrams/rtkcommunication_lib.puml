@@ -1,0 +1,34 @@
+@startuml rtkcommunication_library
+
+skinparam linetype polyline
+skinparam linetype ortho
+
+component rtkcommunication <<Library>>
+
+package "Medical Image Processing" {
+    [OpenCV] <<Shared library>>
+}
+package "Math Operations" {
+    [Eigen3] <<Shared library>>
+}
+package "Logging" {
+    [spdlog] <<Shared library>>
+}
+package "PLC" {
+    [ads] <<Shared library>>
+}
+package "NDI Polaris OTS" {
+    [ndilib] <<Shared library>>
+}
+package "TCP/IP Networking" {
+    [Boost] <<Shared library>>
+}
+
+[Medical Image Processing] -up--> [rtkcommunication]
+[Math Operations] -up--> [rtkcommunication]
+[Logging] -up--> [rtkcommunication]
+[PLC] ---> [rtkcommunication]
+[NDI Polaris OTS] ---> [rtkcommunication]
+[TCP/IP Networking] ---> [rtkcommunication]
+
+@enduml

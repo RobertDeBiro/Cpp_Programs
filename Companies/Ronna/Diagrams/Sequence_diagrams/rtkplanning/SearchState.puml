@@ -1,0 +1,29 @@
+@startuml SearchState
+
+hide footbox
+skinparam ParticipantPadding 50
+
+title SearchState
+
+participant PlanContext <<rtkplanning>>
+participant DatabaseState <<rtkplanning>>
+participant SearchState <<rtkplanning>>
+participant Adwaita <<GTK App>>
+
+note over SearchState
+    ""m_builder = <color #FF5233>SearchState.ui</color>""
+end note
+SearchState -[#red]> Adwaita : g_signal_connect( ..<color green>clicked</color>, G_CALLBACK(OnSearchButtonClicked).. )
+Adwaita -[#green]> SearchState : OnSearchButtonClicked(GtkWidget*, PlanContext*)
+note over SearchState
+    ""ctx->criteria = *..""
+end note
+
+SearchState -> PlanContext : SetState( <color brown>DatabaseState</color> )
+PlanContext -> DatabaseState : onEnter(PlanContext*)
+
+ref over PlanContext, DatabaseState
+<color brown>DatabaseState
+end ref
+
+@enduml

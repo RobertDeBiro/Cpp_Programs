@@ -1,0 +1,25 @@
+@startuml DatabaseState
+
+class Application
+class Controller
+class PlanContext
+interface BaseState
+class DatabaseState << (S,#FF7700) Singleton >>
+class libusb << (L, orchid) external library>>
+class vtk << (L, orchid) external library>>
+class itk << (L, orchid) external library>>
+class dcmtk << (L, orchid) external library>>
+class sqlite3 << (L, orchid) external library>>
+
+Application o-- AdwApplication : uses >
+Application o-- PlanContext : uses >
+PlanContext -up-|> Controller : is >
+PlanContext o-- BaseState : uses >
+DatabaseState -up-|> BaseState : is >
+DatabaseState ..> libusb : uses >
+DatabaseState ..> vtk : uses >
+DatabaseState ..> itk : uses >
+DatabaseState ..> dcmtk : uses >
+DatabaseState ..> sqlite3 : uses >
+
+@enduml

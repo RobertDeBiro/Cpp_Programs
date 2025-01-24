@@ -1,0 +1,92 @@
+@startuml OpContext_Ctor
+
+hide footbox
+skinparam ParticipantPadding 50
+
+title OpContext Constructor
+
+note over OpContext
+    ""m_builder = <color #FF5233>opview.ui</color>""
+    ""mobile_state = mobile_state_type::MS_UNINTIALIZED""
+
+    - get //opview.ui// GTK builder objects
+    - add widgets for initial window
+    - arrange widgets using CSS
+end note
+
+OpContext -[#red]> Adwaita : g_signal_connect( .. )
+
+create Viewer <<rtkcommon>>
+OpContext -> Viewer : new( <color #FF5233>viewer.ui,..</color> )
+note over Viewer
+    ""m_builder = <color #FF5233>viewer.ui</color>""
+
+    - get //viewer.ui// GTK builder objects
+    - add widgets for viewer
+end note
+Viewer -[#red]> Adwaita : g_signal_connect( .. )
+
+loop 3x
+    create AdvancedImageViewer <<rtkcommon>>
+    Viewer -> AdvancedImageViewer : new( )
+    note over AdvancedImageViewer : Setup rendering
+end
+
+create VolumeViewer <<rtkcommon>>
+Viewer -> VolumeViewer : new( )
+note over VolumeViewer : Setup rendering
+
+create PolarisInterface <<rtkcommunication>>
+OpContext -> PolarisInterface : new( )
+
+create MovementManager <<rtksimulation>>
+OpContext -> MovementManager : new( )
+
+OpContext -> OpContext : SetState( <color brown>StartupState</color> )
+
+' We can use following construct to create participant with title and subtitle
+' participant MobileClient <<rtkcommunication>> [
+'     =Session
+'     ----
+'     ""MobileClient""
+' ]
+
+create MobileClient <<rtkcommunication>>
+OpContext -> MobileClient : new( )
+
+create MobileStatusClient <<rtkcommunication>>
+OpContext -> MobileStatusClient : new( )
+
+create PlcController <<rtkcommunication>>
+OpContext -> PlcController : new( )
+
+PlcController -> PlcController : connect()
+note over PlcController
+    Set PLC local address.
+    Construct ""AdsDevice""
+    Start new ""std::thread"" for connection.
+end note
+
+create AdsDevice <<rtkcommunication::AdsLib>>
+PlcController -> AdsDevice : new( )
+
+note over OpContext
+    Initialize operation plan by setting ""RobotPose""."
+end note
+
+MobileClient -> MobileClient : connect()
+note over MobileClient
+    Start new ""boost::thread"" for connection.
+    Configure ""boost::asio"".
+    Assign ""HandleRead"" and ""HandleRequest"" callback functions.
+end note
+
+MobileStatusClient -> MobileStatusClient : connect()
+note over MobileStatusClient
+    Start new ""boost::thread""" for connection.
+    Configure ""boost::asio""".
+    Assign ""HandleRead""" and ""HandleRequest"" callback functions.
+
+end note
+
+@enduml

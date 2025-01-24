@@ -1,0 +1,24 @@
+@startuml IPlcEvents
+
+class IPlcEvents
+{
+    +OnPlcConnected()
+    +OnPlcConnectionFailed()
+    +OnFootswitchPressed()
+    +OnFootswitchReleased()
+    +OnEstopPressed()
+    +OnEstopReleased()
+    +OnPlcConfirmRequest()
+    ---
+    +OnSafetyControllerStateChanged()
+    +OnTorqueReferencingFailed()
+    +OnPositionReferencingFailed()
+    ---
+    +OnDefaultApplicationError()
+    +OnStationError()
+    +OnAutExtActive()
+    +OnApplicationReadyToStart()
+    +OnCollisionDetected()
+}
+
+@enduml

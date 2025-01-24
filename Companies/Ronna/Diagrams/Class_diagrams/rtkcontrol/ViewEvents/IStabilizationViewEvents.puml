@@ -1,0 +1,13 @@
+@startuml IStabilizationViewEvents
+
+package ViewEvents
+{
+
+class IStabilizationViewEvents
+{
+    +OnDemoModeSwitchChanged()
+}
+
+}
+
+@enduml

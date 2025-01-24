@@ -1,7 +1,6 @@
 **/bin
 **/*.exe
 **/out/build
-**/Ronna
 **/build
 temp.cpp
 temp.cmake

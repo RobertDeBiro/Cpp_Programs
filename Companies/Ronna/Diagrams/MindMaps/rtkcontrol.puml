@@ -1,0 +1,28 @@
+@startmindmap rtkcontrol
+
++ rtkcontrol
+
+++_ Main
+++_ Application
+++_ OpContext
+
+++ States
++++_ OpState.cpp
++++_ StartupState.cpp
++++_ PatientStabilizationState.cpp
++++_ OTSRegistrationState.cpp
++++_ OptimalPositioningState.cpp
++++_ PlatformPositioningState.cpp
++++_ InitialSimulationState.cpp
++++_ RonnaVisionState.cpp
++++_ FinalSimulationState.cpp
++++_ TrajectoryTestState.cpp
++++_ DressingState.cpp
++++_ OperationState.cpp
+
+-- rtkalgorithm
+-- rtkcommon
+-- rtkcommunication
+-- rtksimulation
+
+@endmindmap

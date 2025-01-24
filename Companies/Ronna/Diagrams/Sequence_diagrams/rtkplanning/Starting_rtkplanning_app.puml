@@ -1,0 +1,41 @@
+@startuml Starting_rtkplanning_app
+
+hide footbox
+skinparam ParticipantPadding 50
+
+title Starting rtkplanning application
+
+participant main <<rtkplanning>>
+participant Application <<rtkplanning>>
+participant Adwaita <<GTK App>>
+participant PlanContext <<rtkplanning>>
+participant SearchState <<rtkplanning>>
+
+create Application
+main -> Application : new( //com.ronna-medical.rtkplanning// )
+
+group Application Constructor
+    create Adwaita
+    Application -> Adwaita : adw_application_new( //com.ronna-medical.rtkplanning// )
+    note over Application : Subscribe to Adwaita //activate// signal
+    Application -[#red]> Adwaita : g_signal_connect( ..<color green>activate</color>, G_CALLBACK(on_activate).. )
+end
+
+main -> Application : run( .. )
+note over Application : Run Adwaita
+Application -[#red]> Adwaita : g_application_run( .. )
+
+Adwaita -[#green]> Application : onActivate( GtkApplication *app, gpointer data )
+
+create PlanContext
+Application -> PlanContext : new( <color #FF5233>PlanView.ui,..</color> )
+
+ref over PlanContext
+    <color brown>PlanContext Constructor
+end ref
+
+PlanContext -> SearchState : onEnter(PlanContext*)
+
+ref over PlanContext, SearchState
+<color brown>SearchState
+end ref
