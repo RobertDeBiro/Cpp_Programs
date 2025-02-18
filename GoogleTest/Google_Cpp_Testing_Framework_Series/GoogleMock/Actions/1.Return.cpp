@@ -45,11 +45,15 @@ public:
 
     // Calling login() function once
     //  - used for WillOnceTest
-    int InitOnce(std::string username, std::string password) {
-        if(m_dbc.login(username, password) != true) {
+    int InitOnce(std::string username, std::string password)
+    {
+        if(m_dbc.login(username, password) != true)
+        {
             std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
             return -1;
-        } else {
+        }
+        else
+        {
             std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
             return 1;
         }
@@ -57,16 +61,23 @@ public:
 
     // Calling login() function twice
     //  - used for WillRepeatedlyTest
-    int InitRepeat(std::string username, std::string password) {
-        if(m_dbc.login(username, password) != true) {
-            if(m_dbc.login(username, password) != true) {
+    int InitRepeat(std::string username, std::string password)
+    {
+        if(m_dbc.login(username, password) != true)
+        {
+            if(m_dbc.login(username, password) != true)
+            {
                 std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
                 return -1;
-            } else {
+            }
+            else
+            {
                 std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
                 return 1;
             }
-        } else {
+        }
+        else
+        {
             std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
             return 1;
         }
@@ -77,15 +88,15 @@ TEST(MyDBTest, WillOnceTest)
 {
     // ***** Arrange *****
     MockDB mdb;
-    MyDatabase db(mdb); // Originally DataBaseConnect would be passed to db object, but here MockDB is passed
+    MyDatabase db(mdb); // Originally 'DataBaseConnect' would be passed to 'db' object, but here 'MockDB' is passed
 
-    // Expecting that function login(), with parameters "Terminator" and "I'm Back", will be called
+    // Expecting that function 'login()', with parameters "Terminator" and "I'm Back", will be called
     EXPECT_CALL(mdb, login("Terminator", "I'm Back"))
     .Times(1) // Expect that it will be called once
-    .WillOnce(testing::Return(true)); // define that MOCK_METHOD2(login("Terminator", "I'm Back")) will return true
+    .WillOnce(testing::Return(true)); // Define that 'MOCK_METHOD2(login("Terminator", "I'm Back"))' will return 'true'
 
     // ***** Act *****
-    int retValue = db.InitOnce("Terminator", "I'm Back"); // db.init ultimately calls MOCK_METHOD2(login...)
+    int retValue = db.InitOnce("Terminator", "I'm Back"); // 'db.init' ultimately calls MOCK_METHOD2(login...)
 
     // ***** Assert *****
     EXPECT_EQ(retValue, 1);
@@ -103,7 +114,7 @@ TEST(MyDBTest, WillRepeatedlyTest)
     .WillRepeatedly(testing::Return(false));
 
     // ***** Act *****
-    //  - sending some random strings because function parameters are expected as testing::_
+    //  - sending some random strings because function parameters are expected as 'testing::_'
     int retValue = db.InitRepeat("...", "---");
 
     // ***** Assert *****

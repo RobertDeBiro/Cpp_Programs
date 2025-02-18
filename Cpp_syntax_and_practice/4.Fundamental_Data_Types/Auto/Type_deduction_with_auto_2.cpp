@@ -14,7 +14,7 @@ int main()
     
     auto j = i;                     // j is an "int"
     const auto &k = i;              // k is an "const int&" (first const is redundant)
-    auto* p = &i;                   // p is an "const int*"
+    auto* p = &i;                   // p is an "const int*" (asterix '*' is redundant)
     const auto j2 = i, &k2 = i;     // j2 is an "const int", k2 is an "const int&"
 
     std::cout << "j = " << j << '\n';

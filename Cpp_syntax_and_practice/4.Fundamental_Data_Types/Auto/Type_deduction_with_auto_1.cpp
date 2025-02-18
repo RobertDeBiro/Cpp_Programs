@@ -11,6 +11,7 @@ int main()
      *  - when we use a reference as an initializer, the initializer is the referenced object
      *    (in this example object 'i')
      *  - hence 'auto' will be deduced as 'int', and 'a' variable will be 'int'
+     *  - 'a' variable won't be 'int&' because 'auto' ignores reference
      */
     auto a = r;     // 'a' is an 'int'
 
@@ -32,17 +33,16 @@ int main()
 
     /*
      * 'auto'-deduced reference with top-level and low-level consts
-     *  - when we ask for a reference to an auto-deduced type, top-level consts in the initializer are not
-     *    ignored
+     *  - when we ask for a reference to an auto-deduced type, top-level consts in the initializer are not ignored
      */
-    auto &g = ci; // 'g' is an 'const int&'
+    auto& g = ci; // 'g' is an 'const int&'
     
     ////////////////////////////////////////////////////////////////////////////////////
 
     /*
      * 'auto'-deduced reference to a literal
      */
-    // auto &h = 42; // ERROR: we cannot bind reference to a literal
+    //! auto &h = 42; // ERROR: we cannot bind reference to a literal
     const auto &j = 42; // we can bind const reference to a literal
 
     /*

@@ -9,6 +9,8 @@ public:
     std::string getId() { return m_id; }
 };
 
+// Test case behaves like a normal C++ function, hence I can use custom  made classes
+//  - but, as with other funcitons, in order to use class, class definition must be visible
 TEST(StringEqual, root)
 {
     // Arrange

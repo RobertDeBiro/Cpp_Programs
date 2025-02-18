@@ -17,8 +17,7 @@ public:
 //* Mock class
 //  - it has the same name as the commented interface base class
 //  - the idea in this example is that mock class fully replaces interface base class
-//  - this kind of implementation is used if the class that we want to mock contains also some
-//    non-virtual functions
+//  - this kind of implementation is used if the class that we want to mock contains also some non-virtual functions
 //  - in example with inheritance this class was called MockDB
 class DataBaseConnect
 {
@@ -36,11 +35,15 @@ class MyDatabase
 public:
     MyDatabase(DataBaseConnect& dbc) : m_dbc(dbc) { }
 
-    int InitOnce(std::string username, std::string password) {
-        if(m_dbc.login(username, password) != true) {
+    int InitOnce(std::string username, std::string password)
+    {
+        if(m_dbc.login(username, password) != true)
+        {
             std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
             return -1;
-        } else {
+        }
+        else 
+
             std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
             return 1;
         }

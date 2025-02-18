@@ -3,7 +3,7 @@
 package "Model" {
     interface GListModel
 
-    class GtkStringList extends GListModel
+    class GtkStringList implements GListModel
     {
         <color:brown>2. Create Model object GtkStringList</color>
 
@@ -19,7 +19,7 @@ package "Model" {
 }
 
 package "View" {
-    class GtkDropDown extends GtkWIdget
+    class GtkDropDown extends GtkWidget
     {
         <color:brown>1. Create View object GtkDropDown</color>
 

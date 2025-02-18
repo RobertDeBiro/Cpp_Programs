@@ -1,0 +1,79 @@
+@startuml GtkListView_example
+
+package "Model" {
+    interface GListModel
+    interface GtkSelectionModel
+
+    class GListStore implements GListModel
+    {
+        <color:brown>2a.Create Model object GListStore</color>
+        <color:brown>for creating list of any GTK item</color>
+        +g_list_store_new(GType)
+        +g_list_store_append(GListStore*, RtkDropdownObject*)
+    }
+
+    class GtkSingleSelection implements GListModel, GtkSelectionModel
+    {
+        <color:brown>2b.Create Model object GtkSingleSelection</color>
+        <color:brown>from GListStore object</color>
+
+        +gtk_single_selection_new(GListStore*)
+    }
+
+    class RtkDropdownObject <<Item>>
+    {
+        +create_rtkdropdown_object(object_id)
+    }
+
+    GListStore .right. GtkSingleSelection
+    GListStore o-down- "many" RtkDropdownObject
+}
+
+package "View" {
+    class GtkListView extends GtkListBase
+    {
+        <color:brown>1. Create View object GtkListView</color>
+
+        +gtk_list_view_set_model(GtkListView*, GtkSelectionModel*)
+        +gtk_list_view_set_factory(GtkListView*, GtkListItemFactory*)
+    }
+
+    class GtkBox <<Item>>
+    {
+        +gtk_box_append(GtkBox*, GtkLabel*)
+        +gtk_widget_get_first_child(GtkBox*)
+        +gtk_widget_get_next_sibling(GtkLabel*)
+    }
+
+    class GtkLabel
+    {
+        +gtk_label_new()
+        +gtk_label_set_text()
+    }
+
+    GtkListView o-- GtkBox
+    GtkBox o-- "many" GtkLabel
+}
+
+package "Factory" {
+    class GtkSignalListItemFactory extends GtkListItemFactory
+    {
+        <color:brown>4. Create Factory object GtkSignalListItemFactory</color>
+
+        +gtk_signal_list_item_factory_new()
+    }
+
+    class GtkListItem <<Item>>
+    {
+        +gtk_list_item_set_child(GtkListItem*, GtkLabel*)
+        +GtkLabel* get_gtk_list_item_get_child(GtkListItem*)
+        +GObject* gtk_list_item_get_item(GtkListItem*)
+    }
+
+    GtkSignalListItemFactory o-down- "many" GtkListItem
+}
+
+GtkListView -left-> GtkSingleSelection : <color:brown>3.</color>
+GtkListView -right-> GtkSignalListItemFactory : <color:brown>5.</color>
+
+@enduml

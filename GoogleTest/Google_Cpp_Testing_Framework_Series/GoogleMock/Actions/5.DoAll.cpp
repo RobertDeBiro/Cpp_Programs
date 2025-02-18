@@ -28,24 +28,33 @@ class MyDatabase
 public:
     MyDatabase(DataBaseConnect& dbc) : m_dbc(dbc) { }
 
-    int InitOnce(std::string username, std::string password) {
-        if(m_dbc.login(username, password) != true) {
+    int InitOnce(std::string username, std::string password)
+    {
+        if(m_dbc.login(username, password) != true)
+        {
             std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
             return -1;
-        } else {
+        }
+        else
+        {
             std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
             return 1;
         }
     }
 };
 
-int DummyGlobalFunct()
+void DummyFunct()
 {
-    std::cout << "\n*****\t DUMMY global function! \t*****\n";
-    return 1;
+    std::cout << "\n*****\t DUMMY function! \t*****\n";
 }
 
-TEST(MyDBTest, Invoke_DummyGlobalFunct)
+bool DummyFunctRet()
+{
+    std::cout << "\n*****\t DUMMY function RETURN! \t*****\n";
+    return true;
+}
+
+TEST(MyDBTest, DoAll)
 {
     // ***** Arrange *****
     MockDB mdb;
@@ -53,7 +62,10 @@ TEST(MyDBTest, Invoke_DummyGlobalFunct)
 
     EXPECT_CALL(mdb, login("Terminator", "I'm Back"))
     .Times(1)
-    .WillOnce(testing::InvokeWithoutArgs(DummyGlobalFunct));
+    .WillOnce(testing::DoAll(
+                testing::InvokeWithoutArgs(DummyFunct),
+                testing::InvokeWithoutArgs(DummyFunct),
+                testing::InvokeWithoutArgs(DummyFunctRet)));
 
     // ***** Act *****
     int retValue = db.InitOnce("Terminator", "I'm Back");

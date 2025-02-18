@@ -44,17 +44,21 @@ class MyDatabase
 public:
     MyDatabase(DataBaseConnect& dbc) : m_dbc(dbc) { }
 
-    int Random(std::string username, std::string password) {
+    int Random(std::string username, std::string password)
+    {
         // Generate random number
         srand(static_cast<unsigned int>(std::time(nullptr)));
         int randomVal = rand() % 2;
         std::cout << "Generating random number:\n";
         std::cout << "randomVal = " << randomVal << std::endl;
 
-        if (randomVal == 0) {
+        if (randomVal == 0)
+        {
             m_dbc.login0(username, password);
             std::cout << "\n*****\t LOGIN 0! \t*****\n" << std::endl;
-        } else {
+        }
+        else
+        {
             m_dbc.login1(username, password);
             std::cout << "\n*****\t LOGIN 1! \t*****\n" << std::endl;
         }
@@ -106,7 +110,7 @@ TEST(MyDBTest, On_Call_Twice)
         GMOCK WARNING:
         Uninteresting mock function call - taking default action specified at:
         C:\Users\rar\..Google_Cpp_Testing_Framework_Series\GoogleMock\On_Call.cpp:120:
-            Function call: login1("Random1", "Random2")
+            Function call: login0("Random1", "Random2")
                 Returns: true
 
     When login1 is called it is printed:

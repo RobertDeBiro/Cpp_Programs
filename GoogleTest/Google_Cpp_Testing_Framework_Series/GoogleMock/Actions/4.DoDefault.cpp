@@ -28,11 +28,15 @@ class MyDatabase
 public:
     MyDatabase(DataBaseConnect& dbc) : m_dbc(dbc) { }
 
-    int InitOnce(std::string username, std::string password) {
-        if(m_dbc.login(username, password) != true) {
+    int InitOnce(std::string username, std::string password)
+    {
+        if(m_dbc.login(username, password) != true)
+        {
             std::cout << "\n*****\t DB FAILURE! \t*****\n" << std::endl;
             return -1;
-        } else {
+        }
+        else
+        {
             std::cout << "\n*****\t DB SUCCESS! \t*****\n" << std::endl;
             return 1;
         }
@@ -41,7 +45,8 @@ public:
 
 struct Dummy
 {
-    int DummyFunct() {
+    int DummyFunct()
+    {
         std::cout << "\n*****\t DUMMY function! \t*****\n";
         return 1;
     }

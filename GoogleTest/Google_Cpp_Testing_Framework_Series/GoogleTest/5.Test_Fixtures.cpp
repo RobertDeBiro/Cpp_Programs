@@ -1,9 +1,9 @@
 /*
-- if initialize some class or structure into several test cases, we will have a lot of duplicated code
-- in order to reduce lines of code we can use TestFixtures which calls the testing::Test class
+- if we initialize some class or structure into several test cases, we will have a lot of duplicated code
+- in order to reduce lines of code we can use TestFixtures which calls the 'testing::Test' class
   that initialize our class by using SetUp() and TearDown()
-    - when TEST_F is called, SetUp() function is executed
-    - when TEST_F is finished, TearDown() is executed
+    - when 'TEST_F' is called, 'SetUp()' function is executed
+    - when 'TEST_F' is finished, 'TearDown()' is executed
 */
 
 #include <gtest/gtest.h>
@@ -49,7 +49,7 @@ struct MyClassTest : public testing::Test
 {
     MyClass *mc;
 
-    // SetUp() and TearDown() are overridding testing::Test class functions
+    // 'SetUp()' and 'TearDown()' are overridding 'testing::Test' class functions
     void SetUp()
     {
         std::cout << "\n*****\t Calling setUp()! \t*****\n";
