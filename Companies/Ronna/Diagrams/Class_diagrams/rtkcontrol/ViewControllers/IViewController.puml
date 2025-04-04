@@ -1,0 +1,14 @@
+@startuml IViewController
+
+package ViewControllers
+{
+
+interface IViewController
+{
+    +Activate() = 0
+    +Deactivate() = 0
+}
+
+}
+
+@enduml

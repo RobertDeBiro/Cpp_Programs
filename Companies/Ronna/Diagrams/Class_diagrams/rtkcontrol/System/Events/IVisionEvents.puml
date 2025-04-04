@@ -1,9 +1,0 @@
-@startuml
-
-class IVisionEvents
-{
-    +OnVisionClientConnected()
-    +OnVisionClientConnectionFailed()
-}
-
-@enduml

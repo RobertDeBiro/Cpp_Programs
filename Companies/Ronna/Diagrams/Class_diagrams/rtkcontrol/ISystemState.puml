@@ -1,14 +1,20 @@
 @startuml ISystemState
 
+!include Events/IPlcEvents.puml
+!include Events/IRobotEvents.puml
+!include ViewEvents/IContextViewEvents.puml
+!include ViewEvents/IStartupViewEvents.puml
+
 interface ISystemState
 {
-    -ISystemState* _return_state
-
-    +OnEnter() = 0
-    +OnExit() = 0
-
-    +SetReturnState()
-    +GetReturnState()
+    +OnEnter(OpContext) = 0
+    +OnExit(OpContext) = 0
+    +OnUpdate(OpContext)
 }
+
+ISystemState --up|> IContextViewEvents
+ISystemState --up|> IStartupViewEvents
+ISystemState --up|> IPlcEvents
+ISystemState --up|> IRobotEvents
 
 @enduml

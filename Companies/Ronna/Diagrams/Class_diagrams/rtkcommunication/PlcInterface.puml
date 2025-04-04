@@ -1,0 +1,13 @@
+@startuml PlcIntertface
+
+package rtkcommunication #LightYellow
+{
+
+class PlcInterface
+{
+    +Connect(...) : void
+}
+
+}
+
+@enduml

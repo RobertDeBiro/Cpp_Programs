@@ -1,0 +1,14 @@
+@startuml IPlcEvents
+
+package Events
+{
+
+interface IPlcEvents
+{
+    +OnPlcConnected(OpContext) : void
+    +OnEStopsRestarted(OpContext) : void
+}
+
+}
+
+@enduml

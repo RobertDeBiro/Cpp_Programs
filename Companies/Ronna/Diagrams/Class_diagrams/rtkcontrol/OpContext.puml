@@ -1,28 +1,23 @@
 @startuml OpContext
 
+!include Controllers/PlcController.puml
+!include ViewControllers/ContextViewController.puml
+!include ViewControllers/StartupViewController.puml
+
 class OpContext
 {
-    +MobileController* mobile_controller
-	+PlcController* plc_controller
-	+RobotController* robot_controller
-	+PlanningStationController* planning_station_controller
+	-_active_vc : IViewController
+	---
+	+SetSystemState(ISystemState) : void
+	+GetSystemState() : ISystemState
 
-	-ISystemState* _system_state
-    ---
-    +ContextViewController* context_vc
-	+StateControlViewController* state_control_vc
-    
-    +StartupViewController* startup_vc
-	+StabilizationViewController* patient_stabilization_vc
-	+RegistrationViewController* ots_registration_vc
-	+OptimalPositioningViewController* optimal_positioning_vc
-	+PlatformPositioningViewController* platform_positioning_vc
-	+InitialSimulationViewController* initial_simulation_vc
-	+RonnaVisionViewController* ronna_vision_vc
-	+FinalSimulationViewController* final_simulation_vc
-	+TrajectoryTestViewController* trajectory_test_vc
-	+DressingViewController* dressing_vc
-	+OperationViewController* operation_vc
+	+SetupControllersAndStartWorkflow() : void
+	+SetViewController(IViewController) : void
 }
+
+OpContext -left-> ISystemState : _active_state
+OpContext --> StartupViewController : startup_vc
+OpContext --> ContextViewController : context_vc
+OpContext -right-> PlcController : plc_controller
 
 @enduml

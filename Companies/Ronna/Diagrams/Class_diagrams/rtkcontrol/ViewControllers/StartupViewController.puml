@@ -1,0 +1,19 @@
+@startuml StartupViewController
+
+!include IViewController.puml
+
+package ViewControllers
+{
+
+class StartupViewController
+{
+    +Activate() : void
+    +Deactivate() : void
+    -OnNextStepButtonClicked(GtkWidget, OpContext) : void
+}
+
+StartupViewController --|> IViewController
+
+}
+
+@enduml

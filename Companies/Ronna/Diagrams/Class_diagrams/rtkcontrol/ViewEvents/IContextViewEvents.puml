@@ -3,23 +3,9 @@
 package ViewEvents
 {
 
-class IContextViewEvents
+interface IContextViewEvents
 {
-    +OnQuitClicked()
-    +OnQuitOk()
-    +OnQuitCancel()
-    ---
-    +OnShowViewerClicked()
-    +OnShowInfoClicked()
-    ---
-    +OnReplanClicked()
-    --
-    +OnPowerMenuClicked()
-    +OnAbortRobotClicked()
-    ---
-    +OnShutdownConfirmed();
-    +OnRestartConfirmed();
-    +OnShutdownCanceled();
+    +OnNextButtonClicked(OpContext) : void
 }
 
 }

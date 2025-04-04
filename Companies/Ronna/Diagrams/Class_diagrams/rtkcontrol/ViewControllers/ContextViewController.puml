@@ -1,0 +1,17 @@
+@startuml ContextViewController
+
+package ViewControllers
+{
+
+class ContextViewController
+{
+    +main_window : GtkWindow
+    +quit_button : GtkButton
+
+    -OnNextButtonClicked(GtkWidget, OpContext) : void
+    -OnQuitClicked(GtkWidget, ContextViewController) : void
+}
+
+}
+
+@enduml

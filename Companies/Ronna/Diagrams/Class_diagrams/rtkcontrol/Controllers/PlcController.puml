@@ -1,0 +1,22 @@
+@startuml PlcController
+
+!include ../../rtkcommunication/PlcInterface.puml
+
+package Controllers
+{
+
+class PlcController
+{
+    #_ctx : OpContext
+
+    +Connect() : void
+    #OnPlcConnected(OpContext) : void
+    #OnPlcConnectionFailed(OpContext) : void
+    #OnPlcDisconnected(OpContext) : void
+}
+
+PlcController -right-> PlcInterface : plc_interface
+
+}
+
+@enduml

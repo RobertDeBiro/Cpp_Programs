@@ -1,0 +1,24 @@
+@startuml PlcInitializingState
+
+!include ../../OpContext.puml
+!include ../../ISystemState.puml
+
+package StartupStates
+{
+
+class PlcInitializingState << (S,#FF7700) Singleton >>
+{
+    +OnEnter(OpContext) : void
+    +OnExit(OpContext) : void
+    +OnUpdate(OpContext) : void
+
+    #OnNextButtonClicked(OpContext) : void
+    #OnSystemCheckRequired(OpContext) : void
+    #OnEStopsRestarted(OpContext) : void
+}
+
+}
+
+PlcInitializingState -up--|> ISystemState
+
+@enduml

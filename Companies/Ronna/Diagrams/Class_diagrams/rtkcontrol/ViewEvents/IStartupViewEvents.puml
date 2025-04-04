@@ -1,0 +1,13 @@
+@startuml IStartupViewEvents
+
+package ViewEvents
+{
+
+interface IStartupViewEvents
+{
+    +OnNextStepButtonClicked(OpContext) : void
+}
+
+}
+
+@enduml
