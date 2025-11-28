@@ -1,0 +1,17 @@
+@startuml IMobileEvents
+
+!include IBaseEvent.puml
+
+interface IMobileEvents {
+  + OnMobileConnected()
+  + OnMobileDisconnected()
+  + OnMobileConnectionError(error)
+  + OnMobileMovementDone()
+  + OnMobileMovementError(error)
+  __
+  <i><color:Gray>Mobile platform movement events</color></i>
+}
+
+IMobileEvents -up-|> IBaseEvent
+
+@enduml

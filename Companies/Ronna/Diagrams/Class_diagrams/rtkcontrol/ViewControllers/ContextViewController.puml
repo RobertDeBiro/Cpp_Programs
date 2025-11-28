@@ -1,17 +1,12 @@
 @startuml ContextViewController
 
-package ViewControllers
-{
-
-class ContextViewController
-{
-    +main_window : GtkWindow
-    +quit_button : GtkButton
-
-    -OnNextButtonClicked(GtkWidget, OpContext) : void
-    -OnQuitClicked(GtkWidget, ContextViewController) : void
-}
-
+class ContextViewController {
+  + Activate() : void
+  + Deactivate() : void
+  + pc_shutdown_action : ActionPopup
+  __
+  <i><color:Gray>Global context view</color></i>
+  <i><color:Gray>Handles shutdown and system controls</color></i>
 }
 
 @enduml

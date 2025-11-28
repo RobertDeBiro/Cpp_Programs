@@ -1,0 +1,24 @@
+@startuml IPolarisEvents
+
+!include IBaseEvent.puml
+
+interface IPolarisEvents {
+  ==<i><color:DarkBlue>Connection & Initialization</color></i>==
+  + OnPolarisConnected/Disconnected()
+  + OnPolarisInitialized/InitFailed()
+  __
+  ==<i><color:DarkBlue>Tool & Marker Tracking</color></i>==
+  + OnPolarisToolsUpdated(...)
+  + OnPolarisMarkersUpdated(...)
+  + OnPolarisStrayMarkerUpdated(...)
+  __
+  ==<i><color:DarkBlue>Registration</color></i>==
+  + OnPolarisRegistrationDone(...)
+  + OnPolarisRegistrationError(...)
+  __
+  <i><color:Gray>Optical tracking system events</color></i>
+}
+
+IPolarisEvents -up-|> IBaseEvent
+
+@enduml

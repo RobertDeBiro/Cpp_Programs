@@ -1,0 +1,38 @@
+@startuml UninitializedState
+
+interface ISystemState {
+  + OnEnter() : void
+  + OnExit() : void
+}
+
+class OpContext {
+}
+
+package GeneralStates {
+
+class UninitializedState << (S,#FF7700) State >> {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  <i><color:Gray>Initial state when application starts</color></i>
+  <i><color:Gray>Empty implementation - placeholder state</color></i>
+  <i><color:Gray>Transitions to SystemInitializing on app start</color></i>
+}
+
+}
+
+' Relationships
+UninitializedState -up--|> ISystemState
+
+' Access to context (positioned left)
+UninitializedState -left-> OpContext : uses
+
+note right of UninitializedState
+  **First state in application flow**
+  - Set when OpContext initializes
+  - No controller/view interaction
+  - Immediately transitions to startup
+  - Overrides: OnEnter(), OnExit() (empty)
+end note
+
+@enduml

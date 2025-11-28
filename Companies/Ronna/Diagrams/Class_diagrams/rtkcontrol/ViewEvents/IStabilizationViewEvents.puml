@@ -1,0 +1,14 @@
+@startuml IStabilizationViewEvents
+
+!include ../Events/IBaseEvent.puml
+
+interface IStabilizationViewEvents {
+  + OnStabilizationNextButtonClicked()
+  + OnStabilizationBackButtonClicked()
+  __
+  <i><color:Gray>Patient stabilization view events</color></i>
+}
+
+IStabilizationViewEvents -up-|> IBaseEvent
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml ICalculationEvents
+
+!include IBaseEvent.puml
+
+interface ICalculationEvents {
+  ==<i><color:DarkBlue>Patient Creation</color></i>==
+  + OnCalcPatientCreated()
+  + OnCalcPatientCreateFailed(error)
+  __
+  ==<i><color:DarkBlue>Optimal Search (4 events)</color></i>==
+  + OnCalcRealOptimalSearchDone(...)
+  + OnCalcTotalOptimalSearchUpdated/Done(...)
+  __
+  ==<i><color:DarkBlue>Movement Search (4 events)</color></i>==
+  + OnCalcRealMovementsSearchDone(...)
+  + OnCalcTotalMovementsSearchDone(...)
+  __
+  ==<i><color:DarkBlue>Planning (4 events)</color></i>==
+  + OnCalcMarkerPlansSearch...()
+  + OnCalcPatientPlansSearch...()
+  __
+  ==<i><color:DarkBlue>Setup Events (8 events)</color></i>==
+  + OnCalcInitialSetupPassed/Failed()
+  + OnCalcPlatformSetupPassed/Failed()
+  + OnCalcLocalizationSetupPassed/Failed()
+  + OnCalcOperationSetupPassed/Failed()
+}
+
+ICalculationEvents -up-|> IBaseEvent
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml IRegistrationViewEvents
+
+!include ../Events/IBaseEvent.puml
+
+interface IRegistrationViewEvents {
+  + OnRegistrationStartButtonClicked()
+  + OnRegistrationStopButtonClicked()
+  + OnRegistrationNextButtonClicked()
+  + OnRegistrationBackButtonClicked()
+  __
+  <i><color:Gray>OTS registration view events</color></i>
+}
+
+IRegistrationViewEvents -up-|> IBaseEvent
+
+@enduml

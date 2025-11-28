@@ -1,20 +1,55 @@
 @startuml ISystemState
 
+' Include all Controller Event interfaces
+!include Events/ICalculationEvents.puml
+!include Events/IAdapterEvents.puml
+!include Events/IMobileEvents.puml
+!include Events/IPlannerEvents.puml
 !include Events/IPlcEvents.puml
+!include Events/IPolarisEvents.puml
+!include Events/IPowerEvents.puml
 !include Events/IRobotEvents.puml
+!include Events/IVisionEvents.puml
+
+' Include all View Event interfaces
 !include ViewEvents/IContextViewEvents.puml
 !include ViewEvents/IStartupViewEvents.puml
+!include ViewEvents/IStabilizationViewEvents.puml
+!include ViewEvents/IRegistrationViewEvents.puml
+!include ViewEvents/IOptimizationViewEvents.puml
+!include ViewEvents/IPositioningViewEvents.puml
+!include ViewEvents/ISimulationViewEvents.puml
+!include ViewEvents/IRonnaVisionViewEvents.puml
+!include ViewEvents/ITrajectoryTestViewEvents.puml
+!include ViewEvents/IDressingViewEvents.puml
+!include ViewEvents/IOperationViewEvents.puml
 
-interface ISystemState
-{
-    +OnEnter(OpContext) = 0
-    +OnExit(OpContext) = 0
-    +OnUpdate(OpContext)
+interface ISystemState {
+  <i><color:Blue>Aggregates ALL event interfaces</color></i>
+  <i><color:Blue>Base interface for all 74 states</color></i>
 }
 
-ISystemState --up|> IContextViewEvents
-ISystemState --up|> IStartupViewEvents
-ISystemState --up|> IPlcEvents
-ISystemState --up|> IRobotEvents
+' Inheritance from all 20 event interfaces
+ISystemState -up-|> ICalculationEvents
+ISystemState -up-|> IAdapterEvents
+ISystemState -up-|> IMobileEvents
+ISystemState -up-|> IPlannerEvents
+ISystemState -up-|> IPlcEvents
+ISystemState -up-|> IPolarisEvents
+ISystemState -up-|> IPowerEvents
+ISystemState -up-|> IRobotEvents
+ISystemState -up-|> IVisionEvents
+
+ISystemState -up-|> IContextViewEvents
+ISystemState -up-|> IStartupViewEvents
+ISystemState -up-|> IStabilizationViewEvents
+ISystemState -up-|> IRegistrationViewEvents
+ISystemState -up-|> IOptimizationViewEvents
+ISystemState -up-|> IPositioningViewEvents
+ISystemState -up-|> ISimulationViewEvents
+ISystemState -up-|> IRonnaVisionViewEvents
+ISystemState -up-|> ITrajectoryTestViewEvents
+ISystemState -up-|> IDressingViewEvents
+ISystemState -up-|> IOperationViewEvents
 
 @enduml

@@ -1,0 +1,16 @@
+@startuml IPlannerEvents
+
+!include IBaseEvent.puml
+
+interface IPlannerEvents {
+  + OnPlannerConnected()
+  + OnPlannerDisconnected()
+  + OnPlannerPatientLoaded(...)
+  + OnPlannerTrajectoriesLoaded(...)
+  __
+  <i><color:Gray>Planning server communication events</color></i>
+}
+
+IPlannerEvents -up-|> IBaseEvent
+
+@enduml

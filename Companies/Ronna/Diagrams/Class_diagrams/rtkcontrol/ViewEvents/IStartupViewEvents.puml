@@ -1,13 +1,14 @@
 @startuml IStartupViewEvents
 
-package ViewEvents
-{
+!include ../Events/IBaseEvent.puml
 
-interface IStartupViewEvents
-{
-    +OnNextStepButtonClicked(OpContext) : void
+interface IStartupViewEvents {
+  + OnStartupNextButtonClicked()
+  + OnStartupSystemCheckRequired()
+  __
+  <i><color:Gray>Startup workflow view events</color></i>
 }
 
-}
+IStartupViewEvents -up-|> IBaseEvent
 
 @enduml

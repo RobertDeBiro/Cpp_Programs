@@ -1,0 +1,11 @@
+@startuml MobileController
+
+class MobileController {
+  + StartConnecting() : void
+  + IsConnected() : bool
+  __
+  <i><color:Gray>Mobile platform client</color></i>
+  <i><color:Gray>Handles platform movement and homing</color></i>
+}
+
+@enduml

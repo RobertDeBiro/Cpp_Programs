@@ -1,0 +1,13 @@
+@startuml IBaseEvent
+
+interface IBaseEvent {
+  + IBaseEvent()
+  + ~IBaseEvent()
+  __
+  # _ctx : OpContext*
+  __
+  <i><color:Gray>Base event interface for all states</color></i>
+  <i><color:Gray>Provides access to OpContext</color></i>
+}
+
+@enduml

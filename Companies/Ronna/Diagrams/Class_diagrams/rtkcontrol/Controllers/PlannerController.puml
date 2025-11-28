@@ -1,0 +1,11 @@
+@startuml PlannerController
+
+class PlannerController {
+  + StartAccepting() : void
+  + IsConnected() : bool
+  __
+  <i><color:Gray>Planning server (plain socket)</color></i>
+  <i><color:Gray>Port: 10001</color></i>
+}
+
+@enduml

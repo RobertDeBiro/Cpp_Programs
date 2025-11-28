@@ -1,0 +1,12 @@
+@startuml RobotController
+
+class RobotController {
+  + StartAccepting() : void
+  + IsCoreConnected() : bool
+  + IsLiveConnected() : bool
+  __
+  <i><color:Gray>Robot dual server (plain sockets)</color></i>
+  <i><color:Gray>Core: 10007, Live: 10005</color></i>
+}
+
+@enduml

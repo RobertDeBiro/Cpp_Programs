@@ -1,0 +1,18 @@
+@startuml IOperationViewEvents
+
+!include ../Events/IBaseEvent.puml
+
+interface IOperationViewEvents {
+  + OnOperationStartButtonClicked()
+  + OnOperationPauseButtonClicked()
+  + OnOperationCancelButtonClicked()
+  + OnOperationTargetSelected(...)
+  + OnOperationOffsetIncreased/Decreased()
+  + OnOperationBackButtonClicked()
+  __
+  <i><color:Gray>Surgical operation view events</color></i>
+}
+
+IOperationViewEvents -up-|> IBaseEvent
+
+@enduml

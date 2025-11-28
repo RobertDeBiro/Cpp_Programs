@@ -1,22 +1,16 @@
 @startuml PlcController
 
-!include ../../rtkcommunication/PlcInterface.puml
-
-package Controllers
-{
-
-class PlcController
-{
-    #_ctx : OpContext
-
-    +Connect() : void
-    #OnPlcConnected(OpContext) : void
-    #OnPlcConnectionFailed(OpContext) : void
-    #OnPlcDisconnected(OpContext) : void
-}
-
-PlcController -right-> PlcInterface : plc_interface
-
+class PlcController {
+  + StartConnecting() : void
+  + IsConnected() : bool
+  + EnableSystemCheck() : void
+  + StartSafety() : void
+  + RestartEStops() : void
+  + AbortRobot() : void
+  + StartRobot() : void
+  __
+  <i><color:Gray>PLC safety system client</color></i>
+  <i><color:Gray>Port: 10002</color></i>
 }
 
 @enduml

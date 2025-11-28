@@ -1,23 +1,36 @@
 @startuml OpContext
 
-!include Controllers/PlcController.puml
-!include ViewControllers/ContextViewController.puml
-!include ViewControllers/StartupViewController.puml
-
-class OpContext
-{
-	-_active_vc : IViewController
-	---
-	+SetSystemState(ISystemState) : void
-	+GetSystemState() : ISystemState
-
-	+SetupControllersAndStartWorkflow() : void
-	+SetViewController(IViewController) : void
+class OpContext {
+  + {static} GetInstance() : OpContext&
+  + Initialize() : bool
+  ==<i><color:DarkBlue>Singleton Pattern</color></i>==
+  __
+  ==<i><color:DarkBlue>State Management</color></i>==
+  + SetSystemState(enum)
+  + SetGUIState(enum)
+  + SetViewController(vc)
+  __
+  ==<i><color:DarkBlue>Event Queue with Logging</color></i>==
+  + EnqueueIdleEventWithLog(...)
+  + EnqueueTimeoutEventWithLog(...)
+  + EnqueueSystemAlarm(...)
+  __
+  ==<i><color:DarkBlue>9 Device Controllers</color></i>==
+  + calc_ctrl, adapter_ctrl, mobile_ctrl
+  + planner_ctrl, plc_ctrl, polaris_ctrl
+  + power_ctrl, robot_ctrl, vision_ctrl
+  __
+  ==<i><color:DarkBlue>11 View Controllers</color></i>==
+  + context_vc, startup_vc, stabilization_vc
+  + registration_vc, optimization_vc
+  + positioning_vc, simulation_vc
+  + ronna_vision_vc, traj_test_vc
+  + dressing_vc, operation_vc
+  __
+  ==<i><color:DarkBlue>Data & State Tracking</color></i>==
+  + data : ContextData
+  + logger_control
+  + active_trajectory
 }
-
-OpContext -left-> ISystemState : _active_state
-OpContext --> StartupViewController : startup_vc
-OpContext --> ContextViewController : context_vc
-OpContext -right-> PlcController : plc_controller
 
 @enduml

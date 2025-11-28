@@ -1,0 +1,85 @@
+@startuml MobileHomingState
+
+!include ISystemState_MobileHoming.puml
+
+class OpContext {
+}
+
+' Include Controllers used
+package Controllers {
+!include ../../Controllers/MobileController.puml
+!include ../../Controllers/RobotController.puml
+}
+
+' Include ViewControllers used
+package ViewControllers {
+!include ../../ViewControllers/StartupViewController.puml
+!include ../../ViewControllers/ContextViewController.puml
+}
+
+package StartupStates {
+
+class MobileHomingState << (S,#FF7700) State >> {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  ==<i><color:DarkBlue>Mobile Events (2)</color></i>==
+  # OnHomingFinished()
+  # OnHomingCanceled()
+  __
+  ==<i><color:DarkBlue>View Events (1)</color></i>==
+  # OnContextButtonShutdownClicked()
+  __
+  ==<i><color:DarkBlue>Internal State</color></i>==
+  - _homing_canceled : bool
+  __
+  <i><color:Gray>Handles mobile platform homing process</color></i>
+  <i><color:Gray>Transitions to SYSTEM_CHECK_STATE</color></i>
+}
+
+}
+
+' Relationships
+MobileHomingState -up--|> ISystemState
+
+' Uses OpContext (positioned left)
+MobileHomingState -left-> OpContext : uses
+
+' Uses Controllers
+MobileHomingState ..> MobileController : uses
+MobileHomingState ..> RobotController : checks joints
+
+' Uses ViewControllers
+MobileHomingState ..> StartupViewController : activates
+MobileHomingState ..> ContextViewController : sets lift/lower buttons
+
+note right of MobileHomingState
+  **Mobile Platform Homing State**
+  
+  **OnEnter:**
+  - Activates StartupViewController
+  - Refreshes mobile state
+  - Handles different mobile states:
+    • HOMING_NEEDED → Show homing popup
+    • IsHoming() → Stop homing
+    • IDLE_LOWERED → Enable lift if at driving position
+    • IDLE → Enable lift/lower if at driving position
+  - Makes start check button visible
+  
+  **Homing Flow:**
+  1. Check if homing needed
+  2. If homing → wait for completion
+  3. OnHomingFinished() or OnHomingCanceled()
+  4. Transition to SYSTEM_CHECK_STATE
+  
+  **Robot Position Check:**
+  - Verifies current joints at DRIVING_ROTS
+  - Enables lift/lower controls accordingly
+  
+  **Overrides: 5 methods**
+  - 2 mobile events (homing)
+  - 1 view event (shutdown)
+  - 1 helper method
+end note
+
+@enduml

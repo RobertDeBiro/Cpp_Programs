@@ -1,0 +1,16 @@
+@startuml ITrajectoryTestViewEvents
+
+!include ../Events/IBaseEvent.puml
+
+interface ITrajectoryTestViewEvents {
+  + OnTrajectoryTestStartButtonClicked()
+  + OnTrajectoryTestPauseButtonClicked()
+  + OnTrajectoryTestCancelButtonClicked()
+  + OnTrajectoryTestBackButtonClicked()
+  __
+  <i><color:Gray>Trajectory testing view events</color></i>
+}
+
+ITrajectoryTestViewEvents -up-|> IBaseEvent
+
+@enduml

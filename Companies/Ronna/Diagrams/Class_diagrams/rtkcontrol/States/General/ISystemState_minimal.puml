@@ -1,0 +1,12 @@
+@startuml ISystemState_minimal
+
+interface ISystemState {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  <i><color:Gray>Base interface for all states</color></i>
+  <i><color:Gray>Aggregates 20 event interfaces</color></i>
+  <i><color:Gray>(not shown to keep diagram simple)</color></i>
+}
+
+@enduml

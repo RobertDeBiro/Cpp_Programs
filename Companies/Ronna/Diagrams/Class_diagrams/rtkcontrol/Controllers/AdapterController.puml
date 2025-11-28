@@ -1,0 +1,11 @@
+@startuml AdapterController
+
+class AdapterController {
+  + StartAccepting() : void
+  + IsConnected() : bool
+  __
+  <i><color:Gray>Robotic adapter server (SSL)</color></i>
+  <i><color:Gray>Port: 10003</color></i>
+}
+
+@enduml

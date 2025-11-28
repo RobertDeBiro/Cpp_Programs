@@ -1,0 +1,37 @@
+@startuml ISystemState_SystemInitializing
+
+' Include base event outside of packages
+!include ../../Events/IBaseEvent.puml
+
+' Include only event interfaces used by SystemInitializingState
+package Events {
+!include ../../Events/IAdapterEvents.puml
+!include ../../Events/IMobileEvents.puml
+!include ../../Events/IPlannerEvents.puml
+!include ../../Events/IPlcEvents.puml
+!include ../../Events/IPowerEvents.puml
+!include ../../Events/IRobotEvents.puml
+}
+
+package ViewEvents {
+!include ../../ViewEvents/IContextViewEvents.puml
+}
+
+interface ISystemState {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  <i><color:Gray>Base state interface</color></i>
+  <i><color:Gray>Inherits from relevant event interfaces</color></i>
+}
+
+' Show inheritance from event interfaces
+ISystemState -up-|> IAdapterEvents
+ISystemState -up-|> IMobileEvents
+ISystemState -up-|> IPlannerEvents
+ISystemState -up-|> IPlcEvents
+ISystemState -up-|> IPowerEvents
+ISystemState -up-|> IRobotEvents
+ISystemState -up-|> IContextViewEvents
+
+@enduml

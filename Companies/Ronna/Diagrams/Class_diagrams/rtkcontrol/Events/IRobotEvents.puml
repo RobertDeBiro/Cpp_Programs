@@ -1,13 +1,29 @@
 @startuml IRobotEvents
 
-package Events
-{
+!include IBaseEvent.puml
 
-interface IRobotEvents
-{
-    +OnSystemCheckRequired(OpContext) : void
+interface IRobotEvents {
+  ==<i><color:DarkBlue>Connection</color></i>==
+  + OnRobotConnected/Disconnected()
+  + OnRobotConnectionError(error)
+  __
+  ==<i><color:DarkBlue>State & Status</color></i>==
+  + OnRobotMastered/Demastered()
+  + OnRobotReady/NotReady()
+  + OnRobotMoving/Stopped()
+  __
+  ==<i><color:DarkBlue>Movement Execution</color></i>==
+  + OnRobotMovementDone()
+  + OnRobotMovementCanceled()
+  + OnRobotMovementError(...)
+  __
+  ==<i><color:DarkBlue>Errors & Recovery</color></i>==
+  + OnRobotFatalError(...)
+  + OnRobotRecoveryStarted/Done()
+  __
+  <i><color:Gray>Robot arm control events</color></i>
 }
 
-}
+IRobotEvents -up-|> IBaseEvent
 
 @enduml

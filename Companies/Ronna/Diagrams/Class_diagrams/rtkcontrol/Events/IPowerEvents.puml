@@ -1,0 +1,17 @@
+@startuml IPowerEvents
+
+!include IBaseEvent.puml
+
+interface IPowerEvents {
+  + OnPowerConnected()
+  + OnPowerDisconnected()
+  + OnPowerStatusUpdated(...)
+  + OnPowerBatteryLow()
+  + OnPowerShutdownWarning()
+  __
+  <i><color:Gray>UPS and power management events</color></i>
+}
+
+IPowerEvents -up-|> IBaseEvent
+
+@enduml

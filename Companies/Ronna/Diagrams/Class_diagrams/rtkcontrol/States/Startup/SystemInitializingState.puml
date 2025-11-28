@@ -1,0 +1,120 @@
+@startuml SystemInitializingState
+
+!include ISystemState_SystemInitializing.puml
+
+class OpContext {
+}
+
+' Include Controllers used
+package Controllers {
+!include ../../Controllers/AdapterController.puml
+!include ../../Controllers/MobileController.puml
+!include ../../Controllers/PlannerController.puml
+!include ../../Controllers/PlcController.puml
+!include ../../Controllers/PowerController.puml
+!include ../../Controllers/RobotController.puml
+}
+
+' Include ViewControllers used
+package ViewControllers {
+!include ../../ViewControllers/StartupViewController.puml
+!include ../../ViewControllers/ContextViewController.puml
+}
+
+package StartupStates {
+
+class SystemInitializingState << (S,#FF7700) State >> {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  ==<i><color:DarkBlue>Connection Events (7)</color></i>==
+  # OnAdapterConnected()
+  # OnMobileConnected()
+  # OnPlannerConnected()
+  # OnPlcConnected()
+  # OnPowerConnected()
+  # OnRobotCoreConnected()
+  # OnRobotLiveConnected()
+  __
+  ==<i><color:DarkBlue>PLC Safety & Robot (4)</color></i>==
+  # OnPlcSafetyRunning()
+  # OnPlcEStopsRestarted()
+  # OnPlcRobotStarted()
+  # OnPlcRobotStartFailed(error)
+  __
+  ==<i><color:DarkBlue>Mobile Events (21)</color></i>==
+  # OnEnableReset()
+  # OnMobileIdleLowered/Lifted()
+  # OnMobilePlatformIdle()
+  # OnHomingNeeded/Finished()
+  # OnHomingController... (3)
+  # OnLiftingController... (3)
+  # OnJoystick... (3)
+  # OnPoseController... (4)
+  # OnEnableWarning()
+  __
+  ==<i><color:DarkBlue>View Events (1)</color></i>==
+  # OnContextButtonShutdownClicked()
+  __
+  ==<i><color:DarkBlue>Internal State</color></i>==
+  - _safety_started : bool
+  - _robot_started : bool
+  __
+  <i><color:Gray>Initializes all controllers and connections</color></i>
+  <i><color:Gray>Waits for all systems to connect</color></i>
+  <i><color:Gray>Transitions to MOBILE_HOMING_STATE</color></i>
+}
+
+}
+
+' Relationships
+SystemInitializingState -up--|> ISystemState
+
+' Uses OpContext (positioned left)
+SystemInitializingState -left-> OpContext : uses
+
+' Uses Controllers
+SystemInitializingState ..> AdapterController : starts
+SystemInitializingState ..> MobileController : starts
+SystemInitializingState ..> PlannerController : starts
+SystemInitializingState ..> PlcController : starts
+SystemInitializingState ..> PowerController : starts
+SystemInitializingState ..> RobotController : starts
+
+' Uses ViewControllers
+SystemInitializingState ..> StartupViewController : activates
+SystemInitializingState ..> ContextViewController : uses
+
+note right of SystemInitializingState
+  **System Initialization State**
+  
+  **OnEnter:**
+  - Activates StartupViewController
+  - Starts all controller connections:
+    • adapter_ctrl->StartAccepting()
+    • mobile_ctrl->StartConnecting()
+    • planner_ctrl->StartAccepting()
+    • plc_ctrl->StartConnecting()
+    • power_ctrl->StartAccepting()
+    • robot_ctrl->StartAccepting()
+  - Shows initializing popup
+  - Enables PLC system check
+  - Starts PLC safety
+  
+  **Connection Flow:**
+  1. Wait for all connections
+  2. PLC connects → Start safety
+  3. Safety running → Restart E-Stops
+  4. E-Stops restarted → Start robot
+  5. Robot started → Check all connected
+  6. All ready → MOBILE_HOMING_STATE
+  
+  **Overrides: 34 methods**
+  - 7 connection events
+  - 4 PLC/safety events
+  - 21 mobile platform events
+  - 1 view event
+  - 1 helper method
+end note
+
+@enduml

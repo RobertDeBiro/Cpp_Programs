@@ -1,0 +1,103 @@
+@startuml Application_CD
+
+' Factory interface (template) - Parent at top
+interface "IContextFactory<TContext>" as IContextFactory <<template>> {
+  + {abstract} TContext* CreateContext()
+}
+
+' Concrete factory implementation - Child below
+class OpContextFactory {
+  + OpContext* CreateContext()
+  __<i><color:Gray>Returns singleton instance</color></i>__
+}
+
+' Template class
+class "Application<TContext>" as Application <<template>> {
+  + Application(factory, identifier)
+  + int Start()
+  __
+  <i><color:Blue>Manages GTK4 Application Lifecycle</color></i>
+  <i><color:Gray>- Owns IContextFactory</color></i>
+  <i><color:Gray>- Owns AdwApplication</color></i>
+  <i><color:Gray>- Activates context on startup</color></i>
+}
+
+' GTK/Adwaita application class
+class AdwApplication <<external>> {
+  <i><color:Blue>GTK4/Adwaita Application</color></i>
+}
+
+' Context class - Simplified with grouped functionality
+class OpContext {
+  + {static} GetInstance() : OpContext&
+  + Initialize() : bool
+  ==<i><color:DarkBlue>Singleton Pattern</color></i>==
+  __
+  ==<i><color:DarkBlue>State Management</color></i>==
+  + SetSystemState(enum)
+  + SetGUIState(enum)
+  + SetViewController(vc)
+  __
+  ==<i><color:DarkBlue>Event Queue with Logging</color></i>==
+  + EnqueueIdleEventWithLog(...)
+  + EnqueueTimeoutEventWithLog(...)
+  + EnqueueSystemAlarm(...)
+  __
+  ==<i><color:DarkBlue>System Control</color></i>==
+  + ShutdownSystem()
+  + RestartSystem()
+  + SetActiveTool() / GetActiveTool()
+  __
+  ==<i><color:DarkBlue>9 Device Controllers</color></i>==
+  + calc_ctrl, adapter_ctrl, mobile_ctrl
+  + planner_ctrl, plc_ctrl, polaris_ctrl
+  + power_ctrl, robot_ctrl, vision_ctrl
+  __
+  ==<i><color:DarkBlue>11 View Controllers</color></i>==
+  + context_vc, startup_vc, stabilization_vc
+  + registration_vc, optimization_vc
+  + positioning_vc, simulation_vc
+  + ronna_vision_vc, traj_test_vc
+  + dressing_vc, operation_vc
+  __
+  ==<i><color:DarkBlue>Simulation & Visualization</color></i>==
+  + movement_guide, offsetting_guide
+  + simulation_viewer, image_viewer
+  __
+  ==<i><color:DarkBlue>Data & State Tracking</color></i>==
+  + data : ContextData
+  + logger_control
+  + active_trajectory
+  + movement vectors
+  __
+  ==<i><color:DarkBlue>Private: Thread Safety</color></i>==
+  <i><color:Gray>- 3 mutexes (view, state, queue)</color></i>
+  <i><color:Gray>- State/ViewController tracking</color></i>
+}
+
+' Relationships
+
+' Factory interface implementation (inheritance - arrow points down)
+IContextFactory --|> OpContextFactory : implements
+
+' Application uses IContextFactory (composition)
+Application *-down- IContextFactory : uses
+
+' Application uses AdwApplication (composition)
+Application *-down- AdwApplication : uses
+
+' Factory creates Context
+IContextFactory .down.> OpContext : creates
+
+note right of Application
+  Template class from rtkelements library.
+  Manages GTK4/Adwaita application lifecycle.
+  Used as: Application<OpContext>
+end note
+
+note left of AdwApplication
+  GTK4/Adwaita library class
+  (external dependency)
+end note
+
+@enduml

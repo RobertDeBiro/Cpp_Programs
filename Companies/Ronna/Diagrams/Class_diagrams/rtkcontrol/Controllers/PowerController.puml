@@ -1,0 +1,11 @@
+@startuml PowerController
+
+class PowerController {
+  + StartAccepting() : void
+  + IsConnected() : bool
+  __
+  <i><color:Gray>Power/UPS server (SSL)</color></i>
+  <i><color:Gray>Port: 10008</color></i>
+}
+
+@enduml

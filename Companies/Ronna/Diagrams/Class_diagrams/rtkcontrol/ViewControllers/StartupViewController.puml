@@ -1,19 +1,11 @@
 @startuml StartupViewController
 
-!include IViewController.puml
-
-package ViewControllers
-{
-
-class StartupViewController
-{
-    +Activate() : void
-    +Deactivate() : void
-    -OnNextStepButtonClicked(GtkWidget, OpContext) : void
-}
-
-StartupViewController --|> IViewController
-
+class StartupViewController {
+  + Activate() : void
+  + Deactivate() : void
+  + pc_initializing : PopupControl
+  __
+  <i><color:Gray>Startup workflow view</color></i>
 }
 
 @enduml
