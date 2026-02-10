@@ -1,0 +1,13 @@
+@startuml VisionController
+
+class VisionController {
+  + StartAccepting() : void
+  + IsCoreConnected() : bool
+  + IsLiveConnected() : bool
+  + StartLocalization() : void
+  __
+  <i><color:Gray>Vision dual server (plain sockets)</color></i>
+  <i><color:Gray>Core: 10004, Live: 10006</color></i>
+}
+
+@enduml

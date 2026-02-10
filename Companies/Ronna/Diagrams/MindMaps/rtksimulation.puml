@@ -1,14 +1,13 @@
 @startmindmap rtksimulation
 
 + rtksimulation
+
 ++ src
-+++_ CollisionInterface
-+++_ MovementPlan
-+++_ PositioningViewer
-+++_ SImulationInteractor
-+++_ SimulationViewer
++++_ Structures
+
 +++ Actors
-++++_ AxesAssembly
+++++_ ActorFactory
+++++_ AxesActor
 ++++_ BaseActor
 ++++_ CoverActor
 ++++_ LinkActor
@@ -16,18 +15,43 @@
 ++++_ RobotAssembly
 ++++_ SimulationActor
 ++++_ ToolActor
+
 +++ Managers
-++++_ ComponentsManager
 ++++_ MockupManager
-++++_ MovementPlanManager
+++++_ MovementGuide
+++++_ MovementManager
+++++_ MovementSubManager
+++++_ MovementWorker
+++++_ OffsettingGuide
 ++++_ OptimizationManager
 ++++_ OptimizationWorker
+++++_ ParametersChooser
 ++++_ RegistrationManager
+
++++ Simulation
+++++_ CollisionInterface
+++++_ CollisionPair
+++++_ MousePosition
+++++_ PoseAssembler
+++++_ SegmentAssembler
+++++_ SimulationInteractor
+++++_ SimulationScene
+++++_ SimulationViewer
+++++_ SimulationWidget
+
 +++ Results
 ++++_ MobilityResults
 ++++_ MobilityWriter
 ++++_ PositionResults
 ++++_ PositionWriter
-++ resources/stl-files
+
+++ resources
++++_ stl-files/ (3D models)
+
+++ docs
++++_ Documentation files
+
+++ tests
++++_ Unit tests
 
 @endmindmap

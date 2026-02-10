@@ -1,54 +1,34 @@
 @startmindmap rtkcommunication
 
 + rtkcommunication
-++ resources/rom-files
-+++_ Camera
-+++_ LeftCollar
-+++_ RightCollar
-+++_ Stiffening
-+++_ Stylus
+
 ++ src
-+++ Server
-++++_ HostServer
-++++_ HostVisionSession
-++++_ ImageVisionSession
-++++_ MicroControllerSession
-++++_ PlannerSession
-++++_ RobotControllerSession
-++++_ RobotStatusSession
-++++_ Server
-++++_ VisionSession
-+++ Client
-++++_ HostClient
-++++_ ImageClient
-++++_ MobileClient
-++++_ MobileStatusClient
-++++_ PlannerClient
-++++_ VisionClient
-+++ Common
-++++_ CameraManager
-++++_ PlcController
-++++_ PolarisInterface
-++++_ PolarisTool
-++++_ Session
-++++_ SpatialTransform
-++++_ ThreadPool
-++++ Data
-+++++_ CameraExposure
-+++++_ CameraLeds
-+++++_ CameraSettings
-+++++_ CartesianPose
-+++++_ EulerOrientation
-+++++_ Folder
-+++++_ GuidedTrajectory
-+++++_ MobileRequest
-+++++_ OperationPlan
-+++++_ OptimalSolution
-+++++_ Position
-+++++_ QuatOrientation
-+++++_ ROI
-+++++_ StrayMarker
-+++++_ Trajectory
-+++++_ VisionResponse
++++ Asio
+++++_ Clients
+++++_ ClientStates
+++++_ Encryption
+++++_ IOContext
+++++_ MockupClients
+++++_ MockupServers
+++++_ Servers
+++++_ ServerStates
+++++_ Sockets
+++++_ Transfers
++++ Managers
+++++_ MobileManager
+++++_ PlcManager
+++++_ PolarisManager
+++++_ UartManager
+++++_ UartMockupManager
+++++_ UpsManager
+
+++ resources
++++_ certs/ (SSL certificates)
+
+++ docs
++++_ Documentation files
+
+++ tests
++++_ Unit tests
 
 @endmindmap

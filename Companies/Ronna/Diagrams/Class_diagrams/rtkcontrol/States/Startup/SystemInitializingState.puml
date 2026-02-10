@@ -3,6 +3,17 @@
 !include ISystemState_SystemInitializing.puml
 
 class OpContext {
+  ==<i><color:DarkGreen>Controllers</color></i>==
+  + adapter_ctrl : std::unique_ptr<AdapterController>
+  + mobile_ctrl : std::unique_ptr<MobileController>
+  + planner_ctrl : std::unique_ptr<PlannerController>
+  + plc_ctrl : std::unique_ptr<PlcController>
+  + power_ctrl : std::unique_ptr<PowerController>
+  + robot_ctrl : std::unique_ptr<RobotController>
+  __
+  ==<i><color:DarkGreen>View Controllers</color></i>==
+  + startup_view_ctrl : std::unique_ptr<StartupViewController>
+  + context_view_ctrl : std::unique_ptr<ContextViewController>
 }
 
 ' Include Controllers used
@@ -73,17 +84,17 @@ SystemInitializingState -up--|> ISystemState
 ' Uses OpContext (positioned left)
 SystemInitializingState -left-> OpContext : uses
 
-' Uses Controllers
-SystemInitializingState ..> AdapterController : starts
-SystemInitializingState ..> MobileController : starts
-SystemInitializingState ..> PlannerController : starts
-SystemInitializingState ..> PlcController : starts
-SystemInitializingState ..> PowerController : starts
-SystemInitializingState ..> RobotController : starts
+' OpContext contains Controllers
+OpContext o-down- AdapterController : contains
+OpContext o-down- MobileController : contains
+OpContext o-down- PlannerController : contains
+OpContext o-down- PlcController : contains
+OpContext o-down- PowerController : contains
+OpContext o-down- RobotController : contains
 
-' Uses ViewControllers
-SystemInitializingState ..> StartupViewController : activates
-SystemInitializingState ..> ContextViewController : uses
+' OpContext contains ViewControllers
+OpContext o-down- StartupViewController : contains
+OpContext o-down- ContextViewController : contains
 
 note right of SystemInitializingState
   **System Initialization State**

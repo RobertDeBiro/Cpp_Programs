@@ -1,0 +1,49 @@
+@startuml ISystemState_WaitingPlan
+
+interface IBaseEvent {
+}
+
+package Events {
+
+interface IPlannerEvents {
+  + OnPlannerConnectionError(error)
+  + OnPlannerPlanProposed()
+  + OnPlannerPlanReceived(operation_plan)
+  + OnPlannerDicomUpdated(progress)
+  + OnPlannerDicomReceived()
+  + OnPlannerPopupPlanAcceptOk()
+  + OnPlannerPopupPlanRejectOk()
+}
+
+}
+
+package ViewEvents {
+
+interface IContextViewEvents {
+  + OnContextButtonShutdownClicked()
+}
+
+interface IStartupViewEvents {
+  + OnStartupButtonOperationStarted()
+}
+
+}
+
+interface ISystemState {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  <i><color:Gray>Base state interface</color></i>
+  <i><color:Gray>Inherits from relevant event interfaces</color></i>
+}
+
+' Show inheritance
+IPlannerEvents -up-|> IBaseEvent
+IContextViewEvents -up-|> IBaseEvent
+IStartupViewEvents -up-|> IBaseEvent
+
+ISystemState -up-|> IPlannerEvents
+ISystemState -up-|> IContextViewEvents
+ISystemState -up-|> IStartupViewEvents
+
+@enduml

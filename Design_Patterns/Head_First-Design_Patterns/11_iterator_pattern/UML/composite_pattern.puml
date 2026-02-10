@@ -1,0 +1,146 @@
+@startuml Composite_Pattern
+
+title Composite Pattern - Class Diagram
+
+' Component - Abstract base class
+abstract class MenuComponent {
+    ' Composite methods
+    + {abstract} add(component : unique_ptr<MenuComponent>) : void
+    + {abstract} remove(component : MenuComponent*) : void
+    + {abstract} getChild(index : size_t) : MenuComponent*
+
+    ' Leaf methods
+    + {abstract} getName() : string
+    + {abstract} getDescription() : string
+    + {abstract} getPrice() : double
+    + {abstract} isVegetarian() : bool
+
+    ' Operation method
+    + {abstract} print() : void
+    + {abstract} createIterator() : unique_ptr<Iterator>
+}
+
+' Leaf - MenuItem
+class CompositeMenuItem {
+    - m_name : string
+    - m_description : string
+    - m_vegetarian : bool
+    - m_price : double
+
+    + CompositeMenuItem(name, description, vegetarian, price)
+    + getName() : string
+    + getDescription() : string
+    + getPrice() : double
+    + isVegetarian() : bool
+    + print() : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+' Composite - Menu
+class CompositeMenu {
+    - m_menuComponents : vector<unique_ptr<MenuComponent>>
+    - m_name : string
+    - m_description : string
+
+    + CompositeMenu(name, description)
+    + add(component : unique_ptr<MenuComponent>) : void
+    + remove(component : MenuComponent*) : void
+    + getChild(index : size_t) : MenuComponent*
+    + getName() : string
+    + getDescription() : string
+    + print() : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+' NullIterator - For leaf nodes
+class NullIterator {
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+' CompositeIterator - For composite nodes
+class CompositeIterator {
+    - m_stack : stack<iterator>
+    - m_components : vector<MenuComponent*>
+    - m_position : size_t
+
+    + CompositeIterator(components)
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+' Iterator Interface
+interface Iterator <<interface>> {
+    + {abstract} hasNext() : bool
+    + {abstract} next() : MenuItem*
+}
+
+' Client
+class CompositeWaitress {
+    - m_allMenus : MenuComponent*
+
+    + CompositeWaitress(allMenus)
+    + printMenu() : void
+    + printVegetarianMenu() : void
+    - printVegetarianHelper(component) : void
+}
+
+' Relationships
+MenuComponent <|-- CompositeMenuItem : extends
+MenuComponent <|-- CompositeMenu : extends
+
+CompositeMenu o-- MenuComponent : contains
+
+Iterator <|.. NullIterator : implements
+Iterator <|.. CompositeIterator : implements
+
+CompositeMenuItem ..> NullIterator : creates
+CompositeMenu ..> CompositeIterator : creates
+
+CompositeWaitress o-- MenuComponent : uses
+CompositeWaitress ..> Iterator : uses
+
+note right of MenuComponent
+  Component defines interface
+  for both leaf and composite.
+  Default implementations throw
+  exceptions for unsupported ops.
+end note
+
+note left of CompositeMenuItem
+  Leaf: Represents end objects.
+  Cannot contain children.
+  Implements leaf operations
+  (getName, getPrice, etc.)
+end note
+
+note right of CompositeMenu
+  Composite: Can contain children
+  (both MenuItems and Menus).
+  Implements composite operations
+  (add, remove, getChild).
+  Delegates to children via recursion.
+end note
+
+note bottom of CompositeWaitress
+  Client treats leaf and
+  composite uniformly through
+  MenuComponent interface.
+  Just calls print() and
+  recursion handles the rest.
+end note
+
+note top of NullIterator
+  Null Object Pattern:
+  Returns false for hasNext().
+  Used by leaf nodes that
+  have nothing to iterate.
+end note
+
+note top of CompositeIterator
+  Uses stack for depth-first
+  traversal of composite structure.
+  Handles nested menus automatically.
+end note
+
+@enduml

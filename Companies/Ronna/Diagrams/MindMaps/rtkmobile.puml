@@ -1,0 +1,18 @@
+@startmindmap rtkmobile
+
++ rtkmobile
+
+++ src
++++ Kinematics
+++++_ DiffDriveController
+++++_ Odometry
+++++_ SpeedLimiter
+
++++ MobileControllers
+++++_ HomingController
+++++_ IMobileController
+++++_ JoystickController
+++++_ LiftingController
+++++_ PoseController
+
+@endmindmap

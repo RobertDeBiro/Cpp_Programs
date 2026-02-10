@@ -1,0 +1,134 @@
+@startuml Strategy_Pattern_Duck_Behavior
+
+' Strategy Pattern - Duck Behavior Class Diagram
+' Shows composition over inheritance
+
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FFFFFF
+skinparam class {
+    BackgroundColor<<interface>> #E1F5FE
+    BorderColor<<interface>> #01579B
+    BackgroundColor #FFF9C4
+    BorderColor #F57F17
+}
+
+' Strategy Interfaces (Abstract Classes in C++)
+interface FlyBehavior <<interface>> {
+    + {abstract} fly() : void
+    + ~FlyBehavior()
+}
+
+interface QuackBehavior <<interface>> {
+    + {abstract} quack() : void
+    + ~QuackBehavior()
+}
+
+' Concrete Fly Strategies
+class FlyWithWings {
+    + fly() : void
+}
+
+class FlyNoWay {
+    + fly() : void
+}
+
+class FlyRocketPowered {
+    + fly() : void
+}
+
+' Concrete Quack Strategies
+class Quack {
+    + quack() : void
+}
+
+class MuteQuack {
+    + quack() : void
+}
+
+class Squeak {
+    + quack() : void
+}
+
+' Context Class
+abstract class Duck {
+    # flyBehavior : unique_ptr<FlyBehavior>
+    # quackBehavior : unique_ptr<QuackBehavior>
+    --
+    + {abstract} display() : void
+    + performFly() : void
+    + performQuack() : void
+    + swim() : void
+    + setFlyBehavior(FlyBehavior) : void
+    + setQuackBehavior(QuackBehavior) : void
+}
+
+' Concrete Duck Types
+class MallardDuck {
+    + MallardDuck()
+    + display() : void
+}
+
+class ModelDuck {
+    + ModelDuck()
+    + display() : void
+}
+
+' Relationships
+
+' Strategy implementations
+FlyBehavior <|.. FlyWithWings : implements
+FlyBehavior <|.. FlyNoWay : implements
+FlyBehavior <|.. FlyRocketPowered : implements
+
+QuackBehavior <|.. Quack : implements
+QuackBehavior <|.. MuteQuack : implements
+QuackBehavior <|.. Squeak : implements
+
+' Duck inheritance
+Duck <|-- MallardDuck : extends
+Duck <|-- ModelDuck : extends
+
+' Composition (HAS-A relationships)
+' Key: Duck HAS-A FlyBehavior, Duck HAS-A QuackBehavior
+Duck o--> "1" FlyBehavior : has-a
+Duck o--> "1" QuackBehavior : has-a
+
+note right of Duck
+  **Strategy Pattern**
+  Context class delegates
+  behavior to strategy objects
+
+  **Key Principle:**
+  Composition over Inheritance
+  (HAS-A > IS-A)
+end note
+
+note bottom of FlyBehavior
+  Strategy Interface
+  Defines family of
+  flying algorithms
+end note
+
+note bottom of QuackBehavior
+  Strategy Interface
+  Defines family of
+  quacking algorithms
+end note
+
+note left of MallardDuck
+  Concrete context
+  Sets behaviors in constructor:
+  - FlyWithWings
+  - Quack
+end note
+
+note right of ModelDuck
+  Concrete context
+  Initial behaviors:
+  - FlyNoWay
+  - Quack
+
+  Can change at runtime!
+end note
+
+@enduml

@@ -1,20 +1,56 @@
 @startuml ISystemState_SystemInitializing
 
-' Include base event outside of packages
-!include ../../Events/IBaseEvent.puml
+interface IBaseEvent {
+}
 
-' Include only event interfaces used by SystemInitializingState
 package Events {
-!include ../../Events/IAdapterEvents.puml
-!include ../../Events/IMobileEvents.puml
-!include ../../Events/IPlannerEvents.puml
-!include ../../Events/IPlcEvents.puml
-!include ../../Events/IPowerEvents.puml
-!include ../../Events/IRobotEvents.puml
+
+interface IAdapterEvents {
+  + OnAdapterConnected()
+}
+
+interface IMobileEvents {
+  + OnMobileConnected()
+  + OnEnableReset()
+  + OnMobileIdleLowered/Lifted()
+  + OnMobilePlatformIdle()
+  + OnHomingNeeded/Finished()
+  + OnHomingController... (3)
+  + OnLiftingController... (3)
+  + OnJoystick... (3)
+  + OnPoseController... (4)
+  + OnEnableWarning()
+}
+
+interface IPlannerEvents {
+  + OnPlannerConnected()
+}
+
+interface IPlcEvents {
+  + OnPlcConnected()
+  + OnPlcSafetyRunning()
+  + OnPlcEStopsRestarted()
+  + OnPlcRobotStarted()
+  + OnPlcRobotStartFailed(error)
+}
+
+interface IPowerEvents {
+  + OnPowerConnected()
+}
+
+interface IRobotEvents {
+  + OnRobotCoreConnected()
+  + OnRobotLiveConnected()
+}
+
 }
 
 package ViewEvents {
-!include ../../ViewEvents/IContextViewEvents.puml
+
+interface IContextViewEvents {
+  + OnContextButtonShutdownClicked()
+}
+
 }
 
 interface ISystemState {
@@ -25,7 +61,15 @@ interface ISystemState {
   <i><color:Gray>Inherits from relevant event interfaces</color></i>
 }
 
-' Show inheritance from event interfaces
+' Show inheritance
+IAdapterEvents -up-|> IBaseEvent
+IMobileEvents -up-|> IBaseEvent
+IPlannerEvents -up-|> IBaseEvent
+IPlcEvents -up-|> IBaseEvent
+IPowerEvents -up-|> IBaseEvent
+IRobotEvents -up-|> IBaseEvent
+IContextViewEvents -up-|> IBaseEvent
+
 ISystemState -up-|> IAdapterEvents
 ISystemState -up-|> IMobileEvents
 ISystemState -up-|> IPlannerEvents

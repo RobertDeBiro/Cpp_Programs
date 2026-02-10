@@ -1,15 +1,23 @@
 @startuml ISystemState_MobileHoming
 
-' Include base event outside of packages
-!include ../../Events/IBaseEvent.puml
+interface IBaseEvent {
+}
 
-' Include only event interfaces used by MobileHomingState
 package Events {
-!include ../../Events/IMobileEvents.puml
+
+interface IMobileEvents {
+  + OnHomingFinished()
+  + OnHomingCanceled()
+}
+
 }
 
 package ViewEvents {
-!include ../../ViewEvents/IContextViewEvents.puml
+
+interface IContextViewEvents {
+  + OnContextButtonShutdownClicked()
+}
+
 }
 
 interface ISystemState {
@@ -20,7 +28,10 @@ interface ISystemState {
   <i><color:Gray>Inherits from relevant event interfaces</color></i>
 }
 
-' Show inheritance from event interfaces
+' Show inheritance
+IMobileEvents -up-|> IBaseEvent
+IContextViewEvents -up-|> IBaseEvent
+
 ISystemState -up-|> IMobileEvents
 ISystemState -up-|> IContextViewEvents
 

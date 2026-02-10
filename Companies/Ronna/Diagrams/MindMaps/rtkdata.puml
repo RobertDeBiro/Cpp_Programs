@@ -1,0 +1,55 @@
+@startmindmap rtkdata
+
++ rtkdata
+
+++ src
++++_ Structures
+
++++ Data
+++++_ EulerOrientation
+++++_ GuidedTrajectory
+++++_ GuideInsertTool
+++++_ LocalizationMarker
+++++_ MovementPlan
+++++_ MovementSolution
+++++_ OperationTool
+++++_ OptimalSolution
+++++_ PolarisTool
+++++_ Position
+++++_ RobotTool
+++++_ StrayMarker
+++++_ Trajectory
+++++_ VisionResponse
+
++++ Utilities
+++++_ AppPath
+++++_ BoostReflection
+++++_ Datetime
+++++_ DicomTags
+++++_ FrameCounter
+++++_ JsonObject
+++++_ Logger
+++++_ ProcessRunner
+++++_ StreamBuffer
+++++_ ThreadPool
+++++_ Timer
+++++_ Transforms
+++++_ UniqueThread
+
++++ Database
+++++_ BaseDatabase
+++++_ Database
+++++_ ErrorDatabase
+++++_ Model
+++++_ Statement
+++++_ schema.sql
+++++_ errors_schema.sql
+++++_ tools_schema.sql
+
+++ resources
++++_ Database schemas
+
+++ tests
++++_ Unit tests
+
+@endmindmap

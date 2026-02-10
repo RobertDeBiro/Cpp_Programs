@@ -1,0 +1,130 @@
+@startuml SystemCheckState
+
+!include ISystemState_SystemCheck.puml
+
+class OpContext {
+  ==<i><color:DarkGreen>Controllers</color></i>==
+  + mobile_ctrl : std::unique_ptr<MobileController>
+  + plc_ctrl : std::unique_ptr<PlcController>
+  + robot_ctrl : std::unique_ptr<RobotController>
+  + vision_ctrl : std::unique_ptr<VisionController>
+  __
+  ==<i><color:DarkGreen>View Controllers</color></i>==
+  + startup_view_ctrl : std::unique_ptr<StartupViewController>
+  + context_view_ctrl : std::unique_ptr<ContextViewController>
+}
+
+' Include Controllers used
+package Controllers {
+!include ../../Controllers/MobileController.puml
+!include ../../Controllers/PlcController.puml
+!include ../../Controllers/RobotController.puml
+!include ../../Controllers/VisionController.puml
+}
+
+' Include ViewControllers used
+package ViewControllers {
+!include ../../ViewControllers/StartupViewController.puml
+!include ../../ViewControllers/ContextViewController.puml
+}
+
+package StartupStates {
+
+class SystemCheckState << (S,#FF7700) State >> {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  ==<i><color:DarkBlue>Startup View Events (2)</color></i>==
+  # OnStartupButtonSystemCheckStarted()
+  # OnStartupButtonSystemCheckCanceled()
+  __
+  ==<i><color:DarkBlue>Context View Events (3)</color></i>==
+  # OnContextButtonShutdownClicked()
+  # OnContextPopupVisionCheckRetryOk()
+  # OnContextPopupVisionCheckCancelOk()
+  __
+  ==<i><color:DarkBlue>PLC Events (2)</color></i>==
+  # OnPlcFootswitchPressed()
+  # OnPlcFootswitchReleased()
+  __
+  ==<i><color:DarkBlue>Robot Events (8)</color></i>==
+  # OnRobotPopupSpaceEnsuringOk()
+  # OnRobotPopupMasteringStartOk()
+  # OnRobotPopupSystemCheckCancelOk()
+  # OnRobotMasteringDone(action_code)
+  # OnRobotBrakeTestDone(action_code)
+  # OnRobotReferencingDone(action_code)
+  # OnRobotJMoveToVisionCheckDone(action_code)
+  # OnRobotJMoveToDrivingDone(action_code)
+  __
+  ==<i><color:DarkBlue>Vision Events (2)</color></i>==
+  # OnVisionCoreConnected()
+  # OnVisionLocalizationDone(vision_response)
+  __
+  ==<i><color:DarkBlue>Mobile Events (1)</color></i>==
+  # OnLoweringCancel()
+  __
+  ==<i><color:DarkBlue>Internal State</color></i>==
+  - _confirming_done : bool
+  - _system_check_active : bool
+  __
+  <i><color:Gray>System check procedure with robot mastering</color></i>
+  <i><color:Gray>Vision calibration check</color></i>
+  <i><color:Gray>Transitions to WAITING_PLAN_STATE</color></i>
+}
+
+}
+
+' Relationships
+SystemCheckState -up--|> ISystemState
+
+' Uses OpContext (positioned left)
+SystemCheckState -left-> OpContext : uses
+
+' OpContext contains Controllers
+OpContext o-down- MobileController : contains
+OpContext o-down- PlcController : contains
+OpContext o-down- RobotController : contains
+OpContext o-down- VisionController : contains
+
+' OpContext contains ViewControllers
+OpContext o-down- StartupViewController : contains
+OpContext o-down- ContextViewController : contains
+
+note right of SystemCheckState
+  **System Check State**
+  
+  **OnEnter:**
+  - Activates StartupViewController
+  - Starts VisionController accepting
+  - Sets start check button visible
+  - Checks if robot at driving position
+  
+  **System Check Flow:**
+  1. User starts check
+  2. Verify preconditions:
+     • Mobile not homing
+     • Footswitch not pressed
+     • Mobile lowered
+     • Camera tool mounted
+     • Vision connected
+  3. Show space ensuring popup
+  4. Wait for footswitch press
+  5. Robot mastering
+  6. Brake test
+  7. Referencing
+  8. Move to vision check pose
+  9. Vision localization & calibration
+  10. Move to driving pose
+  11. → WAITING_PLAN_STATE
+  
+  **Overrides: 20 methods**
+  - 2 startup view events
+  - 3 context view events
+  - 2 PLC events
+  - 8 robot events
+  - 2 vision events
+  - 1 mobile event
+end note
+
+@enduml

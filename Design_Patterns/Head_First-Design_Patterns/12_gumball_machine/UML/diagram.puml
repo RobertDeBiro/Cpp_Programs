@@ -1,0 +1,213 @@
+@startuml State_Pattern_Gumball_Machine
+
+' Style configuration
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam class {
+    BackgroundColor<<Context>> #E8F4F8
+    BorderColor<<Context>> #0066CC
+    BackgroundColor<<Interface>> #FFF9E6
+    BorderColor<<Interface>> #FFB84D
+    BackgroundColor<<ConcreteState>> #E8F8E8
+    BorderColor<<ConcreteState>> #00AA00
+}
+
+' State Interface
+interface State <<Interface>> {
+    + {abstract} insertQuarter(machine: GumballMachine*): void
+    + {abstract} ejectQuarter(machine: GumballMachine*): void
+    + {abstract} turnCrank(machine: GumballMachine*): void
+    + {abstract} dispense(machine: GumballMachine*): void
+}
+
+' Concrete States
+class NoQuarterState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+    --
+    Behavior:
+    • insertQuarter: transition to HasQuarter
+    • ejectQuarter: no quarter to eject
+    • turnCrank: need to pay first
+    • dispense: need to pay first
+}
+
+class HasQuarterState <<ConcreteState>> {
+    - randomGenerator: mt19937
+    - distribution: uniform_int_distribution
+    --
+    + HasQuarterState()
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+    --
+    Behavior:
+    • insertQuarter: already has quarter
+    • ejectQuarter: return quarter, transition to NoQuarter
+    • turnCrank: 10% chance -> Winner, else -> Sold
+    • dispense: inappropriate action
+}
+
+class SoldState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+    --
+    Behavior:
+    • insertQuarter: already dispensing
+    • ejectQuarter: already committed
+    • turnCrank: turning twice not allowed
+    • dispense: release ball, transition to
+      NoQuarter or SoldOut
+}
+
+class SoldOutState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+    --
+    Behavior:
+    • All operations rejected (machine empty)
+    • Can only be refilled
+}
+
+class WinnerState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+    --
+    Behavior:
+    • insertQuarter: already dispensing
+    • ejectQuarter: already committed
+    • turnCrank: turning twice not allowed
+    • dispense: release TWO balls, transition
+      to NoQuarter or SoldOut
+}
+
+' Context (GumballMachine)
+class GumballMachine <<Context>> {
+    - soldOutState: unique_ptr<State>
+    - noQuarterState: unique_ptr<State>
+    - hasQuarterState: unique_ptr<State>
+    - soldState: unique_ptr<State>
+    - winnerState: unique_ptr<State>
+    - state: State*
+    - count: int
+    --
+    + GumballMachine(numberGumballs: int)
+    + insertQuarter(): void
+    + ejectQuarter(): void
+    + turnCrank(): void
+    + setState(newState: State*): void
+    + releaseBall(): void
+    + getCount(): int
+    + refill(count: int): void
+    + toString(): string
+    + getNoQuarterState(): State*
+    + getHasQuarterState(): State*
+    + getSoldState(): State*
+    + getSoldOutState(): State*
+    + getWinnerState(): State*
+    + printStatus(): void
+}
+
+' Relationships
+State <|.. NoQuarterState
+State <|.. HasQuarterState
+State <|.. SoldState
+State <|.. SoldOutState
+State <|.. WinnerState
+
+GumballMachine o--> State : delegates to >
+GumballMachine *--> NoQuarterState : owns
+GumballMachine *--> HasQuarterState : owns
+GumballMachine *--> SoldState : owns
+GumballMachine *--> SoldOutState : owns
+GumballMachine *--> WinnerState : owns
+
+' Notes
+note right of State
+  **State Pattern Interface**
+
+  Defines the contract for all
+  state-dependent operations.
+
+  Each concrete state implements
+  these methods with behavior
+  appropriate for that state.
+end note
+
+note right of GumballMachine
+  **Context**
+
+  • Maintains reference to current state
+  • Delegates all actions to current state
+  • Owns all state objects
+  • Provides helper methods for states
+
+  **Key Point**: No conditional logic!
+  Just delegates to state object.
+end note
+
+note bottom of HasQuarterState
+  **Extension Point**
+
+  This state was extended to add
+  the "1 in 10 wins" game feature.
+
+  Uses random number generation
+  to decide between Winner and
+  Sold states.
+end note
+
+note bottom of WinnerState
+  **Extensibility Demonstration**
+
+  WinnerState was added to implement
+  the game feature WITHOUT modifying
+  existing state classes.
+
+  This shows the Open/Closed Principle:
+  Open for extension, closed for modification.
+end note
+
+' State Transition Diagram
+note as StateTransitions
+  **State Transition Diagram**
+
+  SOLD_OUT ←――――――――――――――――――――――┐
+      ↑                            │
+      │ refill()                   │
+      ↓                            │
+  NO_QUARTER ←――――――――――――――――┐   │ count==0
+      ↓                        │   │
+      │ insertQuarter()        │   │
+      ↓                        │   │
+  HAS_QUARTER                  │   │
+      ↓                        │   │
+      │ turnCrank()            │   │
+      ↓                        │   │
+      ├───→ SOLD (90%) ────────┘   │
+      │         ↓                  │
+      │         dispense()         │
+      │         (count>0)          │
+      │                            │
+      └───→ WINNER (10%) ──────────┘
+                ↓
+                dispense() x2
+                (count>0)
+
+  **Key Insight**: States transition
+  to other states based on actions
+  and internal conditions.
+end note
+
+@enduml

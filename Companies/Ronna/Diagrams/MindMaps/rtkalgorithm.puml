@@ -3,21 +3,39 @@
 + rtkalgorithm
 
 ++ src
-+++ Control
-++++_ Interpolation
-++++_ Kinematics
-++++_ Movements
-++++_ PyInterface
++++ Kinematics
+++++_ CalibKinematics
+++++_ CalibMovements
+++++_ IInterpolation
+++++_ IKinematics
+++++_ IMovements
+++++_ LinearInterpolation
+++++_ NominalKinematics
+++++_ NominalMovements
+++++_ TrapezoidInterpolation
++++ Registration
+++++_ MarkersCombining
+++++_ MarkersValidation
 ++++_ Registration
 +++ Vision
-++++_ ImageProcessing
-++++_ MarkerEnhancing
-++++_ MarkerProcessing
+++++_ DrawingOperations
+++++_ ImageDetectionFlow
+++++_ ImageOperations
+++++_ ImageProcessingFlow
+++++_ RobustDetection
+
 ++ scripts
++++_ Python scripts for:
 +++_ combination_functions
 +++_ constants_class
 +++_ kinematics_functions
 +++_ registration_functions
-+++_ ransformation_functions
++++_ transformation_functions
+
+++ docs
++++_ Documentation files
+
+++ tests
++++_ Unit tests
 
 @endmindmap

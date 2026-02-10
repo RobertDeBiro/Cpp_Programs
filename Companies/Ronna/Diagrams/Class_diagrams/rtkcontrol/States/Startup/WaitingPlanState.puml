@@ -1,0 +1,108 @@
+@startuml WaitingPlanState
+
+!include ISystemState_WaitingPlan.puml
+
+class OpContext {
+  ==<i><color:DarkGreen>Controllers</color></i>==
+  + adapter_ctrl : std::unique_ptr<AdapterController>
+  + planner_ctrl : std::unique_ptr<PlannerController>
+  + plc_ctrl : std::unique_ptr<PlcController>
+  __
+  ==<i><color:DarkGreen>View Controllers</color></i>==
+  + startup_view_ctrl : std::unique_ptr<StartupViewController>
+  + context_view_ctrl : std::unique_ptr<ContextViewController>
+}
+
+' Include Controllers used
+package Controllers {
+!include ../../Controllers/AdapterController.puml
+!include ../../Controllers/PlannerController.puml
+!include ../../Controllers/PlcController.puml
+}
+
+' Include ViewControllers used
+package ViewControllers {
+!include ../../ViewControllers/StartupViewController.puml
+!include ../../ViewControllers/ContextViewController.puml
+}
+
+package StartupStates {
+
+class WaitingPlanState << (S,#FF7700) State >> {
+  + OnEnter() : void
+  + OnExit() : void
+  __
+  ==<i><color:DarkBlue>Startup View Events (1)</color></i>==
+  # OnStartupButtonOperationStarted()
+  __
+  ==<i><color:DarkBlue>Context View Events (1)</color></i>==
+  # OnContextButtonShutdownClicked()
+  __
+  ==<i><color:DarkBlue>Planner Events (7)</color></i>==
+  # OnPlannerConnectionError(error)
+  # OnPlannerPlanProposed()
+  # OnPlannerPlanReceived(operation_plan)
+  # OnPlannerDicomUpdated(progress)
+  # OnPlannerDicomReceived()
+  # OnPlannerPopupPlanAcceptOk()
+  # OnPlannerPopupPlanRejectOk()
+  __
+  <i><color:Gray>Waits for operation plan from planner</color></i>
+  <i><color:Gray>Receives DICOM data</color></i>
+  <i><color:Gray>Transitions to STABILIZATION_STATE</color></i>
+}
+
+}
+
+' Relationships
+WaitingPlanState -up--|> ISystemState
+
+' Uses OpContext (positioned left)
+WaitingPlanState -left-> OpContext : uses
+
+' OpContext contains Controllers
+OpContext o-down- AdapterController : contains
+OpContext o-down- PlannerController : contains
+OpContext o-down- PlcController : contains
+
+' OpContext contains ViewControllers
+OpContext o-down- StartupViewController : contains
+OpContext o-down- ContextViewController : contains
+
+note right of WaitingPlanState
+  **Waiting Plan State**
+  
+  **OnEnter:**
+  - Activates StartupViewController
+  - Resets waiting plan data
+  - Shows recovery popup if recovery possible
+  - Sets start operation button visible
+  
+  **Plan Reception Flow:**
+  1. User starts operation
+  2. Show plan waiting popup
+  3. Wait for planner connection
+  4. OnPlannerPlanProposed()
+     → Show plan confirmation
+  5. User accepts/rejects plan
+  6. If accepted:
+     → OnPlannerPlanReceived()
+     → Load operation plan
+     → Setup markers & trajectories
+     → Request adapter EEPROM
+  7. DICOM download:
+     → OnPlannerDicomUpdated() (progress)
+     → OnPlannerDicomReceived()
+  8. → STABILIZATION_STATE
+  
+  **Recovery:**
+  - Checks if recovery data exists
+  - Shows recovery start popup
+  
+  **Overrides: 9 methods**
+  - 1 startup view event
+  - 1 context view event
+  - 7 planner events
+end note
+
+@enduml

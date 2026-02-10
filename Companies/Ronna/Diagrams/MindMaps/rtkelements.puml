@@ -1,0 +1,40 @@
+@startmindmap rtkelements
+
++ rtkelements
+
+++ src
++++ Core
+++++_ IContext
+++++_ PopupQueue
+++++_ RtkGObject
+
++++ Elements
+++++_ BarWidget
+++++_ FileChooser
+++++_ FolderChooser
+++++_ ITable
+++++_ Picture
+++++_ ToggleGroup
+++++_ TreeTable
+
++++ Popups
+++++_ ActionPopup
+++++_ EntryPopup
+++++_ HandguidingPopup
+++++_ ImagePopup
+++++_ IPopup
+++++_ ProgressPopup
+++++_ SpinnerPopup
+++++_ TimedPopup
+
+++ resources
++++_ GTK4 UI components
++++_ Icons and images
+
+++ docs
++++_ Documentation files
+
+++ tests
++++_ Unit tests
+
+@endmindmap

@@ -1,28 +1,183 @@
 @startmindmap rtkcontrol
 
 + rtkcontrol
+++_ Main.cpp
+++_ Application.h/cpp
+++_ OpContext.h/cpp
+++_ ContextData.h
+++_ Constants.h
+++_ Defines.h
 
-++_ Main
-++_ Application
-++_ OpContext
+++ Controllers
++++_ AdapterController
++++_ CalculationController
++++_ IController
++++_ MobileController
++++_ MobileTestController
++++_ PlannerController
++++_ PlcController
++++_ PlcTestController
++++_ PolarisController
++++_ PowerController
++++_ RobotController
++++_ VisionController
+
+++ ViewControllers
++++_ ContextViewController
++++_ DressingViewController
++++_ IViewController
++++_ OperationViewController
++++_ OptimizationViewController
++++_ PositioningViewController
++++_ RegistrationViewController
++++_ RonnaVisionViewController
++++_ SimulationViewController
++++_ StabilizationViewController
++++_ StartupViewController
++++_ TrajectoryTestViewController
+
+++ SubviewElements
++++_ BoldButton
++++_ ControlBar
++++_ ControlPanel
++++_ DevicesStatus
++++_ LeftControlButtons
++++_ MainControlMenu
++++_ NavigationButtons
++++_ NormalButton
++++_ NormalIconButton
++++_ RightControlButtons
++++_ StatusBar
++++_ TrackingStatus
++++_ VisualizationMenu
 
 ++ States
-+++_ OpState.cpp
-+++_ StartupState.cpp
-+++_ PatientStabilizationState.cpp
-+++_ OTSRegistrationState.cpp
-+++_ OptimalPositioningState.cpp
-+++_ PlatformPositioningState.cpp
-+++_ InitialSimulationState.cpp
-+++_ RonnaVisionState.cpp
-+++_ FinalSimulationState.cpp
-+++_ TrajectoryTestState.cpp
-+++_ DressingState.cpp
-+++_ OperationState.cpp
++++ Alarm (5)
+++++_ DataNotAvailableState
+++++_ ReplanState
+++++_ RobotDemasteredState
+++++_ RobotFatalErrorState
+++++_ SystemCheckNeededState
++++ Dressing (6)
+++++_ DressedState
+++++_ DressingRobotCancelState
+++++_ DressingRobotMovingState
+++++_ DressingRobotPausedState
+++++_ InDressingState
+++++_ UndressedState
++++ General (6)
+++++_ DrivingPositionState
+++++_ HandguidingState
+++++_ ToolExchangeCancelState
+++++_ ToolExchangeMovingState
+++++_ ToolExchangePausedState
+++++_ UninitializedState
++++ Operation (8)
+++++_ OperationInitState
+++++_ OperationRobotCancelState
+++++_ OperationRobotMovingState
+++++_ OperationRobotPausedState
+++++_ OperationTargetState
+++++_ OperationTrajCancelState
+++++_ OperationTrajMovingState
+++++_ OperationTrajPausedState
++++ Optimization (2)
+++++_ OptimalSearchingState
+++++_ OptimalSelectingState
++++ OTSRegistration (3)
+++++_ ManualOTSRegisteringState
+++++_ OTSRegisteredState
+++++_ OTSUnregisteredState
++++ Positioning (14)
+++++_ AutoPositioningActiveState
+++++_ AutoPositioningStoppedState
+++++_ FarPositionedState
+++++_ GeneralHomeCancelState
+++++_ GeneralHomeMovingState
+++++_ GeneralHomePausedState
+++++_ InPositionRegistrationState
+++++_ NearPositionedState
+++++_ NotPositionedState
+++++_ PositioningCheckState
+++++_ PositioningCompleteState
+++++_ RegistrationPoseCancelState
+++++_ RegistrationPoseMovingState
+++++_ RegistrationPosePausedState
++++ RonnaVision (14)
+++++_ VisionAutoLocalizationState
+++++_ VisionBackCancelState
+++++_ VisionBackMovingState
+++++_ VisionBackPausedState
+++++_ VisionManualLocalizationState
+++++_ VisionNextCancelState
+++++_ VisionNextMovingState
+++++_ VisionNextPausedState
+++++_ VisionRegisteredState
+++++_ VisionRelativeCancelState
+++++_ VisionRelativeMovingState
+++++_ VisionRelativePausedState
+++++_ VisionUnregisteredState
+++++_ VisionVerificationState
++++ Simulation (2)
+++++_ FinalSimulationState
+++++_ InitialSimulationState
++++ Stabilization (1)
+++++_ StabilizationState
++++ Startup (4)
+++++_ MobileHomingState
+++++_ SystemCheckState
+++++_ SystemInitializingState
+++++_ WaitingPlanState
++++ TrajectoryTest (8)
+++++_ TrajectoryGeneralHomeCancelState
+++++_ TrajectoryGeneralHomeMovingState
+++++_ TrajectoryGeneralHomePausedState
+++++_ TrajectoryTestCancelState
+++++_ TrajectoryTestInitState
+++++_ TrajectoryTestMovingState
+++++_ TrajectoryTestPausedState
+++++_ TrajectoryTestTargetState
 
--- rtkalgorithm
--- rtkcommon
--- rtkcommunication
--- rtksimulation
+-- Events
+--- IAdapterEvents
+--- ICalculationEvents
+--- IMobileEvents
+--- IPlannerEvents
+--- IPlcEvents
+--- IPolarisEvents
+--- IPowerEvents
+--- IRobotEvents
+--- IVisionEvents
+
+-- ViewEvents
+---_ IContextViewEvents
+---_ IDressingViewEvents
+---_ IOperationViewEvents
+---_ IOptimizationViewEvents
+---_ IPositioningViewEvents
+---_ IRegistrationViewEvents
+---_ IRonnaVisionViewEvents
+---_ ISimulationViewEvents
+---_ IStabilizationViewEvents
+---_ IStartupViewEvents
+---_ ITrajectoryTestViewEvents
+
+-- resources
+---_ Images/
+---_ Mockup-data/
+---_ Styles/
+---_ Subviews/
+---_ Videos/
+---_ Views/
+
+-- external (submodules)
+--- rtkdata
+--- rtkelements
+--- rtkalgorithm
+--- rtkcommon
+--- rtkcommunication
+--- rtkmobile
+--- rtksimulation
+--- system-manifest
 
 @endmindmap

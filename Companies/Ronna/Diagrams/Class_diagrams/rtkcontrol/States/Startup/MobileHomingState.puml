@@ -3,6 +3,13 @@
 !include ISystemState_MobileHoming.puml
 
 class OpContext {
+  ==<i><color:DarkGreen>Controllers</color></i>==
+  + mobile_ctrl : std::unique_ptr<MobileController>
+  + robot_ctrl : std::unique_ptr<RobotController>
+  __
+  ==<i><color:DarkGreen>View Controllers</color></i>==
+  + startup_view_ctrl : std::unique_ptr<StartupViewController>
+  + context_view_ctrl : std::unique_ptr<ContextViewController>
 }
 
 ' Include Controllers used
@@ -45,13 +52,13 @@ MobileHomingState -up--|> ISystemState
 ' Uses OpContext (positioned left)
 MobileHomingState -left-> OpContext : uses
 
-' Uses Controllers
-MobileHomingState ..> MobileController : uses
-MobileHomingState ..> RobotController : checks joints
+' OpContext contains Controllers
+OpContext o-down- MobileController : contains
+OpContext o-down- RobotController : contains
 
-' Uses ViewControllers
-MobileHomingState ..> StartupViewController : activates
-MobileHomingState ..> ContextViewController : sets lift/lower buttons
+' OpContext contains ViewControllers
+OpContext o-down- StartupViewController : contains
+OpContext o-down- ContextViewController : contains
 
 note right of MobileHomingState
   **Mobile Platform Homing State**

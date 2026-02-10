@@ -1,35 +1,52 @@
 @startmindmap rtkcommon
 
 + rtkcommon
-++_ Viewer
-++_ ImageViewer
-++_ AdvancedImageViewer
-++_ ImageInteractorStyle
-++_ VolumeViewer
-++_ VolumeInteractorStyle
-++_ Widget
-++ controllers
-+++_ Controller
-+++_ MarkerRowController
-+++_ MarkersController
-+++_ SplashController
-+++_ TrajectoriesController
-+++_ TrajectoryRowController
-++ glsl
-++ utils
-+++_ DCMReader2
-+++_ RtkDropdownObject
-++ visualization
-+++ filters
-++++_ rtkGaussianBlurPass
-++++_ rtkRenderPass
-++++_ rtkSharpenPass
-+++ overlays
-++++_ Crosshair
-++++_ Scale
-++++_ TextOverlay
-++++ items
-+++++_ Marker
-+++++_ Trajectory
+
+++ src
++++_ Viewer
++++_ ImageViewer
++++_ VolumeViewer
++++_ AdvancedImageViewer
++++_ VolumeRenderer
++++_ Widget
+
++++ Interactors
+++++_ ImageInteractorStyle
+++++_ VolumeInteractorStyle
+
++++ controllers
+++++_ Controller
+
++++ ToolBox
+++++_ Protractor
+++++_ Ruler
+++++_ ToolBox2D
+++++_ ToolBox3D
+
++++ utils
+++++_ DicomTagReader
+
++++ visualization
+++++ filters
++++++_ rtkGaussianBlurPass
++++++_ rtkRenderPass
++++++_ rtkSharpenPass
+++++ overlays
++++++_ Crosshair
++++++_ Scale
++++++_ TextOverlay
++++++ items
+++++++_ Marker
+++++++_ Trajectory
+
++++ Legacy
+++++_ Legacy viewer code
+
+++ resources
++++_ GLSL shaders
++++_ resource.xml
+
+++ tests
++++_ Unit tests
 
 @endmindmap

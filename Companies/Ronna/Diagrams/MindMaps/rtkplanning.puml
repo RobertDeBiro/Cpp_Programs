@@ -1,53 +1,77 @@
 @startmindmap rtkplanning
 
 + rtkplanning
-++_ main
-++ States
-+++_ BaseState.cpp
-+++_ DatabaseState.cpp
-+++_ MarkerState.cpp
-+++_ PlansState.cpp
-+++_ ReportListState.cpp
-+++_ ReportMarkersState.cpp
-+++_ ReportPreviewState.cpp
-+++_ ReportTrajectoriesState.cpp
-+++_ SearchState.cpp
-+++_ SyncState.cpp
-+++_ TrajectoriesState.cpp
-++ ui
-+++_ Application
-+++_ PlanContext
-+++ main
-++++_ MainController
-++++ database
-+++++_ DatabaseController
-+++++_ DatabaseModel
-++++ media
-+++++_ MediaController
-++++ pacs
-+++++ query
-++++++_ PacsQueryController
-++++++_ PacsQueryModel
-+++++ settings
-++++++_ PacsSettingsController
-++ database
-+++_ Database
-+++_ Statemet
-+++ model
-++++_ Image
-++++_ Patient
-++++_ Plan
-++++_ Report
-++++_ Series
-++++_ Study
-++ helpers
-+++_ AppSettings
-+++_ DCMReader
-+++_ MarkerLocalization
-+++_ SearchResViewExt
-+++_ SearchResViewLocal
-+++_ UsbManager
--- rtkcommon
--- rtkcommunication
+++_ Main.cpp
+++_ Application.h/cpp
+++_ PlanContext.h/cpp
+
+++ Controllers
++++_ CalculationController
++++_ PlannerController
++++_ ViewController
+
+++ ViewControllers
++++_ IViewController
++++_ PlanningViewController
+
+++ States (11)
++++_ DatabaseState
++++_ LoginState
++++_ MarkersState
++++_ PlansState
++++_ ReportListState
++++_ ReportMarkersState
++++_ ReportPreviewState
++++_ ReportTrajectoriesState
++++_ SearchState
++++_ SyncState
++++_ TrajectoriesState
+
+++ DicomManagement
++++_ DicomAnonymizer
++++_ DicomdirParser
++++_ DicomItemExport
++++_ DicomItemSearch
++++_ DicomStoreBase
++++_ DicomStoreExport
++++_ DicomStoreManager
++++_ DicomStoreSearch
++++_ DicomTagPreparator
+
+++ PacsManagement
++++_ PacsClient
++++_ PacsConfigFileManager
+
+++ SettingsManagement
++++_ Settings classes
+
+++ MarkerProcessing
++++_ Marker processing logic
+
+++ UsbManagement
++++_ USB device handling
+
+++ SystemErrors
++++_ Error handling
+
+++ Events
++++_ Event interfaces
+
+++ ViewEvents
++++_ View event interfaces
+
+-- resources
+---_ icons/
+---_ images/
+---_ styles/
+---_ views/
+
+-- external (submodules)
+--- rtkdata
+--- rtkelements
+--- rtkalgorithm
+--- rtkcommon
+--- rtkcommunication
+--- system-manifest
 
 @endmindmap
