@@ -1,0 +1,163 @@
+@startuml Facade_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define CLIENT_BG #E8F5E9
+!define CLIENT_BORDER #1B5E20
+!define FACADE_BG #FFF9C4
+!define FACADE_BORDER #F57F17
+!define SUBSYSTEM_BG #E1F5FE
+!define SUBSYSTEM_BORDER #01579B
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<client>> CLIENT_BG
+    BorderColor<<client>> CLIENT_BORDER
+    BackgroundColor<<facade>> FACADE_BG
+    BorderColor<<facade>> FACADE_BORDER
+    BackgroundColor<<subsystem>> SUBSYSTEM_BG
+    BorderColor<<subsystem>> SUBSYSTEM_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+class Client <<client>> {
+    --
+    + main()
+}
+
+class HomeTheaterFacade <<facade>> {
+    - amp : Amplifier*
+    - tuner : Tuner*
+    - dvd : DvdPlayer*
+    - cd : CdPlayer*
+    - projector : Projector*
+    - screen : Screen*
+    - lights : TheaterLights*
+    - popper : PopcornPopper*
+    --
+    + HomeTheaterFacade(...)
+    + watchMovie(movie : string) : void
+    + endMovie() : void
+    + listenToCd(cdTitle : string) : void
+    + endCd() : void
+    + listenToRadio(frequency : double) : void
+    + endRadio() : void
+}
+
+package "Complex Subsystem" {
+
+    class Amplifier <<subsystem>> {
+        - name : string
+        --
+        + on() : void
+        + off() : void
+        + setDvd(dvd : DvdPlayer*) : void
+        + setCd(cd : CdPlayer*) : void
+        + setTuner(tuner : Tuner*) : void
+        + setSurroundSound() : void
+        + setStereoSound() : void
+        + setVolume(level : int) : void
+    }
+
+    class DvdPlayer <<subsystem>> {
+        - name : string
+        - currentMovie : string
+        --
+        + on() : void
+        + off() : void
+        + play(movie : string) : void
+        + stop() : void
+        + eject() : void
+        + pause() : void
+    }
+
+    class CdPlayer <<subsystem>> {
+        - name : string
+        - currentCd : string
+        --
+        + on() : void
+        + off() : void
+        + play(cd : string) : void
+        + stop() : void
+        + eject() : void
+        + pause() : void
+    }
+
+    class Projector <<subsystem>> {
+        - name : string
+        --
+        + on() : void
+        + off() : void
+        + wideScreenMode() : void
+        + tvMode() : void
+    }
+
+    class Screen <<subsystem>> {
+        --
+        + up() : void
+        + down() : void
+    }
+
+    class TheaterLights <<subsystem>> {
+        --
+        + on() : void
+        + off() : void
+        + dim(level : int) : void
+    }
+
+    class PopcornPopper <<subsystem>> {
+        --
+        + on() : void
+        + off() : void
+        + pop() : void
+    }
+
+    class Tuner <<subsystem>> {
+        - name : string
+        - frequency : double
+        --
+        + on() : void
+        + off() : void
+        + setAm() : void
+        + setFm() : void
+        + setFrequency(freq : double) : void
+    }
+}
+
+Client ..> HomeTheaterFacade
+
+HomeTheaterFacade o--> Amplifier
+HomeTheaterFacade o--> Tuner
+HomeTheaterFacade o--> DvdPlayer
+HomeTheaterFacade o--> CdPlayer
+HomeTheaterFacade o--> Projector
+HomeTheaterFacade o--> Screen
+HomeTheaterFacade o--> TheaterLights
+HomeTheaterFacade o--> PopcornPopper
+
+@enduml

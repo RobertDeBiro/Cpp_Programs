@@ -10,7 +10,7 @@
 
 ---
 
-## 1. The Problem - Show the Pain! 💥
+## The Problem - Show the Pain! 💥
 
 ### The Nightmare: Class Explosion or Rigid Inheritance
 
@@ -143,85 +143,13 @@ Six months later, new developer looks at code:
 - ❌ **Composition over Inheritance** - Using inheritance for feature combinations
 - ❌ **Encapsulate what varies** - Condiments are hardcoded in base class
 
----
+### UML Diagram: Bad Design
 
-## 2. Real-World Example: Embedded Device Drivers 🔧
-
-**Scenario:** You're building device drivers for an embedded microcontroller that interfaces with UART (serial) hardware. Different projects need different features:
-
-### Bad Inheritance/Flag Approach
-
-```cpp
-class UARTDriver {
-protected:
-    bool enableLogging;
-    bool enableCRC;
-    bool enableBuffering;
-    bool enableEncryption;
-
-public:
-    void send(uint8_t* data, size_t len) {
-        // Check all flags...
-        if (enableLogging) { /* log data */ }
-        if (enableCRC) { /* calculate CRC */ }
-        if (enableBuffering) { /* buffer data */ }
-        if (enableEncryption) { /* encrypt data */ }
-
-        // Actually send to hardware
-        sendToHardware(data, len);
-    }
-
-    // Setters for all flags...
-    void setLogging(bool enable) { enableLogging = enable; }
-    void setCRC(bool enable) { enableCRC = enable; }
-    // ...
-};
-```
-
-**Problems in Production:**
-
-1. **Memory Constraints**: Each flag adds memory overhead, even if unused
-   - Product A: Needs only logging → wasting memory on CRC/encryption code
-   - Product B: Needs only CRC → wasting memory on logging/encryption code
-
-2. **Code Bloat**: Base driver includes ALL features, even if only 1 is used
-   - Embedded systems have limited flash memory (32KB, 64KB)
-   - Including unused code is wasteful
-
-3. **Conditional Compilation Hell**:
-
-   ```cpp
-   #ifdef ENABLE_LOGGING
-       if (enableLogging) { /* log */ }
-   #endif
-   #ifdef ENABLE_CRC
-       if (enableCRC) { /* CRC */ }
-   #endif
-   // Preprocessor nightmare!
-   ```
-
-4. **New Feature = Modify Driver**: "Add DMA support!"
-   - Modify `UARTDriver` base class
-   - Add `enableDMA` flag
-   - Modify `send()` method
-   - **Risk breaking existing products!**
-
-5. **Performance Overhead**: Every `send()` call checks multiple flags
-   - In interrupt service routines (ISRs), every cycle counts
-   - Flag checks add latency
-
-**Real-World Impact:**
-
-- **Bloated firmware** - wasting precious flash memory
-- **Fragile updates** - changing driver breaks existing products
-- **Poor performance** - unnecessary flag checks in hot paths
-- **Difficult customization** - each customer needs custom build
-
-**This is exactly the pain the Decorator pattern solves!**
+See `UML/Bad_Boolean_Flags_Design.puml` for the class diagram showing the boolean flags approach with all condiments hardcoded in the base class (red-highlighted problem class).
 
 ---
 
-## 3. The Solution - The Insight 💡
+## The Solution - The Insight 💡
 
 ### The Key Architectural Insight
 
@@ -300,7 +228,7 @@ std::cout << beverage->cost();            // $2.49
 
 ---
 
-## 4. The Principles - The "Why" 🎯
+## The Principles - The "Why" 🎯
 
 ### Design Principles Demonstrated
 
@@ -397,7 +325,7 @@ class Mocha : public Beverage {  // IS-A Beverage
 
 ---
 
-## 5. The Benefits - What You Gain ✅
+## The Benefits - What You Gain ✅
 
 ### Flexibility: What Becomes Easy to Change?
 
@@ -474,64 +402,9 @@ TEST(DecoratorTest, MultipleDecorators) {
 }
 ```
 
-### Real-World Impact: Production Systems
-
-**Embedded Device Driver Example (continued):**
-
-With Decorator pattern:
-
-```cpp
-class UARTDriver {  // Base component
-public:
-    virtual void send(uint8_t* data, size_t len) {
-        sendToHardware(data, len);  // Core functionality only
-    }
-};
-
-class LoggingDecorator : public UARTDriver {
-    UARTDriver* driver;
-public:
-    void send(uint8_t* data, size_t len) override {
-        logData(data, len);  // Add logging
-        driver->send(data, len);  // Delegate
-    }
-};
-
-class CRCDecorator : public UARTDriver {
-    UARTDriver* driver;
-public:
-    void send(uint8_t* data, size_t len) override {
-        uint8_t* dataWithCRC = appendCRC(data, len);
-        driver->send(dataWithCRC, len + 2);  // Add CRC, delegate
-    }
-};
-
-// Product A: Only logging
-UARTDriver* driverA = new LoggingDecorator(new UARTDriver());
-
-// Product B: Only CRC
-UARTDriver* driverB = new CRCDecorator(new UARTDriver());
-
-// Product C: Both features
-UARTDriver* driverC = new LoggingDecorator(
-    new CRCDecorator(new UARTDriver())
-);
-
-// Each product includes ONLY the features it needs!
-// No wasted memory, no unused code
-```
-
-**Key Production Benefits:**
-
-- **Minimal memory footprint** - Only include features you use
-- **Modular features** - Add/remove without touching base driver
-- **Build variants** - Different products get different decorator combinations
-- **Performance** - No flag checking, direct calls only
-- **Maintainability** - Each feature isolated in its own decorator
-
 ---
 
-## 6. The Trade-offs - Be Honest ⚖️
+## The Trade-offs - Be Honest ⚖️
 
 ### Added Complexity
 
@@ -635,176 +508,7 @@ delete b;  // What gets deleted?
 
 ---
 
-## 7. C++ Considerations - Language Mapping 🔧
-
-### Java vs C++: Key Differences
-
-| Aspect | Java | C++ |
-|--------|------|-----|
-| **Memory Management** | Garbage collected | Manual (use smart pointers!) |
-| **Ownership** | GC handles it | Decorator must manage wrapped object lifetime |
-| **Polymorphism** | All virtual by default | Explicit `virtual` keyword |
-| **Return Types** | Can use primitives directly | Same, but watch object slicing |
-
-### Modern C++ Advantages
-
-#### 1. **Smart Pointers for Ownership**
-
-**Problem:** Who deletes the wrapped objects?
-
-```cpp
-// BAD: Memory leak!
-Beverage* b = new Espresso();
-b = new Mocha(b);  // Mocha wraps Espresso
-b = new Whip(b);   // Whip wraps Mocha
-delete b;          // Only deletes Whip! Mocha and Espresso leaked!
-```
-
-**Solution: `std::unique_ptr` with Move Semantics**
-
-```cpp
-class Mocha : public Beverage {
-    std::unique_ptr<Beverage> beverage;  // Owns the wrapped object
-
-public:
-    Mocha(std::unique_ptr<Beverage> b) : beverage(std::move(b)) {}
-
-    double cost() override {
-        return 0.20 + beverage->cost();
-    }
-};
-
-// Usage:
-auto b = std::make_unique<Espresso>();
-b = std::make_unique<Mocha>(std::move(b));  // Transfer ownership
-b = std::make_unique<Whip>(std::move(b));   // Transfer ownership
-
-// When 'b' goes out of scope, entire chain is deleted automatically!
-```
-
-**Why `unique_ptr`?**
-
-- Decorator exclusively owns the wrapped object (no sharing)
-- Move semantics = zero overhead
-- RAII: automatic cleanup
-
-#### 2. **Const Correctness**
-
-```cpp
-class Beverage {
-public:
-    virtual double cost() const = 0;  // Doesn't modify state
-    virtual std::string getDescription() const = 0;
-    virtual ~Beverage() = default;
-};
-
-class Mocha : public Beverage {
-    std::unique_ptr<Beverage> beverage;
-
-public:
-    double cost() const override {  // Can call on const Mocha
-        return 0.20 + beverage->cost();
-    }
-};
-```
-
-#### 3. **Virtual Destructor (Critical!)**
-
-```cpp
-class Beverage {
-public:
-    virtual double cost() const = 0;
-    virtual ~Beverage() = default;  // MUST be virtual!
-};
-```
-
-**Why?**
-
-```cpp
-Beverage* b = new Mocha(new Espresso());
-delete b;  // Without virtual destructor: only ~Beverage() called!
-           // Espresso leaks!
-```
-
-#### 4. **Move-Only Decorator for Performance**
-
-```cpp
-class Mocha : public Beverage {
-    std::unique_ptr<Beverage> beverage;
-
-public:
-    // Move constructor
-    Mocha(std::unique_ptr<Beverage> b) : beverage(std::move(b)) {}
-
-    // Move-only (no copying expensive decorator chains)
-    Mocha(Mocha&&) = default;
-    Mocha& operator=(Mocha&&) = default;
-    Mocha(const Mocha&) = delete;
-    Mocha& operator=(const Mocha&) = delete;
-};
-```
-
-#### 5. **Builder Pattern for Readability**
-
-Decorator chains can be hard to read. Use a builder:
-
-```cpp
-class BeverageBuilder {
-    std::unique_ptr<Beverage> beverage;
-
-public:
-    BeverageBuilder& withBase(std::unique_ptr<Beverage> b) {
-        beverage = std::move(b);
-        return *this;
-    }
-
-    BeverageBuilder& addMocha() {
-        beverage = std::make_unique<Mocha>(std::move(beverage));
-        return *this;
-    }
-
-    BeverageBuilder& addWhip() {
-        beverage = std::make_unique<Whip>(std::move(beverage));
-        return *this;
-    }
-
-    std::unique_ptr<Beverage> build() {
-        return std::move(beverage);
-    }
-};
-
-// Usage:
-auto beverage = BeverageBuilder()
-    .withBase(std::make_unique<Espresso>())
-    .addMocha()
-    .addMocha()  // Double mocha!
-    .addWhip()
-    .build();
-```
-
-#### 6. **Template Decorators (Advanced)**
-
-For zero-overhead decorators:
-
-```cpp
-template<typename Component>
-class LoggingDecorator : public Component {
-public:
-    void operation() {
-        std::cout << "Logging...\n";
-        Component::operation();
-    }
-};
-
-// Usage:
-using LoggedEspresso = LoggingDecorator<Espresso>;
-```
-
-**Trade-off:** No runtime wrapping, but compile-time type explosion.
-
----
-
-## 8. Implementation Details
+## Implementation Details
 
 ### Class Structure
 
@@ -837,7 +541,7 @@ ConcreteDecorator (Mocha, Whip, Soy)
 
 ---
 
-## 9. Key Takeaways
+## Key Takeaways
 
 ### For a Software Architect
 
@@ -875,7 +579,7 @@ ConcreteDecorator (Mocha, Whip, Soy)
 
 ---
 
-## 10. Comparison to Related Patterns
+## Comparison to Related Patterns
 
 ### Decorator vs Strategy
 
@@ -894,49 +598,6 @@ ConcreteDecorator (Mocha, Whip, Soy)
 - **Decorator:** Adds to individual objects
 - **Composite:** Organizes objects into tree structures
 - Both use recursive composition, different purposes
-
----
-
-## 11. Real-World Use Cases
-
-### Embedded Systems 🔧
-
-```cpp
-// UART driver with optional features
-UARTDriver* driver = new UARTDriver();
-driver = new BufferingDecorator(driver);    // Add buffering
-driver = new CRCDecorator(driver);          // Add error checking
-driver = new LoggingDecorator(driver);      // Add logging
-// Only include features you need!
-```
-
-### Java I/O Streams (Classic Example)
-
-```java
-InputStream in = new FileInputStream("file.txt");
-in = new BufferedInputStream(in);       // Add buffering
-in = new DataInputStream(in);            // Add data type reading
-// Stack decorators for different features
-```
-
-### GUI Widgets
-
-```cpp
-Window* window = new SimpleWindow();
-window = new ScrollbarDecorator(window);  // Add scrollbar
-window = new BorderDecorator(window);     // Add border
-// Compose visual features
-```
-
-### Network Middleware
-
-```cpp
-RequestHandler* handler = new CoreHandler();
-handler = new AuthDecorator(handler);       // Add authentication
-handler = new LoggingDecorator(handler);    // Add logging
-handler = new RateLimitDecorator(handler);  // Add rate limiting
-// Middleware pipeline
-```
 
 ---
 

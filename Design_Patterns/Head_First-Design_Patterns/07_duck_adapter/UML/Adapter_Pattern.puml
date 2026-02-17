@@ -1,0 +1,97 @@
+@startuml Adapter_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define TARGET_BG #C8E6C9
+!define TARGET_BORDER #2E7D32
+!define ADAPTER_BG #FFF9C4
+!define ADAPTER_BORDER #F57F17
+!define ADAPTEE_BG #E1F5FE
+!define ADAPTEE_BORDER #01579B
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<target>> TARGET_BG
+    BorderColor<<target>> TARGET_BORDER
+    BackgroundColor<<adapter>> ADAPTER_BG
+    BorderColor<<adapter>> ADAPTER_BORDER
+    BackgroundColor<<adaptee>> ADAPTEE_BG
+    BorderColor<<adaptee>> ADAPTEE_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+class Client <<function>> {
+    --
+    + testDuck(duck : Duck*)
+}
+
+interface Duck <<target>> {
+    + {abstract} quack() : void
+    + {abstract} fly() : void
+    + ~Duck()
+}
+
+class MallardDuck <<target>> {
+    --
+    + MallardDuck()
+    + quack() : void
+    + fly() : void
+}
+
+class TurkeyAdapter <<adapter>> {
+    - turkey : Turkey*
+    --
+    + TurkeyAdapter(turkey : Turkey*)
+    + quack() : void
+    + fly() : void
+}
+
+interface Turkey <<adaptee>> {
+    + {abstract} gobble() : void
+    + {abstract} fly() : void
+    + ~Turkey()
+}
+
+class WildTurkey <<adaptee>> {
+    --
+    + WildTurkey()
+    + gobble() : void
+    + fly() : void
+}
+
+Client ..> Duck
+
+Duck <|.. MallardDuck
+
+Duck <|.. TurkeyAdapter
+
+TurkeyAdapter o--> Turkey
+
+Turkey <|.. WildTurkey
+
+@enduml

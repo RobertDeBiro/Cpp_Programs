@@ -1,0 +1,90 @@
+@startuml Observer_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface Subject <<interface>> {
+    + {abstract} registerObserver(Observer*) : void
+    + {abstract} removeObserver(Observer*) : void
+    + {abstract} notifyObservers() : void
+    + ~Subject()
+}
+
+interface Observer <<interface>> {
+    + {abstract} update(float, float, float) : void
+    + ~Observer()
+}
+
+interface DisplayElement <<interface>> {
+    + {abstract} display() : void
+    + ~DisplayElement()
+}
+
+class WeatherData {
+    - observers : vector<Observer*>
+    - temperature : float
+    - humidity : float
+    - pressure : float
+    --
+    + WeatherData()
+    + registerObserver(Observer*) : void
+    + removeObserver(Observer*) : void
+    + notifyObservers() : void
+    + measurementsChanged() : void
+    + setMeasurements(float, float, float) : void
+    + getTemperature() : float
+    + getHumidity() : float
+    + getPressure() : float
+}
+
+class CurrentConditionsDisplay {
+    - temperature : float
+    - humidity : float
+    - weatherData : Subject*
+    --
+    + CurrentConditionsDisplay(Subject*)
+    + ~CurrentConditionsDisplay()
+    + update(float, float, float) : void
+    + display() : void
+}
+
+Subject <|.. WeatherData
+
+Observer <|.. CurrentConditionsDisplay
+DisplayElement <|.. CurrentConditionsDisplay
+
+WeatherData o--> "*" Observer
+
+CurrentConditionsDisplay --> Subject
+
+@enduml

@@ -1,0 +1,114 @@
+@startuml Decorator_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define COMPONENT_BG #C8E6C9
+!define COMPONENT_BORDER #2E7D32
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<component>> COMPONENT_BG
+    BorderColor<<component>> COMPONENT_BORDER
+    BackgroundColor<<decorator>> CLASS_BG
+    BorderColor<<decorator>> CLASS_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+abstract class Beverage <<component>> {
+    # description : string
+    --
+    + getDescription() : string
+    + {abstract} cost() : double
+    + ~Beverage()
+}
+
+class Espresso <<component>> {
+    + Espresso()
+    + cost() : double
+}
+
+class HouseBlend <<component>> {
+    + HouseBlend()
+    + cost() : double
+}
+
+class DarkRoast <<component>> {
+    + DarkRoast()
+    + cost() : double
+}
+
+class Decaf <<component>> {
+    + Decaf()
+    + cost() : double
+}
+
+abstract class CondimentDecorator <<decorator>> {
+    + {abstract} getDescription() : string
+    + ~CondimentDecorator()
+}
+
+class Mocha <<decorator>> {
+    - beverage : unique_ptr<Beverage>
+    --
+    + Mocha(unique_ptr<Beverage>)
+    + getDescription() : string
+    + cost() : double
+}
+
+class Whip <<decorator>> {
+    - beverage : unique_ptr<Beverage>
+    --
+    + Whip(unique_ptr<Beverage>)
+    + getDescription() : string
+    + cost() : double
+}
+
+class Soy <<decorator>> {
+    - beverage : unique_ptr<Beverage>
+    --
+    + Soy(unique_ptr<Beverage>)
+    + getDescription() : string
+    + cost() : double
+}
+
+Beverage <|-- Espresso
+Beverage <|-- HouseBlend
+Beverage <|-- DarkRoast
+Beverage <|-- Decaf
+
+Beverage <|-- CondimentDecorator
+
+CondimentDecorator <|-- Mocha
+CondimentDecorator <|-- Whip
+CondimentDecorator <|-- Soy
+
+Mocha o--> "1" Beverage
+Whip o--> "1" Beverage
+Soy o--> "1" Beverage
+
+@enduml

@@ -1,0 +1,151 @@
+@startuml Command_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define INVOKER_BG #FFE0B2
+!define INVOKER_BORDER #E65100
+!define COMMAND_BG #E1F5FE
+!define COMMAND_BORDER #01579B
+!define RECEIVER_BG #C8E6C9
+!define RECEIVER_BORDER #2E7D32
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<invoker>> INVOKER_BG
+    BorderColor<<invoker>> INVOKER_BORDER
+    BackgroundColor<<command>> COMMAND_BG
+    BorderColor<<command>> COMMAND_BORDER
+    BackgroundColor<<receiver>> RECEIVER_BG
+    BorderColor<<receiver>> RECEIVER_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface Command <<command>> {
+    + {abstract} execute() : void
+    + {abstract} undo() : void
+    + ~Command()
+}
+
+class LightOnCommand <<command>> {
+    - light : Light*
+    --
+    + LightOnCommand(Light*)
+    + execute() : void
+    + undo() : void
+}
+
+class LightOffCommand <<command>> {
+    - light : Light*
+    --
+    + LightOffCommand(Light*)
+    + execute() : void
+    + undo() : void
+}
+
+class StereoOnWithCDCommand <<command>> {
+    - stereo : Stereo*
+    --
+    + StereoOnWithCDCommand(Stereo*)
+    + execute() : void
+    + undo() : void
+}
+
+class StereoOffCommand <<command>> {
+    - stereo : Stereo*
+    --
+    + StereoOffCommand(Stereo*)
+    + execute() : void
+    + undo() : void
+}
+
+class NoCommand <<command>> {
+    --
+    + execute() : void
+    + undo() : void
+}
+
+class MacroCommand <<command>> {
+    - commands : vector<shared_ptr<Command>>
+    --
+    + MacroCommand(vector<shared_ptr<Command>>)
+    + execute() : void
+    + undo() : void
+}
+
+class RemoteControl <<invoker>> {
+    - onCommands : array<shared_ptr<Command>, 7>
+    - offCommands : array<shared_ptr<Command>, 7>
+    - undoCommand : shared_ptr<Command>
+    --
+    + RemoteControl()
+    + setCommand(slot : int, on : shared_ptr<Command>, off : shared_ptr<Command>) : void
+    + onButtonWasPushed(slot : int) : void
+    + offButtonWasPushed(slot : int) : void
+    + undoButtonWasPushed() : void
+    + toString() : string
+}
+
+class Light <<receiver>> {
+    - location : string
+    --
+    + Light(location : string)
+    + on() : void
+    + off() : void
+    + getLocation() : string
+}
+
+class Stereo <<receiver>> {
+    - location : string
+    --
+    + Stereo(location : string)
+    + on() : void
+    + off() : void
+    + setCD() : void
+    + setDVD() : void
+    + setRadio() : void
+    + setVolume(volume : int) : void
+    + getLocation() : string
+}
+
+Command <|.. LightOnCommand
+Command <|.. LightOffCommand
+Command <|.. StereoOnWithCDCommand
+Command <|.. StereoOffCommand
+Command <|.. NoCommand
+Command <|.. MacroCommand
+
+RemoteControl o--> "14" Command
+
+LightOnCommand --> Light
+LightOffCommand --> Light
+StereoOnWithCDCommand --> Stereo
+StereoOffCommand --> Stereo
+
+MacroCommand o--> "*" Command
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml Template_Method_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+abstract class CaffeineBeverageWithHook <<abstract>> {
+    + {method} prepareRecipe() : void
+    + ~CaffeineBeverageWithHook() : virtual
+    --
+    # {abstract} brew() : void = 0
+    # {abstract} addCondiments() : void = 0
+    # boilWater() : void
+    # pourInCup() : void
+    # customerWantsCondiments() : bool
+}
+
+class CoffeeWithHook {
+    # brew() : void override
+    # addCondiments() : void override
+    # customerWantsCondiments() : bool override
+    --
+    - getUserInput() : string
+}
+
+class TeaWithHook {
+    # brew() : void override
+    # addCondiments() : void override
+    # customerWantsCondiments() : bool override
+    --
+    - getUserInput() : string
+}
+
+CaffeineBeverageWithHook <|-- CoffeeWithHook
+CaffeineBeverageWithHook <|-- TeaWithHook
+
+@enduml

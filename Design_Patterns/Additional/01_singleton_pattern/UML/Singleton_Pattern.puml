@@ -1,0 +1,73 @@
+@startuml Singleton_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define SINGLETON_BG #FFE0B2
+!define SINGLETON_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<singleton>> SINGLETON_BG
+    BorderColor<<singleton>> SINGLETON_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+class HardwareManager <<singleton>> {
+    - {static} instance : HardwareManager
+    - m_i2cBuses : vector<uint8_t>
+    - m_spiDevices : vector<uint8_t>
+    - m_mutex : mutex
+    --
+    - HardwareManager()
+    - ~HardwareManager()
+    --
+    + {static} getInstance() : HardwareManager&
+    + initializeI2C(bus : uint8_t) : void
+    + initializeSPI(device : uint8_t) : void
+    + setGPIOMode(pin : uint8_t, mode : string) : void
+    + printStatus() : void
+    --
+    <<deleted>>
+    + HardwareManager(const HardwareManager&)
+    + operator=(const HardwareManager&)
+}
+
+class Client1 {
+    + run() : void
+}
+
+class Client2 {
+    + run() : void
+}
+
+Client1 ..> HardwareManager : uses
+Client2 ..> HardwareManager : uses
+
+HardwareManager --> HardwareManager : instance
+
+@enduml

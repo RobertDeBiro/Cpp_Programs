@@ -10,7 +10,7 @@
 
 ---
 
-## 1. The Problem - Show the Pain! 💥
+## The Problem - Show the Pain! 💥
 
 ### The Nightmare: Tightly Coupled Notification System
 
@@ -99,66 +99,13 @@ To test `WeatherData`, you MUST instantiate all displays. Can't test in isolatio
 - ❌ **Open/Closed Principle** - Must modify WeatherData to add new observers
 - ❌ **Single Responsibility** - WeatherData manages both data AND notification logic
 
----
+### UML Diagram: Bad Design
 
-## 2. Real-World Example: Network Monitoring System 🌐
-
-**Scenario:** You're building a network monitoring system that tracks server health metrics (CPU, memory, network traffic). Multiple consumers need real-time updates:
-
-### Bad Tightly-Coupled Approach
-
-```cpp
-class ServerMonitor {
-    float cpuUsage;
-    float memoryUsage;
-    float networkTraffic;
-
-    DashboardUI dashboard;
-    AlertSystem alertSystem;
-    LoggingService logger;
-    MetricsDatabase database;
-
-public:
-    void metricsChanged() {
-        // Hardcoded notifications
-        dashboard.updateMetrics(cpuUsage, memoryUsage, networkTraffic);
-        alertSystem.checkThresholds(cpuUsage, memoryUsage, networkTraffic);
-        logger.logMetrics(cpuUsage, memoryUsage, networkTraffic);
-        database.storeMetrics(cpuUsage, memoryUsage, networkTraffic);
-    }
-};
-```
-
-**Problems in Production:**
-
-1. **New Integration Request**: "Connect our Slack bot for alerts!"
-   - Must modify `ServerMonitor` class (risky!)
-   - Redeploy the entire monitoring service
-   - Tight coupling between core monitoring and external integrations
-
-2. **Conditional Notifications**: "Only log during business hours!"
-   - Can't disable logger dynamically
-   - Notifications are always sent to everyone
-
-3. **Performance Issues**: "Database writes are slow, blocking metrics collection!"
-   - All notifications happen synchronously
-   - One slow observer blocks all others
-
-4. **Third-Party Integrations**: "Customer wants to plug in their own monitoring tool!"
-   - Impossible without modifying source code
-   - Every customer needs a custom build
-
-**Real-World Impact:**
-
-- **Downtime** during deployments to add new monitoring clients
-- **Vendor lock-in** - can't easily integrate third-party tools
-- **Scalability issues** - adding observers requires code changes and deployments
-
-**This is exactly the pain the Observer pattern solves!**
+See `UML/Bad_Tightly_Coupled_Design.puml` for the class diagram showing the tightly-coupled approach with hardcoded dependencies (red-highlighted problem class).
 
 ---
 
-## 3. The Solution - The Insight 💡
+## The Solution - The Insight 💡
 
 ### The Key Architectural Insight
 
@@ -207,7 +154,7 @@ ConcreteObserverA, B, C
 
 ---
 
-## 4. The Principles - The "Why" 🎯
+## The Principles - The "Why" 🎯
 
 ### Design Principles Demonstrated
 
@@ -306,7 +253,7 @@ Both depend on **abstraction** (`Observer` interface).
 
 ---
 
-## 5. The Benefits - What You Gain ✅
+## The Benefits - What You Gain ✅
 
 ### Flexibility: What Becomes Easy to Change?
 
@@ -376,55 +323,9 @@ ASSERT_EQ(mock.updateCount, 1);
 ASSERT_EQ(mock.lastTemp, 25.0f);
 ```
 
-### Real-World Impact: Production Systems
-
-**Network Monitoring Example (continued):**
-
-With Observer pattern:
-
-```cpp
-class ServerMonitor : public Subject {
-    std::vector<Observer*> observers;
-
-public:
-    void metricsChanged() {
-        notifyObservers();  // Generic notification
-    }
-
-    // Add new monitoring client at runtime
-    void registerObserver(Observer* o) {
-        observers.push_back(o);
-    }
-};
-
-// In production:
-ServerMonitor monitor;
-
-// Core clients
-monitor.registerObserver(&dashboard);
-monitor.registerObserver(&alertSystem);
-
-// Customer-specific plugin (no code changes!)
-CustomerMonitoringPlugin plugin;
-monitor.registerObserver(&plugin);
-
-// Temporary debugging
-if (debugMode) {
-    DebugLogger debugLogger;
-    monitor.registerObserver(&debugLogger);
-}
-```
-
-**Key Production Benefits:**
-
-- **Hot-swappable observers** - Add/remove without restarting service
-- **Plugin architecture** - Third-party integrations without source changes
-- **A/B testing** - Enable/disable features for different users
-- **Zero-downtime deployments** - New observers added dynamically
-
 ---
 
-## 6. The Trade-offs - Be Honest ⚖️
+## The Trade-offs - Be Honest ⚖️
 
 ### Added Complexity
 
@@ -519,20 +420,23 @@ void update(Subject* subject);  // Pull: observer calls subject->getTemperature(
 
 ---
 
-## 7. C++ Considerations - Language Mapping 🔧
+## Implementation Details
 
-### Java vs C++: Key Differences
+### Class Structure
 
-| Aspect | Java | C++ |
-|--------|------|-----|
-| **Interfaces** | `interface Observer` | Abstract class with pure virtual |
-| **Memory Management** | Garbage collected | Manual (use smart pointers!) |
-| **Observer Storage** | `ArrayList<Observer>` | `std::vector<Observer*>` or `std::vector<std::weak_ptr<Observer>>` |
-| **Polymorphism** | All virtual by default | Explicit `virtual` keyword |
+Subject (interface)
+├── registerObserver(Observer*)
+├── removeObserver(Observer*)
+└── notifyObservers()
 
-### Modern C++ Advantages
+Observer (interface)
+└── update(data)
 
-#### 1. **Smart Pointers for Observer Lifetime**
+DisplayElement (interface)
+└── display()
+
+WeatherData (concrete Subject)
+CurrentConditionsDisplay (concrete Observer)
 
 **Problem:** Subject holds observer pointers. If observer is deleted, dangling pointer!
 
@@ -671,35 +575,6 @@ void Subject::addObserversFrom(Subject&& other) {
 }
 ```
 
----
-
-## 8. Implementation Details
-
-### Class Structure
-
-```
-Subject (interface)
-├── registerObserver(Observer*)
-├── removeObserver(Observer*)
-└── notifyObservers()
-
-Observer (interface)
-└── update(data)
-
-DisplayElement (interface)
-└── display()
-
-WeatherData (concrete subject)
-├── implements Subject
-├── observers: vector<Observer*>
-├── temperature, humidity, pressure
-└── setMeasurements()
-
-CurrentConditionsDisplay (concrete observer)
-├── implements Observer, DisplayElement
-└── update(), display()
-```
-
 ### Push vs Pull Model
 
 **Push Model (used in this example):**
@@ -718,7 +593,7 @@ void update(Subject* subject);  // Observer pulls: subject->getTemperature()
 
 ---
 
-## 9. Key Takeaways
+## Key Takeaways
 
 ### For a Software Architect
 
@@ -758,7 +633,7 @@ void update(Subject* subject);  // Observer pulls: subject->getTemperature()
 
 ---
 
-## 10. Comparison to Related Patterns
+## Comparison to Related Patterns
 
 ### Observer vs Mediator
 
@@ -776,65 +651,6 @@ void update(Subject* subject);  // Observer pulls: subject->getTemperature()
 
 - Same pattern! GUI frameworks use Observer heavily
 - Button (subject) notifies click listeners (observers)
-
----
-
-## 11. Real-World Use Cases
-
-### Network Systems 🌐
-
-```cpp
-class NetworkInterface : public Subject {
-public:
-    void packetReceived(Packet p) {
-        notifyObservers(p);
-    }
-};
-
-// Observers: PacketLogger, FirewallChecker, ProtocolAnalyzer
-// Add new packet processors without modifying NetworkInterface
-```
-
-### GUI Systems
-
-```cpp
-class Button : public Subject {
-public:
-    void onClick() {
-        notifyObservers();  // Notify all click listeners
-    }
-};
-
-// Observers: EventHandlers dynamically registered
-```
-
-### Robotics 🤖
-
-```cpp
-class SensorHub : public Subject {
-public:
-    void sensorDataAvailable(SensorData data) {
-        notifyObservers(data);
-    }
-};
-
-// Observers: ControlLoop, DataLogger, SafetyMonitor
-// Add new consumers of sensor data without changing SensorHub
-```
-
-### Embedded Systems 🔧
-
-```cpp
-class SystemMonitor : public Subject {
-public:
-    void temperatureChanged(float temp) {
-        notifyObservers(temp);
-    }
-};
-
-// Observers: ThermalController, WarningDisplay, DataLogger
-// React to temperature changes independently
-```
 
 ---
 

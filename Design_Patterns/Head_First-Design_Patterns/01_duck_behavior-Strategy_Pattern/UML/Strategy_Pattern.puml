@@ -1,0 +1,106 @@
+@startuml Strategy_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface FlyBehavior <<interface>> {
+    + {abstract} fly() : void
+    + ~FlyBehavior()
+}
+
+interface QuackBehavior <<interface>> {
+    + {abstract} quack() : void
+    + ~QuackBehavior()
+}
+
+class FlyWithWings {
+    + fly() : void
+}
+
+class FlyNoWay {
+    + fly() : void
+}
+
+class FlyRocketPowered {
+    + fly() : void
+}
+
+class Quack {
+    + quack() : void
+}
+
+class MuteQuack {
+    + quack() : void
+}
+
+class Squeak {
+    + quack() : void
+}
+
+abstract class Duck <<abstract>> {
+    # flyBehavior : unique_ptr<FlyBehavior>
+    # quackBehavior : unique_ptr<QuackBehavior>
+    --
+    + {abstract} display() : void
+    + performFly() : void
+    + performQuack() : void
+    + swim() : void
+    + setFlyBehavior(FlyBehavior) : void
+    + setQuackBehavior(QuackBehavior) : void
+}
+
+class MallardDuck {
+    + MallardDuck()
+    + display() : void
+}
+
+class ModelDuck {
+    + ModelDuck()
+    + display() : void
+}
+
+FlyBehavior <|.. FlyWithWings
+FlyBehavior <|.. FlyNoWay
+FlyBehavior <|.. FlyRocketPowered
+
+QuackBehavior <|.. Quack
+QuackBehavior <|.. MuteQuack
+QuackBehavior <|.. Squeak
+
+Duck <|-- MallardDuck
+Duck <|-- ModelDuck
+
+Duck o--> "1" FlyBehavior
+Duck o--> "1" QuackBehavior
+
+@enduml

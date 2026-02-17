@@ -1,0 +1,129 @@
+@startuml State_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define CONTEXT_BG #E8F4F8
+!define CONTEXT_BORDER #0066CC
+!define STATE_BG #E8F8E8
+!define STATE_BORDER #00AA00
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<Context>> CONTEXT_BG
+    BorderColor<<Context>> CONTEXT_BORDER
+    BackgroundColor<<ConcreteState>> STATE_BG
+    BorderColor<<ConcreteState>> STATE_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface State <<interface>> {
+    + {abstract} insertQuarter(machine: GumballMachine*): void
+    + {abstract} ejectQuarter(machine: GumballMachine*): void
+    + {abstract} turnCrank(machine: GumballMachine*): void
+    + {abstract} dispense(machine: GumballMachine*): void
+}
+
+class NoQuarterState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+}
+
+class HasQuarterState <<ConcreteState>> {
+    - randomGenerator: mt19937
+    - distribution: uniform_int_distribution
+    --
+    + HasQuarterState()
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+}
+
+class SoldState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+}
+
+class SoldOutState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+}
+
+class WinnerState <<ConcreteState>> {
+    + insertQuarter(machine: GumballMachine*): void
+    + ejectQuarter(machine: GumballMachine*): void
+    + turnCrank(machine: GumballMachine*): void
+    + dispense(machine: GumballMachine*): void
+}
+
+class GumballMachine <<Context>> {
+    - soldOutState: unique_ptr<State>
+    - noQuarterState: unique_ptr<State>
+    - hasQuarterState: unique_ptr<State>
+    - soldState: unique_ptr<State>
+    - winnerState: unique_ptr<State>
+    - state: State*
+    - count: int
+    --
+    + GumballMachine(numberGumballs: int)
+    + insertQuarter(): void
+    + ejectQuarter(): void
+    + turnCrank(): void
+    + setState(newState: State*): void
+    + releaseBall(): void
+    + getCount(): int
+    + refill(count: int): void
+    + toString(): string
+    + getNoQuarterState(): State*
+    + getHasQuarterState(): State*
+    + getSoldState(): State*
+    + getSoldOutState(): State*
+    + getWinnerState(): State*
+    + printStatus(): void
+}
+
+State <|.. NoQuarterState
+State <|.. HasQuarterState
+State <|.. SoldState
+State <|.. SoldOutState
+State <|.. WinnerState
+
+GumballMachine o--> State
+GumballMachine *--> NoQuarterState
+GumballMachine *--> HasQuarterState
+GumballMachine *--> SoldState
+GumballMachine *--> SoldOutState
+GumballMachine *--> WinnerState
+
+@enduml

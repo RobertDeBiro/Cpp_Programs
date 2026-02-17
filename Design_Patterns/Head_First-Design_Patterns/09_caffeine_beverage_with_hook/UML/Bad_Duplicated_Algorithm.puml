@@ -1,0 +1,56 @@
+@startuml Bad_Duplicated_Algorithm
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define PROBLEM_BG #FFCDD2
+!define PROBLEM_BORDER #C62828
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<problem>> PROBLEM_BG
+    BorderColor<<problem>> PROBLEM_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+class Coffee <<problem>> {
+    + prepareRecipe() : void
+    + boilWater() : void
+    + brewCoffeeGrinds() : void
+    + pourInCup() : void
+    + addSugarAndMilk() : void
+}
+
+class Tea <<problem>> {
+    + prepareRecipe() : void
+    + boilWater() : void
+    + steepTeaBag() : void
+    + pourInCup() : void
+    + addLemon() : void
+}
+
+@enduml

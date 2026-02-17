@@ -1,0 +1,123 @@
+@startuml Abstract_Factory_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define FACTORY_BG #FFE0B2
+!define FACTORY_BORDER #E65100
+!define PRODUCT_BG #C8E6C9
+!define PRODUCT_BORDER #2E7D32
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<factory>> FACTORY_BG
+    BorderColor<<factory>> FACTORY_BORDER
+    BackgroundColor<<product>> PRODUCT_BG
+    BorderColor<<product>> PRODUCT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface SensorFactory <<factory>> {
+    + {abstract} createTemperatureSensor() : unique_ptr<TemperatureSensor>
+    + {abstract} createPressureSensor() : unique_ptr<PressureSensor>
+}
+
+class ARMSensorFactory <<factory>> {
+    + createTemperatureSensor() : unique_ptr<TemperatureSensor>
+    + createPressureSensor() : unique_ptr<PressureSensor>
+}
+
+class ESP32SensorFactory <<factory>> {
+    + createTemperatureSensor() : unique_ptr<TemperatureSensor>
+    + createPressureSensor() : unique_ptr<PressureSensor>
+}
+
+interface TemperatureSensor <<product>> {
+    + {abstract} readTemperature() : double
+    + {abstract} getModel() : string
+    + {abstract} calibrate() : void
+}
+
+interface PressureSensor <<product>> {
+    + {abstract} readPressure() : double
+    + {abstract} getModel() : string
+    + {abstract} calibrate() : void
+}
+
+class ARMTemperatureSensor <<product>> {
+    + readTemperature() : double
+    + getModel() : string
+    + calibrate() : void
+}
+
+class ARMPressureSensor <<product>> {
+    + readPressure() : double
+    + getModel() : string
+    + calibrate() : void
+}
+
+class ESP32TemperatureSensor <<product>> {
+    + readTemperature() : double
+    + getModel() : string
+    + calibrate() : void
+}
+
+class ESP32PressureSensor <<product>> {
+    + readPressure() : double
+    + getModel() : string
+    + calibrate() : void
+}
+
+class WeatherStation {
+    - m_temperatureSensor : unique_ptr<TemperatureSensor>
+    - m_pressureSensor : unique_ptr<PressureSensor>
+    --
+    + WeatherStation(factory : SensorFactory&)
+    + displayReadings() : void
+    + calibrateSensors() : void
+}
+
+SensorFactory <|.. ARMSensorFactory
+SensorFactory <|.. ESP32SensorFactory
+
+TemperatureSensor <|.. ARMTemperatureSensor
+TemperatureSensor <|.. ESP32TemperatureSensor
+
+PressureSensor <|.. ARMPressureSensor
+PressureSensor <|.. ESP32PressureSensor
+
+ARMSensorFactory ..> ARMTemperatureSensor : creates
+ARMSensorFactory ..> ARMPressureSensor : creates
+
+ESP32SensorFactory ..> ESP32TemperatureSensor : creates
+ESP32SensorFactory ..> ESP32PressureSensor : creates
+
+WeatherStation o--> TemperatureSensor
+WeatherStation o--> PressureSensor
+WeatherStation ..> SensorFactory : uses
+
+@enduml

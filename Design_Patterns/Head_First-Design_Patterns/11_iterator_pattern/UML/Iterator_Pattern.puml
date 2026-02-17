@@ -1,0 +1,142 @@
+@startuml Iterator_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+interface Iterator <<interface>> {
+    + {abstract} hasNext() : bool
+    + {abstract} next() : MenuItem*
+}
+
+interface Menu <<interface>> {
+    + {abstract} createIterator() : unique_ptr<Iterator>
+}
+
+class MenuItem {
+    - m_name : string
+    - m_description : string
+    - m_vegetarian : bool
+    - m_price : double
+    --
+    + MenuItem(name, description, vegetarian, price)
+    + getName() : string
+    + getDescription() : string
+    + isVegetarian() : bool
+    + getPrice() : double
+    + print() : void
+}
+
+class DinerMenu {
+    - m_menuItems : array<unique_ptr<MenuItem>, MAX_ITEMS>
+    - m_numberOfItems : size_t
+    - {static} MAX_ITEMS : size_t = 10
+    --
+    + DinerMenu()
+    + addItem(name, description, vegetarian, price) : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+class DinerMenuIterator {
+    - m_items : array<unique_ptr<MenuItem>, MAX_ITEMS>&
+    - m_position : size_t
+    --
+    + DinerMenuIterator(items)
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+class PancakeHouseMenu {
+    - m_menuItems : vector<unique_ptr<MenuItem>>
+    --
+    + PancakeHouseMenu()
+    + addItem(name, description, vegetarian, price) : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+class PancakeMenuIterator {
+    - m_items : vector<unique_ptr<MenuItem>>&
+    - m_position : size_t
+    --
+    + PancakeMenuIterator(items)
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+class CafeMenu {
+    - m_menuItems : map<string, unique_ptr<MenuItem>>
+    --
+    + CafeMenu()
+    + addItem(name, description, vegetarian, price) : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+class CafeMenuIterator {
+    - m_items : vector<MenuItem*>
+    - m_position : size_t
+    --
+    + CafeMenuIterator(items)
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+class Waitress {
+    - m_menus : vector<Menu*>
+    --
+    + Waitress(menus)
+    + printMenu() : void
+    + printVegetarianMenu() : void
+    + isItemVegetarian(name) : bool
+    - printMenu(iterator) : void
+}
+
+Menu <|.. DinerMenu
+Menu <|.. PancakeHouseMenu
+Menu <|.. CafeMenu
+
+Iterator <|.. DinerMenuIterator
+Iterator <|.. PancakeMenuIterator
+Iterator <|.. CafeMenuIterator
+
+DinerMenu +-- DinerMenuIterator
+PancakeHouseMenu +-- PancakeMenuIterator
+CafeMenu +-- CafeMenuIterator
+
+DinerMenu o-- MenuItem
+PancakeHouseMenu o-- MenuItem
+CafeMenu o-- MenuItem
+
+Waitress o-- Menu
+Waitress ..> Iterator
+Waitress ..> MenuItem
+
+@enduml

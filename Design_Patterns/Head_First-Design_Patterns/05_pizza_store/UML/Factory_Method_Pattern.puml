@@ -1,0 +1,114 @@
+@startuml Factory_Method_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+!define CREATOR_BG #FFE0B2
+!define CREATOR_BORDER #E65100
+!define PRODUCT_BG #C8E6C9
+!define PRODUCT_BORDER #2E7D32
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    BackgroundColor<<creator>> CREATOR_BG
+    BorderColor<<creator>> CREATOR_BORDER
+    BackgroundColor<<product>> PRODUCT_BG
+    BorderColor<<product>> PRODUCT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+abstract class PizzaStore <<creator>> {
+    --
+    + orderPizza(type : string) : unique_ptr<Pizza>
+    # {abstract} createPizza(type : string) : unique_ptr<Pizza>
+}
+
+class NYPizzaStore <<creator>> {
+    --
+    # createPizza(type : string) : unique_ptr<Pizza>
+}
+
+class ChicagoPizzaStore <<creator>> {
+    --
+    # createPizza(type : string) : unique_ptr<Pizza>
+}
+
+abstract class Pizza <<product>> {
+    # name : string
+    # dough : string
+    # sauce : string
+    # toppings : vector<string>
+    --
+    + prepare() : void
+    + bake() : void
+    + cut() : void
+    + box() : void
+    + getName() : string
+    + ~Pizza()
+}
+
+class NYStyleCheesePizza <<product>> {
+    --
+    + NYStyleCheesePizza()
+    + ~NYStyleCheesePizza()
+}
+
+class NYStylePepperoniPizza <<product>> {
+    --
+    + NYStylePepperoniPizza()
+    + ~NYStylePepperoniPizza()
+}
+
+class ChicagoStyleCheesePizza <<product>> {
+    --
+    + ChicagoStyleCheesePizza()
+    + cut() : void
+    + ~ChicagoStyleCheesePizza()
+}
+
+class ChicagoStylePepperoniPizza <<product>> {
+    --
+    + ChicagoStylePepperoniPizza()
+    + cut() : void
+    + ~ChicagoStylePepperoniPizza()
+}
+
+PizzaStore <|-- NYPizzaStore
+PizzaStore <|-- ChicagoPizzaStore
+
+Pizza <|-- NYStyleCheesePizza
+Pizza <|-- NYStylePepperoniPizza
+Pizza <|-- ChicagoStyleCheesePizza
+Pizza <|-- ChicagoStylePepperoniPizza
+
+PizzaStore ..> Pizza : <<creates>>
+NYPizzaStore ..> NYStyleCheesePizza : <<creates>>
+NYPizzaStore ..> NYStylePepperoniPizza : <<creates>>
+ChicagoPizzaStore ..> ChicagoStyleCheesePizza : <<creates>>
+ChicagoPizzaStore ..> ChicagoStylePepperoniPizza : <<creates>>
+
+@enduml

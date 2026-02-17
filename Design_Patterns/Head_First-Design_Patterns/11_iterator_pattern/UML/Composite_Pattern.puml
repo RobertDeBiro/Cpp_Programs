@@ -1,0 +1,123 @@
+@startuml Composite_Pattern
+
+!define INTERFACE_BG #E1F5FE
+!define INTERFACE_BORDER #01579B
+!define CLASS_BG #FFF9C4
+!define CLASS_BORDER #F57F17
+!define ABSTRACT_BG #FFE0B2
+!define ABSTRACT_BORDER #E65100
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam padding 2
+skinparam ArrowThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RoundCorner 5
+
+skinparam class {
+    BackgroundColor CLASS_BG
+    BorderColor CLASS_BORDER
+    BackgroundColor<<interface>> INTERFACE_BG
+    BorderColor<<interface>> INTERFACE_BORDER
+    BackgroundColor<<abstract>> ABSTRACT_BG
+    BorderColor<<abstract>> ABSTRACT_BORDER
+    FontSize 12
+    FontStyle bold
+    AttributeFontSize 11
+    StereotypeFontSize 10
+}
+
+skinparam arrow {
+    Color #424242
+    FontSize 10
+}
+
+abstract class MenuComponent <<abstract>> {
+    + {abstract} add(component : unique_ptr<MenuComponent>) : void
+    + {abstract} remove(component : MenuComponent*) : void
+    + {abstract} getChild(index : size_t) : MenuComponent*
+    --
+    + {abstract} getName() : string
+    + {abstract} getDescription() : string
+    + {abstract} getPrice() : double
+    + {abstract} isVegetarian() : bool
+    --
+    + {abstract} print() : void
+    + {abstract} createIterator() : unique_ptr<Iterator>
+}
+
+class CompositeMenuItem {
+    - m_name : string
+    - m_description : string
+    - m_vegetarian : bool
+    - m_price : double
+    --
+    + CompositeMenuItem(name, description, vegetarian, price)
+    + getName() : string
+    + getDescription() : string
+    + getPrice() : double
+    + isVegetarian() : bool
+    + print() : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+class CompositeMenu {
+    - m_menuComponents : vector<unique_ptr<MenuComponent>>
+    - m_name : string
+    - m_description : string
+    --
+    + CompositeMenu(name, description)
+    + add(component : unique_ptr<MenuComponent>) : void
+    + remove(component : MenuComponent*) : void
+    + getChild(index : size_t) : MenuComponent*
+    + getName() : string
+    + getDescription() : string
+    + print() : void
+    + createIterator() : unique_ptr<Iterator>
+}
+
+class NullIterator {
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+class CompositeIterator {
+    - m_stack : stack<iterator>
+    - m_components : vector<MenuComponent*>
+    - m_position : size_t
+    --
+    + CompositeIterator(components)
+    + hasNext() : bool
+    + next() : MenuItem*
+}
+
+interface Iterator <<interface>> {
+    + {abstract} hasNext() : bool
+    + {abstract} next() : MenuItem*
+}
+
+class CompositeWaitress {
+    - m_allMenus : MenuComponent*
+    --
+    + CompositeWaitress(allMenus)
+    + printMenu() : void
+    + printVegetarianMenu() : void
+    - printVegetarianHelper(component) : void
+}
+
+MenuComponent <|-- CompositeMenuItem
+MenuComponent <|-- CompositeMenu
+
+CompositeMenu o-- MenuComponent
+
+Iterator <|.. NullIterator
+Iterator <|.. CompositeIterator
+
+CompositeMenuItem ..> NullIterator
+CompositeMenu ..> CompositeIterator
+
+CompositeWaitress o-- MenuComponent
+CompositeWaitress ..> Iterator
+
+@enduml
